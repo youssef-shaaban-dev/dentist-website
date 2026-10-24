@@ -1,0 +1,56 @@
+{
+  "brand": {
+    "name": "MAGNIFICENT SMILE",
+    "subname": "Modern Clinical Luxury & Implantology",
+    "heritage": "Continuing the Legacy of Hesy-Ra — The Dawn of Dentistry",
+    "badge": "Clinics · Aligners · Lab"
+  },
+  "nav": {
+    "home": "Home",
+    "treatments": "Treatments",
+    "doctors": "Our Specialists",
+    "clinics": "Our Clinics",
+    "aligners": "Magnificent Aligners",
+    "dentalLab": "Dental Laboratory",
+    "labPartners": "Lab Partners",
+    "bookAppointment": "Book Appointment"
+  },
+  "hero": {
+    "badge": "THE LEGACY OF HESY-RA — CHIEF OF DENTISTS (2600 BCE)",
+    "hieroglyphics": "𓃀𓄿𓎛𓂧𓍿 𓄿𓃀𓏏𓎡𓄿𓂋𓄿𓏏 𓄿𓃭𓏏𓎡𓈖𓅱𓃭𓅱𓎼𓇌𓄿",
+    "headline": "Descendants of Hesy-Ra... Continuing the legacy of humanity’s first dentist.",
+    "tagline": "With cutting-edge medical innovations... the continuation of this timeless heritage begins here.",
+    "primaryCta": "Book Your Consultation",
+    "secondaryCta": "Explore The Ecosystem",
+    "decoding": "DECIPHERING ROYAL INSCRIPTION...",
+    "resolved": "HESY-RA ROYAL CIPHER RESOLVED",
+    "originalPapyrus": "ORIGINAL PAPYRUS CIPHER:",
+    "decoderHint": "Decipher Royal Hieroglyphic Inscription",
+    "stats": {
+      "clinicsVal": "3 Prime Clinics",
+      "clinicsLabel": "Unrivaled clinical privacy and architectural luxury",
+      "digitalVal": "100% Fully Digital",
+      "digitalLabel": "Integrated CAD/CAM lab & proprietary clear aligners",
+      "patientsVal": "15,000+",
+      "patientsLabel": "Masterpiece smiles sculpted with anatomical precision",
+      "heritageVal": "2600 BCE",
+      "heritageLabel": "The earliest recorded dental practice in human history"
+    },
+    "scrollPrompt": "Scroll to explore modern clinical luxury"
+  },
+  "ecosystem": {
+    "tag": "ONE BRAND · THREE BUSINESSES",
+    "title": "Medical Artistry Meets Timeless Prestige",
+    "subtitle": "A unified luxury dental experience connecting world-class clinics, proprietary aligners, and an advanced digital laboratory.",
+    "clinicsTitle": "Magnificent Smile Clinics",
+    "clinicsDesc": "Specialized oral surgery, veneers, and full-arch rehabilitation in sanctuary-like suites.",
+    "clinicsCta": "Explore Clinics",
+    "alignersTitle": "Magnificent Aligners",
+    "alignersDesc": "Advanced clear aligner systems driven by AI diagnostics and precision biomedical polymer engineering.",
+    "alignersCta": "Discover Aligners",
+    "alignersBadge": "Proprietary System",
+    "labTitle": "High-Precision Dental Lab",
+    "labDesc": "Ultra-thin E.max veneers, titanium implant abutments, and robotic 5-axis milling for elite practitioners.",
+    "labCta": "Partner Portal"
+  }
+}

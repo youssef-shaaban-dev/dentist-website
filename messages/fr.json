@@ -1,0 +1,56 @@
+{
+  "brand": {
+    "name": "MAGNIFICENT SMILE",
+    "subname": "Luxe Clinique Moderne & Implantologie",
+    "heritage": "L’Héritage d’Hésy-Rê — Le Premier Dentiste de l’Histoire",
+    "badge": "Cliniques · Aligneurs · Lab"
+  },
+  "nav": {
+    "home": "Accueil",
+    "treatments": "Traitements",
+    "doctors": "Nos Praticiens",
+    "clinics": "Nos Cliniques",
+    "aligners": "Aligneurs Magnifiques",
+    "dentalLab": "Laboratoire Dentaire",
+    "labPartners": "Partenaires Lab",
+    "bookAppointment": "Prendre Rendez-vous"
+  },
+  "hero": {
+    "badge": "L’HÉRITAGE D’HÉSY-RÊ — MAÎTRE DES DENTISTES (2600 AV. J.-C.)",
+    "hieroglyphics": "𓃀𓄿𓎛𓂧𓍿 𓄿𓃀𓏏𓎡𓄿𓂋𓄿𓏏 𓄿𓃭𓏏𓎡𓈖𓅱𓃭𓅱𓎼𓇌𓄿",
+    "headline": "Héritiers d’Hésy-Rê... Nous perpétuons l’art du tout premier dentiste de l’humanité.",
+    "tagline": "Grâce aux technologies médicales les plus avancées... la grandeur d’un savoir millénaire continue.",
+    "primaryCta": "Réserver une Consultation",
+    "secondaryCta": "Découvrir l’Écosystème",
+    "decoding": "DÉCHIFFREMENT DU CODE ROYAL...",
+    "resolved": "CIPHER ROYAL D'HÉSY-RÊ RÉSOLU",
+    "originalPapyrus": "ORIGINAL PAPYRUS CIPHER:",
+    "decoderHint": "Déchiffrer l’inscription hiéroglyphique royale",
+    "stats": {
+      "clinicsVal": "3 Cliniques de Prestige",
+      "clinicsLabel": "Espaces exclusifs et protocoles médicaux d’élite",
+      "digitalVal": "100% Numérique",
+      "digitalLabel": "Laboratoire de haute précision et aligneurs transparents",
+      "patientsVal": "+15 000",
+      "patientsLabel": "Sourires d’exception façonnés sur mesure",
+      "heritageVal": "2600 av. J.-C.",
+      "heritageLabel": "Origine historique de la science dentaire"
+    },
+    "scrollPrompt": "Défiler pour explorer le luxe clinique"
+  },
+  "ecosystem": {
+    "tag": "UNE MARQUE · TROIS PÔLES D’EXCELLENCE",
+    "title": "L’Art Dentaire Rencontre la Majesté Éternelle",
+    "subtitle": "Une synergie d’exception entre cliniques de luxe, aligneurs sur-mesure et laboratoire de prothèse numérique.",
+    "clinicsTitle": "Cliniques Magnificent",
+    "clinicsDesc": "Chirurgie implantaire guidée et facettes esthétiques dans un cadre raffiné et serein.",
+    "clinicsCta": "Voir les Cliniques",
+    "alignersTitle": "Magnificent Aligners",
+    "alignersDesc": "Systèmes d’alignement invisibles assistés par modélisation prédictive 3D.",
+    "alignersCta": "Découvrir les Aligneurs",
+    "alignersBadge": "Système Exclusif",
+    "labTitle": "Laboratoire de Précision",
+    "labDesc": "Usinage robotique Zircone & E.max au micron près au service des praticiens exigeants.",
+    "labCta": "Portail Professionnel"
+  }
+}

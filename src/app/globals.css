@@ -1,26 +1,164 @@
 @import "tailwindcss";
 
+@theme {
+  /* Brand Luxury Color Palette */
+  --color-warm-ivory: #FDFBF7;
+  --color-ivory: #FDFBF7;
+  --color-ivory-muted: #F5F2EB;
+  --color-ivory-sand: #EAE3D2;
+
+  --color-midnight-navy: #0A1128;
+  --color-navy: #0A1128;
+  --color-navy-deep: #050914;
+  --color-navy-surface: #0E1838;
+  --color-navy-light: #162447;
+  --color-navy-muted: #1E2D5A;
+
+  --color-champagne-gold: #D4AF37;
+  --color-gold: #D4AF37;
+  --color-gold-light: #F3E5AB;
+  --color-gold-bright: #F7E7A9;
+  --color-gold-dark: #AA820A;
+  --color-gold-bronze: #8C6D1F;
+
+  /* Typography System */
+  --font-zentry: var(--font-zentry), -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-montserrat: var(--font-montserrat), -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-tajawal: var(--font-tajawal), "Segoe UI", sans-serif;
+  --font-aref-ruqaa: var(--font-aref-ruqaa), "Traditional Arabic", serif;
+  --font-cairo: var(--font-cairo), "Segoe UI", Tahoma, sans-serif;
+
+  /* Semantic Typography Tokens */
+  --font-display-en: var(--font-zentry), sans-serif;
+  --font-body-en: var(--font-montserrat), sans-serif;
+  --font-display-ar: var(--font-aref-ruqaa), var(--font-tajawal), serif;
+  --font-body-ar: var(--font-cairo), sans-serif;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0A1128;
+  --foreground: #FDFBF7;
+  --gold-primary: #D4AF37;
+  --navy-primary: #0A1128;
+  --ivory-primary: #FDFBF7;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Base Body & Reset */
+html {
+  background-color: #0A1128;
+  color: #FDFBF7;
+  scroll-behavior: auto; /* Handled smoothly by Lenis */
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: #0A1128;
+  color: #FDFBF7;
+  font-family: var(--font-cairo), var(--font-montserrat), sans-serif;
+  overflow-x: hidden;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Ligature and font feature settings for Zentry display font */
+.font-zentry,
+[data-font="zentry"] {
+  font-family: var(--font-zentry), sans-serif;
+  font-feature-settings: "liga" 1, "dlig" 1, "calt" 1, "kern" 1;
+  letter-spacing: -0.02em;
+}
+
+/* Direction-aware typography classes */
+[dir="rtl"] .font-display {
+  font-family: var(--font-aref-ruqaa), var(--font-tajawal), serif;
+}
+
+[dir="ltr"] .font-display {
+  font-family: var(--font-zentry), var(--font-montserrat), sans-serif;
+  font-feature-settings: "liga" 1, "dlig" 1, "calt" 1;
+}
+
+[dir="rtl"] .font-body {
+  font-family: var(--font-cairo), sans-serif;
+}
+
+[dir="ltr"] .font-body {
+  font-family: var(--font-montserrat), sans-serif;
+}
+
+/* Luxury Custom Text Selection */
+::selection {
+  background-color: #D4AF37;
+  color: #0A1128;
+}
+
+/* Luxury Metallic Gold Gradients */
+.gold-text-gradient {
+  background: linear-gradient(135deg, #F3E5AB 0%, #D4AF37 50%, #AA820A 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gold-text-gradient-shimmer {
+  background: linear-gradient(90deg, #D4AF37 0%, #FFF4CC 35%, #D4AF37 70%, #996515 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gold-border-gradient {
+  border-image: linear-gradient(135deg, #D4AF37, rgba(212, 175, 55, 0.2), #AA820A) 1;
+}
+
+/* Subtle Golden Glow Effects */
+.gold-glow {
+  box-shadow: 0 0 25px rgba(212, 175, 55, 0.22);
+}
+
+.gold-glow-lg {
+  box-shadow: 0 0 50px rgba(212, 175, 55, 0.35);
+}
+
+.gold-glow-text {
+  text-shadow: 0 0 20px rgba(212, 175, 55, 0.45);
+}
+
+/* Lenis Recommended CSS */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+/* Elegant Royal Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #050914;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #D4AF37, #7A5C0A);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #F3E5AB;
 }
