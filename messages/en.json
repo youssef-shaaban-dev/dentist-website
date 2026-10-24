@@ -215,18 +215,12 @@
     ]
   },
   "booking": {
-    "badge": "YOUR ROYAL SMILE JOURNEY",
-    "title": "Schedule Your Private Consultation",
-    "subtitle": "Complete your details and your personal concierge will reach out within 30 minutes to confirm.",
-    "branchLabel": "Select Preferred Clinic",
-    "treatmentLabel": "Desired Service or Consultation",
-    "doctorLabel": "Preferred Specialist (Optional)",
-    "anyDoctor": "First Available Senior Specialist",
-    "nameLabel": "Full Name",
-    "phoneLabel": "Phone Number / WhatsApp",
-    "dateLabel": "Preferred Date",
-    "submitBtn": "Confirm Consultation Request",
-    "instantNote": "Includes comprehensive 3D diagnostic scan and treatment plan with total privacy."
+    "badge": "APPOINTMENT",
+    "title": "Book Your Consultation",
+    "subtitle": "Contact us directly via WhatsApp to schedule your visit at your convenience.",
+    "whatsappBtn": "Book via WhatsApp",
+    "phoneLabel": "Or call us directly",
+    "hotline": "+20 100 890 1234"
   },
   "ecosystem": {
     "tag": "ONE BRAND · THREE BUSINESSES",

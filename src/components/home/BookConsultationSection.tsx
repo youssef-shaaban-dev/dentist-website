@@ -1,199 +1,83 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import { useTranslations } from "next-intl";
 import { useLanguage } from "@/i18n/IntlProviderWrapper";
-import { Calendar, CheckCircle2, Sparkles, MapPin, Stethoscope, User, Clock, Phone } from "lucide-react";
+import { Phone } from "lucide-react";
+
+function WhatsAppIcon({ className = "w-5 h-5" }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.746.953 3.71 1.456 5.711 1.457h.004c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+    </svg>
+  );
+}
 
 export function BookConsultationSection() {
   const t = useTranslations("booking");
-  const tClinics = useTranslations("clinics");
-  const tTreatments = useTranslations("treatments");
-  const tDoctors = useTranslations("doctors");
-  const { isRtl } = useLanguage();
+  const { isRtl, locale } = useLanguage();
 
-  const [submitted, setSubmitted] = useState<boolean>(false);
-  const [formData, setFormData] = useState({
-    branch: "branch1",
-    treatment: "implants",
-    doctor: "any",
-    name: "",
-    phone: "",
-    date: "",
-  });
+  const defaultMessage =
+    locale === "ar"
+      ? "مرحباً، أود حجز موعد استشارة في عيادات ماغنيفيسنت سمايل."
+      : locale === "fr"
+      ? "Bonjour, je souhaite réserver une consultation chez Magnificent Smile."
+      : locale === "ru"
+      ? "Здравствуйте, я хочу записаться на приём в клинику Magnificent Smile."
+      : "Hello, I would like to book a consultation at Magnificent Smile Clinics.";
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setSubmitted(true);
-  };
+  const whatsappUrl = `https://wa.me/201008901234?text=${encodeURIComponent(defaultMessage)}`;
+  const cleanPhone = t("hotline").replace(/\s+/g, "");
 
   return (
     <section
       id="book"
-      className="relative py-24 sm:py-32 px-4 sm:px-6 lg:px-8 bg-[#FDFBF7] border-t border-[#C8A232]/20"
+      className="relative py-20 sm:py-28 px-4 sm:px-6 lg:px-8 bg-[#FDFBF7] border-t border-[#C8A232]/20"
       dir={isRtl ? "rtl" : "ltr"}
     >
-      <div className="max-w-4xl mx-auto relative z-10">
-        {/* Header */}
-        <div className="text-center max-w-2xl mx-auto mb-14">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#C8A232]/40 bg-white shadow-sm mb-4">
-            <Calendar className="w-3.5 h-3.5 text-[#8C6A12]" />
-            <span className="text-xs font-bold text-[#8C6A12] uppercase tracking-wider font-mono">
-              {t("badge")}
-            </span>
-          </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold font-display text-[#0A1128] mb-4">
-            {t("title")}
-          </h2>
-          <p className="text-base sm:text-lg text-[#5B6782] font-body leading-relaxed">
-            {t("subtitle")}
-          </p>
+      <div className="max-w-3xl mx-auto text-center">
+        {/* Subtle Category Badge */}
+        <div className="inline-block px-3 py-1 rounded-full border border-[#C8A232]/30 bg-white text-[11px] font-bold text-[#8C6A12] uppercase tracking-wider mb-4 font-mono shadow-sm">
+          {t("badge")}
         </div>
 
-        {/* Booking Card */}
-        <div className="bg-white rounded-3xl border-2 border-[#C8A232]/35 p-8 sm:p-12 shadow-[0_25px_60px_rgba(10,17,40,0.08)]">
-          {submitted ? (
-            <div className="text-center py-12 animate-in fade-in duration-500">
-              <div className="w-20 h-20 rounded-full bg-[#FAF8F5] border-2 border-[#C8A232] flex items-center justify-center text-[#8C6A12] mx-auto mb-6 shadow-md">
-                <CheckCircle2 className="w-10 h-10" />
-              </div>
-              <h3 className="text-2xl font-bold font-display text-[#0A1128] mb-3">
-                تم استلام طلب حجزك الملكي بنجاح
-              </h3>
-              <p className="text-sm text-[#5B6782] max-w-md mx-auto mb-8 font-body">
-                سيتواصل معك المساعد الشخصي خلال ٣٠ دقيقة لتأكيد موعد الجلسة والموقع بدقة.
-              </p>
-              <button
-                type="button"
-                onClick={() => setSubmitted(false)}
-                className="px-8 py-3 rounded-full border border-[#C8A232] text-xs font-bold text-[#0A1128] uppercase hover:bg-[#FAF8F5] transition-colors"
-              >
-                حجز موعد آخر
-              </button>
-            </div>
-          ) : (
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {/* Branch Selection */}
-                <div>
-                  <label className="block text-xs font-bold text-[#0A1128] mb-2 font-mono flex items-center gap-2">
-                    <MapPin className="w-3.5 h-3.5 text-[#8C6A12]" />
-                    <span>{t("branchLabel")}</span>
-                  </label>
-                  <select
-                    value={formData.branch}
-                    onChange={(e) => setFormData({ ...formData, branch: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl border border-[#C8A232]/30 bg-[#FAF8F5] text-xs font-medium text-[#0A1128] focus:outline-none focus:border-[#C8A232] transition-colors"
-                    required
-                  >
-                    <option value="branch1">{tClinics("branch1.name")}</option>
-                    <option value="branch2">{tClinics("branch2.name")}</option>
-                    <option value="branch3">{tClinics("branch3.name")}</option>
-                  </select>
-                </div>
+        {/* Clean, Modern Title (Tajawal / Zentry) */}
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold font-display text-[#0A1128] mb-4">
+          {t("title")}
+        </h2>
 
-                {/* Treatment Selection */}
-                <div>
-                  <label className="block text-xs font-bold text-[#0A1128] mb-2 font-mono flex items-center gap-2">
-                    <Stethoscope className="w-3.5 h-3.5 text-[#8C6A12]" />
-                    <span>{t("treatmentLabel")}</span>
-                  </label>
-                  <select
-                    value={formData.treatment}
-                    onChange={(e) => setFormData({ ...formData, treatment: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl border border-[#C8A232]/30 bg-[#FAF8F5] text-xs font-medium text-[#0A1128] focus:outline-none focus:border-[#C8A232] transition-colors"
-                    required
-                  >
-                    <option value="implants">{tTreatments("items.implants.title")}</option>
-                    <option value="veneers">{tTreatments("items.veneers.title")}</option>
-                    <option value="allon4">{tTreatments("items.allon4.title")}</option>
-                    <option value="aligners">{tTreatments("items.aligners.title")}</option>
-                    <option value="whitening">{tTreatments("items.whitening.title")}</option>
-                    <option value="rootCanal">{tTreatments("items.rootCanal.title")}</option>
-                  </select>
-                </div>
+        {/* Calm Subtitle */}
+        <p className="text-base sm:text-lg text-[#5B6782] font-body max-w-xl mx-auto mb-10 leading-relaxed">
+          {t("subtitle")}
+        </p>
 
-                {/* Preferred Doctor */}
-                <div>
-                  <label className="block text-xs font-bold text-[#0A1128] mb-2 font-mono flex items-center gap-2">
-                    <User className="w-3.5 h-3.5 text-[#8C6A12]" />
-                    <span>{t("doctorLabel")}</span>
-                  </label>
-                  <select
-                    value={formData.doctor}
-                    onChange={(e) => setFormData({ ...formData, doctor: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl border border-[#C8A232]/30 bg-[#FAF8F5] text-xs font-medium text-[#0A1128] focus:outline-none focus:border-[#C8A232] transition-colors"
-                  >
-                    <option value="any">{t("anyDoctor")}</option>
-                    <option value="doc1">{tDoctors("list.0.name")}</option>
-                    <option value="doc2">{tDoctors("list.1.name")}</option>
-                    <option value="doc3">{tDoctors("list.2.name")}</option>
-                  </select>
-                </div>
+        {/* Clean, Premium WhatsApp Button */}
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a
+            href={whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-[#25D366] hover:bg-[#20BD5A] text-white font-bold text-sm tracking-wide shadow-[0_6px_25px_rgba(37,211,102,0.3)] hover:shadow-[0_10px_35px_rgba(37,211,102,0.45)] transition-all transform hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
+          >
+            <WhatsAppIcon className="w-5 h-5 text-white shrink-0" />
+            <span>{t("whatsappBtn")}</span>
+          </a>
 
-                {/* Preferred Date */}
-                <div>
-                  <label className="block text-xs font-bold text-[#0A1128] mb-2 font-mono flex items-center gap-2">
-                    <Clock className="w-3.5 h-3.5 text-[#8C6A12]" />
-                    <span>{t("dateLabel")}</span>
-                  </label>
-                  <input
-                    type="date"
-                    value={formData.date}
-                    onChange={(e) => setFormData({ ...formData, date: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl border border-[#C8A232]/30 bg-[#FAF8F5] text-xs font-medium text-[#0A1128] focus:outline-none focus:border-[#C8A232] transition-colors"
-                    required
-                  />
-                </div>
-
-                {/* Name */}
-                <div>
-                  <label className="block text-xs font-bold text-[#0A1128] mb-2 font-mono">
-                    {t("nameLabel")}
-                  </label>
-                  <input
-                    type="text"
-                    required
-                    placeholder={isRtl ? "مثال: م. أحمد الشاذلي" : "e.g. John Doe"}
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl border border-[#C8A232]/30 bg-[#FAF8F5] text-xs font-medium text-[#0A1128] focus:outline-none focus:border-[#C8A232] transition-colors"
-                  />
-                </div>
-
-                {/* Phone */}
-                <div>
-                  <label className="block text-xs font-bold text-[#0A1128] mb-2 font-mono flex items-center gap-2">
-                    <Phone className="w-3.5 h-3.5 text-[#8C6A12]" />
-                    <span>{t("phoneLabel")}</span>
-                  </label>
-                  <input
-                    type="tel"
-                    required
-                    placeholder="+20 100 000 0000"
-                    value={formData.phone}
-                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl border border-[#C8A232]/30 bg-[#FAF8F5] text-xs font-medium text-[#0A1128] focus:outline-none focus:border-[#C8A232] transition-colors"
-                    dir="ltr"
-                  />
-                </div>
-              </div>
-
-              {/* Submit CTA */}
-              <div className="pt-4 text-center">
-                <button
-                  type="submit"
-                  className="w-full sm:w-auto px-10 py-4 rounded-full border border-[#C8A232] bg-gradient-to-r from-[#C8A232] via-[#DFBF57] to-[#8C6A12] text-[#0A1128] font-bold text-xs uppercase tracking-wider shadow-[0_6px_25px_rgba(200,162,50,0.35)] hover:shadow-[0_10px_35px_rgba(200,162,50,0.5)] transition-all transform hover:-translate-y-0.5 cursor-pointer"
-                >
-                  {t("submitBtn")}
-                </button>
-                <p className="text-[11px] text-[#5B6782] mt-3 flex items-center justify-center gap-1.5 font-body">
-                  <Sparkles className="w-3.5 h-3.5 text-[#8C6A12]" />
-                  <span>{t("instantNote")}</span>
-                </p>
-              </div>
-            </form>
-          )}
+          <a
+            href={`tel:${cleanPhone}`}
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 py-4 rounded-full border border-[#C8A232]/40 bg-white hover:bg-[#FAF8F5] text-[#0A1128] font-bold text-sm transition-all shadow-sm"
+          >
+            <Phone className="w-4 h-4 text-[#8C6A12] shrink-0" />
+            <span>{t("phoneLabel")}</span>
+            <span className="font-mono text-xs text-[#5B6782]" dir="ltr">
+              {t("hotline")}
+            </span>
+          </a>
         </div>
       </div>
     </section>

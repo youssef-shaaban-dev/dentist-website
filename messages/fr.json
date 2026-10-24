@@ -215,18 +215,12 @@
     ]
   },
   "booking": {
-    "badge": "VOTRE PARCOURS DE SOIN",
-    "title": "Planifier Votre Consultation Privée",
-    "subtitle": "Renseignez vos coordonnées et notre conciergerie vous contactera sous 30 minutes.",
-    "branchLabel": "Clinique de votre choix",
-    "treatmentLabel": "Traitement ou consultation souhaitée",
-    "doctorLabel": "Praticien préféré (optionnel)",
-    "anyDoctor": "Premier spécialiste disponible",
-    "nameLabel": "Nom complet",
-    "phoneLabel": "Téléphone / WhatsApp",
-    "dateLabel": "Date préférée",
-    "submitBtn": "Confirmer la Demande de Consultation",
-    "instantNote": "Bilan 3D complet et plan de traitement personnalisé en toute discrétion."
+    "badge": "CONSULTATION",
+    "title": "Réserver Votre Consultation",
+    "subtitle": "Contactez-nous directement via WhatsApp pour planifier votre rendez-vous à votre convenance.",
+    "whatsappBtn": "Réserver via WhatsApp",
+    "phoneLabel": "Ou appelez-nous directement",
+    "hotline": "+20 100 890 1234"
   },
   "ecosystem": {
     "tag": "UNE MARQUE · TROIS PÔLES D’EXCELLENCE",

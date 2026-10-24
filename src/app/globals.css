@@ -71,7 +71,8 @@ body {
 
 /* Direction-aware typography classes */
 [dir="rtl"] .font-display {
-  font-family: var(--font-aref-ruqaa), var(--font-tajawal), serif;
+  font-family: var(--font-tajawal), var(--font-cairo), sans-serif;
+  letter-spacing: -0.01em;
 }
 
 [dir="ltr"] .font-display {
