@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { useLanguage } from "@/i18n/IntlProviderWrapper";
@@ -23,47 +22,8 @@ export function WelcomeSection() {
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           
-          {/* Visual Column: Royal Hesy-Ra Artifact Frame */}
-          <div className="lg:col-span-5 relative flex justify-center order-2 lg:order-1">
-            <div className="relative w-full max-w-md aspect-[4/5] rounded-3xl overflow-hidden p-3 bg-gradient-to-br from-[#FAF8F5] to-white border-2 border-[#C8A232]/35 shadow-[0_20px_50px_rgba(10,17,40,0.08)]">
-              {/* Inner Decorative Bezel */}
-              <div className="relative w-full h-full rounded-2xl overflow-hidden bg-[#0A1128] flex flex-col items-center justify-center p-6 text-center">
-                {/* Ancient Emblem Backdrop */}
-                <div className="relative w-48 h-48 sm:w-56 sm:h-56 mb-6">
-                  <Image
-                    src="/logo.png"
-                    alt="Hesy-Ra Egyptian Dental Heritage"
-                    fill
-                    sizes="250px"
-                    className="object-contain filter drop-shadow-[0_10px_25px_rgba(200,162,50,0.5)]"
-                  />
-                </div>
-                <span className="text-xs font-mono tracking-widest uppercase text-[#F3E5AB]">
-                  FIRST RECORDED DENTIST · 2600 BCE
-                </span>
-                <span className="text-sm font-display text-white font-bold mt-1">
-                  حسي رع — كبير أطباء الأسنان والكتبة
-                </span>
-                <p className="text-[11px] text-[#FDFBF7]/70 mt-2 max-w-xs font-body">
-                  أول من سجل له التاريخ علاج وحفظ الأسنان في الحضارة المصرية القديمة
-                </p>
-              </div>
-
-              {/* Floating Floating Accent Badge */}
-              <div className="absolute -bottom-4 -right-4 sm:right-6 bg-white border border-[#C8A232] rounded-2xl p-4 shadow-xl flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-[#F7F4EE] flex items-center justify-center text-[#8C6A12]">
-                  <Shield className="w-5 h-5" />
-                </div>
-                <div className="flex flex-col text-start">
-                  <span className="text-xs font-bold text-[#0A1128]">أعلى معايير السريرية</span>
-                  <span className="text-[10px] text-[#5B6782]">رعاية ملكية معتمدة دولياً</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Content Column: Philosophy, Story, 3 Pillars */}
-          <div className="lg:col-span-7 flex flex-col order-1 lg:order-2">
+          {/* Content Column: Philosophy, Story, 3 Pillars (7 Cols) */}
+          <div className="lg:col-span-7 flex flex-col order-2 lg:order-1">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#C8A232]/40 bg-white shadow-sm w-fit mb-4">
               <Sparkles className="w-3.5 h-3.5 text-[#C8A232]" />
               <span className="text-xs font-bold text-[#8C6A12] uppercase tracking-wider font-mono">
@@ -109,7 +69,52 @@ export function WelcomeSection() {
                 <p className="text-xs text-[#5B6782] font-body leading-relaxed">{t("points.p3Desc")}</p>
               </div>
             </div>
+          </div>
 
+          {/* Visual Column: Royal Hesy-Ra Artifact Frame (5 Cols - Target for GSAP Traveling Logo) */}
+          <div className="lg:col-span-5 relative flex justify-center order-1 lg:order-2">
+            <div
+              id="welcome-card-target"
+              className="relative w-full max-w-md aspect-[4/5] rounded-3xl overflow-hidden p-3 bg-gradient-to-br from-[#FAF8F5] to-white border-2 border-[#C8A232]/35 shadow-[0_20px_50px_rgba(10,17,40,0.08)] transition-all duration-700"
+            >
+              {/* Inner Decorative Bezel */}
+              <div className="relative w-full h-full rounded-2xl overflow-hidden bg-[#0A1128] flex flex-col items-center justify-center p-6 text-center">
+                {/* Ancient Emblem Target Slot */}
+                <div
+                  id="welcome-logo-target"
+                  className="relative w-48 h-48 sm:w-56 sm:h-56 mb-6 flex items-center justify-center"
+                >
+                  <Image
+                    id="welcome-static-logo"
+                    src="/logo.png"
+                    alt="Hesy-Ra Egyptian Dental Heritage"
+                    fill
+                    sizes="250px"
+                    className="object-contain filter drop-shadow-[0_10px_25px_rgba(200,162,50,0.5)] opacity-100"
+                  />
+                </div>
+                <span className="text-xs font-mono tracking-widest uppercase text-[#F3E5AB]">
+                  FIRST RECORDED DENTIST · 2600 BCE
+                </span>
+                <span className="text-sm font-display text-white font-bold mt-1">
+                  حسي رع — كبير أطباء الأسنان والكتبة
+                </span>
+                <p className="text-[11px] text-[#FDFBF7]/70 mt-2 max-w-xs font-body">
+                  أول من سجل له التاريخ علاج وحفظ الأسنان في الحضارة المصرية القديمة
+                </p>
+              </div>
+
+              {/* Floating Accent Badge */}
+              <div className="absolute -bottom-4 -right-4 sm:right-6 bg-white border border-[#C8A232] rounded-2xl p-4 shadow-xl flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-[#F7F4EE] flex items-center justify-center text-[#8C6A12]">
+                  <Shield className="w-5 h-5" />
+                </div>
+                <div className="flex flex-col text-start">
+                  <span className="text-xs font-bold text-[#0A1128]">أعلى معايير السريرية</span>
+                  <span className="text-[10px] text-[#5B6782]">رعاية ملكية معتمدة دولياً</span>
+                </div>
+              </div>
+            </div>
           </div>
 
         </div>
