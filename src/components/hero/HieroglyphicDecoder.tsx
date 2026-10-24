@@ -1,16 +1,9 @@
 "use client";
 
-import React, { useEffect, useRef, useState, useCallback } from "react";
+import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
-import { useTranslations } from "next-intl";
 import { useLanguage } from "@/i18n/IntlProviderWrapper";
-import { Sparkles, RefreshCw } from "lucide-react";
-
-const HIEROGLYPH_CHARS = [
-  "𓃀", "𓄿", "𓎛", "𓂧", "𓍿", "𓏏", "𓎡", "𓂋", 
-  "𓃭", "𓈖", "𓅱", "𓎼", "𓇌", "𓋹", "𓁹", "𓊹", 
-  "𓊖", "𓏤", "𓌳", "𓂝", "𓇋", "𓏛", "𓋴"
-];
+import { Sparkles, ScrollText } from "lucide-react";
 
 interface HieroglyphicDecoderProps {
   hieroglyphSource?: string;
@@ -22,173 +15,171 @@ export function HieroglyphicDecoder({
   className = "",
 }: HieroglyphicDecoderProps) {
   const { locale, isRtl } = useLanguage();
-  const tHero = useTranslations("hero");
-  const targetText = tHero("headline");
 
-  const [isDecoding, setIsDecoding] = useState<boolean>(true);
-  const textRef = useRef<HTMLSpanElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const timelineRef = useRef<gsap.core.Timeline | null>(null);
-
-  const getRandomGlyph = () => {
-    const randomIndex = Math.floor(Math.random() * HIEROGLYPH_CHARS.length);
-    return HIEROGLYPH_CHARS[randomIndex];
-  };
-
-  const startDecodingAnimation = useCallback(() => {
-    if (timelineRef.current) {
-      timelineRef.current.kill();
-    }
-
-    if (textRef.current) {
-      textRef.current.textContent = hieroglyphSource;
-    }
-
-    const targetLength = targetText.length;
-    const progressObj = { progress: 0 };
-
-    const tl = gsap.timeline({
-      onStart: () => {
-        setIsDecoding(true);
-      },
-      onComplete: () => {
-        if (textRef.current) {
-          textRef.current.textContent = targetText;
-        }
-        setIsDecoding(false);
-      },
-    });
-
-    timelineRef.current = tl;
-
-    // Small atmospheric delay
-    tl.to({}, { duration: 0.3 });
-
-    // GSAP tween that drives character-by-character deciphering
-    tl.to(progressObj, {
-      progress: 1,
-      duration: 3.2,
-      ease: "power2.inOut",
-      onUpdate: () => {
-        const currentProgress = progressObj.progress;
-        const revealedCount = Math.floor(currentProgress * targetLength);
-
-        let result = "";
-        for (let i = 0; i < targetLength; i++) {
-          if (i < revealedCount) {
-            result += targetText[i];
-          } else if (i < revealedCount + 4) {
-            result += getRandomGlyph();
-          } else {
-            if (targetText[i] === " " || targetText[i] === ".") {
-              result += targetText[i];
-            } else {
-              const glyphIndex = i % hieroglyphSource.length;
-              result += hieroglyphSource[glyphIndex] || getRandomGlyph();
-            }
-          }
-        }
-
-        if (textRef.current) {
-          textRef.current.textContent = result;
-        }
-      },
-    });
-
-    // Subtle golden glow pulse on container
-    if (containerRef.current) {
-      tl.fromTo(
-        containerRef.current,
-        { filter: "drop-shadow(0 4px 12px rgba(200, 162, 50, 0.2))" },
-        {
-          filter: "drop-shadow(0 6px 20px rgba(200, 162, 50, 0.4))",
-          duration: 1.5,
-          yoyo: true,
-          repeat: 1,
-          ease: "sine.inOut",
-        },
-        0.5
-      );
-    }
-  }, [targetText, hieroglyphSource]);
+  const cartoucheRef = useRef<HTMLDivElement>(null);
+  const line1Ref = useRef<HTMLSpanElement>(null);
+  const line2Ref = useRef<HTMLSpanElement>(null);
+  const sheenRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    startDecodingAnimation();
-    return () => {
-      if (timelineRef.current) {
-        timelineRef.current.kill();
-      }
-    };
-  }, [startDecodingAnimation, locale]);
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
-  const handleManualReplay = () => {
-    setIsDecoding(true);
-    startDecodingAnimation();
+      // 1. Smooth Royal Cartouche Entrance
+      tl.fromTo(
+        cartoucheRef.current,
+        { opacity: 0, y: -15, scale: 0.96 },
+        { opacity: 1, y: 0, scale: 1, duration: 0.9 }
+      );
+
+      // 2. Soft Golden Sheen Traversing the Hieroglyphs
+      if (sheenRef.current) {
+        tl.fromTo(
+          sheenRef.current,
+          { xPercent: isRtl ? 150 : -150, opacity: 0 },
+          { xPercent: isRtl ? -150 : 150, opacity: 0.85, duration: 1.6, ease: "power2.inOut" },
+          "-=0.5"
+        );
+      }
+
+      // 3. Calm, Majestic Typographic Line Reveals (Zero Jitter / Zero Shaking)
+      tl.fromTo(
+        [line1Ref.current, line2Ref.current],
+        { opacity: 0, y: 22 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1.1,
+          stagger: 0.16,
+          ease: "expo.out",
+        },
+        "-=1.0"
+      );
+    });
+
+    return () => ctx.revert();
+  }, [locale, isRtl]);
+
+  // Formatted Headline with highlighted royal name
+  const renderFormattedHeadline = () => {
+    if (locale === "ar") {
+      return (
+        <>
+          <span ref={line1Ref} className="block text-[#0A1128] mb-1">
+            نحن أحفاد{" "}
+            <span className="gold-text-gradient font-black underline decoration-[#C8A232]/40 decoration-2 underline-offset-8">
+              حسي رع
+            </span>
+            ...
+          </span>
+          <span ref={line2Ref} className="block text-[#0A1128]/95 font-bold">
+            نواصل مسيرة أقدم طبيب أسنان في تاريخ البشرية.
+          </span>
+        </>
+      );
+    }
+
+    if (locale === "en") {
+      return (
+        <>
+          <span ref={line1Ref} className="block text-[#0A1128] mb-1">
+            Descendants of{" "}
+            <span className="gold-text-gradient font-black underline decoration-[#C8A232]/40 decoration-2 underline-offset-8">
+              Hesy-Ra
+            </span>
+            ...
+          </span>
+          <span ref={line2Ref} className="block text-[#0A1128]/95 font-bold text-3xl sm:text-4xl md:text-5xl">
+            Continuing the legacy of humanity’s first dentist.
+          </span>
+        </>
+      );
+    }
+
+    if (locale === "fr") {
+      return (
+        <>
+          <span ref={line1Ref} className="block text-[#0A1128] mb-1">
+            Héritiers d’
+            <span className="gold-text-gradient font-black underline decoration-[#C8A232]/40 decoration-2 underline-offset-8">
+              Hésy-Rê
+            </span>
+            ...
+          </span>
+          <span ref={line2Ref} className="block text-[#0A1128]/95 font-bold text-3xl sm:text-4xl md:text-5xl">
+            L&apos;art du tout premier dentiste de l&apos;humanité.
+          </span>
+        </>
+      );
+    }
+
+    return (
+      <>
+        <span ref={line1Ref} className="block text-[#0A1128] mb-1">
+          Мы — наследники{" "}
+          <span className="gold-text-gradient font-black underline decoration-[#C8A232]/40 decoration-2 underline-offset-8">
+            Хеси-Ра
+          </span>
+          ...
+        </span>
+        <span ref={line2Ref} className="block text-[#0A1128]/95 font-bold text-3xl sm:text-4xl md:text-5xl">
+          Продолжая миссию первого стоматолога в истории.
+        </span>
+      </>
+    );
   };
 
   return (
     <div className={`relative flex flex-col items-center lg:items-start ${className}`}>
-      {/* Decorative Royal Inscription Pill */}
-      <div className="flex items-center gap-2 mb-3.5 px-3.5 py-1.5 rounded-full border border-[#C8A232]/40 bg-white/90 shadow-sm backdrop-blur-md">
-        <Sparkles className="w-3.5 h-3.5 text-[#C8A232] animate-pulse" />
-        <span className="text-[11px] font-mono tracking-widest uppercase font-bold text-[#8C6A12]">
-          {isDecoding ? tHero("decoding") : tHero("resolved")}
-        </span>
-        <button
-          type="button"
-          onClick={handleManualReplay}
-          disabled={isDecoding}
-          className="ml-1 p-1 hover:text-[#8C6A12] text-[#0A1128]/60 transition-transform active:rotate-180 disabled:opacity-40"
-          title={tHero("decoderHint")}
-          aria-label={tHero("decoderHint")}
+      
+      {/* 1. Royal Pharaonic Cartouche Ribbon (Calm, Golden, Ancient Artifact) */}
+      <div
+        ref={cartoucheRef}
+        className="relative overflow-hidden inline-flex items-center gap-3 px-4 py-2 rounded-2xl border-2 border-[#C8A232]/50 bg-gradient-to-r from-white via-[#FAF8F5] to-white shadow-sm mb-5 group"
+      >
+        {/* Animated Golden Sheen Light Ray */}
+        <div
+          ref={sheenRef}
+          className="absolute inset-y-0 w-24 bg-gradient-to-r from-transparent via-[#DFBF57]/50 to-transparent pointer-events-none transform -skew-x-20"
+        />
+
+        <div className="flex items-center gap-2">
+          <div className="w-6 h-6 rounded-lg bg-[#FAF6EE] border border-[#C8A232]/40 flex items-center justify-center text-[#8C6A12] shadow-xs">
+            <ScrollText className="w-3.5 h-3.5" />
+          </div>
+          <span className="text-[10px] sm:text-xs font-mono font-bold uppercase tracking-widest text-[#8C6A12]">
+            {locale === "ar" ? "بردية حسي رع الملكية" : "PAPYRUS OF HESY-RA"}
+          </span>
+        </div>
+
+        <div className="h-4 w-[1px] bg-[#C8A232]/40" />
+
+        {/* Crisp, Static, Beautiful Hieroglyphic Glyphs */}
+        <span
+          className="text-base sm:text-lg text-[#8C6A12] font-serif tracking-widest select-none drop-shadow-[0_1px_2px_rgba(200,162,50,0.3)]"
+          title={hieroglyphSource}
         >
-          <RefreshCw className={`w-3 h-3 ${isDecoding ? "animate-spin" : ""}`} />
-        </button>
+          {hieroglyphSource}
+        </span>
+
+        <Sparkles className="w-3.5 h-3.5 text-[#C8A232] animate-pulse" />
       </div>
 
-      {/* Main Headline Display with Hieroglyph Decoding */}
+      {/* 2. Main Headline (Calm, Elegant Typographic Grandeur - Zero Jitter) */}
       <div
-        ref={containerRef}
-        className="relative px-1 py-1 max-w-3xl text-center lg:text-start select-none"
+        className="relative max-w-3xl text-center lg:text-start select-none"
         dir={isRtl ? "rtl" : "ltr"}
       >
         <h1
           className={`
-            text-2xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold leading-[1.28] tracking-tight
+            text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold leading-[1.28] tracking-tight
             ${locale === "en" ? "font-display-en" : "font-display"}
-            transition-all duration-300 text-[#0A1128]
           `}
         >
-          <span
-            ref={textRef}
-            className={`
-              inline-block transition-all duration-200
-              ${isDecoding ? "text-[#8C6A12] tracking-widest font-serif" : "text-[#0A1128]"}
-            `}
-          >
-            {hieroglyphSource}
-          </span>
+          {renderFormattedHeadline()}
         </h1>
-
-        {/* Ambient scanning gold line */}
-        {isDecoding && (
-          <div
-            className={`
-              absolute -bottom-2 left-0 right-0 h-[2px] 
-              bg-gradient-to-r from-transparent via-[#C8A232] to-transparent 
-              animate-pulse opacity-90
-            `}
-          />
-        )}
       </div>
 
-      {/* Hieroglyphic original inscription reference */}
-      <div className="mt-4 flex flex-wrap items-center justify-center lg:justify-start gap-2 text-xs text-[#8C6A12] font-mono tracking-widest font-medium">
-        <span className="text-[10px] uppercase text-[#5B6782]">{tHero("originalPapyrus")}</span>
-        <span className="text-sm tracking-wider text-[#8C6A12] border-b border-[#C8A232]/40 pb-0.5">
-          {hieroglyphSource}
-        </span>
-      </div>
     </div>
   );
 }
