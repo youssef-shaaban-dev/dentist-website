@@ -40,7 +40,6 @@ export function HieroglyphicDecoder({
       timelineRef.current.kill();
     }
 
-    // Reset direct DOM text node to hieroglyphic source without triggering a React re-render cycle
     if (textRef.current) {
       textRef.current.textContent = hieroglyphSource;
     }
@@ -63,7 +62,7 @@ export function HieroglyphicDecoder({
     timelineRef.current = tl;
 
     // Small atmospheric delay
-    tl.to({}, { duration: 0.35 });
+    tl.to({}, { duration: 0.3 });
 
     // GSAP tween that drives character-by-character deciphering
     tl.to(progressObj, {
@@ -74,17 +73,13 @@ export function HieroglyphicDecoder({
         const currentProgress = progressObj.progress;
         const revealedCount = Math.floor(currentProgress * targetLength);
 
-        // Build deciphered string with leading hieroglyphs / scramble characters
         let result = "";
         for (let i = 0; i < targetLength; i++) {
           if (i < revealedCount) {
-            // Already resolved character
             result += targetText[i];
           } else if (i < revealedCount + 4) {
-            // Active decipher frontier - rapidly scrambling glyphs
             result += getRandomGlyph();
           } else {
-            // Unresolved - hieroglyph or space
             if (targetText[i] === " " || targetText[i] === ".") {
               result += targetText[i];
             } else {
@@ -100,13 +95,13 @@ export function HieroglyphicDecoder({
       },
     });
 
-    // Subtle scale & glow pulse on container
+    // Subtle golden glow pulse on container
     if (containerRef.current) {
       tl.fromTo(
         containerRef.current,
-        { filter: "drop-shadow(0 0 15px rgba(212, 175, 55, 0.4))" },
+        { filter: "drop-shadow(0 4px 12px rgba(200, 162, 50, 0.2))" },
         {
-          filter: "drop-shadow(0 0 35px rgba(212, 175, 55, 0.75))",
+          filter: "drop-shadow(0 6px 20px rgba(200, 162, 50, 0.4))",
           duration: 1.5,
           yoyo: true,
           repeat: 1,
@@ -117,7 +112,6 @@ export function HieroglyphicDecoder({
     }
   }, [targetText, hieroglyphSource]);
 
-  // Synchronize with external GSAP animation system without synchronous setState in effect body
   useEffect(() => {
     startDecodingAnimation();
     return () => {
@@ -135,16 +129,16 @@ export function HieroglyphicDecoder({
   return (
     <div className={`relative flex flex-col items-center lg:items-start ${className}`}>
       {/* Decorative Royal Inscription Pill */}
-      <div className="flex items-center gap-2 mb-3 px-3 py-1 rounded-full border border-[#D4AF37]/30 bg-[#0E1838]/60 backdrop-blur-md">
-        <Sparkles className="w-3.5 h-3.5 text-[#D4AF37] animate-pulse" />
-        <span className="text-[11px] font-mono tracking-widest uppercase text-[#F3E5AB]">
+      <div className="flex items-center gap-2 mb-3.5 px-3.5 py-1.5 rounded-full border border-[#C8A232]/40 bg-white/90 shadow-sm backdrop-blur-md">
+        <Sparkles className="w-3.5 h-3.5 text-[#C8A232] animate-pulse" />
+        <span className="text-[11px] font-mono tracking-widest uppercase font-bold text-[#8C6A12]">
           {isDecoding ? tHero("decoding") : tHero("resolved")}
         </span>
         <button
           type="button"
           onClick={handleManualReplay}
           disabled={isDecoding}
-          className="ml-1 p-1 hover:text-[#D4AF37] text-[#FDFBF7]/60 transition-transform active:rotate-180 disabled:opacity-40"
+          className="ml-1 p-1 hover:text-[#8C6A12] text-[#0A1128]/60 transition-transform active:rotate-180 disabled:opacity-40"
           title={tHero("decoderHint")}
           aria-label={tHero("decoderHint")}
         >
@@ -160,38 +154,38 @@ export function HieroglyphicDecoder({
       >
         <h1
           className={`
-            text-2xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold leading-[1.25] tracking-tight
+            text-2xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold leading-[1.28] tracking-tight
             ${locale === "en" ? "font-display-en" : "font-display"}
-            transition-all duration-300
+            transition-all duration-300 text-[#0A1128]
           `}
         >
           <span
             ref={textRef}
             className={`
               inline-block transition-all duration-200
-              ${isDecoding ? "text-[#F3E5AB] tracking-widest font-serif" : "gold-text-gradient"}
+              ${isDecoding ? "text-[#8C6A12] tracking-widest font-serif" : "text-[#0A1128]"}
             `}
           >
             {hieroglyphSource}
           </span>
         </h1>
 
-        {/* Ambient scanning light bar traversing horizontally */}
+        {/* Ambient scanning gold line */}
         {isDecoding && (
           <div
             className={`
               absolute -bottom-2 left-0 right-0 h-[2px] 
-              bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent 
-              animate-pulse opacity-85
+              bg-gradient-to-r from-transparent via-[#C8A232] to-transparent 
+              animate-pulse opacity-90
             `}
           />
         )}
       </div>
 
       {/* Hieroglyphic original inscription reference */}
-      <div className="mt-4 flex flex-wrap items-center justify-center lg:justify-start gap-2 text-xs text-[#D4AF37]/75 font-mono tracking-widest opacity-80">
-        <span className="text-[10px] uppercase text-[#FDFBF7]/40">{tHero("originalPapyrus")}</span>
-        <span className="text-sm tracking-wider text-[#F3E5AB] border-b border-[#D4AF37]/30 pb-0.5">
+      <div className="mt-4 flex flex-wrap items-center justify-center lg:justify-start gap-2 text-xs text-[#8C6A12] font-mono tracking-widest font-medium">
+        <span className="text-[10px] uppercase text-[#5B6782]">{tHero("originalPapyrus")}</span>
+        <span className="text-sm tracking-wider text-[#8C6A12] border-b border-[#C8A232]/40 pb-0.5">
           {hieroglyphSource}
         </span>
       </div>

@@ -1,25 +1,25 @@
 @import "tailwindcss";
 
 @theme {
-  /* Brand Luxury Color Palette */
+  /* Brand Luxury Color Palette - Modern Clinical Luxury (Light & Warm Ivory) */
   --color-warm-ivory: #FDFBF7;
   --color-ivory: #FDFBF7;
-  --color-ivory-muted: #F5F2EB;
-  --color-ivory-sand: #EAE3D2;
+  --color-ivory-sand: #F7F4EE;
+  --color-ivory-muted: #EFEBE2;
+  --color-ivory-dark: #E5DFD1;
 
   --color-midnight-navy: #0A1128;
   --color-navy: #0A1128;
-  --color-navy-deep: #050914;
-  --color-navy-surface: #0E1838;
-  --color-navy-light: #162447;
-  --color-navy-muted: #1E2D5A;
+  --color-navy-surface: #101B3B;
+  --color-navy-muted: #3D4866;
+  --color-navy-light: #F0F3F9;
 
-  --color-champagne-gold: #D4AF37;
-  --color-gold: #D4AF37;
+  --color-champagne-gold: #C8A232;
+  --color-gold: #C8A232;
   --color-gold-light: #F3E5AB;
-  --color-gold-bright: #F7E7A9;
-  --color-gold-dark: #AA820A;
-  --color-gold-bronze: #8C6D1F;
+  --color-gold-bright: #DFBF57;
+  --color-gold-dark: #8C6A12;
+  --color-gold-bronze: #7A5708;
 
   /* Typography System */
   --font-zentry: var(--font-zentry), -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -36,23 +36,24 @@
 }
 
 :root {
-  --background: #0A1128;
-  --foreground: #FDFBF7;
-  --gold-primary: #D4AF37;
+  --background: #FDFBF7;
+  --foreground: #0A1128;
+  --gold-primary: #C8A232;
+  --gold-dark: #8C6A12;
   --navy-primary: #0A1128;
   --ivory-primary: #FDFBF7;
 }
 
-/* Base Body & Reset */
+/* Base Body & Reset for Light Luxury Palette */
 html {
-  background-color: #0A1128;
-  color: #FDFBF7;
+  background-color: #FDFBF7;
+  color: #0A1128;
   scroll-behavior: auto; /* Handled smoothly by Lenis */
 }
 
 body {
-  background-color: #0A1128;
-  color: #FDFBF7;
+  background-color: #FDFBF7;
+  color: #0A1128;
   font-family: var(--font-cairo), var(--font-montserrat), sans-serif;
   overflow-x: hidden;
   text-rendering: optimizeLegibility;
@@ -88,39 +89,31 @@ body {
 
 /* Luxury Custom Text Selection */
 ::selection {
-  background-color: #D4AF37;
-  color: #0A1128;
+  background-color: #C8A232;
+  color: #FDFBF7;
 }
 
-/* Luxury Metallic Gold Gradients */
+/* Luxury Metallic Gold Gradients on Light Background */
 .gold-text-gradient {
-  background: linear-gradient(135deg, #F3E5AB 0%, #D4AF37 50%, #AA820A 100%);
+  background: linear-gradient(135deg, #8C6A12 0%, #C8A232 50%, #7A5708 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .gold-text-gradient-shimmer {
-  background: linear-gradient(90deg, #D4AF37 0%, #FFF4CC 35%, #D4AF37 70%, #996515 100%);
+  background: linear-gradient(90deg, #8C6A12 0%, #DFBF57 35%, #8C6A12 70%, #5C4105 100%);
   background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-.gold-border-gradient {
-  border-image: linear-gradient(135deg, #D4AF37, rgba(212, 175, 55, 0.2), #AA820A) 1;
-}
-
-/* Subtle Golden Glow Effects */
+/* Subtle Golden Glow Effects for Light Theme */
 .gold-glow {
-  box-shadow: 0 0 25px rgba(212, 175, 55, 0.22);
+  box-shadow: 0 4px 25px rgba(200, 162, 50, 0.22);
 }
 
 .gold-glow-lg {
-  box-shadow: 0 0 50px rgba(212, 175, 55, 0.35);
-}
-
-.gold-glow-text {
-  text-shadow: 0 0 20px rgba(212, 175, 55, 0.45);
+  box-shadow: 0 10px 45px rgba(200, 162, 50, 0.32);
 }
 
 /* Lenis Recommended CSS */
@@ -147,18 +140,18 @@ html.lenis body {
 
 /* Elegant Royal Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 7px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #050914;
+  background: #F7F4EE;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #D4AF37, #7A5C0A);
+  background: linear-gradient(180deg, #C8A232, #8C6A12);
   border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #F3E5AB;
+  background: #8C6A12;
 }

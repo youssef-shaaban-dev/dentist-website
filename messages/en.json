@@ -7,11 +7,15 @@
   },
   "nav": {
     "home": "Home",
+    "welcome": "About",
     "treatments": "Treatments",
-    "doctors": "Our Specialists",
-    "clinics": "Our Clinics",
-    "aligners": "Magnificent Aligners",
-    "dentalLab": "Dental Laboratory",
+    "doctors": "Specialists",
+    "transformations": "Transformations",
+    "difference": "Why Us",
+    "clinics": "Clinics",
+    "reviews": "Testimonials",
+    "aligners": "Clear Aligners",
+    "dentalLab": "Dental Lab",
     "labPartners": "Lab Partners",
     "bookAppointment": "Book Appointment"
   },
@@ -20,7 +24,7 @@
     "hieroglyphics": "𓃀𓄿𓎛𓂧𓍿 𓄿𓃀𓏏𓎡𓄿𓂋𓄿𓏏 𓄿𓃭𓏏𓎡𓈖𓅱𓃭𓅱𓎼𓇌𓄿",
     "headline": "Descendants of Hesy-Ra... Continuing the legacy of humanity’s first dentist.",
     "tagline": "With cutting-edge medical innovations... the continuation of this timeless heritage begins here.",
-    "primaryCta": "Book Your Consultation",
+    "primaryCta": "Book Your Royal Consultation",
     "secondaryCta": "Explore The Ecosystem",
     "decoding": "DECIPHERING ROYAL INSCRIPTION...",
     "resolved": "HESY-RA ROYAL CIPHER RESOLVED",
@@ -28,15 +32,201 @@
     "decoderHint": "Decipher Royal Hieroglyphic Inscription",
     "stats": {
       "clinicsVal": "3 Prime Clinics",
-      "clinicsLabel": "Unrivaled clinical privacy and architectural luxury",
+      "clinicsLabel": "Unrivaled luxury clinical suites",
       "digitalVal": "100% Fully Digital",
-      "digitalLabel": "Integrated CAD/CAM lab & proprietary clear aligners",
+      "digitalLabel": "In-house CAD/CAM lab & clear aligners",
       "patientsVal": "15,000+",
-      "patientsLabel": "Masterpiece smiles sculpted with anatomical precision",
+      "patientsLabel": "Masterpiece smiles sculpted with precision",
       "heritageVal": "2600 BCE",
-      "heritageLabel": "The earliest recorded dental practice in human history"
+      "heritageLabel": "Earliest recorded dental science"
     },
     "scrollPrompt": "Scroll to explore modern clinical luxury"
+  },
+  "welcome": {
+    "badge": "CLINICAL LUXURY PHILOSOPHY",
+    "title": "Where Egyptian Antiquity Meets Vanguard Dental Science",
+    "desc1": "At Magnificent Smile Clinics, dentistry is not merely a clinical procedure—it is a sacred craft rooted in the lineage of Hesy-Ra, Chief of Dentists and Scribes to Pharaoh Djoser over 4,600 years ago, and the earliest recorded dental practitioner in human history.",
+    "desc2": "We unite this majestic heritage with micron-level digital intraoral scanning, pain-free computer anesthesia, and 3D computer-guided implant surgery within acoustic private treatment sanctuaries crafted for discerning patients.",
+    "points": {
+      "p1Title": "Historic Lineage",
+      "p1Desc": "Care guided by millenia of heritage and international academic research.",
+      "p2Title": "Micron Precision",
+      "p2Desc": "3D intraoral digital impressions without messy putty and instant simulation.",
+      "p3Title": "Sanctuary Comfort",
+      "p3Desc": "Soundproof private suites that dispel all apprehension into calm serenity."
+    }
+  },
+  "treatments": {
+    "badge": "EVIDENCE-BASED EXPERTISE",
+    "title": "Six Signature Treatments",
+    "subtitle": "Comprehensive dental restorations executed by distinguished university consultants and fellows.",
+    "items": {
+      "implants": {
+        "title": "Digital Guided Implants",
+        "desc": "Permanent titanium and zirconia tooth replacements guided by 3D surgical templates without incisions.",
+        "tag": "Immediate Load"
+      },
+      "veneers": {
+        "title": "Bespoke Porcelain Veneers",
+        "desc": "Micro-thin handcrafted E.max ceramic laminates tailored to facial aesthetics and golden ratios.",
+        "tag": "Smile Makeover"
+      },
+      "allon4": {
+        "title": "Full-Arch All-on-4/6",
+        "desc": "Complete fixed dental arch rehabilitation within 48 hours for severe tooth loss cases.",
+        "tag": "Total Reconstruction"
+      },
+      "aligners": {
+        "title": "Magnificent Clear Aligners",
+        "desc": "Discreet, removable orthodontic aligners precision-engineered by our sister digital laboratory.",
+        "tag": "Invisible Orthodontics"
+      },
+      "whitening": {
+        "title": "Royal Laser Whitening",
+        "desc": "Enamel brightening up to 8 shades in a single session with cold laser light, zero sensitivity.",
+        "tag": "Instant Radiance"
+      },
+      "rootCanal": {
+        "title": "Microscopic Endodontics",
+        "desc": "Advanced root canal therapy under high-magnification surgical optics to preserve natural teeth.",
+        "tag": "Single Visit"
+      }
+    },
+    "viewAll": "Explore All 11 Treatments in Detail",
+    "bookBtn": "Book This Treatment"
+  },
+  "doctors": {
+    "badge": "ELITE CLINICAL FACULTY",
+    "title": "World-Class Specialists Dedicated to Your Smile",
+    "subtitle": "Transforming doctor directories into an unshakeable bond of trust built on verifiable international credentials.",
+    "cta": "Book Consultation with Specialist",
+    "list": [
+      {
+        "name": "Prof. Dr. Hazem El-Menshawy",
+        "role": "Senior Consultant in Implantology & Oral Surgery",
+        "credentials": "Ph.D. Maxillofacial Surgery, Fellow of Royal College of Surgeons London",
+        "experience": "+22 Years Clinical Mastery"
+      },
+      {
+        "name": "Dr. Reem El-Mahdy",
+        "role": "Consultant in Aesthetic Prosthodontics & E.max Veneers",
+        "credentials": "M.Sc. Fixed Prosthodontics, Member American Academy of Cosmetic Dentistry (AACD)",
+        "experience": "+16 Years Smile Design"
+      },
+      {
+        "name": "Dr. Karim El-Sherbini",
+        "role": "Consultant Orthodontist & Aligner Specialist",
+        "credentials": "MOrth RCS Edinburgh, Certified Magnificent Aligners Provider",
+        "experience": "+14 Years Complex Malocclusions"
+      }
+    ]
+  },
+  "transformations": {
+    "badge": "DOCUMENTED CLINICAL RESULTS",
+    "title": "Royal Smile Transformations",
+    "subtitle": "Authentic patient cases completed under individualized treatment plans, documented in our clinic studio.",
+    "before": "Before Treatment",
+    "after": "After Treatment",
+    "sliderHint": "Drag slider to reveal transformation",
+    "case1Title": "Full Smile Rehabilitation with 16 Handcrafted E.max Veneers",
+    "case2Title": "Upper Arch All-on-6 Implant Reconstruction with Prettau Zirconia",
+    "case3Title": "Severe Crowding Correction via Magnificent Clear Aligners"
+  },
+  "difference": {
+    "badge": "SIX PILLARS OF EXCELLENCE",
+    "title": "Why Discerning Patients Choose Magnificent Smile",
+    "subtitle": "An unmistakable distinction experienced from your first consultation to your final smile reveal.",
+    "items": [
+      {
+        "title": "Integrated Tripartite Ecosystem",
+        "desc": "Clinics, aligners, and dental lab under one roof ensuring zero manufacturing delays or third-party errors."
+      },
+      {
+        "title": "Ultra-Low Dose 3D CBCT",
+        "desc": "High-definition volumetric scans providing sub-millimeter surgical accuracy with minimal radiation."
+      },
+      {
+        "title": "7-Stage Royal Sterilization",
+        "desc": "European Class-B autoclaves guaranteeing 100% surgical-grade sterilization for every instrument."
+      },
+      {
+        "title": "Entirely Painless Sessions",
+        "desc": "Computerized painless local anesthesia ensuring complete physical and mental serenity throughout."
+      },
+      {
+        "title": "Written Warranty Certificate",
+        "desc": "Official passport of authenticity for every implant and veneer with complimentary periodic reviews."
+      },
+      {
+        "title": "Personal Concierge Service",
+        "desc": "Dedicated care coordinator managing appointments, private parking, and international patient transfers."
+      }
+    ]
+  },
+  "clinics": {
+    "badge": "SANCTUARIES OF LUXURY",
+    "title": "Our Three Premier Locations",
+    "subtitle": "Architectural gems situated in Egypt's most prestigious districts, tailored for privacy and ease of access.",
+    "branch1": {
+      "name": "Sheikh Zayed Flagship",
+      "area": "Palm Hills · Beverly Hills Compound",
+      "hours": "Sat - Thu: 9:00 AM - 10:00 PM",
+      "phone": "+20 100 890 1234",
+      "cta": "Book at Sheikh Zayed"
+    },
+    "branch2": {
+      "name": "New Cairo Center",
+      "area": "North 90th Street · 5th Settlement",
+      "hours": "Sat - Thu: 10:00 AM - 11:00 PM",
+      "phone": "+20 100 890 5678",
+      "cta": "Book at New Cairo"
+    },
+    "branch3": {
+      "name": "Maadi Diplomatic Quarter",
+      "area": "Degla Maadi · Street 250",
+      "hours": "Sat - Thu: 10:00 AM - 9:00 PM",
+      "phone": "+20 100 890 9012",
+      "cta": "Book at Maadi"
+    }
+  },
+  "reviews": {
+    "badge": "VERIFIED PATIENT STORIES",
+    "title": "Enduring Impressions of Excellence",
+    "subtitle": "Documented testimonials from international patients, executives, and leaders.",
+    "list": [
+      {
+        "text": "An unmatched clinical experience superior to clinics I visited in Zurich and London. Prof. Hazem placed 4 implants with zero pain.",
+        "author": "Eng. Ahmed El-Shazly",
+        "role": "Managing Director · Cairo",
+        "rating": "5.0 / 5"
+      },
+      {
+        "text": "The veneers look astonishingly natural thanks to their in-house lab. Dr. Reem's aesthetic eye is simply unmatched.",
+        "author": "Nour El-Hoda El-Sawy",
+        "role": "Media Executive · Dubai",
+        "rating": "5.0 / 5"
+      },
+      {
+        "text": "Magnificent Aligners completely transformed my bite in 8 months without anyone noticing I was in treatment.",
+        "author": "Dr. Omar Abdel-Razek",
+        "role": "Ophthalmic Surgeon · Alexandria",
+        "rating": "5.0 / 5"
+      }
+    ]
+  },
+  "booking": {
+    "badge": "YOUR ROYAL SMILE JOURNEY",
+    "title": "Schedule Your Private Consultation",
+    "subtitle": "Complete your details and your personal concierge will reach out within 30 minutes to confirm.",
+    "branchLabel": "Select Preferred Clinic",
+    "treatmentLabel": "Desired Service or Consultation",
+    "doctorLabel": "Preferred Specialist (Optional)",
+    "anyDoctor": "First Available Senior Specialist",
+    "nameLabel": "Full Name",
+    "phoneLabel": "Phone Number / WhatsApp",
+    "dateLabel": "Preferred Date",
+    "submitBtn": "Confirm Consultation Request",
+    "instantNote": "Includes comprehensive 3D diagnostic scan and treatment plan with total privacy."
   },
   "ecosystem": {
     "tag": "ONE BRAND · THREE BUSINESSES",
@@ -52,5 +242,13 @@
     "labTitle": "High-Precision Dental Lab",
     "labDesc": "Ultra-thin E.max veneers, titanium implant abutments, and robotic 5-axis milling for elite practitioners.",
     "labCta": "Partner Portal"
+  },
+  "footer": {
+    "manifesto": "Magnificent Smile is Egypt's vanguard brand in luxury cosmetic and implant dentistry, honoring the eternal legacy of Hesy-Ra with state-of-the-art medical technology.",
+    "quickLinks": "Quick Links",
+    "branches": "Locations & Hours",
+    "legal": "All Rights Reserved © 2026 Magnificent Smile Clinics. Licensed by the Ministry of Health.",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Care"
   }
 }

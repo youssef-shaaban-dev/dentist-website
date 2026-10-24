@@ -7,20 +7,24 @@
   },
   "nav": {
     "home": "Accueil",
+    "welcome": "À Propos",
     "treatments": "Traitements",
-    "doctors": "Nos Praticiens",
-    "clinics": "Nos Cliniques",
-    "aligners": "Aligneurs Magnifiques",
-    "dentalLab": "Laboratoire Dentaire",
-    "labPartners": "Partenaires Lab",
-    "bookAppointment": "Prendre Rendez-vous"
+    "doctors": "Praticiens",
+    "transformations": "Résultats",
+    "difference": "L'Excellence",
+    "clinics": "Cliniques",
+    "reviews": "Témoignages",
+    "aligners": "Aligneurs",
+    "dentalLab": "Laboratoire",
+    "labPartners": "Partenaires",
+    "bookAppointment": "Prendre RDV"
   },
   "hero": {
     "badge": "L’HÉRITAGE D’HÉSY-RÊ — MAÎTRE DES DENTISTES (2600 AV. J.-C.)",
     "hieroglyphics": "𓃀𓄿𓎛𓂧𓍿 𓄿𓃀𓏏𓎡𓄿𓂋𓄿𓏏 𓄿𓃭𓏏𓎡𓈖𓅱𓃭𓅱𓎼𓇌𓄿",
     "headline": "Héritiers d’Hésy-Rê... Nous perpétuons l’art du tout premier dentiste de l’humanité.",
     "tagline": "Grâce aux technologies médicales les plus avancées... la grandeur d’un savoir millénaire continue.",
-    "primaryCta": "Réserver une Consultation",
+    "primaryCta": "Réserver une Consultation Royale",
     "secondaryCta": "Découvrir l’Écosystème",
     "decoding": "DÉCHIFFREMENT DU CODE ROYAL...",
     "resolved": "CIPHER ROYAL D'HÉSY-RÊ RÉSOLU",
@@ -28,15 +32,201 @@
     "decoderHint": "Déchiffrer l’inscription hiéroglyphique royale",
     "stats": {
       "clinicsVal": "3 Cliniques de Prestige",
-      "clinicsLabel": "Espaces exclusifs et protocoles médicaux d’élite",
+      "clinicsLabel": "Suites privées de luxe absolu",
       "digitalVal": "100% Numérique",
-      "digitalLabel": "Laboratoire de haute précision et aligneurs transparents",
+      "digitalLabel": "Laboratoire CFAO et aligneurs intégrés",
       "patientsVal": "+15 000",
       "patientsLabel": "Sourires d’exception façonnés sur mesure",
       "heritageVal": "2600 av. J.-C.",
       "heritageLabel": "Origine historique de la science dentaire"
     },
     "scrollPrompt": "Défiler pour explorer le luxe clinique"
+  },
+  "welcome": {
+    "badge": "PHILOSOPHIE DU LUXE CLINIQUE",
+    "title": "Quand l'Antiquité Égyptienne Rencontre la Haute Précision Dentaire",
+    "desc1": "Chez Magnificent Smile, l'art dentaire puise son inspiration auprès d'Hésy-Rê, grand prêtre et médecin de la cour du pharaon Djéser il y a plus de 4600 ans.",
+    "desc2": "Nous allions cette souveraineté historique aux empreintes optiques 3D microniques, à l'anesthésie indolore informatisée et aux chirurgies guidées par ordinateur.",
+    "points": {
+      "p1Title": "Héritage Millénaire",
+      "p1Desc": "Une pratique ancrée dans l'histoire et les plus hautes instances académiques.",
+      "p2Title": "Précision Micronique",
+      "p2Desc": "Scanners 3D numériques sans pâte d'empreinte et planification immédiate.",
+      "p3Title": "Confort Sérenissime",
+      "p3Desc": "Suites individuelles insonorisées offrant une sérénité totale."
+    }
+  },
+  "treatments": {
+    "badge": "EXPERTISE CLINIQUE CERTIFIÉE",
+    "title": "Six Traitements Majeurs",
+    "subtitle": "Des restaurations d'élite assurées par nos professeurs et consultants émérites.",
+    "items": {
+      "implants": {
+        "title": "Implantologie Guidée 3D",
+        "desc": "Implants titane et zircone guidés par ordinateur sans incisions chirurgicales traditionnelles.",
+        "tag": "Mise en Charge Immédiate"
+      },
+      "veneers": {
+        "title": "Facettes Céramiques E.max",
+        "desc": "Pellicules de porcelaine ultrafines sculptées selon les proportions dorées du visage.",
+        "tag": "Sublimation du Sourire"
+      },
+      "allon4": {
+        "title": "Arcade Complète All-on-4/6",
+        "desc": "Réhabilitation fixe d'une arcade complète en 48 heures pour les cas avancés.",
+        "tag": "Reconstruction Totale"
+      },
+      "aligners": {
+        "title": "Aligneurs Invisibles Magnificent",
+        "desc": "Gouttières transparentes amovibles fabriquées sur mesure dans notre laboratoire numérique.",
+        "tag": "Orthodontie Invisible"
+      },
+      "whitening": {
+        "title": "Éclaircissement Laser Royal",
+        "desc": "Gain jusqu'à 8 teintes en une seule séance sans aucune sensibilité dentaire.",
+        "tag": "Éclat Immédiat"
+      },
+      "rootCanal": {
+        "title": "Endodontie Microscopique",
+        "desc": "Soins radiculaires de haute précision sous microscope opératoire pour sauver la dent naturelle.",
+        "tag": "Séance Unique"
+      }
+    },
+    "viewAll": "Consulter nos 11 Traitements en Détail",
+    "bookBtn": "Réserver ce Traitement"
+  },
+  "doctors": {
+    "badge": "ÉQUIPE MÉDICALE D'ÉLITE",
+    "title": "Praticiens Internationaux Dédiés à Votre Sourire",
+    "subtitle": "Un engagement de confiance fondé sur l'excellence académique et la maîtrise clinique.",
+    "cta": "Prendre RDV avec le Spécialiste",
+    "list": [
+      {
+        "name": "Pr. Dr. Hazem El-Menshawy",
+        "role": "Consultant Principal en Implantologie et Chirurgie Orale",
+        "credentials": "Doctorat en Chirurgie Maxillo-faciale, Fellow du Royal College of Surgeons de Londres",
+        "experience": "+22 Ans de Maîtrise Clinique"
+      },
+      {
+        "name": "Dr. Reem El-Mahdy",
+        "role": "Consultante en Esthétique Dentaire et Facettes E.max",
+        "credentials": "Master en Prothèse Fixe, Membre de l'American Academy of Cosmetic Dentistry (AACD)",
+        "experience": "+16 Ans en Conception du Sourire"
+      },
+      {
+        "name": "Dr. Karim El-Sherbini",
+        "role": "Consultant en Orthodontie et Aligneurs Invisibles",
+        "credentials": "MOrth RCS Édimbourg, Praticien Certifié Magnificent Aligners",
+        "experience": "+14 Ans en Malocclusions Complexes"
+      }
+    ]
+  },
+  "transformations": {
+    "badge": "RÉSULTATS CLINIQUES ÉTABLIS",
+    "title": "Métamorphoses du Sourire Royal",
+    "subtitle": "Cas réels documentés en studio clinique après protocole thérapeutique personnalisé.",
+    "before": "Avant Soins",
+    "after": "Après Soins",
+    "sliderHint": "Glisser pour révéler le résultat",
+    "case1Title": "Réhabilitation Esthétique Complète avec 16 Facettes E.max",
+    "case2Title": "Reconstruction All-on-6 en Zircone Prettau Haute Résistance",
+    "case3Title": "Correction d'un Encombrement Sévère par Aligneurs Magnificent"
+  },
+  "difference": {
+    "badge": "LES SIX PILIERS DU LUXE",
+    "title": "Pourquoi Choisir Magnificent Smile ?",
+    "subtitle": "Une différence absolue perceptible dès le premier accueil jusqu'au résultat final.",
+    "items": [
+      {
+        "title": "Écosystème Intégré Unique",
+        "desc": "Cliniques, aligneurs et laboratoire réunis pour éliminer tout intermédiaire et délai."
+      },
+      {
+        "title": "Imagerie 3D CBCT Basse Dose",
+        "desc": "Tomographie volumique haute définition garantissant une sécurité chirurgicale absolue."
+      },
+      {
+        "title": "Stérilisation Royale en 7 Étapes",
+        "desc": "Autoclaves européens de Classe B certifiant 100% de stérilité hospitalière."
+      },
+      {
+        "title": "Soins Sans Aucune Douleur",
+        "desc": "Anesthésie locale électronique pour un confort psychologique et physique total."
+      },
+      {
+        "title": "Certificat de Garantie Écrit",
+        "desc": "Passeport d'authenticité pour chaque implant et facette avec suivi gratuit."
+      },
+      {
+        "title": "Conciergerie et Chauffeur Privé",
+        "desc": "Coordinateur dédié pour vos rendez-vous et l'accueil des patients internationaux."
+      }
+    ]
+  },
+  "clinics": {
+    "badge": "SANCTUAIRES DE PRESTIGE",
+    "title": "Trois Adresses d'Exception",
+    "subtitle": "Des environnements sereins et luxueux situés dans les quartiers les plus exclusifs.",
+    "branch1": {
+      "name": "Flagship Sheikh Zayed",
+      "area": "Palm Hills · Beverly Hills",
+      "hours": "Sam - Jeu : 9h00 - 22h00",
+      "phone": "+20 100 890 1234",
+      "cta": "Réserver à Sheikh Zayed"
+    },
+    "branch2": {
+      "name": "Centre New Cairo",
+      "area": "90th Street Nord · 5th Settlement",
+      "hours": "Sam - Jeu : 10h00 - 23h00",
+      "phone": "+20 100 890 5678",
+      "cta": "Réserver à New Cairo"
+    },
+    "branch3": {
+      "name": "Quartier Diplomatique Maadi",
+      "area": "Degla Maadi · Rue 250",
+      "hours": "Sam - Jeu : 10h00 - 21h00",
+      "phone": "+20 100 890 9012",
+      "cta": "Réserver à Maadi"
+    }
+  },
+  "reviews": {
+    "badge": "RÉCITS DE PATIENTS",
+    "title": "La Reconnaissance de l'Excellence",
+    "subtitle": "Témoignages authentifiés de personnalités et patients internationaux.",
+    "list": [
+      {
+        "text": "Une expérience clinique incomparable, bien supérieure à mes consultations à Zurich ou Londres.",
+        "author": "Ing. Ahmed El-Shazly",
+        "role": "Directeur Général · Le Caire",
+        "rating": "5.0 / 5"
+      },
+      {
+        "text": "Mes facettes ont un éclat tellement naturel grâce à leur laboratoire intégré. Bravo au Dr. Reem.",
+        "author": "Nour El-Hoda El-Sawy",
+        "role": "Cadre Médias · Dubaï",
+        "rating": "5.0 / 5"
+      },
+      {
+        "text": "Les aligneurs Magnificent ont aligné mon sourire en 8 mois en toute discrétion.",
+        "author": "Dr. Omar Abdel-Razek",
+        "role": "Chirurgien Ophtalmologiste",
+        "rating": "5.0 / 5"
+      }
+    ]
+  },
+  "booking": {
+    "badge": "VOTRE PARCOURS DE SOIN",
+    "title": "Planifier Votre Consultation Privée",
+    "subtitle": "Renseignez vos coordonnées et notre conciergerie vous contactera sous 30 minutes.",
+    "branchLabel": "Clinique de votre choix",
+    "treatmentLabel": "Traitement ou consultation souhaitée",
+    "doctorLabel": "Praticien préféré (optionnel)",
+    "anyDoctor": "Premier spécialiste disponible",
+    "nameLabel": "Nom complet",
+    "phoneLabel": "Téléphone / WhatsApp",
+    "dateLabel": "Date préférée",
+    "submitBtn": "Confirmer la Demande de Consultation",
+    "instantNote": "Bilan 3D complet et plan de traitement personnalisé en toute discrétion."
   },
   "ecosystem": {
     "tag": "UNE MARQUE · TROIS PÔLES D’EXCELLENCE",
@@ -52,5 +242,13 @@
     "labTitle": "Laboratoire de Précision",
     "labDesc": "Usinage robotique Zircone & E.max au micron près au service des praticiens exigeants.",
     "labCta": "Portail Professionnel"
+  },
+  "footer": {
+    "manifesto": "Magnificent Smile est la référence de la dentisterie d'exception en Égypte, associant l'héritage d'Hésy-Rê aux technologies les plus avancées.",
+    "quickLinks": "Liens Rapides",
+    "branches": "Cliniques et Horaires",
+    "legal": "Tous droits réservés © 2026 Cliniques Magnificent Smile. Agréé par le Ministère de la Santé.",
+    "privacy": "Confidentialité",
+    "terms": "Conditions d'Accueil"
   }
 }

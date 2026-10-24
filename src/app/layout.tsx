@@ -88,11 +88,11 @@ export default function RootLayout({
         ${cairo.variable} 
         ${tajawal.variable} 
         ${arefRuqaa.variable} 
-        dark bg-[#0A1128] text-[#FDFBF7]
+        bg-[#FDFBF7] text-[#0A1128]
       `}
       suppressHydrationWarning
     >
-      <body className="font-body bg-[#0A1128] text-[#FDFBF7] antialiased selection:bg-[#D4AF37] selection:text-[#0A1128]">
+      <body className="font-body bg-[#FDFBF7] text-[#0A1128] antialiased selection:bg-[#C8A232] selection:text-[#FDFBF7]">
         <IntlProviderWrapper>
           <SmoothScrollProvider>
             {children}

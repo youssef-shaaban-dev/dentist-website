@@ -38,7 +38,7 @@ export function HeroSection() {
         .fromTo(
           ringRef.current,
           { rotation: isRtl ? 60 : -60, scale: 0.85, opacity: 0 },
-          { rotation: 0, scale: 1, opacity: 0.6, duration: 2, ease: "expo.out" },
+          { rotation: 0, scale: 1, opacity: 0.7, duration: 2, ease: "expo.out" },
           "-=1.3"
         )
         .fromTo(
@@ -56,7 +56,6 @@ export function HeroSection() {
 
       // 2. Parallax Effect on Scroll for Hesy-Ra Logo & Astrolabe
       if (heroRef.current && medallionRef.current && ringRef.current) {
-        // Logo Medallion Scroll Parallax
         gsap.to(medallionRef.current, {
           yPercent: 30,
           scale: 0.92,
@@ -70,12 +69,11 @@ export function HeroSection() {
           },
         });
 
-        // Golden Astrolabe Ring Rotation on Scroll
         gsap.to(ringRef.current, {
           rotation: isRtl ? -120 : 120,
           yPercent: 45,
           scale: 1.1,
-          opacity: 0.25,
+          opacity: 0.35,
           ease: "none",
           scrollTrigger: {
             trigger: heroRef.current,
@@ -85,11 +83,10 @@ export function HeroSection() {
           },
         });
 
-        // Background Halo Glow
         if (haloRef.current) {
           gsap.to(haloRef.current, {
             scale: 1.4,
-            opacity: 0.8,
+            opacity: 0.9,
             ease: "none",
             scrollTrigger: {
               trigger: heroRef.current,
@@ -100,12 +97,11 @@ export function HeroSection() {
           });
         }
 
-        // Floating Micro-Hieroglyphs Multi-speed Parallax
         if (particlesRef.current) {
           const particles = particlesRef.current.children;
           Array.from(particles).forEach((child, index) => {
-            const speed = ((index % 3) + 1) * 40;
-            const dirX = (index % 2 === 0 ? 1 : -1) * 25 * dirMultiplier;
+            const speed = ((index % 3) + 1) * 35;
+            const dirX = (index % 2 === 0 ? 1 : -1) * 20 * dirMultiplier;
             gsap.to(child, {
               y: -speed * 2,
               x: dirX,
@@ -132,13 +128,13 @@ export function HeroSection() {
     <section
       ref={heroRef}
       id="home"
-      className="relative min-h-screen w-full flex flex-col justify-between pt-28 pb-12 overflow-hidden bg-[#0A1128]"
+      className="relative min-h-screen w-full flex flex-col justify-between pt-28 pb-12 overflow-hidden bg-gradient-to-b from-[#FDFBF7] via-[#FAF6EE] to-[#F5F0E6]"
       dir={isRtl ? "rtl" : "ltr"}
     >
-      {/* Background Starfield & Subtle Golden Radial Glow */}
+      {/* Background Subtle Golden Atmosphere & Light Geometric Texture */}
       <div className="absolute inset-0 pointer-events-none z-0">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-10%,rgba(212,175,55,0.18),rgba(10,17,40,0.95)_65%,#050914_100%)]" />
-        <div className="absolute inset-0 opacity-[0.03] bg-[radial-gradient(#D4AF37_1px,transparent_1px)] [background-size:28px_28px]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_75%_65%_at_50%_0%,rgba(200,162,50,0.12),transparent_70%)]" />
+        <div className="absolute inset-0 opacity-[0.025] bg-[radial-gradient(#8C6A12_1px,transparent_1px)] [background-size:28px_28px]" />
       </div>
 
       {/* Background Floating Egyptian Hieroglyph Glyphs (Parallax) */}
@@ -146,16 +142,16 @@ export function HeroSection() {
         ref={particlesRef}
         className="absolute inset-0 pointer-events-none z-[1] select-none overflow-hidden"
       >
-        <span className="absolute top-[16%] left-[6%] text-3xl text-[#D4AF37]/20 font-serif">𓃀</span>
-        <span className="absolute top-[24%] right-[8%] text-4xl text-[#D4AF37]/25 font-serif">𓎛</span>
-        <span className="absolute top-[50%] left-[10%] text-2xl text-[#D4AF37]/20 font-serif">𓄿</span>
-        <span className="absolute top-[68%] right-[12%] text-3xl text-[#D4AF37]/20 font-serif">𓍿</span>
-        <span className="absolute top-[38%] left-[20%] text-2xl text-[#D4AF37]/15 font-serif">𓋹</span>
-        <span className="absolute top-[78%] left-[5%] text-3xl text-[#D4AF37]/20 font-serif">𓁹</span>
-        <span className="absolute top-[82%] right-[6%] text-4xl text-[#D4AF37]/25 font-serif">𓏏</span>
+        <span className="absolute top-[16%] left-[6%] text-3xl text-[#8C6A12]/15 font-serif">𓃀</span>
+        <span className="absolute top-[24%] right-[8%] text-4xl text-[#8C6A12]/20 font-serif">𓎛</span>
+        <span className="absolute top-[50%] left-[10%] text-2xl text-[#8C6A12]/15 font-serif">𓄿</span>
+        <span className="absolute top-[68%] right-[12%] text-3xl text-[#8C6A12]/15 font-serif">𓍿</span>
+        <span className="absolute top-[38%] left-[20%] text-2xl text-[#8C6A12]/10 font-serif">𓋹</span>
+        <span className="absolute top-[78%] left-[5%] text-3xl text-[#8C6A12]/15 font-serif">𓁹</span>
+        <span className="absolute top-[82%] right-[6%] text-4xl text-[#8C6A12]/20 font-serif">𓏏</span>
       </div>
 
-      {/* Main Hero Container: 2-Column Luxury Layout */}
+      {/* Main Hero Container: 2-Column Balanced Luxury Layout */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full my-auto py-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
           
@@ -165,9 +161,9 @@ export function HeroSection() {
             className="lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-start order-2 lg:order-1"
           >
             {/* Royal Heritage Badge */}
-            <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-[#D4AF37]/40 bg-[#0E1838]/85 backdrop-blur-xl mb-6 shadow-[0_0_20px_rgba(212,175,55,0.2)]">
-              <span className="w-2 h-2 rounded-full bg-[#D4AF37] shadow-[0_0_8px_#D4AF37] animate-pulse" />
-              <span className="text-xs sm:text-sm font-semibold tracking-wide text-[#F3E5AB]">
+            <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-[#C8A232]/40 bg-white/95 shadow-sm backdrop-blur-xl mb-6">
+              <span className="w-2 h-2 rounded-full bg-[#C8A232] shadow-[0_0_8px_#C8A232] animate-pulse" />
+              <span className="text-xs sm:text-sm font-bold tracking-wide text-[#8C6A12]">
                 {tHero("badge")}
               </span>
             </div>
@@ -179,7 +175,7 @@ export function HeroSection() {
             />
 
             {/* Subtitle / Tagline */}
-            <p className="max-w-2xl text-base sm:text-lg md:text-xl text-[#FDFBF7]/85 font-light leading-relaxed mb-8 tracking-wide font-body">
+            <p className="max-w-2xl text-base sm:text-lg md:text-xl text-[#3D4866] font-normal leading-relaxed mb-8 tracking-wide font-body">
               {tHero("tagline")}
             </p>
 
@@ -188,7 +184,7 @@ export function HeroSection() {
               {/* Primary Luxury CTA: Book Consultation */}
               <a
                 href="#book"
-                className="w-full sm:w-auto relative group overflow-hidden px-8 py-4 rounded-full border border-[#D4AF37] bg-gradient-to-r from-[#D4AF37] via-[#F3E5AB] to-[#AA820A] text-[#0A1128] font-bold text-sm tracking-wider uppercase shadow-[0_10px_35px_rgba(212,175,55,0.35)] hover:shadow-[0_15px_45px_rgba(212,175,55,0.6)] transition-all duration-300 transform hover:-translate-y-1 flex items-center justify-center gap-3"
+                className="w-full sm:w-auto relative group overflow-hidden px-8 py-4 rounded-full border border-[#C8A232] bg-gradient-to-r from-[#C8A232] via-[#DFBF57] to-[#8C6A12] text-[#0A1128] font-bold text-sm tracking-wider uppercase shadow-[0_6px_25px_rgba(200,162,50,0.35)] hover:shadow-[0_10px_35px_rgba(200,162,50,0.5)] transition-all duration-300 transform hover:-translate-y-1 flex items-center justify-center gap-3"
               >
                 <Calendar className="w-4 h-4 text-[#0A1128]" />
                 <span>{tHero("primaryCta")}</span>
@@ -199,9 +195,9 @@ export function HeroSection() {
               {/* Secondary CTA: Explore Ecosystem */}
               <a
                 href="#ecosystem"
-                className="w-full sm:w-auto px-7 py-4 rounded-full border border-[#D4AF37]/50 bg-[#0E1838]/70 hover:bg-[#0E1838] hover:border-[#D4AF37] text-[#FDFBF7] font-semibold text-sm tracking-wide transition-all duration-300 backdrop-blur-md flex items-center justify-center gap-2 group shadow-[0_4px_20px_rgba(0,0,0,0.3)] hover:shadow-[0_0_25px_rgba(212,175,55,0.25)]"
+                className="w-full sm:w-auto px-7 py-4 rounded-full border border-[#C8A232]/45 bg-white/90 hover:bg-white text-[#0A1128] font-bold text-sm tracking-wide transition-all duration-300 backdrop-blur-md flex items-center justify-center gap-2 group shadow-sm hover:shadow-[0_4px_20px_rgba(200,162,50,0.2)]"
               >
-                <Sparkles className="w-4 h-4 text-[#D4AF37] transition-transform group-hover:rotate-45" />
+                <Sparkles className="w-4 h-4 text-[#8C6A12] transition-transform group-hover:rotate-45" />
                 <span>{tHero("secondaryCta")}</span>
               </a>
             </div>
@@ -217,40 +213,40 @@ export function HeroSection() {
               {/* Golden Ambient Halo */}
               <div
                 ref={haloRef}
-                className="absolute inset-0 rounded-full bg-gradient-to-tr from-[#D4AF37]/30 via-[#F3E5AB]/20 to-transparent blur-[80px] pointer-events-none"
+                className="absolute inset-0 rounded-full bg-gradient-to-tr from-[#C8A232]/25 via-[#F3E5AB]/35 to-transparent blur-[80px] pointer-events-none"
               />
 
               {/* Feature 2: Rotating Pharaonic Astrolabe Sacred Geometry Ring */}
               <div
                 ref={ringRef}
-                className="absolute inset-0 rounded-full border border-[#D4AF37]/40 border-dashed pointer-events-none flex items-center justify-center opacity-60 shadow-[0_0_60px_rgba(212,175,55,0.2)]"
+                className="absolute inset-0 rounded-full border-2 border-[#C8A232]/40 border-dashed pointer-events-none flex items-center justify-center opacity-70 shadow-[0_0_40px_rgba(200,162,50,0.15)]"
               >
                 {/* Secondary inner ring */}
-                <div className="w-[90%] h-[90%] rounded-full border border-[#D4AF37]/25 border-dotted" />
+                <div className="w-[90%] h-[90%] rounded-full border border-[#C8A232]/30 border-dotted" />
                 
                 {/* 4 Cardinal Sacred Markers */}
-                <div className="absolute top-0 w-2.5 h-2.5 bg-[#D4AF37] rounded-full shadow-[0_0_12px_#D4AF37]" />
-                <div className="absolute bottom-0 w-2.5 h-2.5 bg-[#D4AF37] rounded-full shadow-[0_0_12px_#D4AF37]" />
-                <div className="absolute left-0 w-2.5 h-2.5 bg-[#D4AF37] rounded-full shadow-[0_0_12px_#D4AF37]" />
-                <div className="absolute right-0 w-2.5 h-2.5 bg-[#D4AF37] rounded-full shadow-[0_0_12px_#D4AF37]" />
+                <div className="absolute top-0 w-3 h-3 bg-[#C8A232] rounded-full shadow-[0_0_10px_#C8A232]" />
+                <div className="absolute bottom-0 w-3 h-3 bg-[#C8A232] rounded-full shadow-[0_0_10px_#C8A232]" />
+                <div className="absolute left-0 w-3 h-3 bg-[#C8A232] rounded-full shadow-[0_0_10px_#C8A232]" />
+                <div className="absolute right-0 w-3 h-3 bg-[#C8A232] rounded-full shadow-[0_0_10px_#C8A232]" />
               </div>
 
               {/* The Hesy-Ra Medallion Logo (Centerpiece) */}
               <div
                 ref={medallionRef}
-                className="relative w-[240px] h-[240px] sm:w-[310px] sm:h-[310px] md:w-[360px] md:h-[360px] rounded-full p-2 shadow-[0_25px_80px_rgba(0,0,0,0.85)] border-2 border-[#D4AF37]/60 backdrop-blur-md group cursor-pointer transition-transform duration-500 hover:scale-105"
+                className="relative w-[240px] h-[240px] sm:w-[310px] sm:h-[310px] md:w-[360px] md:h-[360px] rounded-full p-2.5 shadow-[0_20px_60px_rgba(10,17,40,0.18)] border-2 border-[#C8A232] bg-white group cursor-pointer transition-transform duration-500 hover:scale-105"
               >
-                <div className="relative w-full h-full rounded-full overflow-hidden bg-gradient-to-br from-[#0E1838] to-[#050914] flex items-center justify-center p-3">
+                <div className="relative w-full h-full rounded-full overflow-hidden bg-gradient-to-br from-[#0E1838] to-[#0A1128] flex items-center justify-center p-3 shadow-inner">
                   <Image
                     src="/logo.png"
                     alt="Hesy-Ra Ancient Chief of Dentists and Physicians Emblem"
                     fill
                     priority
                     sizes="(max-width: 768px) 300px, 420px"
-                    className="object-contain p-2 filter drop-shadow-[0_12px_28px_rgba(212,175,55,0.35)]"
+                    className="object-contain p-2 filter drop-shadow-[0_8px_20px_rgba(200,162,50,0.4)]"
                   />
                   {/* Subtle inner gold rim lighting */}
-                  <div className="absolute inset-0 rounded-full ring-1 ring-inset ring-[#D4AF37]/30 pointer-events-none" />
+                  <div className="absolute inset-0 rounded-full ring-2 ring-inset ring-[#C8A232]/40 pointer-events-none" />
                 </div>
               </div>
             </div>
@@ -264,54 +260,54 @@ export function HeroSection() {
         ref={statsRef}
         className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full mt-4"
       >
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 py-6 px-6 sm:px-8 rounded-2xl border border-[#D4AF37]/25 bg-[#0E1838]/80 backdrop-blur-xl shadow-[0_10px_40px_rgba(5,9,20,0.7)]">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 py-6 px-6 sm:px-8 rounded-2xl border border-[#C8A232]/30 bg-white/95 backdrop-blur-xl shadow-[0_10px_35px_rgba(10,17,40,0.06)]">
           {/* Stat 1: 3 Clinics */}
-          <div className="flex flex-col items-center sm:items-start text-center sm:text-start border-b sm:border-b-0 sm:border-r border-[#D4AF37]/20 pb-4 sm:pb-0 px-2">
-            <span className="text-xl sm:text-2xl font-bold font-display gold-text-gradient">
+          <div className="flex flex-col items-center sm:items-start text-center sm:text-start border-b sm:border-b-0 sm:border-r border-[#C8A232]/25 pb-4 sm:pb-0 px-2">
+            <span className="text-xl sm:text-2xl font-bold font-display text-[#8C6A12]">
               {tHero("stats.clinicsVal")}
             </span>
-            <span className="text-xs text-[#FDFBF7]/70 mt-1 font-body">
+            <span className="text-xs text-[#5B6782] font-medium mt-1 font-body">
               {tHero("stats.clinicsLabel")}
             </span>
           </div>
 
           {/* Stat 2: 100% Digital */}
-          <div className="flex flex-col items-center sm:items-start text-center sm:text-start border-b sm:border-b-0 sm:border-r border-[#D4AF37]/20 pb-4 sm:pb-0 px-2">
-            <span className="text-xl sm:text-2xl font-bold font-display gold-text-gradient">
+          <div className="flex flex-col items-center sm:items-start text-center sm:text-start border-b sm:border-b-0 sm:border-r border-[#C8A232]/25 pb-4 sm:pb-0 px-2">
+            <span className="text-xl sm:text-2xl font-bold font-display text-[#8C6A12]">
               {tHero("stats.digitalVal")}
             </span>
-            <span className="text-xs text-[#FDFBF7]/70 mt-1 font-body">
+            <span className="text-xs text-[#5B6782] font-medium mt-1 font-body">
               {tHero("stats.digitalLabel")}
             </span>
           </div>
 
           {/* Stat 3: 15,000+ Smiles */}
-          <div className="flex flex-col items-center sm:items-start text-center sm:text-start border-r-0 md:border-r border-[#D4AF37]/20 px-2">
-            <span className="text-xl sm:text-2xl font-bold font-display gold-text-gradient">
+          <div className="flex flex-col items-center sm:items-start text-center sm:text-start border-r-0 md:border-r border-[#C8A232]/25 px-2">
+            <span className="text-xl sm:text-2xl font-bold font-display text-[#8C6A12]">
               {tHero("stats.patientsVal")}
             </span>
-            <span className="text-xs text-[#FDFBF7]/70 mt-1 font-body">
+            <span className="text-xs text-[#5B6782] font-medium mt-1 font-body">
               {tHero("stats.patientsLabel")}
             </span>
           </div>
 
           {/* Stat 4: 2600 BCE Heritage */}
           <div className="flex flex-col items-center sm:items-start text-center sm:text-start px-2">
-            <span className="text-xl sm:text-2xl font-bold font-display gold-text-gradient">
+            <span className="text-xl sm:text-2xl font-bold font-display text-[#8C6A12]">
               {tHero("stats.heritageVal")}
             </span>
-            <span className="text-xs text-[#FDFBF7]/70 mt-1 font-body">
+            <span className="text-xs text-[#5B6782] font-medium mt-1 font-body">
               {tHero("stats.heritageLabel")}
             </span>
           </div>
         </div>
 
         {/* Scroll Prompt */}
-        <div className="mt-8 flex flex-col items-center justify-center gap-1.5 opacity-70 hover:opacity-100 transition-opacity">
-          <span className="text-[11px] tracking-widest uppercase font-mono text-[#D4AF37]">
+        <div className="mt-8 flex flex-col items-center justify-center gap-1.5 opacity-80 hover:opacity-100 transition-opacity">
+          <span className="text-[11px] tracking-widest uppercase font-mono font-bold text-[#8C6A12]">
             {tHero("scrollPrompt")}
           </span>
-          <ChevronDown className="w-4 h-4 text-[#D4AF37] animate-bounce" />
+          <ChevronDown className="w-4 h-4 text-[#8C6A12] animate-bounce" />
         </div>
       </div>
     </section>
