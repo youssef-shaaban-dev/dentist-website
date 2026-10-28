@@ -1,25 +1,32 @@
 @import "tailwindcss";
 
 @theme {
-  /* Brand Luxury Color Palette - Modern Clinical Luxury (Light & Warm Ivory) */
-  --color-warm-ivory: #FDFBF7;
+  /* Brand Luxury Color Palette - Exact Brochure Extraction */
+  --color-warm-ivory: #F9EDD7;
   --color-ivory: #FDFBF7;
-  --color-ivory-sand: #F7F4EE;
-  --color-ivory-muted: #EFEBE2;
-  --color-ivory-dark: #E5DFD1;
+  --color-ivory-sand: #F9EDD7;
+  --color-ivory-muted: #EFE4CC;
+  --color-ivory-dark: #E2D3B3;
 
-  --color-midnight-navy: #0A1128;
-  --color-navy: #0A1128;
-  --color-navy-surface: #101B3B;
-  --color-navy-muted: #3D4866;
-  --color-navy-light: #F0F3F9;
+  --color-midnight-navy: #012968;
+  --color-navy: #022256;
+  --color-navy-surface: #031D45;
+  --color-navy-muted: #3D5A80;
+  --color-navy-light: #EEF4FC;
 
+  /* Brochure Royal Sapphire Palette (Exact Eyedropper Hexes) */
+  --color-royal-sapphire: #022256;
+  --color-sapphire-silk: #012968;
+  --color-sapphire-deep: #011638;
+  --color-sapphire-vibrant: #4A90E2;
+
+  /* Brochure Egyptian Gold & Bronze Palette */
   --color-champagne-gold: #C8A232;
   --color-gold: #C8A232;
   --color-gold-light: #F3E5AB;
   --color-gold-bright: #DFBF57;
-  --color-gold-dark: #8C6A12;
-  --color-gold-bronze: #7A5708;
+  --color-gold-dark: #955904;
+  --color-gold-bronze: #955904;
 
   /* Typography System */
   --font-zentry: var(--font-zentry), -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -37,11 +44,13 @@
 
 :root {
   --background: #FDFBF7;
-  --foreground: #0A1128;
+  --foreground: #012968;
   --gold-primary: #C8A232;
-  --gold-dark: #8C6A12;
-  --navy-primary: #0A1128;
-  --ivory-primary: #FDFBF7;
+  --gold-dark: #955904;
+  --navy-primary: #022256;
+  --navy-text: #012968;
+  --sapphire-vibrant: #4A90E2;
+  --ivory-primary: #F9EDD7;
 }
 
 /* Base Body & Reset for Light Luxury Palette */
@@ -117,6 +126,26 @@ body {
   box-shadow: 0 10px 45px rgba(200, 162, 50, 0.32);
 }
 
+/* Special Luxury 24K Gold Display Typography for Hero */
+.hero-gold-title {
+  background: linear-gradient(135deg, #FFF8DB 0%, #DFBF57 28%, #C8A232 52%, #F5D77F 78%, #FFF8DB 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 3px 18px rgba(200, 162, 50, 0.42)) drop-shadow(0 2px 8px rgba(0, 0, 0, 0.95));
+}
+
+[dir="rtl"] .hero-title-font {
+  font-family: var(--font-aref-ruqaa), "Traditional Arabic", serif;
+  letter-spacing: 0.01em;
+}
+
+[dir="ltr"] .hero-title-font {
+  font-family: var(--font-zentry), sans-serif;
+  letter-spacing: -0.01em;
+  font-feature-settings: "liga" 1, "dlig" 1, "calt" 1;
+}
+
 /* Lenis Recommended CSS */
 html.lenis,
 html.lenis body {
@@ -151,6 +180,23 @@ html.lenis body {
 ::-webkit-scrollbar-thumb {
   background: linear-gradient(180deg, #C8A232, #8C6A12);
   border-radius: 9999px;
+}
+
+/* 100% Seamless Infinite Marquee for Pharaonic Glyphs (GPU-accelerated) */
+@keyframes marqueeHorizontal {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.animate-marquee-infinite {
+  display: flex;
+  width: max-content;
+  animation: marqueeHorizontal 32s linear infinite;
+  will-change: transform;
 }
 
 ::-webkit-scrollbar-thumb:hover {

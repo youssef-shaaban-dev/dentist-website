@@ -22,10 +22,11 @@
   "hero": {
     "badge": "THE LEGACY OF HESY-RA — CHIEF OF DENTISTS (2600 BCE)",
     "hieroglyphics": "𓃀𓄿𓎛𓂧𓍿 𓄿𓃀𓏏𓎡𓄿𓂋𓄿𓏏 𓄿𓃭𓏏𓎡𓈖𓅱𓃭𓅱𓎼𓇌𓄿",
-    "headline": "Descendants of Hesy-Ra... Continuing the legacy of humanity’s first dentist.",
-    "tagline": "With cutting-edge medical innovations... the continuation of this timeless heritage begins here.",
+    "headline": "Where Dentistry Meets Excellence",
+    "subheadline": "Where Egyptian Antiquity Meets Modern Clinical Mastery",
+    "tagline": "Descendants of Hesy-Ra, continuing the sacred heritage of humanity's first documented dental healer. Combining timeless Egyptian precision with world-class digital implantology and aesthetic mastery.",
     "primaryCta": "Book Your Royal Consultation",
-    "secondaryCta": "Explore The Ecosystem",
+    "secondaryCta": "Clinic Philosophy & Patient Journey",
     "decoding": "DECIPHERING ROYAL INSCRIPTION...",
     "resolved": "HESY-RA ROYAL CIPHER RESOLVED",
     "originalPapyrus": "ORIGINAL PAPYRUS CIPHER:",
@@ -40,7 +41,7 @@
       "heritageVal": "2600 BCE",
       "heritageLabel": "Earliest recorded dental science"
     },
-    "scrollPrompt": "Scroll to explore modern clinical luxury"
+    "scrollPrompt": "Discover Our Philosophy & Patient Journey"
   },
   "welcome": {
     "badge": "CLINICAL LUXURY PHILOSOPHY",
@@ -54,7 +55,32 @@
       "p2Desc": "3D intraoral digital impressions without messy putty and instant simulation.",
       "p3Title": "Sanctuary Comfort",
       "p3Desc": "Soundproof private suites that dispel all apprehension into calm serenity."
-    }
+    },
+    "journeyBadge": "THE PATIENT JOURNEY",
+    "journeyTitle": "An Unrivaled Healthcare Experience in 4 Steps",
+    "journeySubtitle": "Every phase of your visit is curated to deliver five-star hospitality, total clinical reassurance, and lasting aesthetic perfection.",
+    "journey": [
+      {
+        "step": "01",
+        "title": "Consultation & 3D Assessment",
+        "desc": "A calm, thorough diagnostic session using micron-level optical 3D scanners with zero messy putty."
+      },
+      {
+        "step": "02",
+        "title": "Digital Smile Design (DSD)",
+        "desc": "3D virtual preview of your tailored smile architecture aligned harmoniously with facial proportions."
+      },
+      {
+        "step": "03",
+        "title": "Gentle Micro-Precision Care",
+        "desc": "Painless computer-regulated anesthesia and computer-guided implantology within private acoustic suites."
+      },
+      {
+        "step": "04",
+        "title": "Royal Smile & Lifelong Care",
+        "desc": "Delivery of Swiss zirconia restorations with verified certificates of authenticity and routine care."
+      }
+    ]
   },
   "treatments": {
     "badge": "EVIDENCE-BASED EXPERTISE",
@@ -244,5 +270,13 @@
     "legal": "All Rights Reserved © 2026 Magnificent Smile Clinics. Licensed by the Ministry of Health.",
     "privacy": "Privacy Policy",
     "terms": "Terms of Care"
+  },
+  "pharaonicPillar": {
+    "title": "Sacred Temple Relief",
+    "ankh": "Ankh — Eternal Life & Vitality",
+    "horus": "Eye of Horus — Healing & Protection",
+    "hesyra": "Cartouche of Hesy-Ra — Earliest Recorded Chief of Dentists (2600 BCE)",
+    "lotus": "Sacred Lotus — Rebirth & Pristine Purity",
+    "scrollHint": "Move cursor to illuminate sacred glyphs"
   }
 }

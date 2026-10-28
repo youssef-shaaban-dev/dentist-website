@@ -1,6 +1,8 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useTranslations } from "next-intl";
 import { useLanguage } from "@/i18n/IntlProviderWrapper";
 import { Sparkles, ArrowRight, ArrowLeft, ShieldCheck, Zap, Smile, Activity, Eye, Stethoscope } from "lucide-react";
@@ -9,6 +11,10 @@ export function SignatureTreatments() {
   const t = useTranslations("treatments");
   const { isRtl } = useLanguage();
   const ArrowIcon = isRtl ? ArrowLeft : ArrowRight;
+
+  const sectionRef = useRef<HTMLElement>(null);
+  const headerRef = useRef<HTMLDivElement>(null);
+  const gridRef = useRef<HTMLDivElement>(null);
 
   const treatmentKeys = [
     { key: "implants", icon: ShieldCheck },
@@ -19,15 +25,67 @@ export function SignatureTreatments() {
     { key: "rootCanal", icon: Eye },
   ];
 
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+
+    const ctx = gsap.context(() => {
+      // 1. Header Entrance
+      if (headerRef.current) {
+        gsap.fromTo(
+          headerRef.current.children,
+          { opacity: 0, y: 30 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.9,
+            stagger: 0.15,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: headerRef.current,
+              start: "top 85%",
+              end: "bottom 15%",
+              toggleActions: "play reverse play reverse",
+            },
+          }
+        );
+      }
+
+      // 2. 6 Cards Staggered Cascade
+      if (gridRef.current) {
+        gsap.fromTo(
+          gridRef.current.children,
+          { opacity: 0, y: 40, scale: 0.94 },
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 0.8,
+            stagger: 0.1,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: gridRef.current,
+              start: "top 85%",
+              end: "bottom 15%",
+              toggleActions: "play reverse play reverse",
+            },
+          }
+        );
+      }
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
     <section
+      ref={sectionRef}
       id="treatments"
       className="relative py-24 sm:py-32 px-4 sm:px-6 lg:px-8 bg-[#F7F4EE] border-t border-[#C8A232]/25"
       dir={isRtl ? "rtl" : "ltr"}
     >
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div ref={headerRef} className="text-center max-w-3xl mx-auto mb-16">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#C8A232]/40 bg-white shadow-sm mb-4">
             <Stethoscope className="w-3.5 h-3.5 text-[#8C6A12]" />
             <span className="text-xs font-bold text-[#8C6A12] uppercase tracking-wider font-mono">
@@ -43,7 +101,7 @@ export function SignatureTreatments() {
         </div>
 
         {/* 6 Signature Treatments Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        <div ref={gridRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {treatmentKeys.map(({ key, icon: IconComponent }) => (
             <div
               key={key}

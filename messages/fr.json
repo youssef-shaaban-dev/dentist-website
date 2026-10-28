@@ -22,10 +22,11 @@
   "hero": {
     "badge": "L’HÉRITAGE D’HÉSY-RÊ — MAÎTRE DES DENTISTES (2600 AV. J.-C.)",
     "hieroglyphics": "𓃀𓄿𓎛𓂧𓍿 𓄿𓃀𓏏𓎡𓄿𓂋𓄿𓏏 𓄿𓃭𓏏𓎡𓈖𓅱𓃭𓅱𓎼𓇌𓄿",
-    "headline": "Héritiers d’Hésy-Rê... Nous perpétuons l’art du tout premier dentiste de l’humanité.",
-    "tagline": "Grâce aux technologies médicales les plus avancées... la grandeur d’un savoir millénaire continue.",
+    "headline": "Où l'Art Dentaire Rencontre l'Excellence",
+    "subheadline": "Where Dentistry Meets Excellence",
+    "tagline": "Héritiers d’Hésy-Rê, nous perpétuons l’art du tout premier dentiste de l’humanité. L'alliance de l'excellence ancestrale et de l'implantologie de pointe au sein d'espaces pensés pour votre confort absolu.",
     "primaryCta": "Réserver une Consultation Royale",
-    "secondaryCta": "Découvrir l’Écosystème",
+    "secondaryCta": "Philosophie & Parcours Patient",
     "decoding": "DÉCHIFFREMENT DU CODE ROYAL...",
     "resolved": "CIPHER ROYAL D'HÉSY-RÊ RÉSOLU",
     "originalPapyrus": "ORIGINAL PAPYRUS CIPHER:",
@@ -40,7 +41,7 @@
       "heritageVal": "2600 av. J.-C.",
       "heritageLabel": "Origine historique de la science dentaire"
     },
-    "scrollPrompt": "Défiler pour explorer le luxe clinique"
+    "scrollPrompt": "Découvrez la Philosophie et le Parcours Patient"
   },
   "welcome": {
     "badge": "PHILOSOPHIE DU LUXE CLINIQUE",
@@ -54,7 +55,32 @@
       "p2Desc": "Scanners 3D numériques sans pâte d'empreinte et planification immédiate.",
       "p3Title": "Confort Sérenissime",
       "p3Desc": "Suites individuelles insonorisées offrant une sérénité totale."
-    }
+    },
+    "journeyBadge": "LE PARCOURS PATIENT ROYAL",
+    "journeyTitle": "Une Expérience de Soin d'Exception en 4 Étapes",
+    "journeySubtitle": "Chaque étape est méticuleusement orchestrée pour vous offrir une sérénité totale et un sourire parfait durable.",
+    "journey": [
+      {
+        "step": "01",
+        "title": "Consultation & Bilan Numérique 3D",
+        "desc": "Diagnostic optique haute précision sans pâte désagréable et analyse globale de votre dentition."
+      },
+      {
+        "step": "02",
+        "title": "Conception Digitale du Sourire (DSD)",
+        "desc": "Visualisation virtuelle personnalisée de votre sourire en harmonie avec les traits de votre visage."
+      },
+      {
+        "step": "03",
+        "title": "Soins Microniques Indolores",
+        "desc": "Anesthésie douce assistée par ordinateur et chirurgie implantaire guidée dans des suites privatisées."
+      },
+      {
+        "step": "04",
+        "title": "Sourire Éternel & Suivi Dédié",
+        "desc": "Pose de restaurations en zircone suisse certifiées et programme d'accompagnement préventif sur mesure."
+      }
+    ]
   },
   "treatments": {
     "badge": "EXPERTISE CLINIQUE CERTIFIÉE",
@@ -244,5 +270,13 @@
     "legal": "Tous droits réservés © 2026 Cliniques Magnificent Smile. Agréé par le Ministère de la Santé.",
     "privacy": "Confidentialité",
     "terms": "Conditions d'Accueil"
+  },
+  "pharaonicPillar": {
+    "title": "Bas-Relief du Sanctuaire",
+    "ankh": "Ânkh — Clé de Vie et Vitalité Éternelle",
+    "horus": "Œil d'Horus — Guérison et Protection Médicale",
+    "hesyra": "Cartouche d'Hésy-Rê — Premier Chef des Médecins Dentistes (2600 av. J.-C.)",
+    "lotus": "Lotus Sacré — Pureté et Renaissance Esthétique",
+    "scrollHint": "Déplacez le curseur pour illuminer les hiéroglyphes"
   }
 }

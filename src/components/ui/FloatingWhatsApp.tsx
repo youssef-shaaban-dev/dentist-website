@@ -35,8 +35,8 @@ export function FloatingWhatsApp() {
 
   return (
     <div
-      className={`fixed bottom-6 ${
-        isRtl ? "left-6" : "right-6"
+      className={`fixed bottom-10 sm:bottom-6 ${
+        isRtl ? "left-4 sm:left-6" : "right-4 sm:right-6"
       } z-50 flex items-center gap-3 select-none`}
       dir={isRtl ? "rtl" : "ltr"}
     >
