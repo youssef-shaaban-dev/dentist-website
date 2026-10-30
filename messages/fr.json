@@ -55,32 +55,7 @@
       "p2Desc": "Scanners 3D numériques sans pâte d'empreinte et planification immédiate.",
       "p3Title": "Confort Sérenissime",
       "p3Desc": "Suites individuelles insonorisées offrant une sérénité totale."
-    },
-    "journeyBadge": "LE PARCOURS PATIENT ROYAL",
-    "journeyTitle": "Une Expérience de Soin d'Exception en 4 Étapes",
-    "journeySubtitle": "Chaque étape est méticuleusement orchestrée pour vous offrir une sérénité totale et un sourire parfait durable.",
-    "journey": [
-      {
-        "step": "01",
-        "title": "Consultation & Bilan Numérique 3D",
-        "desc": "Diagnostic optique haute précision sans pâte désagréable et analyse globale de votre dentition."
-      },
-      {
-        "step": "02",
-        "title": "Conception Digitale du Sourire (DSD)",
-        "desc": "Visualisation virtuelle personnalisée de votre sourire en harmonie avec les traits de votre visage."
-      },
-      {
-        "step": "03",
-        "title": "Soins Microniques Indolores",
-        "desc": "Anesthésie douce assistée par ordinateur et chirurgie implantaire guidée dans des suites privatisées."
-      },
-      {
-        "step": "04",
-        "title": "Sourire Éternel & Suivi Dédié",
-        "desc": "Pose de restaurations en zircone suisse certifiées et programme d'accompagnement préventif sur mesure."
-      }
-    ]
+    }
   },
   "treatments": {
     "badge": "EXPERTISE CLINIQUE CERTIFIÉE",

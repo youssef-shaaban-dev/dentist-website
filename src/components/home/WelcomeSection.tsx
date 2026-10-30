@@ -8,13 +8,9 @@ import { useLanguage } from "@/i18n/IntlProviderWrapper";
 import { RoyalSmileShowcase } from "@/components/home/RoyalSmileShowcase";
 import {
   Sparkles,
-  ShieldCheck,
   Cpu,
   HeartHandshake,
   CheckCircle2,
-  ScanLine,
-  Compass,
-  Smile,
 } from "lucide-react";
 
 // Reusable Helper Component for TextSplit masked line/word scrub reveal
@@ -58,35 +54,6 @@ export function WelcomeSection() {
   const desc2Ref = useRef<HTMLParagraphElement>(null);
   const pillarsRef = useRef<HTMLDivElement>(null);
   const toothColRef = useRef<HTMLDivElement>(null);
-  const journeyHeaderRef = useRef<HTMLDivElement>(null);
-  const journeyCardsRef = useRef<HTMLDivElement>(null);
-
-  const journeySteps = [
-    {
-      step: t("journey.0.step"),
-      title: t("journey.0.title"),
-      desc: t("journey.0.desc"),
-      icon: ScanLine,
-    },
-    {
-      step: t("journey.1.step"),
-      title: t("journey.1.title"),
-      desc: t("journey.1.desc"),
-      icon: Compass,
-    },
-    {
-      step: t("journey.2.step"),
-      title: t("journey.2.title"),
-      desc: t("journey.2.desc"),
-      icon: Sparkles,
-    },
-    {
-      step: t("journey.3.step"),
-      title: t("journey.3.title"),
-      desc: t("journey.3.desc"),
-      icon: Smile,
-    },
-  ];
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -202,49 +169,6 @@ export function WelcomeSection() {
           }
         );
       }
-
-      // 6. Patient Journey Header Entrance
-      if (journeyHeaderRef.current) {
-        gsap.fromTo(
-          journeyHeaderRef.current.children,
-          { opacity: 0, y: 30 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.9,
-            stagger: 0.15,
-            ease: "power2.out",
-            scrollTrigger: {
-              trigger: journeyHeaderRef.current,
-              start: "top 88%",
-              end: "bottom 12%",
-              toggleActions: "play reverse play reverse",
-            },
-          }
-        );
-      }
-
-      // 6. Patient Journey 4 Cards Stagger
-      if (journeyCardsRef.current) {
-        gsap.fromTo(
-          journeyCardsRef.current.children,
-          { opacity: 0, y: 45, scale: 0.96 },
-          {
-            opacity: 1,
-            y: 0,
-            scale: 1,
-            duration: 0.8,
-            stagger: 0.12,
-            ease: "power2.out",
-            scrollTrigger: {
-              trigger: journeyCardsRef.current,
-              start: "top 85%",
-              end: "bottom 15%",
-              toggleActions: "play reverse play reverse",
-            },
-          }
-        );
-      }
     }, sectionRef);
 
     return () => ctx.revert();
@@ -254,7 +178,7 @@ export function WelcomeSection() {
     <section
       ref={sectionRef}
       id="welcome"
-      className="relative pt-20 sm:pt-28 pb-24 sm:pb-32 px-4 sm:px-6 lg:px-8 bg-[#FDFBF7] overflow-hidden z-20"
+      className="relative pt-20 sm:pt-28 pb-20 sm:pb-28 px-4 sm:px-6 lg:px-8 bg-[#FDFBF7] overflow-hidden z-20"
       dir={isRtl ? "rtl" : "ltr"}
     >
       {/* Subtle Ambient Radial Lighting */}
@@ -263,8 +187,8 @@ export function WelcomeSection() {
 
       <div className="max-w-7xl mx-auto relative z-10">
         
-        {/* Part 1: Clinic Philosophy & The 3D Realistic Dental Arch */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center mb-24">
+        {/* Clinic Philosophy & The Royal Smile Showcase */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           
           {/* Content Column (7 Cols on desktop): Story, Philosophy with TextSplit & 3 Pillars */}
           <div className="lg:col-span-7 flex flex-col order-2 lg:order-1">
@@ -341,65 +265,6 @@ export function WelcomeSection() {
             <RoyalSmileShowcase />
           </div>
 
-        </div>
-
-        {/* Part 2: The Royal Patient Journey (رحلة المريض الملكية) */}
-        <div className="pt-16 border-t-2 border-[#C8A232]/30">
-          {/* Header */}
-          <div ref={journeyHeaderRef} className="text-center max-w-3xl mx-auto mb-14">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#C8A232]/40 bg-white shadow-sm mb-4">
-              <ShieldCheck className="w-3.5 h-3.5 text-[#955904]" />
-              <span className="text-xs font-bold text-[#955904] uppercase tracking-wider font-mono">
-                {t("journeyBadge")}
-              </span>
-            </div>
-            <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold font-display text-[#012968] mb-3">
-              {t("journeyTitle")}
-            </h3>
-            <p className="text-sm sm:text-base text-[#5B6782] font-body leading-relaxed">
-              {t("journeySubtitle")}
-            </p>
-          </div>
-
-          {/* 4 Progressive Journey Cards */}
-          <div ref={journeyCardsRef} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {journeySteps.map((step, idx) => {
-              const StepIcon = step.icon;
-
-              return (
-                <div
-                  key={idx}
-                  className="relative p-6 rounded-2xl bg-white border border-[#C8A232]/30 shadow-[0_6px_25px_rgba(2,34,86,0.04)] hover:shadow-[0_12px_35px_rgba(200,162,50,0.18)] hover:border-[#C8A232] transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1"
-                >
-                  {/* Top Step Number Badge & Icon */}
-                  <div>
-                    <div className="flex items-center justify-between mb-5">
-                      <span className="text-2xl font-bold font-mono text-[#955904] bg-[#F9EDD7] px-3 py-1 rounded-lg">
-                        {step.step}
-                      </span>
-                      <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-[#022256] to-[#012968] text-white flex items-center justify-center shadow-md group-hover:scale-110 transition-transform">
-                        <StepIcon className="w-5 h-5 text-[#DFBF57]" />
-                      </div>
-                    </div>
-
-                    <h4 className="text-base sm:text-lg font-bold font-display text-[#012968] mb-2">
-                      {step.title}
-                    </h4>
-
-                    <p className="text-xs sm:text-sm text-[#5B6782] font-body leading-relaxed">
-                      {step.desc}
-                    </p>
-                  </div>
-
-                  {/* Bottom Golden Line Accent */}
-                  <div className="mt-6 pt-4 border-t border-[#C8A232]/20 flex items-center justify-between text-[11px] font-mono text-[#955904]">
-                    <span>MAGNIFICENT CARE</span>
-                    <span className="text-[#C8A232]">✦</span>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
         </div>
 
       </div>

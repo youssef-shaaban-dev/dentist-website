@@ -55,36 +55,11 @@
       "p2Desc": "3D intraoral digital impressions without messy putty and instant simulation.",
       "p3Title": "Sanctuary Comfort",
       "p3Desc": "Soundproof private suites that dispel all apprehension into calm serenity."
-    },
-    "journeyBadge": "THE PATIENT JOURNEY",
-    "journeyTitle": "An Unrivaled Healthcare Experience in 4 Steps",
-    "journeySubtitle": "Every phase of your visit is curated to deliver five-star hospitality, total clinical reassurance, and lasting aesthetic perfection.",
-    "journey": [
-      {
-        "step": "01",
-        "title": "Consultation & 3D Assessment",
-        "desc": "A calm, thorough diagnostic session using micron-level optical 3D scanners with zero messy putty."
-      },
-      {
-        "step": "02",
-        "title": "Digital Smile Design (DSD)",
-        "desc": "3D virtual preview of your tailored smile architecture aligned harmoniously with facial proportions."
-      },
-      {
-        "step": "03",
-        "title": "Gentle Micro-Precision Care",
-        "desc": "Painless computer-regulated anesthesia and computer-guided implantology within private acoustic suites."
-      },
-      {
-        "step": "04",
-        "title": "Royal Smile & Lifelong Care",
-        "desc": "Delivery of Swiss zirconia restorations with verified certificates of authenticity and routine care."
-      }
-    ]
+    }
   },
   "treatments": {
     "badge": "EVIDENCE-BASED EXPERTISE",
-    "title": "Six Signature Treatments",
+    "title": "Signature Treatments",
     "subtitle": "Comprehensive dental restorations executed by distinguished university consultants and fellows.",
     "items": {
       "implants": {
