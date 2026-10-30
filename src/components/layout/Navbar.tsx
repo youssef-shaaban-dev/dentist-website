@@ -41,10 +41,25 @@ export function Navbar() {
   const whatsappUrl = `https://wa.me/201008901234?text=${encodeURIComponent(whatsappMessage)}`;
 
   useEffect(() => {
+    let ticking = false;
     const handleScroll = () => {
-      setScrolled(window.scrollY > 30);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const top = window.scrollY;
+          setScrolled((prev) => {
+            // Hysteresis deadzone: turn on at >50px, turn off only when back above <15px
+            if (!prev && top > 50) return true;
+            if (prev && top < 15) return false;
+            return prev;
+          });
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
-    window.addEventListener("scroll", handleScroll);
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -67,14 +82,22 @@ export function Navbar() {
   ];
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled
-          ? "bg-[#FDFBF7]/95 backdrop-blur-xl border-b border-[#C8A232]/30 py-3 shadow-[0_4px_30px_rgba(2,34,86,0.08)]"
-          : "bg-gradient-to-b from-black/60 via-black/25 to-transparent py-4 sm:py-5"
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <header className="fixed top-0 left-0 right-0 z-50">
+      {/* Background Layer 1: Cinematic Dark Hero Gradient (Unscrolled State) */}
+      <div
+        className={`absolute inset-0 bg-gradient-to-b from-black/75 via-black/35 to-transparent transition-opacity duration-300 pointer-events-none -z-10 ${
+          scrolled ? "opacity-0" : "opacity-100"
+        }`}
+      />
+
+      {/* Background Layer 2: Royal Warm Ivory Glass (Scrolled State) */}
+      <div
+        className={`absolute inset-0 bg-[#FDFBF7]/95 backdrop-blur-md border-b border-[#C8A232]/30 shadow-[0_4px_30px_rgba(2,34,86,0.08)] transition-opacity duration-300 pointer-events-none -z-10 ${
+          scrolled ? "opacity-100" : "opacity-0"
+        }`}
+      />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 sm:py-4">
         <div className="flex items-center justify-between">
           {/* Logo & Brand Identity */}
           <Link

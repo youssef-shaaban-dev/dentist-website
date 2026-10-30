@@ -6,6 +6,13 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useTranslations } from "next-intl";
 import { useLanguage } from "@/i18n/IntlProviderWrapper";
 
+// Mathematically defined Organic Dental Smile Arch (قوس الابتسامة الملكي)
+// 11 interpolated points creating a pure parabolic curve without any mechanical corners
+const FLAT_RECT =
+  "polygon(0% 0%, 100% 0%, 100% 100%, 90% 100%, 80% 100%, 70% 100%, 60% 100%, 50% 100%, 40% 100%, 30% 100%, 20% 100%, 10% 100%, 0% 100%)";
+const SMILE_ARCH =
+  "polygon(0% 0%, 100% 0%, 100% 100%, 90% 97.5%, 80% 93.8%, 70% 90.2%, 60% 87.8%, 50% 87%, 40% 87.8%, 30% 90.2%, 20% 93.8%, 10% 97.5%, 0% 100%)";
+
 export function HeroSection() {
   const { isRtl } = useLanguage();
   const tHero = useTranslations("hero");
@@ -44,8 +51,8 @@ export function HeroSection() {
         { opacity: 1, y: 0, duration: 1, ease: "power2.out", delay: 0.6 }
       );
 
-      // 3. Jaw-Dropping GSAP Scroll-Triggered Clip-Path & Cinematic Closure
-      // Morphs the bottom of the hero into an architectural royal vault
+      // 3. Prestigious Dental "Smile Arch" GSAP Morphing on Scroll
+      // Replaces mechanical polygons with an organic dental smile curve that seamlessly reveals the next section
       if (clipContainerRef.current && heroRef.current) {
         const scrollTl = gsap.timeline({
           scrollTrigger: {
@@ -56,34 +63,25 @@ export function HeroSection() {
           },
         });
 
-        // Dynamic 5-point polygon clip-path closure + subtle scale down
         scrollTl
+          // A. Morph bottom edge into the organic Dental Smile Arch (قوس الابتسامة)
           .fromTo(
             clipContainerRef.current,
-            {
-              clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 50% 100%, 0% 100%)",
-              scale: 1,
-              borderRadius: "0px",
-            },
-            {
-              clipPath: "polygon(0% 0%, 100% 0%, 100% 80%, 50% 95%, 0% 80%)",
-              scale: 0.94,
-              borderRadius: "32px",
-              ease: "power1.inOut",
-            },
+            { clipPath: FLAT_RECT },
+            { clipPath: SMILE_ARCH, ease: "power1.inOut", duration: 1 },
             0
           )
-          // Parallax depth zoom inside the clipping viewport
+          // B. Gentle cinematic parallax depth zoom inside the video
           .fromTo(
             videoRef.current,
             { yPercent: 0, scale: 1 },
-            { yPercent: 18, scale: 1.14, ease: "none" },
+            { yPercent: 12, scale: 1.08, ease: "none", duration: 1 },
             0
           )
-          // Immediate graceful fadeout for the bottom scroll prompt
+          // C. Graceful early fadeout for the bottom scroll prompt
           .to(
             scrollIndicatorRef.current,
-            { opacity: 0, y: 25, duration: 0.25, ease: "power2.in" },
+            { opacity: 0, y: 18, duration: 0.25, ease: "power2.in" },
             0
           );
       }
@@ -97,17 +95,20 @@ export function HeroSection() {
       ref={heroRef}
       id="home"
       aria-label="Cinematic Video Showcase"
-      className="relative z-10 w-full h-[100dvh] min-h-[100dvh] flex flex-col justify-end items-center overflow-hidden select-none bg-black"
+      className="relative z-10 w-full h-[100dvh] min-h-[100dvh] flex flex-col justify-end items-center overflow-hidden select-none bg-[#FDFBF7]"
       dir={isRtl ? "rtl" : "ltr"}
     >
-      {/* 1. Master Clipping Canvas with Dynamic GSAP Polygon Morphing */}
+      {/* 1. Master Clipping Canvas with Dynamic Dental Smile Arch Morphing */}
       <div
         ref={clipContainerRef}
-        className="absolute inset-0 w-full h-full overflow-hidden will-change-transform shadow-[0_25px_60px_rgba(2,34,86,0.18)]"
+        className="absolute inset-0 w-full h-full overflow-hidden will-change-[clip-path]"
         style={{
-          clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 50% 100%, 0% 100%)",
+          clipPath: FLAT_RECT,
         }}
       >
+        {/* Solid dark base so video never flashes before loading */}
+        <div className="absolute inset-0 bg-[#022256]" />
+
         {/* Cinematic Background Video (Fills 100% of Screen to the Absolute Bottom Edge) */}
         <video
           ref={videoRef}
