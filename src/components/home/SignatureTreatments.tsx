@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useTranslations } from "next-intl";
@@ -262,67 +263,78 @@ export function SignatureTreatments() {
         >
           {/* A. The Left/Center Cinematic Stage Viewport (7 Cols on desktop) */}
           <div className="lg:col-span-7 flex flex-col justify-between">
-            {/* Visual Cinematic Container */}
-            <div className="relative w-full aspect-[16/10] sm:aspect-[16/9] lg:aspect-[16/10] rounded-2xl overflow-hidden shadow-md border border-[#C8A232]/25 group">
-              <Image
-                src={activeSpec.image}
-                alt={activeTitle}
-                fill
-                sizes="(max-width: 1024px) 100vw, 750px"
-                className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                priority
-              />
+            {/* Visual Cinematic Container with Keyed Animation */}
+            <div className="relative w-full aspect-[16/10] sm:aspect-[16/9] lg:aspect-[16/10] rounded-2xl overflow-hidden shadow-md border border-[#C8A232]/25 group bg-[#022256]">
+              <div
+                key={activeKey}
+                className="relative w-full h-full animate-in fade-in zoom-in-95 duration-500"
+              >
+                <Image
+                  src={activeSpec.image}
+                  alt={activeTitle}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 750px"
+                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                  priority
+                />
 
-              {/* Cinematic Ambient Dark & Gold Gradient Overlays */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent pointer-events-none" />
-              <div className="absolute inset-0 bg-gradient-to-tr from-[#022256]/30 via-transparent to-[#C8A232]/15 pointer-events-none" />
+                {/* Cinematic Ambient Dark & Gold Gradient Overlays */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-tr from-[#022256]/30 via-transparent to-[#C8A232]/15 pointer-events-none" />
 
-              {/* Floating Top Clinical Badges */}
-              <div className="absolute top-4 left-4 right-4 flex items-center justify-between gap-2 pointer-events-none">
-                <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/95 border border-[#C8A232]/50 text-xs font-mono font-bold text-[#955904] shadow-md backdrop-blur-md">
-                  <span className="w-2 h-2 rounded-full bg-[#DFBF57] animate-ping" />
-                  <span>{activeTag}</span>
-                </span>
+                {/* Subtle Luxury Golden Light Beam Wipe on change */}
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#DFBF57]/30 to-transparent pointer-events-none animate-in slide-in-from-left duration-700" />
 
-                <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#022256]/90 text-white text-xs font-mono font-bold shadow-md border border-white/20">
-                  <Sparkles className="w-3.5 h-3.5 text-[#DFBF57]" />
-                  <span>{activeItem.num} / 06</span>
-                </span>
-              </div>
+                {/* Floating Top Clinical Badges */}
+                <div className="absolute top-4 left-4 right-4 flex items-center justify-between gap-2 pointer-events-none">
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/95 border border-[#C8A232]/50 text-xs font-mono font-bold text-[#955904] shadow-md backdrop-blur-md">
+                    <span className="w-2 h-2 rounded-full bg-[#DFBF57] animate-ping" />
+                    <span>{activeTag}</span>
+                  </span>
 
-              {/* Floating Bottom Metadata Details */}
-              <div className="absolute bottom-4 left-4 right-4 text-white drop-shadow">
-                <span className="text-xs uppercase tracking-widest font-mono text-[#DFBF57] font-semibold mb-1 block">
-                  MAGNIFICENT CLINICAL STANDARD
-                </span>
-                <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold font-display leading-tight text-white mb-2">
-                  {activeTitle}
-                </h3>
-              </div>
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#022256]/90 text-white text-xs font-mono font-bold shadow-md border border-white/20">
+                    <Sparkles className="w-3.5 h-3.5 text-[#DFBF57]" />
+                    <span>{activeItem.num} / 06</span>
+                  </span>
+                </div>
 
-              {/* Mobile Swipe Buttons overlaid on image */}
-              <div className="lg:hidden absolute bottom-4 right-4 flex items-center gap-1.5">
-                <button
-                  type="button"
-                  onClick={handlePrev}
-                  className="w-8 h-8 rounded-full bg-black/60 hover:bg-black/80 text-white flex items-center justify-center border border-white/30 backdrop-blur-md cursor-pointer"
-                  aria-label="Previous Treatment"
-                >
-                  <ChevronLeft className="w-4 h-4" />
-                </button>
-                <button
-                  type="button"
-                  onClick={handleNext}
-                  className="w-8 h-8 rounded-full bg-black/60 hover:bg-black/80 text-white flex items-center justify-center border border-white/30 backdrop-blur-md cursor-pointer"
-                  aria-label="Next Treatment"
-                >
-                  <ChevronRight className="w-4 h-4" />
-                </button>
+                {/* Floating Bottom Metadata Details */}
+                <div className="absolute bottom-4 left-4 right-4 text-white drop-shadow">
+                  <span className="text-xs uppercase tracking-widest font-mono text-[#DFBF57] font-semibold mb-1 block">
+                    MAGNIFICENT CLINICAL STANDARD
+                  </span>
+                  <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold font-display leading-tight text-white mb-2">
+                    {activeTitle}
+                  </h3>
+                </div>
+
+                {/* Mobile Swipe Buttons overlaid on image */}
+                <div className="lg:hidden absolute bottom-4 right-4 flex items-center gap-1.5">
+                  <button
+                    type="button"
+                    onClick={handlePrev}
+                    className="w-8 h-8 rounded-full bg-black/60 hover:bg-black/80 text-white flex items-center justify-center border border-white/30 backdrop-blur-md cursor-pointer active:scale-90 transition-transform"
+                    aria-label="Previous Treatment"
+                  >
+                    <ChevronLeft className="w-4 h-4" />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={handleNext}
+                    className="w-8 h-8 rounded-full bg-black/60 hover:bg-black/80 text-white flex items-center justify-center border border-white/30 backdrop-blur-md cursor-pointer active:scale-90 transition-transform"
+                    aria-label="Next Treatment"
+                  >
+                    <ChevronRight className="w-4 h-4" />
+                  </button>
+                </div>
               </div>
             </div>
 
-            {/* Description & Clinical Specs Box */}
-            <div className="mt-6 flex flex-col justify-between flex-grow">
+            {/* Description & Clinical Specs Box with Animated Reveal */}
+            <div
+              key={`content-${activeKey}`}
+              className="mt-6 flex flex-col justify-between flex-grow animate-in fade-in slide-in-from-bottom-3 duration-400"
+            >
               <p className="text-sm sm:text-base text-[#3D5A80] font-body leading-relaxed mb-5">
                 {activeDesc}
               </p>
@@ -405,10 +417,9 @@ export function SignatureTreatments() {
                 <div
                   key={item.key}
                   onClick={() => setActiveKey(item.key)}
-                  onMouseEnter={() => setActiveKey(item.key)}
-                  className={`group relative p-3.5 rounded-2xl border transition-all duration-300 cursor-pointer flex items-center justify-between ${
+                  className={`group relative p-3.5 rounded-2xl border transition-all duration-300 cursor-pointer flex items-center justify-between active:scale-98 ${
                     isSelected
-                      ? "bg-[#FAF8F5] border-[#C8A232] shadow-md scale-102"
+                      ? "bg-[#FAF8F5] border-[#C8A232] shadow-md scale-102 ring-1 ring-[#C8A232]/40"
                       : "bg-white/70 border-transparent hover:border-[#C8A232]/30 hover:bg-[#FAF8F5]/60"
                   }`}
                 >
@@ -463,14 +474,14 @@ export function SignatureTreatments() {
 
         {/* View All Treatments CTA */}
         <div className="mt-14 text-center">
-          <a
-            href="#book"
+          <Link
+            href="/treatments"
             className="inline-flex items-center gap-2.5 px-8 py-3.5 rounded-full border-2 border-[#C8A232] bg-white text-[#012968] font-bold text-xs uppercase tracking-wider shadow-sm hover:shadow-md hover:bg-[#FAF8F5] transition-all transform hover:-translate-y-0.5"
           >
             <Sparkles className="w-4 h-4 text-[#955904]" />
             <span>{t("viewAll")}</span>
             <ArrowIcon className="w-4 h-4 text-[#955904]" />
-          </a>
+          </Link>
         </div>
 
       </div>
