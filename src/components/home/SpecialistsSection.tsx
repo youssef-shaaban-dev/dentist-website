@@ -24,6 +24,10 @@ interface DoctorData {
   id: number;
   initials: string;
   image: string;
+  shortNameAr: string;
+  shortNameEn: string;
+  specialtyBadgeAr: string;
+  specialtyBadgeEn: string;
   fellowshipAr: string;
   fellowshipEn: string;
   subspecialtyAr: string;
@@ -34,8 +38,11 @@ const doctorMetadata: DoctorData[] = [
   {
     id: 0,
     initials: "HM",
-    // Dr. Hazem El-Minshawi - Verified Consultant Maxillofacial & Implant Surgeon
     image: "https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=1200&q=85",
+    shortNameAr: "د. حازم",
+    shortNameEn: "Dr. Hazem",
+    specialtyBadgeAr: "زرع وجراحة",
+    specialtyBadgeEn: "Implants & Surgery",
     fellowshipAr: "زمالة كلية الجراحين الملكية بلندن (FRCS)",
     fellowshipEn: "Fellow of Royal College of Surgeons London (FRCS)",
     subspecialtyAr: "جراحات الزرع الموجهة بالحاسوب وإعادة بناء عظام الفك",
@@ -44,8 +51,11 @@ const doctorMetadata: DoctorData[] = [
   {
     id: 1,
     initials: "RM",
-    // Dr. Reem El-Mahdy - Verified Working Unsplash URL (Female Cosmetic Dentist & Veneers Specialist)
     image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=1200&q=85",
+    shortNameAr: "د. ريم",
+    shortNameEn: "Dr. Reem",
+    specialtyBadgeAr: "تجميل وفينير",
+    specialtyBadgeEn: "Veneers & Smile",
     fellowshipAr: "عضو الأكاديمية الأمريكية لتجميل الأسنان (AACD)",
     fellowshipEn: "Member of American Academy of Cosmetic Dentistry (AACD)",
     subspecialtyAr: "قشور E-Max الخزفية وتناغم الابتسامة مع قياسات الوجه",
@@ -54,8 +64,11 @@ const doctorMetadata: DoctorData[] = [
   {
     id: 2,
     initials: "KS",
-    // Dr. Karim El-Sherbini - Verified Consultant Orthodontics & Clear Aligners
     image: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&w=1200&q=85",
+    shortNameAr: "د. كريم",
+    shortNameEn: "Dr. Karim",
+    specialtyBadgeAr: "تقويم شفاف",
+    specialtyBadgeEn: "Clear Aligners",
     fellowshipAr: "زمالة تقويم الأسنان الملكية بإدنبرة (MOrth RCS)",
     fellowshipEn: "Royal College of Surgeons Edinburgh Orthodontics (MOrth)",
     subspecialtyAr: "التقويم الشفاف الذكي وتصحيح العضات المعقدة بدون جراحة",
@@ -75,6 +88,8 @@ export function SpecialistsSection() {
   const t = useTranslations("doctors");
   const { isRtl, locale } = useLanguage();
   const ArrowIcon = isRtl ? ArrowLeft : ArrowRight;
+  const ChevronPrev = isRtl ? ChevronRight : ChevronLeft;
+  const ChevronNext = isRtl ? ChevronLeft : ChevronRight;
 
   const sectionRef = useRef<HTMLElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
@@ -189,15 +204,15 @@ export function SpecialistsSection() {
       <div className="max-w-6xl mx-auto relative z-10">
         
         {/* Section Header - Compact and Elegant */}
-        <div ref={headerRef} className="text-center max-w-2xl mx-auto mb-6 sm:mb-8">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-[#C8A232]/40 bg-white shadow-xs mb-2.5">
+        <div ref={headerRef} className="text-center max-w-2xl mx-auto mb-5 sm:mb-7">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-[#C8A232]/40 bg-white shadow-xs mb-2">
             <Award className="w-3.5 h-3.5 text-[#955904]" />
             <span className="text-[11px] font-bold text-[#955904] uppercase tracking-wider font-mono">
               {t("badge")}
             </span>
           </div>
 
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold font-display text-[#012968] mb-2 leading-tight">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold font-display text-[#012968] mb-1.5 leading-tight">
             {t("title")}
           </h2>
 
@@ -207,9 +222,9 @@ export function SpecialistsSection() {
         </div>
 
         {/* ============================================================== */}
-        {/* MOBILE DOCTOR SELECTOR TABS (Intuitive Thumb Navigation) */}
+        {/* MOBILE DOCTOR SELECTOR TABS (3-Column Segmented Suite - 100% Fit) */}
         {/* ============================================================== */}
-        <div className="lg:hidden mb-4 flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none snap-x">
+        <div className="lg:hidden mb-4 grid grid-cols-3 gap-1.5 p-1 bg-[#FAF8F5] rounded-2xl border border-[#C8A232]/30 shadow-xs">
           {doctorsList.map((doc, idx) => {
             const isSelected = idx === activeDoctorIdx;
 
@@ -218,14 +233,24 @@ export function SpecialistsSection() {
                 key={doc.id}
                 type="button"
                 onClick={() => setActiveDoctorIdx(idx)}
-                className={`snap-start shrink-0 px-3.5 py-2 rounded-full text-xs font-bold font-display transition-all duration-300 border cursor-pointer flex items-center gap-2 ${
+                className={`w-full py-2 px-1 rounded-xl transition-all duration-300 border cursor-pointer flex flex-col items-center justify-center text-center ${
                   isSelected
                     ? "bg-[#012968] text-white border-[#C8A232] shadow-sm"
-                    : "bg-white text-[#5B6782] border-[#C8A232]/30 hover:bg-[#FAF8F5]"
+                    : "bg-white text-[#5B6782] border-transparent hover:text-[#012968]"
                 }`}
               >
-                <div className={`w-1.5 h-1.5 rounded-full ${isSelected ? "bg-[#DFBF57]" : "bg-[#C8A232]"}`} />
-                <span>{doc.name}</span>
+                {/* Responsive Doctor Name: Short on small mobile, full on tablet */}
+                <span className="sm:hidden text-xs font-bold leading-tight">
+                  {isRtl ? doc.shortNameAr : doc.shortNameEn}
+                </span>
+                <span className="hidden sm:inline text-xs font-bold leading-tight truncate max-w-full">
+                  {doc.name}
+                </span>
+
+                {/* Subspecialty Tag */}
+                <span className={`text-[10px] font-mono mt-0.5 font-medium leading-none ${isSelected ? "text-[#DFBF57]" : "text-[#955904]"}`}>
+                  {isRtl ? doc.specialtyBadgeAr : doc.specialtyBadgeEn}
+                </span>
               </button>
             );
           })}
@@ -284,23 +309,23 @@ export function SpecialistsSection() {
                       <span>{currentDoctor.experience}</span>
                     </div>
 
-                    {/* Mobile Navigation Arrows */}
-                    <div className="lg:hidden flex items-center gap-1">
+                    {/* Mobile Navigation Arrows (Proper RTL Directions) */}
+                    <div className="lg:hidden flex items-center gap-1.5">
                       <button
                         type="button"
                         onClick={handlePrev}
-                        className="w-7 h-7 rounded-full bg-black/60 hover:bg-black/80 text-white flex items-center justify-center border border-white/30 backdrop-blur-md cursor-pointer active:scale-90 transition-transform"
+                        className="w-8 h-8 rounded-full bg-black/65 hover:bg-black/80 text-white flex items-center justify-center border border-white/30 backdrop-blur-md cursor-pointer active:scale-90 transition-transform"
                         aria-label="Previous Doctor"
                       >
-                        <ChevronLeft className="w-3.5 h-3.5" />
+                        <ChevronPrev className="w-4 h-4" />
                       </button>
                       <button
                         type="button"
                         onClick={handleNext}
-                        className="w-7 h-7 rounded-full bg-black/60 hover:bg-black/80 text-white flex items-center justify-center border border-white/30 backdrop-blur-md cursor-pointer active:scale-90 transition-transform"
+                        className="w-8 h-8 rounded-full bg-black/65 hover:bg-black/80 text-white flex items-center justify-center border border-white/30 backdrop-blur-md cursor-pointer active:scale-90 transition-transform"
                         aria-label="Next Doctor"
                       >
-                        <ChevronRight className="w-3.5 h-3.5" />
+                        <ChevronNext className="w-4 h-4" />
                       </button>
                     </div>
                   </div>
@@ -331,7 +356,7 @@ export function SpecialistsSection() {
                   {currentDoctor.role}
                 </p>
 
-                {/* 3 Pillars of Doctor's Authority - Sleek Compact Cards */}
+                {/* 3 Pillars of Doctor's Authority - Sleek Cards (No Truncation) */}
                 <div className="space-y-2 mb-4">
                   {/* Academic Credentials */}
                   <div className="p-2 sm:p-2.5 rounded-xl bg-[#FAF8F5] border border-[#C8A232]/25 flex items-center gap-2.5">
@@ -340,7 +365,7 @@ export function SpecialistsSection() {
                     </div>
                     <div className="flex flex-col min-w-0">
                       <span className="text-[10px] font-mono text-[#5B6782] font-semibold leading-tight">المؤهل الأكاديمي والزمالات</span>
-                      <span className="text-xs sm:text-sm font-bold text-[#012968] leading-tight truncate">
+                      <span className="text-xs sm:text-sm font-bold text-[#012968] leading-snug">
                         {currentDoctor.credentials}
                       </span>
                     </div>
@@ -353,7 +378,7 @@ export function SpecialistsSection() {
                     </div>
                     <div className="flex flex-col min-w-0">
                       <span className="text-[10px] font-mono text-[#5B6782] font-semibold leading-tight">الاعتماد الدولي الموثق</span>
-                      <span className="text-xs sm:text-sm font-bold text-[#012968] leading-tight truncate">
+                      <span className="text-xs sm:text-sm font-bold text-[#012968] leading-snug">
                         {isRtl ? currentDoctor.fellowshipAr : currentDoctor.fellowshipEn}
                       </span>
                     </div>
@@ -366,7 +391,7 @@ export function SpecialistsSection() {
                     </div>
                     <div className="flex flex-col min-w-0">
                       <span className="text-[10px] font-mono text-[#5B6782] font-semibold leading-tight">التخصص الدقيق ومجال التميز</span>
-                      <span className="text-xs sm:text-sm font-bold text-[#012968] leading-tight truncate">
+                      <span className="text-xs sm:text-sm font-bold text-[#012968] leading-snug">
                         {isRtl ? currentDoctor.subspecialtyAr : currentDoctor.subspecialtyEn}
                       </span>
                     </div>
