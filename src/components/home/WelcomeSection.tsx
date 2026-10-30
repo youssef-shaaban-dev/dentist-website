@@ -5,7 +5,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useTranslations } from "next-intl";
 import { useLanguage } from "@/i18n/IntlProviderWrapper";
-import { HeroMorphTooth } from "@/components/hero/HeroMorphTooth";
+import { RoyalSmileShowcase } from "@/components/home/RoyalSmileShowcase";
 import {
   Sparkles,
   ShieldCheck,
@@ -16,6 +16,36 @@ import {
   Compass,
   Smile,
 } from "lucide-react";
+
+// Reusable Helper Component for TextSplit masked line/word scrub reveal
+function SplitTextScrub({
+  text,
+  className = "",
+  wordClassName = "",
+}: {
+  text: string;
+  className?: string;
+  wordClassName?: string;
+}) {
+  const words = text.split(" ");
+  return (
+    <span className={className}>
+      {words.map((word, idx) => (
+        <span
+          key={idx}
+          className="inline-block overflow-hidden align-top pb-1 mr-[0.25em] rtl:mr-0 rtl:ml-[0.25em]"
+        >
+          <span
+            className={`inline-block will-change-transform ${wordClassName}`}
+            style={{ transform: "translateY(115%)", opacity: 0 }}
+          >
+            {word}
+          </span>
+        </span>
+      ))}
+    </span>
+  );
+}
 
 export function WelcomeSection() {
   const t = useTranslations("welcome");
@@ -62,37 +92,76 @@ export function WelcomeSection() {
     gsap.registerPlugin(ScrollTrigger);
 
     const ctx = gsap.context(() => {
-      // 1. Philosophy Content Stagger (Badge -> Title -> Descriptions)
-      // Bidirectional toggleActions ensure animations trigger smoothly when scrolling down AND up
-      const textTl = gsap.timeline({
-        scrollTrigger: {
-          trigger: titleRef.current,
-          start: "top 85%",
-          end: "bottom 15%",
-          toggleActions: "play reverse play reverse",
-        },
-      });
-
-      textTl
-        .fromTo(
+      // 1. Royal Badge Entrance
+      if (badgeRef.current) {
+        gsap.fromTo(
           badgeRef.current,
           { opacity: 0, y: 25 },
-          { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" }
-        )
-        .fromTo(
-          titleRef.current,
-          { opacity: 0, y: 35 },
-          { opacity: 1, y: 0, duration: 1, ease: "power3.out" },
-          "-=0.5"
-        )
-        .fromTo(
-          [desc1Ref.current, desc2Ref.current],
-          { opacity: 0, y: 25 },
-          { opacity: 1, y: 0, duration: 0.9, stagger: 0.15, ease: "power2.out" },
-          "-=0.6"
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: badgeRef.current,
+              start: "top 88%",
+              toggleActions: "play reverse play reverse",
+            },
+          }
         );
+      }
 
-      // 2. Pillars Cards Stagger (Elastic subtle pop)
+      // 2. TextSplit Scrub for Main Headline (Line-by-line masked emergence)
+      const titleWords = titleRef.current?.querySelectorAll(".split-title-word");
+      if (titleWords && titleWords.length > 0) {
+        gsap.to(titleWords, {
+          y: "0%",
+          opacity: 1,
+          stagger: 0.04,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: titleRef.current,
+            start: "top 85%",
+            end: "bottom 55%",
+            scrub: 0.8,
+          },
+        });
+      }
+
+      // 3. TextSplit Scrub for Philosophy Paragraphs
+      const desc1Words = desc1Ref.current?.querySelectorAll(".split-desc1-word");
+      if (desc1Words && desc1Words.length > 0) {
+        gsap.to(desc1Words, {
+          y: "0%",
+          opacity: 1,
+          stagger: 0.015,
+          ease: "power1.out",
+          scrollTrigger: {
+            trigger: desc1Ref.current,
+            start: "top 85%",
+            end: "bottom 58%",
+            scrub: 0.8,
+          },
+        });
+      }
+
+      const desc2Words = desc2Ref.current?.querySelectorAll(".split-desc2-word");
+      if (desc2Words && desc2Words.length > 0) {
+        gsap.to(desc2Words, {
+          y: "0%",
+          opacity: 1,
+          stagger: 0.015,
+          ease: "power1.out",
+          scrollTrigger: {
+            trigger: desc2Ref.current,
+            start: "top 85%",
+            end: "bottom 58%",
+            scrub: 0.8,
+          },
+        });
+      }
+
+      // 4. Pillars Cards Stagger
       if (pillarsRef.current) {
         gsap.fromTo(
           pillarsRef.current.children,
@@ -114,40 +183,27 @@ export function WelcomeSection() {
         );
       }
 
-      // 3. 3D Tooth Sculpture Entrance & Smooth Continuous Parallax
+      // 5. Royal Smile Showcase Entrance
       if (toothColRef.current) {
         gsap.fromTo(
           toothColRef.current,
-          { opacity: 0, scale: 0.88, y: 50 },
+          { opacity: 0, y: 35, scale: 0.96 },
           {
             opacity: 1,
-            scale: 1,
             y: 0,
-            duration: 1.2,
-            ease: "expo.out",
+            scale: 1,
+            duration: 1,
+            ease: "power2.out",
             scrollTrigger: {
               trigger: toothColRef.current,
               start: "top 85%",
-              end: "bottom 15%",
               toggleActions: "play reverse play reverse",
             },
           }
         );
-
-        // Continuous smooth parallax drift while user scrolls through the section
-        gsap.to(toothColRef.current, {
-          yPercent: 10,
-          ease: "none",
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top bottom",
-            end: "bottom top",
-            scrub: 1.2,
-          },
-        });
       }
 
-      // 4. Patient Journey Header Entrance
+      // 6. Patient Journey Header Entrance
       if (journeyHeaderRef.current) {
         gsap.fromTo(
           journeyHeaderRef.current.children,
@@ -168,18 +224,18 @@ export function WelcomeSection() {
         );
       }
 
-      // 5. Patient Journey 4 Cards Cascade
+      // 6. Patient Journey 4 Cards Stagger
       if (journeyCardsRef.current) {
         gsap.fromTo(
           journeyCardsRef.current.children,
-          { opacity: 0, y: 45, scale: 0.94 },
+          { opacity: 0, y: 45, scale: 0.96 },
           {
             opacity: 1,
             y: 0,
             scale: 1,
-            duration: 0.9,
-            stagger: 0.15,
-            ease: "power3.out",
+            duration: 0.8,
+            stagger: 0.12,
+            ease: "power2.out",
             scrollTrigger: {
               trigger: journeyCardsRef.current,
               start: "top 85%",
@@ -207,10 +263,10 @@ export function WelcomeSection() {
 
       <div className="max-w-7xl mx-auto relative z-10">
         
-        {/* Part 1: Clinic Philosophy & The 3D Dental Sculpture */}
+        {/* Part 1: Clinic Philosophy & The 3D Realistic Dental Arch */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center mb-24">
           
-          {/* Content Column (7 Cols on desktop): Story, Philosophy & 3 Pillars */}
+          {/* Content Column (7 Cols on desktop): Story, Philosophy with TextSplit & 3 Pillars */}
           <div className="lg:col-span-7 flex flex-col order-2 lg:order-1">
             {/* Royal Badge */}
             <div
@@ -223,27 +279,27 @@ export function WelcomeSection() {
               </span>
             </div>
 
-            {/* Philosophy Headline */}
+            {/* Philosophy Headline with Line-by-Line Scrub Reveal */}
             <h2
               ref={titleRef}
-              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold font-display text-[#012968] leading-[1.25] mb-6"
+              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold font-display text-[#012968] leading-[1.3] mb-6"
             >
-              {t("title")}
+              <SplitTextScrub text={t("title")} wordClassName="split-title-word" />
             </h2>
 
-            {/* Philosophy Paragraphs */}
+            {/* Philosophy Paragraphs with TextSplit Scrub */}
             <p
               ref={desc1Ref}
               className="text-base sm:text-lg text-[#3D5A80] leading-relaxed mb-4 font-body"
             >
-              {t("desc1")}
+              <SplitTextScrub text={t("desc1")} wordClassName="split-desc1-word" />
             </p>
 
             <p
               ref={desc2Ref}
               className="text-base sm:text-lg text-[#3D5A80] leading-relaxed mb-8 font-body"
             >
-              {t("desc2")}
+              <SplitTextScrub text={t("desc2")} wordClassName="split-desc2-word" />
             </p>
 
             {/* 3 Clinical Excellence Pillars */}
@@ -277,12 +333,12 @@ export function WelcomeSection() {
             </div>
           </div>
 
-          {/* Visual Column (5 Cols on desktop): The 3D Morphing Dental Sculpture */}
+          {/* Visual Column (5 Cols on desktop): Royal Smile Showcase Glass Card */}
           <div
             ref={toothColRef}
             className="lg:col-span-5 relative flex justify-center order-1 lg:order-2"
           >
-            <HeroMorphTooth />
+            <RoyalSmileShowcase />
           </div>
 
         </div>

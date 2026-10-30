@@ -7,11 +7,11 @@ import { useTranslations } from "next-intl";
 import { useLanguage } from "@/i18n/IntlProviderWrapper";
 
 // Mathematically defined Organic Dental Smile Arch (قوس الابتسامة الملكي)
-// 11 interpolated points creating a pure parabolic curve without any mechanical corners
+// 13 harmonized points with a horizontal tangent at the apex (zero sharp tip, 100% rounded dental dome)
 const FLAT_RECT =
-  "polygon(0% 0%, 100% 0%, 100% 100%, 90% 100%, 80% 100%, 70% 100%, 60% 100%, 50% 100%, 40% 100%, 30% 100%, 20% 100%, 10% 100%, 0% 100%)";
+  "polygon(0% 0%, 100% 0%, 100% 100%, 92% 100%, 82% 100%, 72% 100%, 62% 100%, 54% 100%, 50% 100%, 46% 100%, 38% 100%, 28% 100%, 18% 100%, 8% 100%, 0% 100%)";
 const SMILE_ARCH =
-  "polygon(0% 0%, 100% 0%, 100% 100%, 90% 97%, 80% 92.5%, 70% 87.5%, 60% 84.5%, 50% 83%, 40% 84.5%, 30% 87.5%, 20% 92.5%, 10% 97%, 0% 100%)";
+  "polygon(0% 0%, 100% 0%, 100% 100%, 92% 98%, 82% 94%, 72% 89.5%, 62% 86%, 54% 84.2%, 50% 84%, 46% 84.2%, 38% 86%, 28% 89.5%, 18% 94%, 8% 98%, 0% 100%)";
 
 export function HeroSection() {
   const { isRtl } = useLanguage();
