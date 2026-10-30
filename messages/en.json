@@ -127,11 +127,47 @@
     "title": "Royal Smile Transformations",
     "subtitle": "Authentic patient cases completed under individualized treatment plans, documented in our clinic studio.",
     "before": "Before Treatment",
-    "after": "After Treatment",
+    "after": "After Royal Transformation",
     "sliderHint": "Drag slider to reveal transformation",
+    "cta": "Get Similar Results for My Smile",
+    "bookVisit": "Book In-Clinic Consultation",
     "case1Title": "Full Smile Rehabilitation with 16 Handcrafted E.max Veneers",
     "case2Title": "Upper Arch All-on-6 Implant Reconstruction with Prettau Zirconia",
-    "case3Title": "Severe Crowding Correction via Magnificent Clear Aligners"
+    "case3Title": "Severe Crowding Correction via Magnificent Clear Aligners",
+    "cases": [
+      {
+        "id": "veneers",
+        "tag": "Veneers & Aesthetics",
+        "title": "Full Smile Rehabilitation with 16 Handcrafted E.max Veneers",
+        "beforeDiagnosis": "Severe intrinsic discoloration, enamel wear, and uneven diastemas",
+        "afterResult": "Diamond-bright BL1 smile with Golden Ratio facial balance",
+        "specs": ["Genuine Swiss E.max", "Micron-level Precision", "2 Sessions in 48 Hours"]
+      },
+      {
+        "id": "implants",
+        "tag": "All-on-6 Implants",
+        "title": "Full Arch All-on-6 Reconstruction with Prettau Zirconia",
+        "beforeDiagnosis": "Multiple missing teeth, extensive caries, and impaired mastication",
+        "afterResult": "Fixed monolithic zirconia arch on 6 titanium implants",
+        "specs": ["Prettau Zirconia", "48-Hour Immediate Loading", "Lifetime Guarantee"]
+      },
+      {
+        "id": "aligners",
+        "tag": "Magnificent Aligners",
+        "title": "Severe Crowding & Crossbite Correction via Clear Aligners",
+        "beforeDiagnosis": "Severe anterior overlap, incisor rotation, and crossbite malocclusion",
+        "afterResult": "Flawless wire-free alignment and balanced dental symmetry in 8 months",
+        "specs": ["Invisible Smart Polymers", "8-Month 3D Plan", "AI-Powered Remote Monitoring"]
+      },
+      {
+        "id": "whitening",
+        "tag": "Royal Laser Whitening",
+        "title": "Royal Laser Teeth Whitening & Deep Calculus Removal",
+        "beforeDiagnosis": "Deep tobacco/coffee stains, tartar deposits, and severe yellowing (Shade A4)",
+        "afterResult": "8-shade instant brightening with enamel shielding & zero sensitivity",
+        "specs": ["Zero-Sensitivity Cold Laser", "Ultrasonic Calculus Scaling", "Single 45-Min Session"]
+      }
+    ]
   },
   "difference": {
     "badge": "SIX PILLARS OF EXCELLENCE",

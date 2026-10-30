@@ -127,11 +127,47 @@
     "title": "Métamorphoses du Sourire Royal",
     "subtitle": "Cas réels documentés en studio clinique après protocole thérapeutique personnalisé.",
     "before": "Avant Soins",
-    "after": "Après Soins",
+    "after": "Après Métamorphose",
     "sliderHint": "Glisser pour révéler le résultat",
+    "cta": "Obtenir ce Résultat pour mon Sourire",
+    "bookVisit": "Réserver une Consultation",
     "case1Title": "Réhabilitation Esthétique Complète avec 16 Facettes E.max",
     "case2Title": "Reconstruction All-on-6 en Zircone Prettau Haute Résistance",
-    "case3Title": "Correction d'un Encombrement Sévère par Aligneurs Magnificent"
+    "case3Title": "Correction d'un Encombrement Sévère par Aligneurs Magnificent",
+    "cases": [
+      {
+        "id": "veneers",
+        "tag": "Facettes & Esthétique",
+        "title": "Réhabilitation Complète avec 16 Facettes Céramiques E.max",
+        "beforeDiagnosis": "Colorations intrinsèques sévères, usure de l'émail et diastèmes",
+        "afterResult": "Sourire éclatant BL1 sculpté selon les proportions du Nombre d'Or",
+        "specs": ["Céramique E.max Suisse", "Précision Micrométrique", "2 Séances en 48h"]
+      },
+      {
+        "id": "implants",
+        "tag": "Implants All-on-6",
+        "title": "Reconstruction Totale All-on-6 en Zircone Prettau",
+        "beforeDiagnosis": "Pertes dentaires multiples, caries sévères et mastication compromise",
+        "afterResult": "Arcade fixe sur 6 implants titane d'aspect 100% naturel",
+        "specs": ["Zircone Prettau Suisse", "Mise en Charge 48h", "Garantie à Vie"]
+      },
+      {
+        "id": "aligners",
+        "tag": "Aligneurs Transparents",
+        "title": "Correction d'un Encombrement Sévère par Aligneurs Magnificent",
+        "beforeDiagnosis": "Chevauchement incisif prononcé, rotation et articulé croisé",
+        "afterResult": "Alignement numérique 3D parfait et sans bagues métalliques",
+        "specs": ["Polymères Invisibles", "Protocole 8 Mois 3D", "Suivi Hebdomadaire IA"]
+      },
+      {
+        "id": "whitening",
+        "tag": "Blanchiment Laser Royal",
+        "title": "Blanchiment Laser Royal et Détartrage Ultrasonique",
+        "beforeDiagnosis": "Jaunissement prononcé, tartre calcifié et taches de café/tabac",
+        "afterResult": "Gain immédiat de 8 teintes avec protection de l'émail sans sensibilité",
+        "specs": ["Laser Froid Sans Douleur", "Détartrage Subgingival", "Séance Unique 45 min"]
+      }
+    ]
   },
   "difference": {
     "badge": "LES SIX PILIERS DU LUXE",
