@@ -11,7 +11,7 @@ import { useLanguage } from "@/i18n/IntlProviderWrapper";
 const FLAT_RECT =
   "polygon(0% 0%, 100% 0%, 100% 100%, 90% 100%, 80% 100%, 70% 100%, 60% 100%, 50% 100%, 40% 100%, 30% 100%, 20% 100%, 10% 100%, 0% 100%)";
 const SMILE_ARCH =
-  "polygon(0% 0%, 100% 0%, 100% 100%, 90% 97.5%, 80% 93.8%, 70% 90.2%, 60% 87.8%, 50% 87%, 40% 87.8%, 30% 90.2%, 20% 93.8%, 10% 97.5%, 0% 100%)";
+  "polygon(0% 0%, 100% 0%, 100% 100%, 90% 97%, 80% 92.5%, 70% 87.5%, 60% 84.5%, 50% 83%, 40% 84.5%, 30% 87.5%, 20% 92.5%, 10% 97%, 0% 100%)";
 
 export function HeroSection() {
   const { isRtl } = useLanguage();
@@ -58,30 +58,31 @@ export function HeroSection() {
           scrollTrigger: {
             trigger: heroRef.current,
             start: "top top",
-            end: "bottom top",
-            scrub: 1.2,
+            end: "55% top", // Completes early in the scroll so the smile arch is immediately prominent
+            scrub: 0.8,
           },
         });
 
         scrollTl
           // A. Morph bottom edge into the organic Dental Smile Arch (قوس الابتسامة)
+          // power1.out ensures immediate responsive curve from the very first scroll touch
           .fromTo(
             clipContainerRef.current,
             { clipPath: FLAT_RECT },
-            { clipPath: SMILE_ARCH, ease: "power1.inOut", duration: 1 },
+            { clipPath: SMILE_ARCH, ease: "power1.out", duration: 1 },
             0
           )
           // B. Gentle cinematic parallax depth zoom inside the video
           .fromTo(
             videoRef.current,
             { yPercent: 0, scale: 1 },
-            { yPercent: 12, scale: 1.08, ease: "none", duration: 1 },
+            { yPercent: 10, scale: 1.07, ease: "none", duration: 1 },
             0
           )
-          // C. Graceful early fadeout for the bottom scroll prompt
+          // C. Rapid early fadeout for the bottom scroll prompt
           .to(
             scrollIndicatorRef.current,
-            { opacity: 0, y: 18, duration: 0.25, ease: "power2.in" },
+            { opacity: 0, y: 15, duration: 0.18, ease: "power2.in" },
             0
           );
       }
