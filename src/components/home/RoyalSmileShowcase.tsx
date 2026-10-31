@@ -65,7 +65,10 @@ export function RoyalSmileShowcase() {
   const currentMode = modes.find((m) => m.id === activeTab) || modes[0];
 
   return (
-    <div className="relative w-full max-w-lg mx-auto flex flex-col items-center select-none">
+    <div
+      dir={isRtl ? "rtl" : "ltr"}
+      className="relative w-full max-w-lg mx-auto flex flex-col items-center select-none"
+    >
       
       {/* 1. Main Luxury Glass Frame Card */}
       <div className="relative w-full rounded-3xl overflow-hidden border-2 border-[#C8A232]/35 bg-gradient-to-b from-white/95 via-[#FDFBF7]/90 to-[#FAF8F5]/95 shadow-[0_20px_50px_rgba(2,34,86,0.10)] p-3 sm:p-4 backdrop-blur-xl group">
