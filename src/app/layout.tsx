@@ -101,13 +101,15 @@ export default function RootLayout({
     >
       <body className="font-body bg-ivory text-[#0A1128] antialiased selection:bg-[#C8A232] selection:text-ivory">
         <IntlProviderWrapper>
-          <SmoothScrollProvider>
-            <Navbar />
-            <main className="relative min-h-screen bg-ivory text-[#0A1128] selection:bg-[#C8A232] selection:text-ivory overflow-hidden">
-              {children}
-            </main>
-            <Footer />
-          </SmoothScrollProvider>
+          <PageTransitionProvider>
+            <SmoothScrollProvider>
+              <Navbar />
+              <main className="relative min-h-screen bg-ivory text-[#0A1128] selection:bg-[#C8A232] selection:text-ivory overflow-hidden">
+                {children}
+              </main>
+              <Footer />
+            </SmoothScrollProvider>
+          </PageTransitionProvider>
         </IntlProviderWrapper>
       </body>
     </html>

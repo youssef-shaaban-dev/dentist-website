@@ -1,10 +1,15 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
-import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { useLanguage, Locale } from "@/i18n/IntlProviderWrapper";
+import { useLenis } from "lenis/react";
+import { usePageTransition } from "@/components/layout/PageTransitionContext";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { Observer } from "gsap/Observer";
 import { Globe, Menu, X } from "lucide-react";
 
 function WhatsAppIcon({ className = "w-3.5 h-3.5" }: { className?: string }) {
@@ -21,13 +26,22 @@ function WhatsAppIcon({ className = "w-3.5 h-3.5" }: { className?: string }) {
 }
 
 export function Navbar() {
+  const pathname = usePathname();
+  const isTreatmentsPage = pathname === "/treatments";
+
   const { locale, setLocale, isRtl } = useLanguage();
+  const { navigateWithTransition } = usePageTransition();
+  const lenis = useLenis();
+
   const tNav = useTranslations("nav");
   const tBrand = useTranslations("brand");
 
   const [scrolled, setScrolled] = useState(false);
+  const [navVisible, setNavVisible] = useState(true);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [langMenuOpen, setLangMenuOpen] = useState(false);
+
+  const effectiveScrolled = scrolled || isTreatmentsPage;
 
   const whatsappMessage =
     locale === "ar"
@@ -39,6 +53,26 @@ export function Navbar() {
       : "Hello, I would like to book a consultation at Magnificent Smile Clinics.";
 
   const whatsappUrl = `https://wa.me/201008901234?text=${encodeURIComponent(whatsappMessage)}`;
+
+  // GSAP Observer: Smart direction & velocity detection for luxury navbar response
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger, Observer);
+
+    const obs = Observer.create({
+      target: window,
+      type: "wheel,touch,scroll",
+      onChangeY: (self) => {
+        const top = window.scrollY;
+        if (top > 160 && self.deltaY > 15) {
+          setNavVisible(false);
+        } else if (self.deltaY < -8 || top < 80) {
+          setNavVisible(true);
+        }
+      },
+    });
+
+    return () => obs.kill();
+  }, []);
 
   useEffect(() => {
     let ticking = false;
@@ -71,38 +105,88 @@ export function Navbar() {
   ];
 
   const navLinks = [
-    { href: "#home", label: tNav("home") },
-    { href: "#welcome", label: tNav("welcome") },
-    { href: "#treatments", label: tNav("treatments") },
-    { href: "#doctors", label: tNav("doctors") },
-    { href: "#transformations", label: tNav("transformations") },
-    { href: "#difference", label: tNav("difference") },
-    { href: "#clinics", label: tNav("clinics") },
-    { href: "#ecosystem", label: tNav("aligners") },
+    { href: isTreatmentsPage ? "/#home" : "#home", label: tNav("home") },
+    { href: isTreatmentsPage ? "/#welcome" : "#welcome", label: tNav("welcome") },
+    { href: "/treatments", label: tNav("treatments"), isCurrent: isTreatmentsPage },
+    { href: isTreatmentsPage ? "/#doctors" : "#doctors", label: tNav("doctors") },
+    { href: isTreatmentsPage ? "/#transformations" : "#transformations", label: tNav("transformations") },
+    { href: isTreatmentsPage ? "/#difference" : "#difference", label: tNav("difference") },
+    { href: isTreatmentsPage ? "/#clinics" : "#clinics", label: tNav("clinics") },
+    { href: isTreatmentsPage ? "/#ecosystem" : "#ecosystem", label: tNav("aligners") },
   ];
 
+  // Butter-Smooth Link Navigation: Lenis inertial glide for anchors, Royal Curtain for page routes
+  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    setMobileMenuOpen(false);
+
+    // 1. Dedicated Treatments Page Route
+    if (href === "/treatments") {
+      if (pathname !== "/treatments") {
+        e.preventDefault();
+        navigateWithTransition("/treatments");
+      }
+      return;
+    }
+
+    // 2. Return to Home Page Route
+    if (href === "/" || href === "/#home" || href === "#home") {
+      if (pathname !== "/") {
+        e.preventDefault();
+        navigateWithTransition("/");
+        return;
+      }
+    }
+
+    // 3. Anchor Section Links
+    const targetId = href.includes("#") ? href.split("#")[1] : null;
+    if (targetId) {
+      if (pathname === "/") {
+        e.preventDefault();
+        const targetEl = document.getElementById(targetId);
+        if (targetEl && lenis) {
+          lenis.scrollTo(targetEl, {
+            offset: -85,
+            duration: 1.4,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+          });
+        } else if (targetEl) {
+          targetEl.scrollIntoView({ behavior: "smooth" });
+        }
+      } else {
+        // Navigating from /treatments back to anchor on /
+        e.preventDefault();
+        navigateWithTransition(href);
+      }
+    }
+  };
+
   return (
-    <header className="fixed top-0 left-0 right-0 z-50">
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-transform duration-300 ${
+        navVisible ? "translate-y-0" : "-translate-y-full"
+      }`}
+    >
       {/* Background Layer 1: Cinematic Dark Hero Gradient (Unscrolled State) */}
       <div
         className={`absolute inset-0 bg-gradient-to-b from-black/75 via-black/35 to-transparent transition-opacity duration-300 pointer-events-none -z-10 ${
-          scrolled ? "opacity-0" : "opacity-100"
+          effectiveScrolled ? "opacity-0" : "opacity-100"
         }`}
       />
 
       {/* Background Layer 2: Royal Warm Ivory Glass (Scrolled State) */}
       <div
         className={`absolute inset-0 bg-[#FDFBF7]/95 backdrop-blur-md border-b border-[#C8A232]/30 shadow-[0_4px_30px_rgba(2,34,86,0.08)] transition-opacity duration-300 pointer-events-none -z-10 ${
-          scrolled ? "opacity-100" : "opacity-0"
+          effectiveScrolled ? "opacity-100" : "opacity-0"
         }`}
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 sm:py-4">
         <div className="flex items-center justify-between">
           {/* Logo & Brand Identity */}
-          <Link
-            href="#home"
-            className="flex items-center gap-3.5 group focus:outline-none"
+          <a
+            href="/"
+            onClick={(e) => handleLinkClick(e, "/")}
+            className="flex items-center gap-3.5 group focus:outline-none cursor-pointer"
             aria-label="Magnificent Smile Home"
           >
             <div className="relative w-11 h-11 sm:w-12 sm:h-12 rounded-full overflow-hidden p-0.5 border-2 border-[#C8A232] shadow-[0_0_15px_rgba(200,162,50,0.35)] transition-transform duration-300 group-hover:scale-105 bg-[#022256]">
@@ -118,7 +202,7 @@ export function Navbar() {
             <div className="flex flex-col">
               <span
                 className={`font-display text-lg sm:text-xl font-bold tracking-wider transition-colors drop-shadow-sm ${
-                  scrolled
+                  effectiveScrolled
                     ? "text-[#012968] group-hover:text-[#955904]"
                     : "text-white group-hover:text-[#DFBF57]"
                 }`}
@@ -127,31 +211,41 @@ export function Navbar() {
               </span>
               <span
                 className={`text-[10px] tracking-widest uppercase flex items-center gap-1 font-body transition-colors ${
-                  scrolled ? "text-[#5B6782]" : "text-[#F9EDD7]/90"
+                  effectiveScrolled ? "text-[#5B6782]" : "text-[#F9EDD7]/90"
                 }`}
               >
                 <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#DFBF57] animate-pulse" />
                 {tBrand("badge")}
               </span>
             </div>
-          </Link>
+          </a>
 
           {/* Desktop Navigation Links */}
           <nav className="hidden xl:flex items-center gap-5 2xl:gap-6" aria-label="Main Navigation">
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className={`relative text-xs tracking-wider uppercase font-semibold transition-colors py-1 group font-body whitespace-nowrap drop-shadow-sm ${
-                  scrolled
-                    ? "text-[#012968]/85 hover:text-[#955904]"
-                    : "text-white/90 hover:text-[#DFBF57]"
-                }`}
-              >
-                {link.label}
-                <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-[#DFBF57] transition-all duration-300 group-hover:w-full" />
-              </a>
-            ))}
+            {navLinks.map((link) => {
+              const isActive = link.isCurrent;
+              return (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  onClick={(e) => handleLinkClick(e, link.href)}
+                  className={`relative text-xs tracking-wider uppercase font-semibold transition-colors py-1 group font-body whitespace-nowrap drop-shadow-sm cursor-pointer ${
+                    isActive
+                      ? "text-[#955904] font-bold"
+                      : effectiveScrolled
+                      ? "text-[#012968]/85 hover:text-[#955904]"
+                      : "text-white/90 hover:text-[#DFBF57]"
+                  }`}
+                >
+                  {link.label}
+                  <span
+                    className={`absolute bottom-0 left-0 h-[2px] bg-[#DFBF57] transition-all duration-300 ${
+                      isActive ? "w-full" : "w-0 group-hover:w-full"
+                    }`}
+                  />
+                </a>
+              );
+            })}
           </nav>
 
           {/* Actions: Language Switcher & Book Consultation CTA */}
@@ -162,7 +256,7 @@ export function Navbar() {
                 type="button"
                 onClick={() => setLangMenuOpen(!langMenuOpen)}
                 className={`flex items-center gap-2 px-3 py-1.5 rounded-full border text-xs font-semibold shadow-sm transition-all focus:outline-none cursor-pointer ${
-                  scrolled
+                  effectiveScrolled
                     ? "border-[#C8A232]/40 bg-white/90 hover:bg-white text-[#012968]"
                     : "border-white/30 bg-black/30 hover:bg-black/45 text-white backdrop-blur-md"
                 }`}
@@ -233,7 +327,7 @@ export function Navbar() {
                 setLocale(nextLocale);
               }}
               className={`px-2.5 py-1 rounded-full border text-[11px] font-bold uppercase transition-colors ${
-                scrolled
+                effectiveScrolled
                   ? "border-[#C8A232]/50 text-[#012968] bg-white/80"
                   : "border-white/30 text-white bg-black/30 backdrop-blur-md"
               }`}
@@ -245,7 +339,7 @@ export function Navbar() {
               type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className={`p-2 rounded-xl transition-colors ${
-                scrolled
+                effectiveScrolled
                   ? "text-[#012968] hover:bg-[#F9EDD7]"
                   : "text-white hover:bg-white/20 bg-black/25 backdrop-blur-md"
               }`}
@@ -265,8 +359,8 @@ export function Navbar() {
               <a
                 key={link.href}
                 href={link.href}
-                onClick={() => setMobileMenuOpen(false)}
-                className="text-sm font-semibold text-[#012968] hover:text-[#955904] py-2 border-b border-[#C8A232]/15 font-body flex items-center justify-between"
+                onClick={(e) => handleLinkClick(e, link.href)}
+                className="text-sm font-semibold text-[#012968] hover:text-[#955904] py-2 border-b border-[#C8A232]/15 font-body flex items-center justify-between cursor-pointer"
               >
                 <span>{link.label}</span>
                 <span className="text-xs text-[#955904]">←</span>

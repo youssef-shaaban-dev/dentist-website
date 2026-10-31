@@ -7,6 +7,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useTranslations } from "next-intl";
 import { useLanguage } from "@/i18n/IntlProviderWrapper";
+import { usePageTransition } from "@/components/layout/PageTransitionContext";
 import { SplitTextScrub } from "@/components/ui/SplitTextScrub";
 import {
   Sparkles,
@@ -103,6 +104,7 @@ function WhatsAppIcon({ className = "w-4 h-4" }: { className?: string }) {
 export function SignatureTreatments() {
   const t = useTranslations("treatments");
   const { isRtl, locale } = useLanguage();
+  const { navigateWithTransition } = usePageTransition();
   const ArrowIcon = isRtl ? ArrowLeft : ArrowRight;
 
   const sectionRef = useRef<HTMLElement>(null);
@@ -495,14 +497,18 @@ export function SignatureTreatments() {
 
         {/* View All Treatments CTA */}
         <div className="mt-14 text-center">
-          <Link
+          <a
             href="/treatments"
-            className="inline-flex items-center gap-2.5 px-8 py-3.5 rounded-full border-2 border-[#C8A232] bg-white text-[#012968] font-bold text-xs uppercase tracking-wider shadow-sm hover:shadow-md hover:bg-[#FAF8F5] transition-all transform hover:-translate-y-0.5"
+            onClick={(e) => {
+              e.preventDefault();
+              navigateWithTransition("/treatments");
+            }}
+            className="inline-flex items-center gap-2.5 px-8 py-3.5 rounded-full border-2 border-[#C8A232] bg-white text-[#012968] font-bold text-xs uppercase tracking-wider shadow-sm hover:shadow-md hover:bg-[#FAF8F5] transition-all transform hover:-translate-y-0.5 cursor-pointer"
           >
             <Sparkles className="w-4 h-4 text-[#955904]" />
             <span>{t("viewAll")}</span>
             <ArrowIcon className="w-4 h-4 text-[#955904]" />
-          </Link>
+          </a>
         </div>
 
       </div>
