@@ -167,7 +167,10 @@ export function RoyalSmileShowcase() {
       </div>
 
       {/* 2. Interactive Feature Switcher Tabs (Touch-Friendly on Mobile) */}
-      <div className="mt-4 flex items-center justify-center gap-1.5 p-1.5 rounded-2xl bg-white border border-[#C8A232]/35 shadow-sm w-full max-w-md">
+      <div
+        dir={isRtl ? "rtl" : "ltr"}
+        className="mt-4 flex items-center justify-between gap-1 sm:gap-1.5 p-1 sm:p-1.5 rounded-2xl bg-white border border-[#C8A232]/35 shadow-sm w-full max-w-md overflow-x-auto scrollbar-none"
+      >
         {modes.map((mode) => {
           const isActive = activeTab === mode.id;
 
@@ -176,15 +179,15 @@ export function RoyalSmileShowcase() {
               key={mode.id}
               type="button"
               onClick={() => setActiveTab(mode.id)}
-              className={`flex-1 py-2 px-2.5 rounded-xl text-xs font-bold transition-all duration-300 cursor-pointer flex items-center justify-center gap-1.5 whitespace-nowrap ${
+              className={`flex-1 py-1.5 sm:py-2 px-1.5 sm:px-2.5 rounded-xl text-[11px] sm:text-xs font-bold transition-all duration-300 cursor-pointer flex items-center justify-center gap-1 sm:gap-1.5 whitespace-nowrap shrink-0 ${
                 isActive
                   ? "bg-[#012968] text-white shadow-md scale-102"
                   : "text-[#5B6782] hover:text-[#012968] hover:bg-[#FAF8F5]"
               }`}
             >
-              {mode.id === "smile" && <Sparkles className={`w-3.5 h-3.5 ${isActive ? "text-[#DFBF57]" : "text-[#955904]"}`} />}
-              {mode.id === "dsd" && <ScanLine className={`w-3.5 h-3.5 ${isActive ? "text-[#DFBF57]" : "text-[#955904]"}`} />}
-              {mode.id === "veneer" && <ShieldCheck className={`w-3.5 h-3.5 ${isActive ? "text-[#DFBF57]" : "text-[#955904]"}`} />}
+              {mode.id === "smile" && <Sparkles className={`w-3 h-3 sm:w-3.5 sm:h-3.5 shrink-0 ${isActive ? "text-[#DFBF57]" : "text-[#955904]"}`} />}
+              {mode.id === "dsd" && <ScanLine className={`w-3 h-3 sm:w-3.5 sm:h-3.5 shrink-0 ${isActive ? "text-[#DFBF57]" : "text-[#955904]"}`} />}
+              {mode.id === "veneer" && <ShieldCheck className={`w-3 h-3 sm:w-3.5 sm:h-3.5 shrink-0 ${isActive ? "text-[#DFBF57]" : "text-[#955904]"}`} />}
               <span>{isRtl ? (mode.id === "smile" ? "الابتسامة الطبيعية" : mode.id === "dsd" ? "المسح الميكروني" : "خزف E-Max") : (mode.id === "smile" ? "Natural Smile" : mode.id === "dsd" ? "Digital Scan" : "E-Max Veneers")}</span>
             </button>
           );
