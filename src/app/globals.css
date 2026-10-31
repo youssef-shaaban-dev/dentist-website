@@ -183,7 +183,7 @@ html.lenis body {
 }
 
 /* 100% Seamless Infinite Marquee for Pharaonic Glyphs (GPU-accelerated) */
-@keyframes marqueeHorizontal {
+@keyframes marqueeHorizontalLtr {
   0% {
     transform: translate3d(0, 0, 0);
   }
@@ -192,10 +192,26 @@ html.lenis body {
   }
 }
 
+@keyframes marqueeHorizontalRtl {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(50%, 0, 0);
+  }
+}
+
 .animate-marquee-infinite {
   display: flex;
   width: max-content;
-  animation: marqueeHorizontal 32s linear infinite;
+  animation: marqueeHorizontalLtr 32s linear infinite;
+  will-change: transform;
+}
+
+.animate-marquee-infinite-rtl {
+  display: flex;
+  width: max-content;
+  animation: marqueeHorizontalRtl 32s linear infinite;
   will-change: transform;
 }
 

@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
+import { useLanguage } from "@/i18n/IntlProviderWrapper";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -65,6 +66,7 @@ const MOBILE_FRIEZE_HALF = [...SACRED_SYMBOLS, ...SACRED_SYMBOLS];
 
 export function PharaonicScrollSpine() {
   const t = useTranslations("pharaonicPillar");
+  const { isRtl } = useLanguage();
 
   const leftTrackRef = useRef<HTMLDivElement>(null);
   const rightTrackRef = useRef<HTMLDivElement>(null);
@@ -218,6 +220,7 @@ export function PharaonicScrollSpine() {
       {/* 4. Mobile & Tablet Only: 100% Gapless Seamless Infinite Bottom Frieze */}
       <div
         aria-label="Mobile Pharaonic Bottom Frieze"
+        dir={isRtl ? "rtl" : "ltr"}
         className="fixed bottom-0 left-0 right-0 z-40 xl:hidden h-7 sm:h-8 overflow-hidden border-t border-[#C8A232]/50 bg-[#F9EDD7]/95 backdrop-blur-md shadow-[0_-4px_20px_rgba(2,34,86,0.12)] select-none pointer-events-none pb-[env(safe-area-inset-bottom)] flex items-center"
         style={{
           maskImage:
@@ -226,10 +229,14 @@ export function PharaonicScrollSpine() {
             "linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%)",
         }}
       >
-        {/* Standardized LTR direction so RTL/LTR never breaks the continuous animation */}
-        <div dir="ltr" className="animate-marquee-infinite flex items-center">
+        <div
+          dir={isRtl ? "rtl" : "ltr"}
+          className={`${
+            isRtl ? "animate-marquee-infinite-rtl" : "animate-marquee-infinite"
+          } flex items-center`}
+        >
           {/* Half 1: 60 Items (~2,600px wide) */}
-          <div className="flex items-center gap-5 sm:gap-6 shrink-0 pr-5 sm:pr-6">
+          <div className="flex items-center gap-5 sm:gap-6 shrink-0 px-3 sm:px-4">
             {MOBILE_FRIEZE_HALF.map((glyph, idx) => (
               <div key={`m1-${idx}`} className="flex items-center gap-5 sm:gap-6 shrink-0">
                 <span className="font-serif text-sm sm:text-base text-[#955904] font-bold drop-shadow-[0_1px_2px_rgba(200,162,50,0.4)]">
@@ -241,7 +248,7 @@ export function PharaonicScrollSpine() {
           </div>
 
           {/* Half 2: Identical 60 Items (~2,600px wide, Mathematical Infinite Loop) */}
-          <div className="flex items-center gap-5 sm:gap-6 shrink-0 pr-5 sm:pr-6">
+          <div className="flex items-center gap-5 sm:gap-6 shrink-0 px-3 sm:px-4">
             {MOBILE_FRIEZE_HALF.map((glyph, idx) => (
               <div key={`m2-${idx}`} className="flex items-center gap-5 sm:gap-6 shrink-0">
                 <span className="font-serif text-sm sm:text-base text-[#955904] font-bold drop-shadow-[0_1px_2px_rgba(200,162,50,0.4)]">
