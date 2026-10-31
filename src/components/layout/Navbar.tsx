@@ -33,7 +33,6 @@ export function Navbar() {
   const lenis = useLenis();
 
   const tNav = useTranslations("nav");
-  const tBrand = useTranslations("brand");
 
   const [scrolled, setScrolled] = useState(false);
   const [navVisible, setNavVisible] = useState(true);
@@ -183,48 +182,29 @@ export function Navbar() {
         }`}
       />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 sm:py-4">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 sm:py-2.5">
         <div className="flex items-center justify-between">
-          {/* Logo & Brand Identity */}
+          {/* Brand Logo Only (Uncropped, clear, readable, zero adjacent text) */}
           <Link
             href="/"
             onClick={(e) => handleLinkClick(e, "/")}
-            className="flex items-center gap-3.5 group focus:outline-none cursor-pointer"
-            aria-label="Magnificent Smile Home"
+            className="flex items-center group focus:outline-none cursor-pointer py-1"
+            aria-label="Magnificent Smile"
           >
-            <div className="relative w-11 h-11 sm:w-12 sm:h-12 rounded-full overflow-hidden p-0.5 border-2 border-[#C8A232] shadow-[0_0_15px_rgba(200,162,50,0.35)] transition-transform duration-300 group-hover:scale-105 bg-[#022256]">
+            <div className="relative h-14 sm:h-16 md:h-18 aspect-[6/5] transition-transform duration-300 group-hover:scale-105">
               <Image
                 src="/logo.png"
-                alt="Magnificent Smile - Hesy-Ra Emblem"
+                alt="Magnificent Smile Dental Clinic"
                 fill
-                sizes="48px"
-                className="object-cover"
+                sizes="(max-width: 640px) 110px, 160px"
+                className="object-contain drop-shadow-[0_2px_12px_rgba(200,162,50,0.35)]"
                 priority
               />
-            </div>
-            <div className="flex flex-col">
-              <span
-                className={`font-display text-lg sm:text-xl font-bold tracking-wider transition-colors drop-shadow-sm ${
-                  effectiveScrolled
-                    ? "text-[#012968] group-hover:text-[#955904]"
-                    : "text-white group-hover:text-[#DFBF57]"
-                }`}
-              >
-                {tBrand("name")}
-              </span>
-              <span
-                className={`text-[10px] tracking-widest uppercase flex items-center gap-1 font-body transition-colors ${
-                  effectiveScrolled ? "text-[#5B6782]" : "text-[#F9EDD7]/90"
-                }`}
-              >
-                <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#DFBF57] animate-pulse" />
-                {tBrand("badge")}
-              </span>
             </div>
           </Link>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden xl:flex items-center gap-5 2xl:gap-6" aria-label="Main Navigation">
+          <nav className="hidden xl:flex items-center gap-2.5 2xl:gap-5" aria-label="Main Navigation">
             {navLinks.map((link) => {
               const isActive = link.isCurrent;
               return (
@@ -232,7 +212,7 @@ export function Navbar() {
                   key={link.href}
                   href={link.href}
                   onClick={(e) => handleLinkClick(e, link.href)}
-                  className={`relative text-xs tracking-wider uppercase font-semibold transition-colors py-1 group font-body whitespace-nowrap drop-shadow-sm cursor-pointer ${
+                  className={`relative text-[11px] 2xl:text-xs tracking-wide 2xl:tracking-wider uppercase font-semibold transition-colors py-1 group font-body whitespace-nowrap drop-shadow-sm cursor-pointer ${
                     isActive
                       ? "text-[#955904] font-bold"
                       : effectiveScrolled
@@ -252,7 +232,7 @@ export function Navbar() {
           </nav>
 
           {/* Actions: Language Switcher & Book Consultation CTA */}
-          <div className="hidden lg:flex items-center gap-3.5">
+          <div className="hidden xl:flex items-center gap-3">
             {/* Language Switcher */}
             <div className="relative">
               <button
@@ -312,9 +292,9 @@ export function Navbar() {
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="relative group overflow-hidden px-5 py-2.5 rounded-full border border-[#C8A232]/80 bg-gradient-to-r from-[#955904] via-[#C8A232] to-[#955904] text-white font-bold text-xs tracking-wider uppercase shadow-[0_4px_20px_rgba(200,162,50,0.35)] hover:shadow-[0_8px_30px_rgba(200,162,50,0.55)] transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0 flex items-center gap-2 cursor-pointer"
+              className="relative group overflow-hidden px-4 py-2 2xl:px-5 2xl:py-2.5 rounded-full border border-[#C8A232]/80 bg-gradient-to-r from-[#955904] via-[#C8A232] to-[#955904] text-white font-bold text-xs tracking-wider uppercase shadow-[0_4px_20px_rgba(200,162,50,0.35)] hover:shadow-[0_8px_30px_rgba(200,162,50,0.55)] transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0 flex items-center gap-2 cursor-pointer whitespace-nowrap"
             >
-              <WhatsAppIcon className="w-3.5 h-3.5 text-white" />
+              <WhatsAppIcon className="w-3.5 h-3.5 text-white shrink-0" />
               <span>{tNav("bookAppointment")}</span>
             </a>
           </div>
@@ -357,7 +337,28 @@ export function Navbar() {
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
         <div className="xl:hidden bg-[#FDFBF7]/98 backdrop-blur-2xl border-b border-[#C8A232]/30 px-6 py-6 shadow-2xl animate-in slide-in-from-top-4 duration-300">
-          <nav className="flex flex-col gap-3">
+          <nav className="flex flex-col gap-2.5">
+            {/* Language Bar in Drawer */}
+            <div className="grid grid-cols-4 gap-1.5 pb-3 mb-2 border-b border-[#C8A232]/20">
+              {languages.map((item) => (
+                <button
+                  key={item.code}
+                  type="button"
+                  onClick={() => {
+                    setLocale(item.code);
+                    setMobileMenuOpen(false);
+                  }}
+                  className={`py-1.5 text-center text-xs rounded-lg font-bold transition-colors ${
+                    locale === item.code
+                      ? "bg-[#012968] text-[#DFBF57] shadow-sm"
+                      : "bg-white/80 text-[#012968] hover:bg-[#FAF8F5] border border-[#C8A232]/20"
+                  }`}
+                >
+                  {item.label}
+                </button>
+              ))}
+            </div>
+
             {navLinks.map((link) => (
               <a
                 key={link.href}
@@ -366,10 +367,10 @@ export function Navbar() {
                 className="text-sm font-semibold text-[#012968] hover:text-[#955904] py-2 border-b border-[#C8A232]/15 font-body flex items-center justify-between cursor-pointer"
               >
                 <span>{link.label}</span>
-                <span className="text-xs text-[#955904]">←</span>
+                <span className="text-xs text-[#955904]">{isRtl ? "←" : "→"}</span>
               </a>
             ))}
-            <div className="pt-4 flex flex-col gap-3">
+            <div className="pt-3 flex flex-col gap-3">
               <a
                 href={whatsappUrl}
                 target="_blank"

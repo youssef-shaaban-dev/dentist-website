@@ -29,13 +29,13 @@ export function Footer() {
           {/* Brand Manifesto Col (4 cols) */}
           <div className="lg:col-span-4 flex flex-col">
             <Link href="#home" className="flex items-center gap-3.5 mb-6">
-              <div className="relative w-12 h-12 rounded-full overflow-hidden p-0.5 border-2 border-[#C8A232] bg-[#0A1128] shadow-md">
+              <div className="relative h-14 sm:h-16 aspect-[6/5]">
                 <Image
                   src="/logo.png"
                   alt="Magnificent Smile Logo"
                   fill
-                  sizes="48px"
-                  className="object-cover"
+                  sizes="96px"
+                  className="object-contain drop-shadow-[0_2px_10px_rgba(200,162,50,0.35)]"
                 />
               </div>
               <div className="flex flex-col">
