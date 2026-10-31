@@ -7,6 +7,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useTranslations } from "next-intl";
 import { useLanguage } from "@/i18n/IntlProviderWrapper";
+import { SplitTextScrub } from "@/components/ui/SplitTextScrub";
 import {
   Sparkles,
   ArrowRight,
@@ -106,6 +107,7 @@ export function SignatureTreatments() {
 
   const sectionRef = useRef<HTMLElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
+  const titleRef = useRef<HTMLHeadingElement>(null);
   const stageRef = useRef<HTMLDivElement>(null);
 
   const treatmentKeys = [
@@ -141,41 +143,57 @@ export function SignatureTreatments() {
     gsap.registerPlugin(ScrollTrigger);
 
     const ctx = gsap.context(() => {
-      // 1. Header Entrance
+      // 1. Badge & Subtitle entrance
       if (headerRef.current) {
         gsap.fromTo(
           headerRef.current.children,
-          { opacity: 0, y: 30 },
+          { opacity: 0, y: 20 },
           {
             opacity: 1,
             y: 0,
-            duration: 0.9,
-            stagger: 0.15,
+            duration: 0.8,
             ease: "power2.out",
             scrollTrigger: {
               trigger: headerRef.current,
-              start: "top 85%",
-              toggleActions: "play reverse play reverse",
+              start: "top 88%",
+              once: true,
             },
           }
         );
       }
 
-      // 2. Stage Entrance
+      // 2. TextSplit Scrub for Main Headline
+      const titleWords = titleRef.current?.querySelectorAll(".split-title-word");
+      if (titleWords && titleWords.length > 0) {
+        gsap.to(titleWords, {
+          y: "0%",
+          opacity: 1,
+          stagger: 0.04,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: titleRef.current,
+            start: "top 85%",
+            end: "bottom 55%",
+            scrub: 0.8,
+          },
+        });
+      }
+
+      // 3. Stage Entrance
       if (stageRef.current) {
         gsap.fromTo(
           stageRef.current,
-          { opacity: 0, y: 40, scale: 0.98 },
+          { opacity: 0, y: 35, scale: 0.98 },
           {
             opacity: 1,
             y: 0,
             scale: 1,
-            duration: 1,
+            duration: 0.9,
             ease: "power3.out",
             scrollTrigger: {
               trigger: stageRef.current,
               start: "top 82%",
-              toggleActions: "play reverse play reverse",
+              once: true,
             },
           }
         );
@@ -217,8 +235,11 @@ export function SignatureTreatments() {
             </span>
           </div>
 
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold font-display text-[#012968] mb-4">
-            {t("title")}
+          <h2
+            ref={titleRef}
+            className="text-3xl sm:text-4xl md:text-5xl font-bold font-display text-[#012968] mb-4"
+          >
+            <SplitTextScrub text={t("title")} wordClassName="split-title-word" />
           </h2>
 
           <p className="text-base sm:text-lg text-[#5B6782] font-body leading-relaxed">

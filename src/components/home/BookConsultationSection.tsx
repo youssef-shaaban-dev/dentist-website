@@ -1,9 +1,12 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useTranslations } from "next-intl";
 import { useLanguage } from "@/i18n/IntlProviderWrapper";
-import { Phone } from "lucide-react";
+import { Phone, CalendarCheck } from "lucide-react";
+import { SplitTextScrub } from "@/components/ui/SplitTextScrub";
 
 function WhatsAppIcon({ className = "w-5 h-5" }: { className?: string }) {
   return (
@@ -22,6 +25,11 @@ export function BookConsultationSection() {
   const t = useTranslations("booking");
   const { isRtl, locale } = useLanguage();
 
+  const sectionRef = useRef<HTMLElement>(null);
+  const headerRef = useRef<HTMLDivElement>(null);
+  const titleRef = useRef<HTMLHeadingElement>(null);
+  const ctaRef = useRef<HTMLDivElement>(null);
+
   const defaultMessage =
     locale === "ar"
       ? "مرحباً، أود حجز موعد استشارة في عيادات ماغنيفيسنت سمايل."
@@ -34,21 +42,94 @@ export function BookConsultationSection() {
   const whatsappUrl = `https://wa.me/201008901234?text=${encodeURIComponent(defaultMessage)}`;
   const cleanPhone = t("hotline").replace(/\s+/g, "");
 
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+
+    const ctx = gsap.context(() => {
+      // 1. Badge & subtitle entrance
+      if (headerRef.current) {
+        gsap.fromTo(
+          headerRef.current.children,
+          { opacity: 0, y: 20 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: headerRef.current,
+              start: "top 88%",
+              once: true,
+            },
+          }
+        );
+      }
+
+      // 2. TextSplit Scrub for Main Headline
+      const titleWords = titleRef.current?.querySelectorAll(".split-title-word");
+      if (titleWords && titleWords.length > 0) {
+        gsap.to(titleWords, {
+          y: "0%",
+          opacity: 1,
+          stagger: 0.04,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: titleRef.current,
+            start: "top 85%",
+            end: "bottom 55%",
+            scrub: 0.8,
+          },
+        });
+      }
+
+      // 3. CTA Buttons entrance
+      if (ctaRef.current) {
+        gsap.fromTo(
+          ctaRef.current,
+          { opacity: 0, y: 25, scale: 0.98 },
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 0.8,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: ctaRef.current,
+              start: "top 85%",
+              once: true,
+            },
+          }
+        );
+      }
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
     <section
+      ref={sectionRef}
       id="book"
-      className="relative py-20 sm:py-28 px-4 sm:px-6 lg:px-8 bg-[#FDFBF7] border-t border-[#C8A232]/20"
+      className="relative py-20 sm:py-28 px-4 sm:px-6 lg:px-8 bg-[#FDFBF7] border-t border-[#C8A232]/20 overflow-hidden"
       dir={isRtl ? "rtl" : "ltr"}
     >
-      <div className="max-w-3xl mx-auto text-center">
+      <div className="max-w-3xl mx-auto text-center relative z-10">
         {/* Subtle Category Badge */}
-        <div className="inline-block px-3 py-1 rounded-full border border-[#C8A232]/30 bg-white text-[11px] font-bold text-[#8C6A12] uppercase tracking-wider mb-4 font-mono shadow-sm">
-          {t("badge")}
+        <div ref={headerRef} className="mb-4">
+          <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-[#C8A232]/40 bg-white shadow-xs">
+            <CalendarCheck className="w-3.5 h-3.5 text-[#955904]" />
+            <span className="text-[11px] font-bold text-[#955904] uppercase tracking-wider font-mono">
+              {t("badge")}
+            </span>
+          </div>
         </div>
 
-        {/* Clean, Modern Title (Tajawal / Zentry) */}
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold font-display text-[#0A1128] mb-4">
-          {t("title")}
+        {/* Clean, Modern Title with SplitTextScrub */}
+        <h2
+          ref={titleRef}
+          className="text-3xl sm:text-4xl md:text-5xl font-bold font-display text-[#012968] mb-4"
+        >
+          <SplitTextScrub text={t("title")} wordClassName="split-title-word" />
         </h2>
 
         {/* Calm Subtitle */}
@@ -56,8 +137,11 @@ export function BookConsultationSection() {
           {t("subtitle")}
         </p>
 
-        {/* Clean, Premium WhatsApp Button */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+        {/* Clean, Premium WhatsApp & Phone Buttons */}
+        <div
+          ref={ctaRef}
+          className="flex flex-col sm:flex-row items-center justify-center gap-4"
+        >
           <a
             href={whatsappUrl}
             target="_blank"
@@ -70,9 +154,9 @@ export function BookConsultationSection() {
 
           <a
             href={`tel:${cleanPhone}`}
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 py-4 rounded-full border border-[#C8A232]/40 bg-white hover:bg-[#FAF8F5] text-[#0A1128] font-bold text-sm transition-all shadow-sm"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 py-4 rounded-full border border-[#C8A232]/40 bg-white hover:bg-[#FAF8F5] text-[#012968] font-bold text-sm transition-all shadow-sm"
           >
-            <Phone className="w-4 h-4 text-[#8C6A12] shrink-0" />
+            <Phone className="w-4 h-4 text-[#955904] shrink-0" />
             <span>{t("phoneLabel")}</span>
             <span className="font-mono text-xs text-[#5B6782]" dir="ltr">
               {t("hotline")}

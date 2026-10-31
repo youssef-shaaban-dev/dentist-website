@@ -6,42 +6,13 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useTranslations } from "next-intl";
 import { useLanguage } from "@/i18n/IntlProviderWrapper";
 import { RoyalSmileShowcase } from "@/components/home/RoyalSmileShowcase";
+import { SplitTextScrub } from "@/components/ui/SplitTextScrub";
 import {
   Sparkles,
   Cpu,
   HeartHandshake,
   CheckCircle2,
 } from "lucide-react";
-
-// Reusable Helper Component for TextSplit masked line/word scrub reveal
-function SplitTextScrub({
-  text,
-  className = "",
-  wordClassName = "",
-}: {
-  text: string;
-  className?: string;
-  wordClassName?: string;
-}) {
-  const words = text.split(" ");
-  return (
-    <span className={className}>
-      {words.map((word, idx) => (
-        <span
-          key={idx}
-          className="inline-block overflow-hidden align-top pb-1 mr-[0.25em] rtl:mr-0 rtl:ml-[0.25em]"
-        >
-          <span
-            className={`inline-block will-change-transform ${wordClassName}`}
-            style={{ transform: "translateY(115%)", opacity: 0 }}
-          >
-            {word}
-          </span>
-        </span>
-      ))}
-    </span>
-  );
-}
 
 export function WelcomeSection() {
   const t = useTranslations("welcome");
@@ -72,7 +43,7 @@ export function WelcomeSection() {
             scrollTrigger: {
               trigger: badgeRef.current,
               start: "top 88%",
-              toggleActions: "play reverse play reverse",
+              once: true,
             },
           }
         );
@@ -143,8 +114,7 @@ export function WelcomeSection() {
             scrollTrigger: {
               trigger: pillarsRef.current,
               start: "top 88%",
-              end: "bottom 12%",
-              toggleActions: "play reverse play reverse",
+              once: true,
             },
           }
         );
@@ -164,7 +134,7 @@ export function WelcomeSection() {
             scrollTrigger: {
               trigger: toothColRef.current,
               start: "top 85%",
-              toggleActions: "play reverse play reverse",
+              once: true,
             },
           }
         );

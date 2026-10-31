@@ -1,9 +1,12 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useTranslations } from "next-intl";
 import { useLanguage } from "@/i18n/IntlProviderWrapper";
+import { SplitTextScrub } from "@/components/ui/SplitTextScrub";
 import {
   Sparkles,
   SlidersHorizontal,
@@ -15,8 +18,56 @@ export function SmileTransformations() {
   const t = useTranslations("transformations");
   const { isRtl } = useLanguage();
 
+  const sectionRef = useRef<HTMLElement>(null);
+  const headerRef = useRef<HTMLDivElement>(null);
+  const titleRef = useRef<HTMLHeadingElement>(null);
+
   const [activeTab, setActiveTab] = useState<number>(0);
   const [sliderPosition, setSliderPosition] = useState<number>(50);
+
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+
+    const ctx = gsap.context(() => {
+      // 1. Badge & subtitle entrance
+      if (headerRef.current) {
+        gsap.fromTo(
+          headerRef.current.children,
+          { opacity: 0, y: 20 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: headerRef.current,
+              start: "top 88%",
+              once: true,
+            },
+          }
+        );
+      }
+
+      // 2. TextSplit Scrub for Main Headline
+      const titleWords = titleRef.current?.querySelectorAll(".split-title-word");
+      if (titleWords && titleWords.length > 0) {
+        gsap.to(titleWords, {
+          y: "0%",
+          opacity: 1,
+          stagger: 0.04,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: titleRef.current,
+            start: "top 85%",
+            end: "bottom 55%",
+            scrub: 0.8,
+          },
+        });
+      }
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
 
   // 3 Clinical Treatment Cases with real authentic Before (Decayed) and After (Clean) photographs
   const cases = [
@@ -73,6 +124,7 @@ export function SmileTransformations() {
 
   return (
     <section
+      ref={sectionRef}
       id="transformations"
       className="relative py-16 sm:py-24 px-4 sm:px-6 lg:px-8 bg-[#F7F4EE] border-t border-[#C8A232]/25 overflow-hidden"
       dir={isRtl ? "rtl" : "ltr"}
@@ -84,7 +136,7 @@ export function SmileTransformations() {
       <div className="max-w-6xl mx-auto relative z-10">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-12">
+        <div ref={headerRef} className="text-center max-w-3xl mx-auto mb-10 sm:mb-12">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#C8A232]/40 bg-white shadow-xs mb-3.5">
             <Sparkles className="w-3.5 h-3.5 text-[#955904]" />
             <span className="text-xs font-bold text-[#955904] uppercase tracking-wider font-mono">
@@ -92,8 +144,11 @@ export function SmileTransformations() {
             </span>
           </div>
 
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold font-display text-[#012968] mb-3">
-            {t("title")}
+          <h2
+            ref={titleRef}
+            className="text-3xl sm:text-4xl md:text-5xl font-bold font-display text-[#012968] mb-3"
+          >
+            <SplitTextScrub text={t("title")} wordClassName="split-title-word" />
           </h2>
 
           <p className="text-sm sm:text-base text-[#5B6782] font-body leading-relaxed max-w-2xl mx-auto">
