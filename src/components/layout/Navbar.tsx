@@ -1,12 +1,12 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { useLanguage, Locale } from "@/i18n/IntlProviderWrapper";
 import { useLenis } from "lenis/react";
-import { usePageTransition } from "@/components/layout/PageTransitionContext";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Observer } from "gsap/Observer";
@@ -30,7 +30,6 @@ export function Navbar() {
   const isTreatmentsPage = pathname === "/treatments";
 
   const { locale, setLocale, isRtl } = useLanguage();
-  const { navigateWithTransition } = usePageTransition();
   const lenis = useLenis();
 
   const tNav = useTranslations("nav");
@@ -115,24 +114,32 @@ export function Navbar() {
     { href: isTreatmentsPage ? "/#ecosystem" : "#ecosystem", label: tNav("aligners") },
   ];
 
-  // Butter-Smooth Link Navigation: Lenis inertial glide for anchors, Royal Curtain for page routes
+  // Smooth Navigation: Lenis inertial glide for anchors, direct instant navigation for page routes
   const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     setMobileMenuOpen(false);
 
-    // 1. Dedicated Treatments Page Route
+    // 1. Treatments page route
     if (href === "/treatments") {
-      if (pathname !== "/treatments") {
+      if (pathname === "/treatments") {
         e.preventDefault();
-        navigateWithTransition("/treatments");
+        if (lenis) {
+          lenis.scrollTo(0, { duration: 1 });
+        } else {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }
       }
       return;
     }
 
-    // 2. Return to Home Page Route
+    // 2. Return to Home Page / Scroll to top
     if (href === "/" || href === "/#home" || href === "#home") {
-      if (pathname !== "/") {
+      if (pathname === "/") {
         e.preventDefault();
-        navigateWithTransition("/");
+        if (lenis) {
+          lenis.scrollTo(0, { duration: 1.2 });
+        } else {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }
         return;
       }
     }
@@ -152,10 +159,6 @@ export function Navbar() {
         } else if (targetEl) {
           targetEl.scrollIntoView({ behavior: "smooth" });
         }
-      } else {
-        // Navigating from /treatments back to anchor on /
-        e.preventDefault();
-        navigateWithTransition(href);
       }
     }
   };
@@ -183,7 +186,7 @@ export function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 sm:py-4">
         <div className="flex items-center justify-between">
           {/* Logo & Brand Identity */}
-          <a
+          <Link
             href="/"
             onClick={(e) => handleLinkClick(e, "/")}
             className="flex items-center gap-3.5 group focus:outline-none cursor-pointer"
@@ -218,7 +221,7 @@ export function Navbar() {
                 {tBrand("badge")}
               </span>
             </div>
-          </a>
+          </Link>
 
           {/* Desktop Navigation Links */}
           <nav className="hidden xl:flex items-center gap-5 2xl:gap-6" aria-label="Main Navigation">
