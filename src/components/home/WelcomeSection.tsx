@@ -146,12 +146,12 @@ export function WelcomeSection() {
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
           
-          {/* RIGHT COLUMN (Warm Gold / Parchment Side): 7 Cols on desktop */}
-          {/* Safe buffer pl-16 xl:pl-24 guarantees zero ribbon collision */}
+          {/* RIGHT COLUMN (Warm Gold / Parchment Side): Balanced 6 Cols on desktop */}
+          {/* Safe buffer pl-10 xl:pl-14 guarantees zero ribbon collision */}
           <div
-            className={`lg:col-span-7 flex flex-col ${
+            className={`lg:col-span-6 flex flex-col ${
               isRtl ? "order-2 lg:order-1" : "order-2 lg:order-2"
-            } pl-0 lg:pl-16 xl:pl-24`}
+            } pl-0 lg:pl-10 xl:pl-14`}
           >
             {/* Category Kicker Badge */}
             <div ref={badgeRef} className="flex items-center gap-2.5 mb-4">
@@ -243,15 +243,15 @@ export function WelcomeSection() {
 
           </div>
 
-          {/* LEFT COLUMN (Deep Royal Blue Side): 5 Cols on desktop */}
-          {/* Centered with max-w-[420px], keeping 50-60px clearance to the ribbon */}
+          {/* LEFT COLUMN (Deep Royal Blue Side): Balanced 6 Cols on desktop */}
+          {/* Centered comfortably inside the Royal Blue half with max-w-[390px], keeping >80px clearance to the ribbon */}
           <div
             ref={toothColRef}
-            className={`lg:col-span-5 relative flex justify-center items-center ${
+            className={`lg:col-span-6 relative flex justify-center items-center ${
               isRtl ? "order-1 lg:order-2" : "order-1 lg:order-1"
             } w-full`}
           >
-            <div className="w-full max-w-[390px] xl:max-w-[415px] mx-auto">
+            <div className="w-full max-w-[380px] xl:max-w-[400px] mx-auto">
               <RoyalSmileShowcase />
             </div>
           </div>

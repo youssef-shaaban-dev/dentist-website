@@ -67,7 +67,7 @@ export function RoyalSmileShowcase() {
   return (
     <div
       dir={isRtl ? "rtl" : "ltr"}
-      className="relative w-full max-w-lg mx-auto flex flex-col items-center select-none"
+      className="relative w-full max-w-[380px] xl:max-w-[400px] mx-auto flex flex-col items-center select-none"
     >
 
       {/* 1. Main Luxury Glass Frame Card */}
@@ -169,7 +169,7 @@ export function RoyalSmileShowcase() {
       {/* 2. Interactive Feature Switcher Tabs (Touch-Friendly on Mobile) */}
       <div
         dir={isRtl ? "rtl" : "ltr"}
-        className="mt-4 flex items-center justify-between gap-1 sm:gap-1.5 p-1 sm:p-1.5 rounded-2xl bg-white border border-[#C8A232]/35 shadow-sm w-full max-w-md overflow-x-auto scrollbar-none"
+        className="mt-4 flex items-center justify-between gap-1 sm:gap-1.5 p-1 sm:p-1.5 rounded-2xl bg-white border border-[#C8A232]/35 shadow-sm w-full overflow-x-auto scrollbar-none"
       >
         {modes.map((mode) => {
           const isActive = activeTab === mode.id;

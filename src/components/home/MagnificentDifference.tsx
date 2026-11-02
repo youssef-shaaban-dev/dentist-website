@@ -261,13 +261,13 @@ export function MagnificentDifference() {
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
           
-          {/* RIGHT COLUMN (Warm Gold / Parchment Side): 7 Cols on desktop */}
-          {/* Safe buffer pl-16 xl:pl-24 guarantees zero ribbon collision */}
+          {/* RIGHT COLUMN (Warm Gold / Parchment Side): Balanced 6 Cols on desktop */}
+          {/* Safe buffer pl-10 xl:pl-14 guarantees zero ribbon collision */}
           <div
             ref={rightRef}
-            className={`lg:col-span-7 flex flex-col ${
+            className={`lg:col-span-6 flex flex-col ${
               isRtl ? "order-2 lg:order-1" : "order-2 lg:order-2"
-            } pl-0 lg:pl-16 xl:pl-24`}
+            } pl-0 lg:pl-10 xl:pl-14`}
           >
             {/* Category Kicker Badge — From the Brochure: OUR APPROACH */}
             <div className="flex items-center gap-2.5 mb-4">
@@ -398,15 +398,15 @@ export function MagnificentDifference() {
 
           </div>
 
-          {/* LEFT COLUMN (Deep Royal Blue Side): 5 Cols on desktop */}
-          {/* Centered comfortably inside the Royal Blue zone with max-w-[420px], keeping 50-60px clearance to the ribbon */}
+          {/* LEFT COLUMN (Deep Royal Blue Side): Balanced 6 Cols on desktop */}
+          {/* Centered comfortably inside the Royal Blue half with max-w-[380px], keeping >80px clearance to the ribbon */}
           <div
             ref={leftRef}
-            className={`lg:col-span-5 relative flex justify-center items-center ${
+            className={`lg:col-span-6 relative flex justify-center items-center ${
               isRtl ? "order-1 lg:order-2" : "order-1 lg:order-1"
             } w-full`}
           >
-            <div className="w-full max-w-[390px] xl:max-w-[420px] mx-auto">
+            <div className="w-full max-w-[380px] xl:max-w-[400px] mx-auto">
               
               {/* Clinical Pillar Showcase Card */}
               <div className="group relative rounded-3xl bg-gradient-to-b from-[#0B2456] via-[#07193D] to-[#020B1D] border-2 border-[#C8A232]/70 p-4 shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden">

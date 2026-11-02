@@ -96,9 +96,9 @@ export function SplitSectionBackground({
         <rect width="1000" height="800" fill={`url(#${blueGradId})`} />
 
         {/* Warm Antique Parchment Gold along the Exact Reference Wave Contour */}
-        {/* Sculpted so the line stays well clear of the right content in the lower half (max x <= 461) */}
+        {/* Majestic, continuous luxury S-curve centered perfectly between left and right viewports */}
         <path
-          d="M 490,0 C 465,80 425,220 410,340 C 400,420 415,520 440,600 C 465,670 468,730 450,770 C 440,790 435,798 430,800 L 1000,800 L 1000,0 Z"
+          d="M 510,0 C 485,120 465,260 465,360 C 465,460 490,520 515,600 C 535,660 530,740 505,800 L 1000,800 L 1000,0 Z"
           fill={`url(#${goldGradId})`}
         />
 
@@ -106,7 +106,7 @@ export function SplitSectionBackground({
           <>
             {/* 1. Base Atmosphere Drop Shadow on Blue Side */}
             <path
-              d="M 476,0 C 451,80 411,220 396,340 C 386,420 401,520 426,600 C 451,670 454,730 436,770 C 426,790 421,798 416,800"
+              d="M 498,0 C 473,120 453,260 453,360 C 453,460 478,520 503,600 C 523,660 518,740 493,800"
               fill="none"
               stroke="#010A1A"
               strokeWidth="24"
@@ -116,7 +116,7 @@ export function SplitSectionBackground({
 
             {/* 2. Outer 24K Sculpted Gold Ridge (Facing Blue) */}
             <path
-              d="M 476,0 C 451,80 411,220 396,340 C 386,420 401,520 426,600 C 451,670 454,730 436,770 C 426,790 421,798 416,800"
+              d="M 498,0 C 473,120 453,260 453,360 C 453,460 478,520 503,600 C 523,660 518,740 493,800"
               fill="none"
               stroke={`url(#${ribbonGoldId})`}
               strokeWidth="5"
@@ -126,7 +126,7 @@ export function SplitSectionBackground({
 
             {/* 3. Deep Royal Blue Inlay Enamel Channel */}
             <path
-              d="M 483,0 C 458,80 418,220 403,340 C 393,420 408,520 433,600 C 458,670 461,730 443,770 C 433,790 428,798 423,800"
+              d="M 504,0 C 479,120 459,260 459,360 C 459,460 484,520 509,600 C 529,660 524,740 499,800"
               fill="none"
               stroke={`url(#${ribbonBlueId})`}
               strokeWidth="9"
@@ -135,7 +135,7 @@ export function SplitSectionBackground({
 
             {/* 4. Inner 24K Polished Gold Ribbon (Facing Parchment) */}
             <path
-              d="M 490,0 C 465,80 425,220 410,340 C 400,420 415,520 440,600 C 465,670 468,730 450,770 C 440,790 435,798 430,800"
+              d="M 510,0 C 485,120 465,260 465,360 C 465,460 490,520 515,600 C 535,660 530,740 505,800"
               fill="none"
               stroke={`url(#${ribbonGoldId})`}
               strokeWidth="8"
@@ -145,7 +145,7 @@ export function SplitSectionBackground({
 
             {/* 5. Razor Specular Glint Highlight along the Inner Gold Edge */}
             <path
-              d="M 490,0 C 465,80 425,220 410,340 C 400,420 415,520 440,600 C 465,670 468,730 450,770 C 440,790 435,798 430,800"
+              d="M 510,0 C 485,120 465,260 465,360 C 465,460 490,520 515,600 C 535,660 530,740 505,800"
               fill="none"
               stroke="#FFFDF5"
               strokeWidth="1.8"
@@ -155,7 +155,7 @@ export function SplitSectionBackground({
 
             {/* 6. Delicate Gold Echo Filament along Parchment Horizon */}
             <path
-              d="M 498,0 C 473,80 433,220 418,340 C 408,420 423,520 448,600 C 473,670 476,730 458,770 C 448,790 443,798 438,800"
+              d="M 518,0 C 493,120 473,260 473,360 C 473,460 498,520 523,600 C 543,660 538,740 513,800"
               fill="none"
               stroke={`url(#${ribbonTracerId})`}
               strokeWidth="2.2"

@@ -108,13 +108,13 @@ export function HeroSection() {
         <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 relative z-10 my-auto">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center min-h-[560px] lg:min-h-[620px]">
             
-            {/* RIGHT COLUMN (Warm Gold / Parchment Side): 7 Cols on desktop */}
-            {/* Safe buffer pl-16 xl:pl-24 guarantees zero ribbon collision */}
+            {/* RIGHT COLUMN (Warm Gold / Parchment Side): Balanced 6 Cols on desktop */}
+            {/* Safe buffer pl-10 xl:pl-14 guarantees zero ribbon collision */}
             <div
               ref={rightContentRef}
-              className={`lg:col-span-7 flex flex-col justify-center ${
+              className={`lg:col-span-6 flex flex-col justify-center ${
                 isRtl ? "order-2 lg:order-1" : "order-2 lg:order-2"
-              } pl-0 lg:pl-16 xl:pl-24`}
+              } pl-0 lg:pl-10 xl:pl-14`}
             >
               {/* Top Kicker Line — Pure Dental Innovation */}
               <div className="flex items-center gap-3 mb-4 sm:mb-5">
@@ -201,15 +201,15 @@ export function HeroSection() {
 
             </div>
 
-            {/* LEFT COLUMN (Deep Royal Blue Side): 5 Cols on desktop */}
-            {/* Centered comfortably inside the Royal Blue zone with max-w-[420px], keeping 50-60px clearance to the ribbon */}
+            {/* LEFT COLUMN (Deep Royal Blue Side): Balanced 6 Cols on desktop */}
+            {/* Centered comfortably inside the Royal Blue half with max-w-[390px], keeping >80px clearance to the ribbon */}
             <div
               ref={leftVisualRef}
-              className={`lg:col-span-5 relative flex justify-center items-center ${
+              className={`lg:col-span-6 relative flex justify-center items-center ${
                 isRtl ? "order-1 lg:order-2" : "order-1 lg:order-1"
               } w-full`}
             >
-              <div className="w-full max-w-[380px] xl:max-w-[420px] mx-auto relative group">
+              <div className="w-full max-w-[380px] xl:max-w-[400px] mx-auto relative group">
                 
                 {/* Subtle Glow behind Frame */}
                 <div className="absolute -inset-4 bg-gradient-to-tr from-[#C8A232]/20 via-[#DFBF57]/10 to-transparent rounded-full blur-2xl pointer-events-none" />

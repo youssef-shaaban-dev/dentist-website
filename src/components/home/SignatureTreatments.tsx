@@ -196,13 +196,13 @@ export function SignatureTreatments() {
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
           
-          {/* RIGHT COLUMN (Warm Gold / Parchment Side): 7 Cols on desktop */}
-          {/* Safe buffer pl-16 xl:pl-24 guarantees zero ribbon collision */}
+          {/* RIGHT COLUMN (Warm Gold / Parchment Side): Balanced 6 Cols on desktop */}
+          {/* Safe buffer pl-10 xl:pl-14 guarantees zero ribbon collision */}
           <div
             ref={rightRef}
-            className={`lg:col-span-7 flex flex-col ${
+            className={`lg:col-span-6 flex flex-col ${
               isRtl ? "order-2 lg:order-1" : "order-2 lg:order-2"
-            } pl-0 lg:pl-16 xl:pl-24`}
+            } pl-0 lg:pl-10 xl:pl-14`}
           >
             
             {/* Category Kicker Badge */}
@@ -313,15 +313,15 @@ export function SignatureTreatments() {
 
           </div>
 
-          {/* LEFT COLUMN (Deep Royal Blue Side): 5 Cols on desktop */}
-          {/* Centered with max-w-[400px], keeping a 60px safe buffer away from the ribbon */}
+          {/* LEFT COLUMN (Deep Royal Blue Side): Balanced 6 Cols on desktop */}
+          {/* Centered with max-w-[380px], keeping a >80px safe buffer away from the ribbon */}
           <div
             ref={leftRef}
-            className={`lg:col-span-5 relative flex justify-center items-center ${
+            className={`lg:col-span-6 relative flex justify-center items-center ${
               isRtl ? "order-1 lg:order-2" : "order-1 lg:order-1"
             } w-full`}
           >
-            <div className="w-full max-w-[390px] xl:max-w-[415px] mx-auto rounded-3xl overflow-hidden border-2 border-[#DFBF57]/60 shadow-[0_20px_50px_rgba(0,0,0,0.65)] bg-[#011438] group">
+            <div className="w-full max-w-[380px] xl:max-w-[400px] mx-auto rounded-3xl overflow-hidden border-2 border-[#DFBF57]/60 shadow-[0_20px_50px_rgba(0,0,0,0.65)] bg-[#011438] group">
               
               {/* Photo Viewport */}
               <div className="relative w-full aspect-[4/3] overflow-hidden bg-[#022256]">
