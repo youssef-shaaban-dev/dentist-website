@@ -218,3 +218,22 @@ html.lenis body {
 ::-webkit-scrollbar-thumb:hover {
   background: #8C6A12;
 }
+
+@keyframes laserSweep {
+  0% {
+    top: 5%;
+    opacity: 0.8;
+  }
+  50% {
+    top: 92%;
+    opacity: 1;
+  }
+  100% {
+    top: 5%;
+    opacity: 0.8;
+  }
+}
+
+.animate-laserSweep {
+  animation: laserSweep 2.5s ease-in-out infinite;
+}
