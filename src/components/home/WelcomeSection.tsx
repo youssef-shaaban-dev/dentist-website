@@ -136,7 +136,7 @@ export function WelcomeSection() {
     <section
       ref={sectionRef}
       id="welcome"
-      className="relative pt-20 sm:pt-28 pb-20 sm:pb-28 px-4 sm:px-6 lg:px-8 border-t-2 border-[#C8A232]/40 overflow-hidden z-20 shadow-2xl"
+      className="relative pt-20 sm:pt-28 pb-20 sm:pb-28 px-4 sm:px-6 lg:px-8 overflow-hidden z-20 shadow-2xl"
       dir={isRtl ? "rtl" : "ltr"}
     >
       {/* 1. Split Section Background: Left is Royal Blue | Right is Warm Gold */}

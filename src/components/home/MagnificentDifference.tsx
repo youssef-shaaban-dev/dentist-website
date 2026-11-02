@@ -251,7 +251,7 @@ export function MagnificentDifference() {
     <section
       ref={sectionRef}
       id="difference"
-      className="relative py-20 sm:py-28 px-4 sm:px-6 lg:px-8 border-t-2 border-[#C8A232]/40 overflow-hidden z-20 shadow-2xl"
+      className="relative py-20 sm:py-28 px-4 sm:px-6 lg:px-8 overflow-hidden z-20 shadow-2xl"
       dir={isRtl ? "rtl" : "ltr"}
     >
       {/* 1. Split Section Background: Left is Royal Blue | Right is Warm Gold */}

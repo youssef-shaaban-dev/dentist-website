@@ -190,49 +190,71 @@ export function SplitSectionBackground({
 
       {/* =================================================================== */}
       {/* 2. MOBILE RESPONSIVE BACKGROUND (< lg)                             */}
+      {/* Fluid Horizontal 3D S-Curve Wave dividing Visual from Content       */}
       {/* =================================================================== */}
-      <div className={`lg:hidden flex ${inverted ? "flex-col-reverse" : "flex-col"} w-full h-full`}>
-        {/* Mobile Top: Royal Blue */}
-        <div className="w-full h-[440px] bg-gradient-to-b from-[#020B1D] via-[#0B1E48] to-[#020B1D]" />
+      <svg
+        viewBox="0 0 400 900"
+        preserveAspectRatio="none"
+        className="block lg:hidden w-full h-full"
+        style={inverted ? { transform: "scaleY(-1)", transformOrigin: "center" } : undefined}
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        {/* Upper Visual Foundation: Deep Royal Blue */}
+        <rect width="400" height="900" fill={`url(#${blueGradId})`} />
 
-        {/* Mobile Horizontal Wavy Ribbon */}
+        {/* Lower Content Foundation: Warm Sand / Parchment Gold along 3D Wave */}
+        <path
+          d="M 0,440 C 90,405 170,475 240,430 C 310,390 365,455 400,430 L 400,900 L 0,900 Z"
+          fill={`url(#${goldGradId})`}
+        />
+
         {showDivider && (
-          <div className="relative w-full h-8 -my-4 z-10 overflow-hidden">
-            <svg
-              viewBox="0 0 400 32"
-              preserveAspectRatio="none"
-              className="w-full h-full"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              {/* Blue accent stripe */}
-              <path
-                d="M 0,14 C 100,5 180,24 260,10 C 330,0 370,22 400,14"
-                fill="none"
-                stroke={`url(#${ribbonBlueId})`}
-                strokeWidth="6"
-              />
-              {/* Main gold ribbon */}
-              <path
-                d="M 0,18 C 100,9 180,28 260,14 C 330,4 370,26 400,18"
-                fill="none"
-                stroke={`url(#${ribbonGoldId})`}
-                strokeWidth="8"
-              />
-              {/* Specular glint */}
-              <path
-                d="M 0,18 C 100,9 180,28 260,14 C 330,4 370,26 400,18"
-                fill="none"
-                stroke="#FFFDF5"
-                strokeWidth="1.8"
-                strokeOpacity="0.9"
-              />
-            </svg>
-          </div>
-        )}
+          <g>
+            {/* Layer 1: Realistic 3D Wave Drop Shadow */}
+            <path
+              d="M 0,440 C 90,405 170,475 240,430 C 310,390 365,455 400,430"
+              fill="none"
+              stroke="#020B1D"
+              strokeWidth="10"
+              strokeOpacity="0.45"
+              filter={`url(#${shadowFilterId})`}
+            />
 
-        {/* Mobile Bottom: Warm Royal Parchment Gold */}
-        <div className="w-full flex-1 bg-gradient-to-b from-[#FAF1DC] to-[#FCF7EB]" />
-      </div>
+            {/* Layer 2: Deep Royal Blue Enamel Channel */}
+            <path
+              d="M 0,440 C 90,405 170,475 240,430 C 310,390 365,455 400,430"
+              fill="none"
+              stroke={`url(#${ribbonBlueId})`}
+              strokeWidth="7"
+            />
+
+            {/* Layer 3: Main 24K Sculpted Gold Ribbon */}
+            <path
+              d="M 0,441 C 90,406 170,476 240,431 C 310,391 365,456 400,431"
+              fill="none"
+              stroke={`url(#${ribbonGoldId})`}
+              strokeWidth="8"
+            />
+
+            {/* Layer 4: Specular Glint Highlight Filament */}
+            <path
+              d="M 0,440.5 C 90,405.5 170,475.5 240,430.5 C 310,390.5 365,455.5 400,430.5"
+              fill="none"
+              stroke="#FFFDF5"
+              strokeWidth="1.6"
+              strokeOpacity="0.95"
+            />
+
+            {/* Layer 5: Gold Echo Tracer Filament */}
+            <path
+              d="M 0,446 C 90,411 170,481 240,436 C 310,396 365,461 400,436"
+              fill="none"
+              stroke={`url(#${ribbonTracerId})`}
+              strokeWidth="2"
+            />
+          </g>
+        )}
+      </svg>
     </div>
   );
 }

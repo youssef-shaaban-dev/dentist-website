@@ -115,159 +115,186 @@ export function HieroglyphicWall() {
   const { isRtl } = useLanguage();
   const [hoveredId, setHoveredId] = useState<string | null>(null);
 
+  // Flatten all glyphs for the mobile horizontal stone frieze
+  const allMobileGlyphs = HIEROGLYPHIC_LINES.flatMap((line) => line.glyphs);
+
   return (
-    <aside
-      aria-label="Ancient Egyptian Architectural Stone Pillar"
-      className="hidden lg:flex flex-col absolute top-0 right-0 bottom-0 z-30 select-none pointer-events-auto"
-    >
+    <>
       {/* =================================================================== */}
-      {/* ARCHITECTURAL LIMESTONE MONUMENT COLUMN                              */}
+      {/* 1. DESKTOP ARCHITECTURAL LIMESTONE MONUMENT COLUMN (>= lg)          */}
       {/* Naturally extends from top through Section 2 with start & end bases */}
       {/* =================================================================== */}
-      <div className="relative w-24 sm:w-28 xl:w-32 h-full flex flex-col justify-between items-center bg-gradient-to-l from-[#DFBF57]/30 via-[#FAF1DD] to-[#F1DFC0] border-l-2 border-[#C8A232]/80 shadow-[-12px_0_35px_rgba(154,95,19,0.22)]">
-        
-        {/* Ancient Vertical Fluting Lines on Sandstone */}
-        <div className="absolute inset-y-0 left-2 w-[1px] bg-[#9A5F13]/20 pointer-events-none" />
-        <div className="absolute inset-y-0 right-2 w-[1px] bg-[#9A5F13]/20 pointer-events-none" />
-
-        {/* ================================================================= */}
-        {/* 1. TOP STONE CAPITAL (قاعدة بداية العمود في الأعلى)               */}
-        {/* Sculpted Papyriform / Hathor lotus crown with golden cornice     */}
-        {/* ================================================================= */}
-        <div className="shrink-0 w-full pt-8 pb-4 flex flex-col items-center border-b-2 border-[#C8A232]/60 bg-gradient-to-b from-[#EEDBB7] to-[#FAF1DD] relative shadow-xs">
-          {/* Lotus Petal Relief Header */}
-          <div className="w-10 h-10 rounded-full bg-[#012052] border-2 border-[#DFBF57] text-[#DFBF57] flex items-center justify-center shadow-md mb-2">
-            <Crown className="w-5 h-5 text-[#DFBF57]" />
-          </div>
-
-          <span className="text-[10px] font-mono font-bold text-[#9A5F13] tracking-widest uppercase block">
-            HESY-RA
-          </span>
-          <span className="text-[8px] font-mono text-[#4A2F08]/75 tracking-wider block mt-0.5">
-            SAQQARA 2600 B.C.
-          </span>
-
-          {/* Stepped Cornice Trim */}
-          <div className="w-16 h-1 bg-gradient-to-r from-transparent via-[#C8A232] to-transparent mt-3" />
-        </div>
-
-        {/* ================================================================= */}
-        {/* 2. SHAFT OF THE COLUMN: COMPLETE CARVED HIEROGLYPHIC BLOCKS        */}
-        {/* Multiple glyphs side-by-side in authentic Egyptian cartouche pairs*/}
-        {/* ================================================================= */}
-        <div className="flex-1 w-full py-4 px-2 flex flex-col justify-evenly items-center">
+      <aside
+        aria-label="Ancient Egyptian Architectural Stone Pillar"
+        className="hidden lg:flex flex-col absolute top-0 right-0 bottom-0 z-30 select-none pointer-events-auto"
+      >
+        <div className="relative w-24 sm:w-28 xl:w-32 h-full flex flex-col justify-between items-center bg-gradient-to-l from-[#DFBF57]/30 via-[#FAF1DD] to-[#F1DFC0] border-l-2 border-[#C8A232]/80 shadow-[-12px_0_35px_rgba(154,95,19,0.22)]">
           
-          {/* Register I Title Stamp */}
-          <div className="flex items-center gap-1 my-1">
-            <span className="w-2 h-[1px] bg-[#C8A232]" />
-            <span className="text-[9px] font-mono font-bold text-[#9A5F13] uppercase tracking-wider">
-              {isRtl ? "إرث حسي رع" : "HESY-RA"}
+          {/* Ancient Vertical Fluting Lines on Sandstone */}
+          <div className="absolute inset-y-0 left-2 w-[1px] bg-[#9A5F13]/20 pointer-events-none" />
+          <div className="absolute inset-y-0 right-2 w-[1px] bg-[#9A5F13]/20 pointer-events-none" />
+
+          {/* TOP STONE CAPITAL */}
+          <div className="shrink-0 w-full pt-8 pb-4 flex flex-col items-center border-b-2 border-[#C8A232]/60 bg-gradient-to-b from-[#EEDBB7] to-[#FAF1DD] relative shadow-xs">
+            <div className="w-10 h-10 rounded-full bg-[#012052] border-2 border-[#DFBF57] text-[#DFBF57] flex items-center justify-center shadow-md mb-2">
+              <Crown className="w-5 h-5 text-[#DFBF57]" />
+            </div>
+
+            <span className="text-[10px] font-mono font-bold text-[#9A5F13] tracking-widest uppercase block">
+              HESY-RA
             </span>
-            <span className="w-2 h-[1px] bg-[#C8A232]" />
+            <span className="text-[8px] font-mono text-[#4A2F08]/75 tracking-wider block mt-0.5">
+              SAQQARA 2600 B.C.
+            </span>
+
+            <div className="w-16 h-1 bg-gradient-to-r from-transparent via-[#C8A232] to-transparent mt-3" />
           </div>
 
-          {/* Inscription Blocks */}
-          {HIEROGLYPHIC_LINES.map((line, idx) => {
-            const isHovered = hoveredId === line.id;
-            const isRegisterBreak = idx === 6; // between Hesy-Ra and Smile Charter
+          {/* SHAFT: CARVED HIEROGLYPHIC BLOCKS */}
+          <div className="flex-1 w-full py-4 px-2 flex flex-col justify-evenly items-center">
+            
+            {/* Register I Title Stamp */}
+            <div className="flex items-center gap-1 my-1">
+              <span className="w-2 h-[1px] bg-[#C8A232]" />
+              <span className="text-[9px] font-mono font-bold text-[#9A5F13] uppercase tracking-wider">
+                {isRtl ? "إرث حسي رع" : "HESY-RA"}
+              </span>
+              <span className="w-2 h-[1px] bg-[#C8A232]" />
+            </div>
 
-            return (
-              <React.Fragment key={line.id}>
-                <div
-                  onMouseEnter={() => setHoveredId(line.id)}
-                  onMouseLeave={() => setHoveredId(null)}
-                  className="relative w-full py-2 px-1.5 rounded-xl transition-all duration-300 cursor-pointer flex flex-col items-center group hover:bg-[#C8A232]/20 border border-transparent hover:border-[#C8A232]/50"
-                >
-                  {/* Pair/Triplet Glyphs arranged horizontally with authentic chisel shadow */}
-                  <div className="flex items-center justify-center gap-1.5 flex-wrap font-serif text-xl sm:text-2xl text-[#4A2F08] drop-shadow-[0_1px_1px_rgba(255,255,255,0.8)] transition-all group-hover:scale-108 group-hover:text-[#9A5F13]">
-                    {line.glyphs.map((glyph, gIdx) => (
-                      <span key={gIdx} className="inline-block select-all">
-                        {glyph}
-                      </span>
-                    ))}
-                  </div>
+            {HIEROGLYPHIC_LINES.map((line, idx) => {
+              const isHovered = hoveredId === line.id;
+              const isRegisterBreak = idx === 6;
 
-                  {/* Optical Laser Active Indicator line on hover */}
-                  {isHovered && (
-                    <div className="absolute -bottom-1 left-3 right-3 h-0.5 bg-gradient-to-r from-transparent via-[#DFBF57] to-transparent shadow-[0_0_8px_#DFBF57] animate-pulse" />
-                  )}
+              return (
+                <React.Fragment key={line.id}>
+                  <div
+                    onMouseEnter={() => setHoveredId(line.id)}
+                    onMouseLeave={() => setHoveredId(null)}
+                    className="relative w-full py-1.5 px-1.5 rounded-xl transition-all duration-300 cursor-pointer flex flex-col items-center group hover:bg-[#C8A232]/20 border border-transparent hover:border-[#C8A232]/50"
+                  >
+                    <div className="flex items-center justify-center gap-1.5 flex-wrap font-serif text-xl sm:text-2xl text-[#4A2F08] drop-shadow-[0_1px_1px_rgba(255,255,255,0.8)] transition-all group-hover:scale-108 group-hover:text-[#9A5F13]">
+                      {line.glyphs.map((glyph, gIdx) => (
+                        <span key={gIdx} className="inline-block select-all">
+                          {glyph}
+                        </span>
+                      ))}
+                    </div>
 
-                  {/* ======================================================= */}
-                  {/* COMPACT HOVER TRANSLATION TOOLTIP (بشكل صغير وأنيق جمبه) */}
-                  {/* ======================================================= */}
-                  {isHovered && (
-                    <div
-                      className="absolute right-full mr-3 top-1/2 -translate-y-1/2 w-64 sm:w-72 p-3 rounded-2xl bg-[#011438]/95 border border-[#DFBF57]/80 text-white shadow-[0_12px_35px_rgba(1,20,56,0.6)] backdrop-blur-xl z-50 pointer-events-none transition-all duration-200 animate-fadeIn"
-                      dir="rtl"
-                    >
-                      {/* Laser Bar on Top of Tooltip */}
-                      <div className="h-0.5 w-full bg-gradient-to-r from-transparent via-[#DFBF57] to-transparent mb-2" />
+                    {isHovered && (
+                      <div className="absolute -bottom-1 left-3 right-3 h-0.5 bg-gradient-to-r from-transparent via-[#DFBF57] to-transparent shadow-[0_0_8px_#DFBF57] animate-pulse" />
+                    )}
 
-                      <div className="flex items-center justify-between mb-1.5">
-                        <span className="text-[10px] font-mono text-[#DFBF57] font-bold flex items-center gap-1">
-                          <Sparkles className="w-3 h-3 text-[#DFBF57]" />
-                          <span>
-                            {line.category === "hesy-ra" ? "شفرة سقارة" : "ميثاق الابتسامة"}
+                    {/* COMPACT HOVER TRANSLATION TOOLTIP */}
+                    {isHovered && (
+                      <div
+                        className="absolute right-full mr-3 top-1/2 -translate-y-1/2 w-64 sm:w-72 p-3 rounded-2xl bg-[#011438]/95 border border-[#DFBF57]/80 text-white shadow-[0_12px_35px_rgba(1,20,56,0.6)] backdrop-blur-xl z-50 pointer-events-none transition-all duration-200 animate-fadeIn"
+                        dir="rtl"
+                      >
+                        <div className="h-0.5 w-full bg-gradient-to-r from-transparent via-[#DFBF57] to-transparent mb-2" />
+
+                        <div className="flex items-center justify-between mb-1.5">
+                          <span className="text-[10px] font-mono text-[#DFBF57] font-bold flex items-center gap-1">
+                            <Sparkles className="w-3 h-3 text-[#DFBF57]" />
+                            <span>
+                              {line.category === "hesy-ra" ? "شفرة سقارة" : "ميثاق الابتسامة"}
+                            </span>
                           </span>
-                        </span>
-                        <span className="text-[9px] font-mono text-white/50">
-                          {line.glyphs.join("")}
-                        </span>
-                      </div>
+                          <span className="text-[9px] font-mono text-white/50">
+                            {line.glyphs.join("")}
+                          </span>
+                        </div>
 
-                      {/* Crisp Concise Arabic Translation */}
-                      <p className="text-xs sm:text-[13px] font-bold text-white leading-relaxed font-body">
-                        {line.arabic}
-                      </p>
+                        <p className="text-xs sm:text-[13px] font-bold text-white leading-relaxed font-body">
+                          {line.arabic}
+                        </p>
+                      </div>
+                    )}
+                  </div>
+
+                  {isRegisterBreak && (
+                    <div className="w-full my-2 flex flex-col items-center">
+                      <div className="w-12 h-[1.5px] bg-[#C8A232]/60" />
+                      <div className="flex items-center gap-1 my-1">
+                        <span className="w-2 h-[1px] bg-[#C8A232]" />
+                        <span className="text-[9px] font-mono font-bold text-[#9A5F13] uppercase tracking-wider">
+                          {isRtl ? "ميثاق الابتسامة" : "CHARTER"}
+                        </span>
+                        <span className="w-2 h-[1px] bg-[#C8A232]" />
+                      </div>
+                      <div className="w-12 h-[1.5px] bg-[#C8A232]/60" />
                     </div>
                   )}
-                </div>
+                </React.Fragment>
+              );
+            })}
 
-                {/* Register Divider Cartouche Line */}
-                {isRegisterBreak && (
-                  <div className="w-full my-3 flex flex-col items-center">
-                    <div className="w-12 h-[1.5px] bg-[#C8A232]/60" />
-                    <div className="flex items-center gap-1 my-2">
-                      <span className="w-2 h-[1px] bg-[#C8A232]" />
-                      <span className="text-[9px] font-mono font-bold text-[#9A5F13] uppercase tracking-wider">
-                        {isRtl ? "ميثاق الابتسامة" : "CHARTER"}
-                      </span>
-                      <span className="w-2 h-[1px] bg-[#C8A232]" />
-                    </div>
-                    <div className="w-12 h-[1.5px] bg-[#C8A232]/60" />
-                  </div>
-                )}
-              </React.Fragment>
-            );
-          })}
-
-        </div>
-
-        {/* ================================================================= */}
-        {/* 3. BOTTOM STONE BASE (قاعدة نهاية العمود في الأسفل)                */}
-        {/* Authentic Egyptian pedestal plinth resting cleanly at Section 2   */}
-        {/* ================================================================= */}
-        <div className="shrink-0 w-full pt-4 pb-6 flex flex-col items-center border-t-2 border-[#C8A232]/60 bg-gradient-to-b from-[#FAF1DD] to-[#E8D4AE] relative shadow-inner">
-          {/* Stepped Pedestal Molding */}
-          <div className="w-16 h-1 bg-gradient-to-r from-transparent via-[#C8A232] to-transparent mb-3" />
-
-          {/* Sacred Base Cartouche Seal */}
-          <div className="w-9 h-9 rounded-full bg-[#012052] border-2 border-[#DFBF57]/80 text-[#DFBF57] flex items-center justify-center shadow-md mb-2">
-            <BookOpen className="w-4 h-4 text-[#DFBF57]" />
           </div>
 
-          <span className="text-[10px] font-mono font-bold text-[#9A5F13] tracking-widest uppercase block">
-            MAGNIFICENT
-          </span>
-          <span className="text-[8px] font-mono text-[#4A2F08]/75 tracking-wider block mt-0.5">
-            DENTAL HERITAGE
-          </span>
+          {/* BOTTOM STONE BASE */}
+          <div className="shrink-0 w-full pt-4 pb-6 flex flex-col items-center border-t-2 border-[#C8A232]/60 bg-gradient-to-b from-[#FAF1DD] to-[#E8D4AE] relative shadow-inner">
+            <div className="w-16 h-1 bg-gradient-to-r from-transparent via-[#C8A232] to-transparent mb-3" />
 
-          {/* Finished Base Footing */}
-          <div className="w-full h-1.5 bg-[#9A5F13]/40 mt-3" />
+            <div className="w-9 h-9 rounded-full bg-[#012052] border-2 border-[#DFBF57]/80 text-[#DFBF57] flex items-center justify-center shadow-md mb-2">
+              <BookOpen className="w-4 h-4 text-[#DFBF57]" />
+            </div>
+
+            <span className="text-[10px] font-mono font-bold text-[#9A5F13] tracking-widest uppercase block">
+              MAGNIFICENT
+            </span>
+            <span className="text-[8px] font-mono text-[#4A2F08]/75 tracking-wider block mt-0.5">
+              DENTAL HERITAGE
+            </span>
+
+            <div className="w-full h-1.5 bg-[#9A5F13]/40 mt-3" />
+          </div>
+
+        </div>
+      </aside>
+
+      {/* =================================================================== */}
+      {/* 2. MOBILE HORIZONTAL ARCHITECTURAL STONE FRIEZE (< lg)              */}
+      {/* Fixed aesthetic sandstone relief strip along the bottom of screen   */}
+      {/* Purely decorative Egyptian hieroglyphs — zero intrusive popups      */}
+      {/* =================================================================== */}
+      <div
+        aria-hidden="true"
+        className="block lg:hidden fixed bottom-0 left-0 right-0 z-40 pointer-events-none select-none bg-gradient-to-r from-[#DFBF57]/35 via-[#FAF1DD] to-[#DFBF57]/35 border-t-2 border-[#C8A232]/90 shadow-[0_-5px_20px_rgba(154,95,19,0.28)]"
+      >
+        {/* Ancient Stone Fluting Groove */}
+        <div className="w-full h-[1px] bg-[#9A5F13]/25" />
+
+        <div className="h-9 px-3 flex items-center justify-between overflow-hidden">
+          {/* Left Cartouche Seal */}
+          <div className="shrink-0 flex items-center gap-1.5 pl-1 pr-2 py-0.5 rounded-full bg-[#012052] border border-[#DFBF57] shadow-xs">
+            <Crown className="w-3 h-3 text-[#DFBF57]" />
+            <span className="text-[9px] font-mono font-bold text-[#DFBF57] tracking-wider uppercase">
+              HESY-RA
+            </span>
+          </div>
+
+          {/* Horizontal Carved Hieroglyphic Relief Glyphs */}
+          <div className="flex-1 flex items-center justify-around px-2 overflow-hidden">
+            {allMobileGlyphs.slice(0, 14).map((glyph, gIdx) => (
+              <span
+                key={gIdx}
+                className="font-serif text-lg text-[#4A2F08] drop-shadow-[0_1px_0_rgba(255,255,255,0.85)] inline-block select-none transform hover:scale-110 transition-transform"
+              >
+                {glyph}
+              </span>
+            ))}
+          </div>
+
+          {/* Right Heritage Stamp */}
+          <div className="shrink-0 flex items-center gap-1 text-[#9A5F13] font-mono text-[9px] font-bold">
+            <BookOpen className="w-3 h-3 text-[#9A5F13]" />
+            <span>٢٦٠٠ ق.م</span>
+          </div>
         </div>
 
+        {/* Bottom Stone Footing Edge */}
+        <div className="w-full h-[1.5px] bg-[#9A5F13]/35" />
       </div>
-    </aside>
+    </>
   );
 }
