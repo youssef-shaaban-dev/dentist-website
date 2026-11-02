@@ -109,12 +109,12 @@ export function HeroSection() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center min-h-[560px] lg:min-h-[620px]">
             
             {/* RIGHT COLUMN (Warm Gold / Parchment Side): Balanced 6 Cols on desktop */}
-            {/* Safe buffer pl-10 xl:pl-14 guarantees zero ribbon collision */}
+            {/* Safe buffer: pl-8 xl:pl-10 protects from center wave, pr-32 xl:pr-40 pushes away from hieroglyphic pillar */}
             <div
               ref={rightContentRef}
               className={`lg:col-span-6 flex flex-col justify-center ${
                 isRtl ? "order-2 lg:order-1" : "order-2 lg:order-2"
-              } pl-0 lg:pl-10 xl:pl-14`}
+              } pl-0 lg:pl-8 xl:pl-10 pr-0 lg:pr-32 xl:pr-40`}
             >
               {/* Top Kicker Line — Pure Dental Innovation */}
               <div className="flex items-center gap-3 mb-4 sm:mb-5">

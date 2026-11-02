@@ -147,11 +147,11 @@ export function WelcomeSection() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
           
           {/* RIGHT COLUMN (Warm Gold / Parchment Side): Balanced 6 Cols on desktop */}
-          {/* Safe buffer pl-10 xl:pl-14 guarantees zero ribbon collision */}
+          {/* Safe buffer: pl-8 xl:pl-10 protects from center wave, pr-32 xl:pr-40 pushes away from hieroglyphic pillar */}
           <div
             className={`lg:col-span-6 flex flex-col ${
               isRtl ? "order-2 lg:order-1" : "order-2 lg:order-2"
-            } pl-0 lg:pl-10 xl:pl-14`}
+            } pl-0 lg:pl-8 xl:pl-10 pr-0 lg:pr-32 xl:pr-40`}
           >
             {/* Category Kicker Badge */}
             <div ref={badgeRef} className="flex items-center gap-2.5 mb-4">
@@ -196,10 +196,10 @@ export function WelcomeSection() {
             {/* 3 Clinical Excellence Pillars — Directly from the Brochure Approach */}
             <div
               ref={pillarsRef}
-              className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 pt-6 border-t border-[#C8A232]/35"
+              className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 xl:gap-3 pt-6 border-t border-[#C8A232]/35"
             >
-              <div className="p-4 rounded-2xl bg-white/95 border border-[#C8A232]/35 shadow-xs hover:shadow-md transition-all duration-300 flex flex-col gap-2 group">
-                <div className="w-9 h-9 rounded-full bg-[#FAF1DC] border border-[#C8A232]/40 text-[#9A5F13] flex items-center justify-center transition-transform group-hover:scale-110">
+              <div className="p-3 xl:p-3.5 rounded-2xl bg-white/95 border border-[#C8A232]/35 shadow-xs hover:shadow-md transition-all duration-300 flex flex-col gap-2 group">
+                <div className="w-8 h-8 rounded-full bg-[#FAF1DC] border border-[#C8A232]/40 text-[#9A5F13] flex items-center justify-center transition-transform group-hover:scale-110">
                   <CheckCircle2 className="w-4 h-4" />
                 </div>
                 <h3 className="text-sm font-bold text-[#0F266A] font-display">
@@ -212,8 +212,8 @@ export function WelcomeSection() {
                 </p>
               </div>
 
-              <div className="p-4 rounded-2xl bg-white/95 border border-[#C8A232]/35 shadow-xs hover:shadow-md transition-all duration-300 flex flex-col gap-2 group">
-                <div className="w-9 h-9 rounded-full bg-[#FAF1DC] border border-[#C8A232]/40 text-[#9A5F13] flex items-center justify-center transition-transform group-hover:scale-110">
+              <div className="p-3 xl:p-3.5 rounded-2xl bg-white/95 border border-[#C8A232]/35 shadow-xs hover:shadow-md transition-all duration-300 flex flex-col gap-2 group">
+                <div className="w-8 h-8 rounded-full bg-[#FAF1DC] border border-[#C8A232]/40 text-[#9A5F13] flex items-center justify-center transition-transform group-hover:scale-110">
                   <Cpu className="w-4 h-4" />
                 </div>
                 <h3 className="text-sm font-bold text-[#0F266A] font-display">
@@ -226,8 +226,8 @@ export function WelcomeSection() {
                 </p>
               </div>
 
-              <div className="p-4 rounded-2xl bg-white/95 border border-[#C8A232]/35 shadow-xs hover:shadow-md transition-all duration-300 flex flex-col gap-2 group">
-                <div className="w-9 h-9 rounded-full bg-[#FAF1DC] border border-[#C8A232]/40 text-[#9A5F13] flex items-center justify-center transition-transform group-hover:scale-110">
+              <div className="p-3 xl:p-3.5 rounded-2xl bg-white/95 border border-[#C8A232]/35 shadow-xs hover:shadow-md transition-all duration-300 flex flex-col gap-2 group">
+                <div className="w-8 h-8 rounded-full bg-[#FAF1DC] border border-[#C8A232]/40 text-[#9A5F13] flex items-center justify-center transition-transform group-hover:scale-110">
                   <HeartHandshake className="w-4 h-4" />
                 </div>
                 <h3 className="text-sm font-bold text-[#0F266A] font-display">

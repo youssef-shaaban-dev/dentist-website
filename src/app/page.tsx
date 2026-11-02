@@ -16,16 +16,19 @@ import { HieroglyphicWall } from "@/components/ui/HieroglyphicWall";
 export default function Home() {
   return (
     <main className="relative w-full overflow-x-hidden">
-      {/* Ancient Egyptian Architectural Stone Column with Natural Height & Compact Laser Hover Translations */}
-      <HieroglyphicWall />
+      {/* Heritage Entrance Enclosure: Hero & Welcome framed by Architectural Stone Pillar */}
+      <div className="relative w-full">
+        {/* Ancient Egyptian Architectural Stone Column — perfectly bounded from Hero top to Welcome bottom */}
+        <HieroglyphicWall />
 
-      {/* 1. Section 01: Hero Section */}
-      <HeroSection />
+        {/* 1. Section 01: Hero Section */}
+        <HeroSection />
 
-      {/* 2. Section 02: Welcome & Clinical Philosophy */}
-      <WelcomeSection />
+        {/* 2. Section 02: Welcome & Clinical Philosophy */}
+        <WelcomeSection />
+      </div>
 
-      {/* 3. Section 03: Signature Treatments */}
+      {/* 3. Section 03: Signature Treatments (Clean - Zero Column Overflow) */}
       <SignatureTreatments />
 
       {/* 4. Section 04: Meet Our Specialists */}

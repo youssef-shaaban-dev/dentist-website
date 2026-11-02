@@ -118,13 +118,13 @@ export function HieroglyphicWall() {
   return (
     <aside
       aria-label="Ancient Egyptian Architectural Stone Pillar"
-      className="hidden lg:block absolute top-0 right-0 z-30 select-none pointer-events-auto"
+      className="hidden lg:flex flex-col absolute top-0 right-0 bottom-0 z-30 select-none pointer-events-auto"
     >
       {/* =================================================================== */}
       {/* ARCHITECTURAL LIMESTONE MONUMENT COLUMN                              */}
-      {/* Naturally extends from top through Section 2/3 with start & end bases */}
+      {/* Naturally extends from top through Section 2 with start & end bases */}
       {/* =================================================================== */}
-      <div className="relative w-24 sm:w-28 xl:w-32 flex flex-col items-center bg-gradient-to-l from-[#DFBF57]/30 via-[#FAF1DD] to-[#F1DFC0] border-l-2 border-[#C8A232]/80 shadow-[-12px_0_35px_rgba(154,95,19,0.22)]">
+      <div className="relative w-24 sm:w-28 xl:w-32 h-full flex flex-col justify-between items-center bg-gradient-to-l from-[#DFBF57]/30 via-[#FAF1DD] to-[#F1DFC0] border-l-2 border-[#C8A232]/80 shadow-[-12px_0_35px_rgba(154,95,19,0.22)]">
         
         {/* Ancient Vertical Fluting Lines on Sandstone */}
         <div className="absolute inset-y-0 left-2 w-[1px] bg-[#9A5F13]/20 pointer-events-none" />
@@ -134,7 +134,7 @@ export function HieroglyphicWall() {
         {/* 1. TOP STONE CAPITAL (قاعدة بداية العمود في الأعلى)               */}
         {/* Sculpted Papyriform / Hathor lotus crown with golden cornice     */}
         {/* ================================================================= */}
-        <div className="w-full pt-8 pb-5 flex flex-col items-center border-b-2 border-[#C8A232]/60 bg-gradient-to-b from-[#EEDBB7] to-[#FAF1DD] relative shadow-xs">
+        <div className="shrink-0 w-full pt-8 pb-4 flex flex-col items-center border-b-2 border-[#C8A232]/60 bg-gradient-to-b from-[#EEDBB7] to-[#FAF1DD] relative shadow-xs">
           {/* Lotus Petal Relief Header */}
           <div className="w-10 h-10 rounded-full bg-[#012052] border-2 border-[#DFBF57] text-[#DFBF57] flex items-center justify-center shadow-md mb-2">
             <Crown className="w-5 h-5 text-[#DFBF57]" />
@@ -155,7 +155,7 @@ export function HieroglyphicWall() {
         {/* 2. SHAFT OF THE COLUMN: COMPLETE CARVED HIEROGLYPHIC BLOCKS        */}
         {/* Multiple glyphs side-by-side in authentic Egyptian cartouche pairs*/}
         {/* ================================================================= */}
-        <div className="w-full py-6 px-2 flex flex-col items-center gap-4">
+        <div className="flex-1 w-full py-4 px-2 flex flex-col justify-evenly items-center">
           
           {/* Register I Title Stamp */}
           <div className="flex items-center gap-1 my-1">
@@ -245,9 +245,9 @@ export function HieroglyphicWall() {
 
         {/* ================================================================= */}
         {/* 3. BOTTOM STONE BASE (قاعدة نهاية العمود في الأسفل)                */}
-        {/* Authentic Egyptian pedestal plinth with sculpted base molding    */}
+        {/* Authentic Egyptian pedestal plinth resting cleanly at Section 2   */}
         {/* ================================================================= */}
-        <div className="w-full pt-6 pb-8 flex flex-col items-center border-t-2 border-[#C8A232]/60 bg-gradient-to-b from-[#FAF1DD] to-[#E8D4AE] relative shadow-inner">
+        <div className="shrink-0 w-full pt-4 pb-6 flex flex-col items-center border-t-2 border-[#C8A232]/60 bg-gradient-to-b from-[#FAF1DD] to-[#E8D4AE] relative shadow-inner">
           {/* Stepped Pedestal Molding */}
           <div className="w-16 h-1 bg-gradient-to-r from-transparent via-[#C8A232] to-transparent mb-3" />
 
@@ -264,7 +264,7 @@ export function HieroglyphicWall() {
           </span>
 
           {/* Finished Base Footing */}
-          <div className="w-full h-2 bg-[#9A5F13]/30 mt-3" />
+          <div className="w-full h-1.5 bg-[#9A5F13]/40 mt-3" />
         </div>
 
       </div>
