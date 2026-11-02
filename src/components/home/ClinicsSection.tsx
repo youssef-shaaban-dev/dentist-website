@@ -1,12 +1,12 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useTranslations } from "next-intl";
 import { useLanguage } from "@/i18n/IntlProviderWrapper";
-import { SplitTextScrub } from "@/components/ui/SplitTextScrub";
+import { SplitSectionBackground } from "@/components/ui/SplitSectionBackground";
 import {
   MapPin,
   Clock,
@@ -76,64 +76,50 @@ export function ClinicsSection() {
   const ArrowIcon = isRtl ? ArrowLeft : ArrowRight;
 
   const sectionRef = useRef<HTMLElement>(null);
-  const headerRef = useRef<HTMLDivElement>(null);
-  const titleRef = useRef<HTMLHeadingElement>(null);
-  const gridRef = useRef<HTMLDivElement>(null);
+  const rightRef = useRef<HTMLDivElement>(null);
+  const leftRef = useRef<HTMLDivElement>(null);
+
+  const [activeBranchIdx, setActiveBranchIdx] = useState<number>(0);
+  const currentBranch = branchesData[activeBranchIdx] || branchesData[0];
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
     const ctx = gsap.context(() => {
-      // 1. Badge & Subtitle Entrance
-      if (headerRef.current) {
+      // 1. Right Column Entrance
+      if (rightRef.current) {
         gsap.fromTo(
-          headerRef.current.children,
-          { opacity: 0, y: 20 },
+          rightRef.current.children,
+          { opacity: 0, y: 25 },
           {
             opacity: 1,
             y: 0,
             duration: 0.8,
+            stagger: 0.08,
             ease: "power2.out",
             scrollTrigger: {
-              trigger: headerRef.current,
-              start: "top 88%",
+              trigger: rightRef.current,
+              start: "top 85%",
               once: true,
             },
           }
         );
       }
 
-      // 2. TextSplit Scrub for Main Headline
-      const titleWords = titleRef.current?.querySelectorAll(".split-title-word");
-      if (titleWords && titleWords.length > 0) {
-        gsap.to(titleWords, {
-          y: "0%",
-          opacity: 1,
-          stagger: 0.04,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: titleRef.current,
-            start: "top 85%",
-            end: "bottom 55%",
-            scrub: 0.8,
-          },
-        });
-      }
-
-      // 3. Clinics Cards Stagger
-      if (gridRef.current) {
+      // 2. Left Column Entrance
+      if (leftRef.current) {
         gsap.fromTo(
-          gridRef.current.children,
-          { opacity: 0, y: 35 },
+          leftRef.current,
+          { opacity: 0, y: 30, scale: 0.96 },
           {
             opacity: 1,
             y: 0,
-            duration: 0.85,
-            stagger: 0.15,
-            ease: "power3.out",
+            scale: 1,
+            duration: 0.9,
+            ease: "power2.out",
             scrollTrigger: {
-              trigger: gridRef.current,
-              start: "top 82%",
+              trigger: leftRef.current,
+              start: "top 85%",
               once: true,
             },
           }
@@ -142,197 +128,245 @@ export function ClinicsSection() {
     }, sectionRef);
 
     return () => ctx.revert();
-  }, []);
+  }, [isRtl]);
+
+  const currentBranchName = t(`${currentBranch.key}.name`);
+  const currentBranchArea = t(`${currentBranch.key}.area`);
+  const currentBranchHours = t(`${currentBranch.key}.hours`);
+  const currentBranchPhone = t(`${currentBranch.key}.phone`);
+  const currentBranchCta = t(`${currentBranch.key}.cta`);
+
+  const branchWhatsAppUrl = `https://wa.me/201008901234?text=${encodeURIComponent(
+    locale === "ar"
+      ? `مرحباً، أود حجز موعد في (${currentBranchName}) في عيادات ماغنيفيسنت سمايل.`
+      : locale === "fr"
+      ? `Bonjour, je souhaite réserver une consultation dans votre succursale de (${currentBranchName}) chez Magnificent Smile.`
+      : locale === "ru"
+      ? `Здравствуйте, хочу записаться на приём в филиал (${currentBranchName}) клиники Magnificent Smile.`
+      : `Hello, I would like to book an appointment at (${currentBranchName}) at Magnificent Smile Clinics.`
+  )}`;
 
   return (
     <section
       ref={sectionRef}
       id="clinics"
-      className="relative py-20 sm:py-28 px-4 sm:px-6 lg:px-8 bg-[#F7F4EE] border-t border-[#C8A232]/25 overflow-hidden"
+      className="relative py-20 sm:py-28 px-4 sm:px-6 lg:px-8 border-t-2 border-[#C8A232]/40 overflow-hidden z-20 shadow-2xl"
       dir={isRtl ? "rtl" : "ltr"}
     >
-      {/* Background Royal Ambient Light */}
-      <div className="absolute top-1/4 left-0 w-96 h-96 bg-[#C8A232]/6 rounded-full blur-[150px] pointer-events-none" />
-      <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-[#022256]/6 rounded-full blur-[160px] pointer-events-none" />
+      {/* 1. Signature Multi-Line 3D Ribbon Split Background */}
+      <SplitSectionBackground />
 
+      {/* 2. Content Grid */}
       <div className="max-w-7xl mx-auto relative z-10">
-        
-        {/* Section Header */}
-        <div ref={headerRef} className="text-center max-w-3xl mx-auto mb-14 sm:mb-18">
-          <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-[#C8A232]/40 bg-white shadow-xs mb-3.5">
-            <Building className="w-3.5 h-3.5 text-[#955904]" />
-            <span className="text-xs font-bold text-[#955904] uppercase tracking-wider font-mono">
-              {t("badge")}
-            </span>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+          
+          {/* RIGHT COLUMN (Warm Gold / Parchment Side): 7 Cols on desktop */}
+          {/* Safe buffer pl-16 xl:pl-24 guarantees zero ribbon collision */}
+          <div
+            ref={rightRef}
+            className={`lg:col-span-7 flex flex-col ${
+              isRtl ? "order-2 lg:order-1" : "order-2 lg:order-2"
+            } pl-0 lg:pl-16 xl:pl-24`}
+          >
+            {/* Category Kicker Badge */}
+            <div className="flex items-center gap-2.5 mb-4">
+              <span className="h-[1px] w-6 bg-[#C8A232]/70" />
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[#C8A232]/50 bg-white/80 shadow-xs backdrop-blur-xs">
+                <Building className="w-3.5 h-3.5 text-[#9A5F13]" />
+                <span className="text-xs font-bold text-[#9A5F13] uppercase tracking-wider font-mono">
+                  {t("badge")}
+                </span>
+              </div>
+              <span className="h-[1px] w-6 bg-[#C8A232]/70" />
+            </div>
+
+            {/* Two-Tone Luxury Headline */}
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-[40px] font-bold font-display leading-[1.28] mb-3">
+              <span className="block text-[#0F266A]">
+                {t("title")}
+              </span>
+              <span className="block text-[#9A5F13] text-xl sm:text-2xl lg:text-3xl mt-1">
+                {currentBranchName}
+              </span>
+            </h2>
+
+            {/* Subtitle */}
+            <p className="text-sm sm:text-base md:text-[17px] text-[#2A3B56] leading-relaxed mb-6 font-body">
+              {t("subtitle")}
+            </p>
+
+            {/* 3 Branch Selector Tabs */}
+            <div className="grid grid-cols-3 gap-2 p-1.5 rounded-2xl bg-white/90 border border-[#C8A232]/35 shadow-sm mb-6">
+              {branchesData.map((branch, idx) => {
+                const isSelected = activeBranchIdx === idx;
+                const name = t(`${branch.key}.name`);
+
+                return (
+                  <button
+                    key={branch.key}
+                    type="button"
+                    onClick={() => setActiveBranchIdx(idx)}
+                    className={`py-2.5 px-2 text-center rounded-xl text-xs sm:text-sm font-bold transition-all duration-300 cursor-pointer flex flex-col items-center justify-center gap-1 ${
+                      isSelected
+                        ? "bg-[#012052] text-white shadow-md scale-102"
+                        : "text-[#4A5E7B] hover:text-[#012052] hover:bg-[#FAF1DC]/50"
+                    }`}
+                  >
+                    <span className="font-mono text-[10px] text-[#DFBF57]">0{idx + 1}</span>
+                    <span className="truncate max-w-full">{name}</span>
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Active Branch Details Card */}
+            <div className="p-5 rounded-2xl bg-white/95 border border-[#C8A232]/35 shadow-sm mb-6">
+              {/* Address & Map */}
+              <div className="flex items-start justify-between gap-3 pb-3 border-b border-[#C8A232]/20 mb-3.5">
+                <div className="flex items-start gap-2.5 min-w-0">
+                  <MapPin className="w-4 h-4 text-[#9A5F13] shrink-0 mt-0.5" />
+                  <span className="text-xs sm:text-sm font-bold text-[#0F266A] leading-snug">
+                    {currentBranchArea}
+                  </span>
+                </div>
+
+                <a
+                  href={currentBranch.mapsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 text-[11px] font-mono font-bold text-[#9A5F13] hover:text-[#0F266A] shrink-0 hover:underline cursor-pointer"
+                  title={isRtl ? "عرض على الخريطة" : "View Map"}
+                >
+                  <Navigation className="w-3.5 h-3.5 text-[#C8A232]" />
+                  <span>{isRtl ? "الخريطة" : "Map"}</span>
+                </a>
+              </div>
+
+              {/* Working Hours & Direct Phone */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4 text-xs">
+                <div className="flex items-center gap-2 text-[#5B6782]">
+                  <Clock className="w-4 h-4 text-[#C8A232] shrink-0" />
+                  <span>{currentBranchHours}</span>
+                </div>
+
+                <div className="flex items-center gap-2 text-[#5B6782]">
+                  <Phone className="w-4 h-4 text-[#C8A232] shrink-0" />
+                  <a
+                    href={`tel:${currentBranch.phoneRaw}`}
+                    className="font-mono font-bold text-[#0F266A] hover:text-[#9A5F13] transition-colors"
+                    dir="ltr"
+                  >
+                    {currentBranchPhone}
+                  </a>
+                </div>
+              </div>
+
+              {/* 3 Distinction Highlights for this Branch */}
+              <div className="space-y-2 p-3 rounded-xl bg-[#FCFAF5] border border-[#C8A232]/25">
+                {(isRtl ? currentBranch.perksAr : currentBranch.perksEn).map((perk, pIdx) => (
+                  <div key={pIdx} className="flex items-center gap-2 text-xs font-bold text-[#0F266A]">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-[#9A5F13] shrink-0" />
+                    <span>{perk}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Action Row */}
+            <div className="flex flex-wrap items-center gap-3">
+              <a
+                href={branchWhatsAppUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-[#9A5F13] via-[#C8A232] to-[#9A5F13] text-white font-bold text-xs uppercase tracking-wider shadow-md hover:shadow-lg transition-all font-body cursor-pointer"
+              >
+                <WhatsAppIcon className="w-4 h-4 text-white" />
+                <span>{currentBranchCta}</span>
+                <ArrowIcon className="w-3.5 h-3.5 text-white" />
+              </a>
+
+              <a
+                href="#book"
+                className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-white border border-[#C8A232]/50 text-[#0F266A] font-bold text-xs uppercase tracking-wider hover:bg-[#FAF1DC]/60 transition-all font-body"
+              >
+                <Building className="w-3.5 h-3.5 text-[#9A5F13]" />
+                <span>{isRtl ? "حجز موعد عبر الاستمارة" : "Book via Web Form"}</span>
+              </a>
+            </div>
+
           </div>
 
-          <h2
-            ref={titleRef}
-            className="text-3xl sm:text-4xl md:text-5xl font-bold font-display text-[#012968] mb-3.5 leading-tight"
+          {/* LEFT COLUMN (Deep Royal Blue Side): 5 Cols on desktop */}
+          {/* Centered comfortably inside the Royal Blue zone with max-w-[420px], keeping 50-60px clearance to the ribbon */}
+          <div
+            ref={leftRef}
+            className={`lg:col-span-5 relative flex justify-center items-center ${
+              isRtl ? "order-1 lg:order-2" : "order-1 lg:order-1"
+            } w-full`}
           >
-            <SplitTextScrub text={t("title")} wordClassName="split-title-word" />
-          </h2>
-
-          <p className="text-sm sm:text-base md:text-lg text-[#5B6782] font-body leading-relaxed max-w-2xl mx-auto">
-            {t("subtitle")}
-          </p>
-        </div>
-
-        {/* ============================================================== */}
-        {/* 3 PRESTIGIOUS ARCHITECTURAL BRANCH SHOWCASES                   */}
-        {/* ============================================================== */}
-        <div
-          ref={gridRef}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"
-        >
-          {branchesData.map((branch, idx) => {
-            const branchName = t(`${branch.key}.name`);
-            const branchArea = t(`${branch.key}.area`);
-            const branchHours = t(`${branch.key}.hours`);
-            const branchPhone = t(`${branch.key}.phone`);
-            const branchCta = t(`${branch.key}.cta`);
-
-            // Pre-filled WhatsApp direct booking link
-            const branchWhatsAppUrl = `https://wa.me/201008901234?text=${encodeURIComponent(
-              locale === "ar"
-                ? `مرحباً، أود حجز موعد في (${branchName}) في عيادات ماغنيفيسنت سمايل.`
-                : locale === "fr"
-                ? `Bonjour, je souhaite réserver une consultation dans votre succursale de (${branchName}) chez Magnificent Smile.`
-                : locale === "ru"
-                ? `Здравствуйте, хочу записаться на приём в филиал (${branchName}) клиники Magnificent Smile.`
-                : `Hello, I would like to book an appointment at (${branchName}) at Magnificent Smile Clinics.`
-            )}`;
-
-            return (
-              <div
-                key={branch.key}
-                className="group relative rounded-3xl bg-white border-2 border-[#C8A232]/35 hover:border-[#C8A232] overflow-hidden shadow-[0_15px_45px_rgba(2,34,86,0.06)] hover:shadow-[0_25px_65px_rgba(200,162,50,0.18)] transition-all duration-300 transform hover:-translate-y-2 flex flex-col justify-between"
-              >
+            <div className="w-full max-w-[390px] xl:max-w-[420px] mx-auto">
+              
+              {/* Luxury Architectural Frame */}
+              <div className="group relative rounded-3xl bg-gradient-to-b from-[#0B2456] via-[#07193D] to-[#020B1D] border-2 border-[#C8A232]/70 p-4 shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden">
+                
                 {/* Thin Top 24K Gold Bar */}
-                <div className="h-1.5 w-full bg-gradient-to-r from-[#955904] via-[#DFBF57] to-[#955904]" />
+                <div className="h-1 w-full bg-gradient-to-r from-[#9A5F13] via-[#DFBF57] to-[#9A5F13] rounded-full mb-3.5" />
 
-                {/* 1. High-Resolution Architectural Photography Header */}
-                <div className="relative w-full h-56 sm:h-60 overflow-hidden bg-[#022256]">
+                {/* High-Resolution Architectural Photography Header */}
+                <div className="relative w-full h-64 sm:h-72 md:h-80 rounded-2xl overflow-hidden bg-[#020B1D] border border-[#DFBF57]/30 shadow-inner">
                   <Image
-                    src={branch.image}
-                    alt={branchName}
+                    src={currentBranch.image}
+                    alt={currentBranchName}
                     fill
-                    sizes="(max-width: 768px) 100vw, 420px"
+                    sizes="(max-width: 1024px) 100vw, 420px"
                     className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
-                    priority={idx === 0}
+                    priority
                   />
 
-                  {/* Elegant Gradient Vignette */}
+                  {/* Gradient Overlays */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-black/20 pointer-events-none" />
-                  <div className="absolute inset-0 bg-gradient-to-tr from-[#022256]/30 via-transparent to-[#C8A232]/20 pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-tr from-[#020B1D]/40 via-transparent to-[#DFBF57]/20 pointer-events-none" />
 
                   {/* Top Badges: Branch Number & Open Now Status */}
-                  <div className="absolute top-3.5 left-3.5 right-3.5 flex items-center justify-between">
-                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/95 border border-[#C8A232]/50 text-[10px] sm:text-xs font-mono font-bold text-[#955904] shadow-md backdrop-blur-md">
+                  <div className="absolute top-3 left-3 right-3 flex items-center justify-between">
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/95 border border-[#C8A232]/50 text-[10px] sm:text-xs font-mono font-bold text-[#9A5F13] shadow-md backdrop-blur-md">
                       <span className="w-2 h-2 rounded-full bg-[#DFBF57] animate-ping" />
                       <span>{isRtl ? "مفتوح الآن" : "OPEN NOW"}</span>
                     </span>
 
-                    <span className="text-xs font-mono font-bold text-white bg-[#012968]/90 border border-white/20 px-2.5 py-1 rounded-full shadow-md backdrop-blur-md">
-                      0{idx + 1}
+                    <span className="text-xs font-mono font-bold text-white bg-[#012052]/90 border border-white/20 px-2.5 py-1 rounded-full shadow-md backdrop-blur-md">
+                      0{activeBranchIdx + 1}
                     </span>
                   </div>
 
-                  {/* Bottom Text Over Image: Branch Name & Prestige Tag */}
-                  <div className="absolute bottom-3.5 left-3.5 right-3.5 text-white pointer-events-none">
+                  {/* Bottom Text Over Photo */}
+                  <div className="absolute bottom-3 left-3 right-3 text-white pointer-events-none">
                     <span className="text-[10px] sm:text-[11px] font-mono tracking-wider uppercase text-[#DFBF57] font-bold block mb-1">
-                      {isRtl ? branch.tagAr : branch.tagEn}
+                      {isRtl ? currentBranch.tagAr : currentBranch.tagEn}
                     </span>
-                    <h3 className="text-lg sm:text-xl font-bold font-display text-white leading-snug drop-shadow-sm">
-                      {branchName}
+                    <h3 className="text-base sm:text-lg font-bold font-display text-white leading-snug drop-shadow-sm">
+                      {currentBranchName}
                     </h3>
                   </div>
                 </div>
 
-                {/* 2. Branch Logistics & Verified Features */}
-                <div className="p-6 sm:p-7 flex flex-col justify-between flex-1">
-                  <div>
-                    {/* Address Line with Navigation Map Link */}
-                    <div className="flex items-start justify-between gap-3 pb-3.5 border-b border-[#C8A232]/20 mb-3.5">
-                      <div className="flex items-start gap-2.5 min-w-0">
-                        <MapPin className="w-4 h-4 text-[#955904] shrink-0 mt-0.5" />
-                        <span className="text-xs sm:text-sm font-semibold text-[#012968] leading-snug">
-                          {branchArea}
-                        </span>
-                      </div>
-
-                      <a
-                        href={branch.mapsUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 text-[11px] font-mono font-bold text-[#955904] hover:text-[#012968] shrink-0 hover:underline cursor-pointer"
-                        title={isRtl ? "عرض على الخريطة" : "View Map"}
-                      >
-                        <Navigation className="w-3.5 h-3.5 text-[#C8A232]" />
-                        <span>{isRtl ? "الخريطة" : "Map"}</span>
-                      </a>
-                    </div>
-
-                    {/* Working Hours */}
-                    <div className="flex items-center gap-2.5 text-xs text-[#5B6782] mb-3 font-body">
-                      <Clock className="w-4 h-4 text-[#C8A232] shrink-0" />
-                      <span>{branchHours}</span>
-                    </div>
-
-                    {/* Direct Telephone Link */}
-                    <div className="flex items-center gap-2.5 text-xs text-[#5B6782] mb-5 font-body">
-                      <Phone className="w-4 h-4 text-[#C8A232] shrink-0" />
-                      <a
-                        href={`tel:${branch.phoneRaw}`}
-                        className="font-mono font-bold text-[#012968] hover:text-[#955904] transition-colors"
-                        dir="ltr"
-                      >
-                        {branchPhone}
-                      </a>
-                    </div>
-
-                    {/* 3 Verified Distinction Highlights for this Branch */}
-                    <div className="space-y-2 mb-6 p-3 rounded-2xl bg-[#FAF8F5] border border-[#C8A232]/25">
-                      {(isRtl ? branch.perksAr : branch.perksEn).map((perk, pIdx) => (
-                        <div key={pIdx} className="flex items-center gap-2 text-[11px] sm:text-xs font-bold text-[#012968]">
-                          <CheckCircle2 className="w-3.5 h-3.5 text-[#955904] shrink-0" />
-                          <span>{perk}</span>
-                        </div>
-                      ))}
-                    </div>
+                {/* Hesy-Ra Clinic Seal Footer */}
+                <div className="mt-3.5 pt-3 border-t border-[#DFBF57]/30 flex items-center justify-between text-[#DFBF57] text-xs font-mono">
+                  <div className="flex items-center gap-1.5">
+                    <Building className="w-3.5 h-3.5" />
+                    <span>HESY-RA SANCTUARY</span>
                   </div>
-
-                  {/* 3. Action Buttons: Direct WhatsApp Booking + In-Clinic Jump */}
-                  <div className="flex flex-col gap-2 pt-2">
-                    {/* Primary VIP WhatsApp Booking */}
-                    <a
-                      href={branchWhatsAppUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-[#955904] via-[#C8A232] to-[#955904] text-white font-bold text-xs tracking-wider uppercase shadow-[0_4px_16px_rgba(200,162,50,0.3)] hover:shadow-[0_6px_22px_rgba(200,162,50,0.5)] transition-all duration-300 transform hover:-translate-y-0.5 flex items-center justify-center gap-2 cursor-pointer"
-                    >
-                      <WhatsAppIcon className="w-4 h-4" />
-                      <span>{branchCta}</span>
-                      <ArrowIcon className="w-3.5 h-3.5" />
-                    </a>
-
-                    {/* Secondary: Book Online Jump */}
-                    <a
-                      href="#book"
-                      className="w-full py-2.5 rounded-xl border border-[#C8A232]/50 bg-white hover:bg-[#FAF8F5] text-[#012968] font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-1.5"
-                    >
-                      <Building className="w-3.5 h-3.5 text-[#955904]" />
-                      <span>{isRtl ? "حجز موعد عبر الاستمارة" : "Book via Web Form"}</span>
-                    </a>
-                  </div>
-
+                  <span className="text-[11px] text-white/70">
+                    {isRtl ? "ضيافة ملكية خاصة" : "VIP Concierge Care"}
+                  </span>
                 </div>
 
               </div>
-            );
-          })}
-        </div>
 
+            </div>
+          </div>
+
+        </div>
       </div>
     </section>
   );

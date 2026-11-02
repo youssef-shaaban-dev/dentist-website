@@ -168,16 +168,16 @@ export function Navbar() {
         navVisible ? "translate-y-0" : "-translate-y-full"
       }`}
     >
-      {/* Background Layer 1: Cinematic Dark Hero Gradient (Unscrolled State) */}
+      {/* Background Layer 1: Elegant Deep Navy Glass (Unscrolled State) */}
       <div
-        className={`absolute inset-0 bg-gradient-to-b from-black/75 via-black/35 to-transparent transition-opacity duration-300 pointer-events-none -z-10 ${
+        className={`absolute inset-0 bg-[#020B1D]/85 backdrop-blur-md border-b border-[#C8A232]/30 shadow-md transition-opacity duration-300 pointer-events-none -z-10 ${
           effectiveScrolled ? "opacity-0" : "opacity-100"
         }`}
       />
 
-      {/* Background Layer 2: Royal Warm Ivory Glass (Scrolled State) */}
+      {/* Background Layer 2: Antique Warm Parchment Glass (Scrolled State) */}
       <div
-        className={`absolute inset-0 bg-[#FDFBF7]/95 backdrop-blur-md border-b border-[#C8A232]/30 shadow-[0_4px_30px_rgba(2,34,86,0.08)] transition-opacity duration-300 pointer-events-none -z-10 ${
+        className={`absolute inset-0 bg-[#FAF1DC]/95 backdrop-blur-md border-b border-[#C8A232]/40 shadow-[0_4px_30px_rgba(2,34,86,0.08)] transition-opacity duration-300 pointer-events-none -z-10 ${
           effectiveScrolled ? "opacity-100" : "opacity-0"
         }`}
       />

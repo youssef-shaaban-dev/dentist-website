@@ -5,13 +5,14 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useTranslations } from "next-intl";
 import { useLanguage } from "@/i18n/IntlProviderWrapper";
-import { RoyalSmileShowcase } from "@/components/home/RoyalSmileShowcase";
+import { RoyalSmileShowcase } from "./RoyalSmileShowcase";
 import { SplitTextScrub } from "@/components/ui/SplitTextScrub";
+import { SplitSectionBackground } from "@/components/ui/SplitSectionBackground";
 import {
   Sparkles,
+  CheckCircle2,
   Cpu,
   HeartHandshake,
-  CheckCircle2,
 } from "lucide-react";
 
 export function WelcomeSection() {
@@ -19,10 +20,10 @@ export function WelcomeSection() {
   const { isRtl } = useLanguage();
 
   const sectionRef = useRef<HTMLElement>(null);
-  const badgeRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const desc1Ref = useRef<HTMLParagraphElement>(null);
   const desc2Ref = useRef<HTMLParagraphElement>(null);
+  const badgeRef = useRef<HTMLDivElement>(null);
   const pillarsRef = useRef<HTMLDivElement>(null);
   const toothColRef = useRef<HTMLDivElement>(null);
 
@@ -30,11 +31,11 @@ export function WelcomeSection() {
     gsap.registerPlugin(ScrollTrigger);
 
     const ctx = gsap.context(() => {
-      // 1. Royal Badge Entrance
+      // 1. Badge entrance
       if (badgeRef.current) {
         gsap.fromTo(
           badgeRef.current,
-          { opacity: 0, y: 25 },
+          { opacity: 0, y: 20 },
           {
             opacity: 1,
             y: 0,
@@ -49,7 +50,7 @@ export function WelcomeSection() {
         );
       }
 
-      // 2. TextSplit Scrub for Main Headline (Line-by-line masked emergence)
+      // 2. TextSplit Scrub for Main Headline
       const titleWords = titleRef.current?.querySelectorAll(".split-title-word");
       if (titleWords && titleWords.length > 0) {
         gsap.to(titleWords, {
@@ -66,51 +67,38 @@ export function WelcomeSection() {
         });
       }
 
-      // 3. TextSplit Scrub for Philosophy Paragraphs
-      const desc1Words = desc1Ref.current?.querySelectorAll(".split-desc1-word");
-      if (desc1Words && desc1Words.length > 0) {
-        gsap.to(desc1Words, {
-          y: "0%",
-          opacity: 1,
-          stagger: 0.015,
-          ease: "power1.out",
-          scrollTrigger: {
-            trigger: desc1Ref.current,
-            start: "top 85%",
-            end: "bottom 58%",
-            scrub: 0.8,
-          },
-        });
+      // 3. Staggered entrance for descriptions
+      if (desc1Ref.current && desc2Ref.current) {
+        gsap.fromTo(
+          [desc1Ref.current, desc2Ref.current],
+          { opacity: 0, y: 25 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            stagger: 0.15,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: desc1Ref.current,
+              start: "top 86%",
+              once: true,
+            },
+          }
+        );
       }
 
-      const desc2Words = desc2Ref.current?.querySelectorAll(".split-desc2-word");
-      if (desc2Words && desc2Words.length > 0) {
-        gsap.to(desc2Words, {
-          y: "0%",
-          opacity: 1,
-          stagger: 0.015,
-          ease: "power1.out",
-          scrollTrigger: {
-            trigger: desc2Ref.current,
-            start: "top 85%",
-            end: "bottom 58%",
-            scrub: 0.8,
-          },
-        });
-      }
-
-      // 4. Pillars Cards Stagger
+      // 4. Staggered entrance for 3 Clinical Pillars
       if (pillarsRef.current) {
         gsap.fromTo(
           pillarsRef.current.children,
-          { opacity: 0, y: 35, scale: 0.95 },
+          { opacity: 0, y: 25, scale: 0.98 },
           {
             opacity: 1,
             y: 0,
             scale: 1,
             duration: 0.8,
             stagger: 0.12,
-            ease: "back.out(1.4)",
+            ease: "power2.out",
             scrollTrigger: {
               trigger: pillarsRef.current,
               start: "top 88%",
@@ -124,7 +112,7 @@ export function WelcomeSection() {
       if (toothColRef.current) {
         gsap.fromTo(
           toothColRef.current,
-          { opacity: 0, y: 35, scale: 0.96 },
+          { opacity: 0, y: 30, scale: 0.96 },
           {
             opacity: 1,
             y: 0,
@@ -142,101 +130,133 @@ export function WelcomeSection() {
     }, sectionRef);
 
     return () => ctx.revert();
-  }, []);
+  }, [isRtl]);
 
   return (
     <section
       ref={sectionRef}
       id="welcome"
-      className="relative pt-20 sm:pt-28 pb-20 sm:pb-28 px-4 sm:px-6 lg:px-8 bg-[#FDFBF7] overflow-hidden z-20"
+      className="relative pt-20 sm:pt-28 pb-20 sm:pb-28 px-4 sm:px-6 lg:px-8 border-t-2 border-[#C8A232]/40 overflow-hidden z-20 shadow-2xl"
       dir={isRtl ? "rtl" : "ltr"}
     >
-      {/* Subtle Ambient Radial Lighting */}
-      <div className="absolute top-1/2 left-0 w-96 h-96 bg-[#C8A232]/8 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute top-1/3 right-0 w-96 h-96 bg-[#022256]/8 rounded-full blur-[150px] pointer-events-none" />
+      {/* 1. Split Section Background: Left is Royal Blue | Right is Warm Gold */}
+      <SplitSectionBackground />
 
+      {/* 2. SECTION CONTENT: Unified Standard Layout */}
       <div className="max-w-7xl mx-auto relative z-10">
-        
-        {/* Clinic Philosophy & The Royal Smile Showcase */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
           
-          {/* Content Column (7 Cols on desktop): Story, Philosophy with TextSplit & 3 Pillars */}
-          <div className="lg:col-span-7 flex flex-col order-2 lg:order-1">
-            {/* Royal Badge */}
-            <div
-              ref={badgeRef}
-              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#C8A232]/40 bg-white shadow-sm w-fit mb-4"
-            >
-              <Sparkles className="w-3.5 h-3.5 text-[#955904]" />
-              <span className="text-xs font-bold text-[#955904] uppercase tracking-wider font-mono">
-                {t("badge")}
-              </span>
+          {/* RIGHT COLUMN (Warm Gold / Parchment Side): 7 Cols on desktop */}
+          {/* Safe buffer pl-16 xl:pl-24 guarantees zero ribbon collision */}
+          <div
+            className={`lg:col-span-7 flex flex-col ${
+              isRtl ? "order-2 lg:order-1" : "order-2 lg:order-2"
+            } pl-0 lg:pl-16 xl:pl-24`}
+          >
+            {/* Category Kicker Badge */}
+            <div ref={badgeRef} className="flex items-center gap-2.5 mb-4">
+              <span className="h-[1px] w-6 bg-[#C8A232]/70" />
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[#C8A232]/50 bg-white/80 shadow-xs backdrop-blur-xs">
+                <Sparkles className="w-3.5 h-3.5 text-[#9A5F13]" />
+                <span className="text-xs font-bold text-[#9A5F13] uppercase tracking-wider font-mono">
+                  {isRtl ? "رؤية العيادة • دقة طبية ومعايير عالمية" : "CLINICAL VISION & MICRON ACCURACY"}
+                </span>
+              </div>
+              <span className="h-[1px] w-6 bg-[#C8A232]/70" />
             </div>
 
-            {/* Philosophy Headline with Line-by-Line Scrub Reveal */}
+            {/* Philosophy Headline — Two-Tone Color Scheme */}
             <h2
               ref={titleRef}
-              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold font-display text-[#012968] leading-[1.3] mb-6"
+              className="text-2xl sm:text-3xl md:text-4xl lg:text-[40px] font-bold font-display leading-[1.28] mb-5"
             >
-              <SplitTextScrub text={t("title")} wordClassName="split-title-word" />
+              <span className="block text-[#0F266A]">
+                {isRtl ? "حيث تلتقي العراقة الطبية الأصيلة" : "Where Clinical Precision"}
+              </span>
+              <span className="block text-[#9A5F13] mt-1">
+                {isRtl ? "بأحدث علوم طب الأسنان العالمية" : "Meets Modern Dentistry"}
+              </span>
             </h2>
 
-            {/* Philosophy Paragraphs with TextSplit Scrub */}
+            {/* Clinical Philosophy Paragraphs */}
             <p
               ref={desc1Ref}
-              className="text-base sm:text-lg text-[#3D5A80] leading-relaxed mb-4 font-body"
+              className="text-sm sm:text-base md:text-[17px] text-[#2A3B56] leading-relaxed mb-4 font-body"
             >
               <SplitTextScrub text={t("desc1")} wordClassName="split-desc1-word" />
             </p>
 
             <p
               ref={desc2Ref}
-              className="text-base sm:text-lg text-[#3D5A80] leading-relaxed mb-8 font-body"
+              className="text-sm sm:text-base md:text-[17px] text-[#2A3B56] leading-relaxed mb-8 font-body"
             >
               <SplitTextScrub text={t("desc2")} wordClassName="split-desc2-word" />
             </p>
 
-            {/* 3 Clinical Excellence Pillars */}
+            {/* 3 Clinical Excellence Pillars — Directly from the Brochure Approach */}
             <div
               ref={pillarsRef}
-              className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-6 border-t border-[#C8A232]/25"
+              className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 pt-6 border-t border-[#C8A232]/35"
             >
-              <div className="p-4 rounded-xl bg-white border border-[#C8A232]/25 shadow-sm flex flex-col gap-2 transition-transform duration-300 hover:-translate-y-1 hover:shadow-md">
-                <div className="w-8 h-8 rounded-lg bg-[#FAF8F5] text-[#955904] flex items-center justify-center">
+              <div className="p-4 rounded-2xl bg-white/95 border border-[#C8A232]/35 shadow-xs hover:shadow-md transition-all duration-300 flex flex-col gap-2 group">
+                <div className="w-9 h-9 rounded-full bg-[#FAF1DC] border border-[#C8A232]/40 text-[#9A5F13] flex items-center justify-center transition-transform group-hover:scale-110">
                   <CheckCircle2 className="w-4 h-4" />
                 </div>
-                <h3 className="text-sm font-bold text-[#012968] font-display">{t("points.p1Title")}</h3>
-                <p className="text-xs text-[#5B6782] font-body leading-relaxed">{t("points.p1Desc")}</p>
+                <h3 className="text-sm font-bold text-[#0F266A] font-display">
+                  {isRtl ? "رعاية سريرية معتمدة" : "Certified Clinical Care"}
+                </h3>
+                <p className="text-xs text-[#4A5E7B] font-body leading-relaxed">
+                  {isRtl
+                    ? "معايير علاجية دقيقة بإشراف استشاريين معتمدين دولياً."
+                    : "Strict clinical standards guided by certified senior consultants."}
+                </p>
               </div>
 
-              <div className="p-4 rounded-xl bg-white border border-[#C8A232]/25 shadow-sm flex flex-col gap-2 transition-transform duration-300 hover:-translate-y-1 hover:shadow-md">
-                <div className="w-8 h-8 rounded-lg bg-[#FAF8F5] text-[#955904] flex items-center justify-center">
+              <div className="p-4 rounded-2xl bg-white/95 border border-[#C8A232]/35 shadow-xs hover:shadow-md transition-all duration-300 flex flex-col gap-2 group">
+                <div className="w-9 h-9 rounded-full bg-[#FAF1DC] border border-[#C8A232]/40 text-[#9A5F13] flex items-center justify-center transition-transform group-hover:scale-110">
                   <Cpu className="w-4 h-4" />
                 </div>
-                <h3 className="text-sm font-bold text-[#012968] font-display">{t("points.p2Title")}</h3>
-                <p className="text-xs text-[#5B6782] font-body leading-relaxed">{t("points.p2Desc")}</p>
+                <h3 className="text-sm font-bold text-[#0F266A] font-display">
+                  {isRtl ? "دقة رقمية ميكرونية" : "Micron 3D Precision"}
+                </h3>
+                <p className="text-xs text-[#4A5E7B] font-body leading-relaxed">
+                  {isRtl
+                    ? "ماسحات ضوئية ثلاثية الأبعاد بدقة 0.01 مم بدون قوالب معجون."
+                    : "0.01mm 3D optical scanning without traditional impression trays."}
+                </p>
               </div>
 
-              <div className="p-4 rounded-xl bg-white border border-[#C8A232]/25 shadow-sm flex flex-col gap-2 transition-transform duration-300 hover:-translate-y-1 hover:shadow-md">
-                <div className="w-8 h-8 rounded-lg bg-[#FAF8F5] text-[#955904] flex items-center justify-center">
+              <div className="p-4 rounded-2xl bg-white/95 border border-[#C8A232]/35 shadow-xs hover:shadow-md transition-all duration-300 flex flex-col gap-2 group">
+                <div className="w-9 h-9 rounded-full bg-[#FAF1DC] border border-[#C8A232]/40 text-[#9A5F13] flex items-center justify-center transition-transform group-hover:scale-110">
                   <HeartHandshake className="w-4 h-4" />
                 </div>
-                <h3 className="text-sm font-bold text-[#012968] font-display">{t("points.p3Title")}</h3>
-                <p className="text-xs text-[#5B6782] font-body leading-relaxed">{t("points.p3Desc")}</p>
+                <h3 className="text-sm font-bold text-[#0F266A] font-display">
+                  {isRtl ? "راحة وهدوء سريري" : "Gentle Comfortable Care"}
+                </h3>
+                <p className="text-xs text-[#4A5E7B] font-body leading-relaxed">
+                  {isRtl
+                    ? "تخدير محوسب ذكي بدون ألم وأجنحة خاصة معزولة تماماً."
+                    : "Painless computerized anesthesia in serene acoustic private suites."}
+                </p>
               </div>
+            </div>
+
+          </div>
+
+          {/* LEFT COLUMN (Deep Royal Blue Side): 5 Cols on desktop */}
+          {/* Centered with max-w-[420px], keeping 50-60px clearance to the ribbon */}
+          <div
+            ref={toothColRef}
+            className={`lg:col-span-5 relative flex justify-center items-center ${
+              isRtl ? "order-1 lg:order-2" : "order-1 lg:order-1"
+            } w-full`}
+          >
+            <div className="w-full max-w-[390px] xl:max-w-[415px] mx-auto">
+              <RoyalSmileShowcase />
             </div>
           </div>
 
-          {/* Visual Column (5 Cols on desktop): Royal Smile Showcase Glass Card */}
-          <div
-            ref={toothColRef}
-            className="lg:col-span-5 relative flex justify-center order-1 lg:order-2"
-          >
-            <RoyalSmileShowcase />
-          </div>
-
         </div>
-
       </div>
     </section>
   );

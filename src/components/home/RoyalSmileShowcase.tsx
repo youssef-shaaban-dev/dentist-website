@@ -26,8 +26,8 @@ export function RoyalSmileShowcase() {
   const modes: ShowcaseMode[] = [
     {
       id: "smile",
-      titleAr: "قوس الابتسامة الملكي الطبيعي",
-      titleEn: "Royal Natural Smile Arc",
+      titleAr: "قوس الابتسامة الطبيعي المتناسق",
+      titleEn: "Natural Smile Arc Alignment",
       badgeAr: "تناغم حيوي 100%",
       badgeEn: "100% Bio-Harmonious",
       metricAr: "نسبة الجمال الذهبي Φ 1.618",
@@ -69,10 +69,10 @@ export function RoyalSmileShowcase() {
       dir={isRtl ? "rtl" : "ltr"}
       className="relative w-full max-w-lg mx-auto flex flex-col items-center select-none"
     >
-      
+
       {/* 1. Main Luxury Glass Frame Card */}
       <div className="relative w-full rounded-3xl overflow-hidden border-2 border-[#C8A232]/35 bg-gradient-to-b from-white/95 via-[#FDFBF7]/90 to-[#FAF8F5]/95 shadow-[0_20px_50px_rgba(2,34,86,0.10)] p-3 sm:p-4 backdrop-blur-xl group">
-        
+
         {/* Visual Viewport with Interactive Hover Scale */}
         <div className="relative w-full aspect-[4/3] sm:aspect-[5/4] rounded-2xl overflow-hidden bg-[#022256]/10 border border-[#C8A232]/25 shadow-inner">
           <Image
@@ -157,7 +157,7 @@ export function RoyalSmileShowcase() {
         <div className="mt-3 pt-3 border-t border-[#C8A232]/25 flex items-center justify-between text-xs text-[#5B6782] px-1 font-body">
           <div className="flex items-center gap-1.5 font-bold text-[#012968]">
             <CheckCircle2 className="w-4 h-4 text-[#955904]" />
-            <span>{isRtl ? "معايير الجمال الطبيعي الملكي" : "Natural Esthetics Standard"}</span>
+            <span>{isRtl ? "معايير الجمال والتشريح الطبيعي" : "Natural Anatomy & Esthetics"}</span>
           </div>
           <div className="flex items-center gap-1 text-[11px] font-mono text-[#955904]">
             <ShieldCheck className="w-3.5 h-3.5" />
@@ -179,11 +179,10 @@ export function RoyalSmileShowcase() {
               key={mode.id}
               type="button"
               onClick={() => setActiveTab(mode.id)}
-              className={`flex-1 py-1.5 sm:py-2 px-1.5 sm:px-2.5 rounded-xl text-[11px] sm:text-xs font-bold transition-all duration-300 cursor-pointer flex items-center justify-center gap-1 sm:gap-1.5 whitespace-nowrap shrink-0 ${
-                isActive
+              className={`flex-1 py-1.5 sm:py-2 px-1.5 sm:px-2.5 rounded-xl text-[11px] sm:text-xs font-bold transition-all duration-300 cursor-pointer flex items-center justify-center gap-1 sm:gap-1.5 whitespace-nowrap shrink-0 ${isActive
                   ? "bg-[#012968] text-white shadow-md scale-102"
                   : "text-[#5B6782] hover:text-[#012968] hover:bg-[#FAF8F5]"
-              }`}
+                }`}
             >
               {mode.id === "smile" && <Sparkles className={`w-3 h-3 sm:w-3.5 sm:h-3.5 shrink-0 ${isActive ? "text-[#DFBF57]" : "text-[#955904]"}`} />}
               {mode.id === "dsd" && <ScanLine className={`w-3 h-3 sm:w-3.5 sm:h-3.5 shrink-0 ${isActive ? "text-[#DFBF57]" : "text-[#955904]"}`} />}

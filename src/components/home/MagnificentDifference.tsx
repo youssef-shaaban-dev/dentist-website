@@ -1,12 +1,12 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useTranslations } from "next-intl";
 import { useLanguage } from "@/i18n/IntlProviderWrapper";
-import { SplitTextScrub } from "@/components/ui/SplitTextScrub";
+import { SplitSectionBackground } from "@/components/ui/SplitSectionBackground";
 import {
   Crown,
   Scan,
@@ -16,32 +16,38 @@ import {
   Sparkles,
   CheckCircle2,
   Shield,
+  ArrowRight,
+  ArrowLeft,
 } from "lucide-react";
 
 export function MagnificentDifference() {
   const t = useTranslations("difference");
   const { isRtl } = useLanguage();
+  const ArrowIcon = isRtl ? ArrowLeft : ArrowRight;
 
   const sectionRef = useRef<HTMLElement>(null);
-  const headerRef = useRef<HTMLDivElement>(null);
-  const titleRef = useRef<HTMLHeadingElement>(null);
-  const gridRef = useRef<HTMLDivElement>(null);
+  const rightRef = useRef<HTMLDivElement>(null);
+  const leftRef = useRef<HTMLDivElement>(null);
+  const [activePillarIdx, setActivePillarIdx] = useState<number>(0);
 
+  // 6 Clinical Excellence Pillars directly aligned with the brochure
   const pillars = [
     {
       id: "01",
       num: "01",
-      badgeAr: "المنظومة المتكاملة",
-      badgeEn: "Integrated Ecosystem",
-      title: t("items.0.title"),
-      desc: t("items.0.desc"),
+      badgeAr: "المنظومة الرقمية المتكاملة",
+      badgeEn: "Integrated Digital Ecosystem",
+      title: isRtl ? "منظومة علاجية متكاملة تحت سقف واحد" : "Integrated Ecosystem Under One Roof",
+      desc: isRtl
+        ? "تكامل مباشر بين العيادات الجراحية ومعمل التقويم ومعمل التعويضات لسرعة الإنجاز."
+        : "Direct synergy between surgical suites, clear aligners lab, and 3D milling lab.",
       image: "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=1200&q=85",
       icon: Crown,
       specs: isRtl
         ? [
-            "عيادات الجراحة والتجميل في نفس الصرح الطبي",
-            "معمل التقويم الشفاف الرقمي المعتمد",
-            "معمل التعويضات والزركونيا ثلاثي الأبعاد CAD/CAM",
+            "عيادات جراحة وتجميل الأسنان في نفس الصرح الطبي",
+            "معمل رقمي متخصص للتقويم الشفاف بدون وسيط",
+            "معمل CAD/CAM لتصنيع الزركونيا والإيماكس خلال 48 ساعة",
           ]
         : [
             "Surgical & aesthetic suites under one roof",
@@ -56,17 +62,19 @@ export function MagnificentDifference() {
     {
       id: "02",
       num: "02",
-      badgeAr: "التشخيص الرقمي",
-      badgeEn: "Digital Diagnostics",
-      title: t("items.1.title"),
-      desc: t("items.1.desc"),
+      badgeAr: "التشخيص الرقمي الميكروني",
+      badgeEn: "Digital Precision Diagnostics",
+      title: isRtl ? "دقة تشخيصية ميكرونية 0.01 مم" : "Digital Precision & Accurate Planning",
+      desc: isRtl
+        ? "أجهزة مسح مقطعي ثلاثي الأبعاد CBCT لتخطيط علاج وزراعة الأسنان بدقة جراحية."
+        : "3D volumetric CBCT scanning for virtual-guided surgical implant placement.",
       image: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=1200&q=85",
       icon: Scan,
       specs: isRtl
         ? [
             "مسح مقطعي ثلاثي الأبعاد فائق الدقة 0.01 ملم",
-            "جرعة إشعاعية منخفضة بنسبة 80% عن الأشعة العادية",
-            "محاكاة جراحية افتراضية مسبقة لضمان دقة الزرع 99.8%",
+            "جرعة إشعاعية منخفضة بنسبة 80% عن الأشعة التقليدية",
+            "محاكاة رقمية افتراضية مسبقة لضمان دقة الزرع 99.8%",
           ]
         : [
             "0.01mm ultra-precision 3D volumetric scanning",
@@ -81,10 +89,12 @@ export function MagnificentDifference() {
     {
       id: "03",
       num: "03",
-      badgeAr: "الأمان السريري",
-      badgeEn: "Clinical Safety",
-      title: t("items.2.title"),
-      desc: t("items.2.desc"),
+      badgeAr: "التعقيم والأمان السريري",
+      badgeEn: "Hospital-Grade Sterilization",
+      title: isRtl ? "أعلى معايير الأمان والتعقيم الأوروبي" : "Rigorous Clinical Safety & Sterilization",
+      desc: isRtl
+        ? "بروتوكولات تعقيم صارمة بأجهزة فئة B معتمدة عالمياً لضمان سلامة كل مريض."
+        : "European Class-B autoclaves with digital spore tracking for zero contamination.",
       image: "https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=1200&q=85",
       icon: ShieldCheck,
       specs: isRtl
@@ -106,17 +116,19 @@ export function MagnificentDifference() {
     {
       id: "04",
       num: "04",
-      badgeAr: "الراحة المطلقة",
-      badgeEn: "Absolute Comfort",
-      title: t("items.3.title"),
-      desc: t("items.3.desc"),
+      badgeAr: "العناية اللطيفة والراحة",
+      badgeEn: "Gentle Care & Absolute Comfort",
+      title: isRtl ? "تجربة علاجية مريحة وتخدير لطيف" : "Comfortable Experience & Pain-Free Protocol",
+      desc: isRtl
+        ? "نظام التخدير المحوسب الذكي بدون وخز لتجربة هادئة خالية تماماً من الألم."
+        : "Computerized injection-free anesthesia delivering micro-flow gentle care.",
       image: "https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1200&q=85",
       icon: SmilePlus,
       specs: isRtl
         ? [
-            "نظام The Wand للتخدير المحوسب الذكي بدون وخز",
-            "تحكم ديناميكي في تدفق المخدر لتجنب تنميل الوجه",
-            "أجنحة خاصة معزولة صوتياً ومجهزة لأقصى سبل الراحة",
+            "نظام The Wand للتخدير المحوسب الذكي بدون وخز إبرة",
+            "تحكم ديناميكي في تدفق المخدر لتجنب تنميل الوجه المزعج",
+            "أجنحة خاصة معزولة صوتياً ومجهزة لأقصى سبل الراحة والهدوء",
           ]
         : [
             "The Wand computerized injection-free anesthesia",
@@ -124,24 +136,26 @@ export function MagnificentDifference() {
             "Private soundproof suites designed for relaxation",
           ],
       stamp: isRtl
-        ? "بروتوكول راحة سريرية متقدم يزيل قلق الأسنان تماماً"
+        ? "بروتوكول راحة سريرية متقدم يزيل قلق وخوف الأسنان"
         : "Advanced Zero-Anxiety Comfort Protocol for Gentle Care",
       metric: "0% PAIN PROTOCOL",
     },
     {
       id: "05",
       num: "05",
-      badgeAr: "الضمان والاعتماد",
-      badgeEn: "Certified Guarantee",
-      title: t("items.4.title"),
-      desc: t("items.4.desc"),
+      badgeAr: "الضمان والجودة السويسرية",
+      badgeEn: "Swiss Quality & Written Guarantee",
+      title: isRtl ? "شهادات اعتماد وضمان موثق" : "Certified Guarantee & Authentic Materials",
+      desc: isRtl
+        ? "غرسات سويسرية وألمانية أصلية برقم تسلسلي موثق مع شهادة ضمان معتمدة."
+        : "Original Swiss & German restorations backed by official serial passports.",
       image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=1200&q=85",
       icon: FileCheck,
       specs: isRtl
         ? [
-            "شهادة توثيق سويسرية رسمية مع الرقم التسلسلي للزرعة",
-            "قشور E.max الأصلية مختومة بشهادة المصنع السويسري",
-            "برنامج فحص ومتابعة مجاني كل 6 أشهر لصحة الابتسامة",
+            "شهادة توثيق سويسرية رسمية مع الرقم التسلسلي لكل زرعة",
+            "خامات E.max الأصلية مختومة بشهادة الجودة المعتمدة",
+            "برنامج فحص ومتابعة دوري مجاني كل 6 أشهر لصحة الأسنان",
           ]
         : [
             "Official Swiss passport & serial number for each implant",
@@ -149,91 +163,80 @@ export function MagnificentDifference() {
             "Complimentary bi-annual clinical checkups for life",
           ],
       stamp: isRtl
-        ? "ضمان موثق مدى الحياة على الغرسات والتركيبات"
+        ? "ضمان موثق وشامل على الغرسات والتركيبات"
         : "Documented Lifetime Written Guarantee on Restorations",
       metric: "LIFETIME WARRANTY",
     },
     {
       id: "06",
       num: "06",
-      badgeAr: "الضيافة الملكية",
-      badgeEn: "Royal Hospitality",
-      title: t("items.5.title"),
-      desc: t("items.5.desc"),
+      badgeAr: "خدمة المرضى الفندقية",
+      badgeEn: "Executive Patient Concierge",
+      title: isRtl ? "خدمة استثنائية لكافة المرضى والزوار" : "Executive Concierge & VIP Care",
+      desc: isRtl
+        ? "مساعد رعاية شخصي لتنسيق المواعيد وخدمات الاستقبال الفندقي لضيوف المركز."
+        : "Dedicated patient coordinators ensuring smooth appointments and VIP care.",
       image: "https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=1200&q=85",
       icon: Sparkles,
       specs: isRtl
         ? [
-            "استقبال مباشر بسيارة خاصة وسائق VIP من مطار القاهرة",
-            "مساعد رعاية شخصي مخصص على مدار الساعة طوال رحلتك",
-            "أجنحة ضيافة فندقية خاصة لمرضى السياحة العلاجية والخليج",
+            "تنسيق مواعيد فوري بدون انتظار مع متابعة مستمرة",
+            "مساعد رعاية شخصي مخصص على مدار الساعة للإجابة على استفساراتك",
+            "أجنحة خاصة مجهزة لراحة المرضى والعائلات الزائرة",
           ]
         : [
-            "Chauffeured VIP airport transfer from Cairo International",
+            "Fast-track appointments with zero waiting time",
             "Dedicated 24/7 personal care coordinator throughout visit",
-            "Private luxury hotel suites for international patients",
+            "Private suites designed for family comfort and privacy",
           ],
       stamp: isRtl
-        ? "رعاية فندقية ملكية شاملة مصممة لنخبة المرضى والزوار"
-        : "Comprehensive 5-Star Medical Concierge for Discerning Guests",
-      metric: "24/7 VIP ESCORT",
+        ? "رعاية متكاملة مصممة لتجربة استثنائية ومريحة"
+        : "Comprehensive High-End Medical Concierge for All Guests",
+      metric: "24/7 COORDINATION",
     },
   ];
+
+  const currentPillar = pillars[activePillarIdx] || pillars[0];
+  const CurrentIcon = currentPillar.icon;
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
     const ctx = gsap.context(() => {
-      // 1. Badge & Subtitle entrance
-      if (headerRef.current) {
+      // 1. Content Entrance
+      if (rightRef.current) {
         gsap.fromTo(
-          headerRef.current.children,
-          { opacity: 0, y: 20 },
+          rightRef.current.children,
+          { opacity: 0, y: 25 },
           {
             opacity: 1,
             y: 0,
             duration: 0.8,
+            stagger: 0.08,
             ease: "power2.out",
             scrollTrigger: {
-              trigger: headerRef.current,
-              start: "top 88%",
+              trigger: rightRef.current,
+              start: "top 85%",
               once: true,
             },
           }
         );
       }
 
-      // 2. TextSplit Scrub for Main Headline
-      const titleWords = titleRef.current?.querySelectorAll(".split-title-word");
-      if (titleWords && titleWords.length > 0) {
-        gsap.to(titleWords, {
-          y: "0%",
-          opacity: 1,
-          stagger: 0.04,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: titleRef.current,
-            start: "top 85%",
-            end: "bottom 55%",
-            scrub: 0.8,
-          },
-        });
-      }
-
-      // 3. 2-Card Pairs Staggered Entrance
-      if (gridRef.current) {
+      // 2. Showcase Visual Entrance
+      if (leftRef.current) {
         gsap.fromTo(
-          gridRef.current.children,
-          { opacity: 0, y: 35 },
+          leftRef.current,
+          { opacity: 0, y: 30, scale: 0.96 },
           {
             opacity: 1,
             y: 0,
-            duration: 0.8,
-            stagger: 0.12,
-            ease: "power3.out",
+            scale: 1,
+            duration: 0.9,
+            ease: "power2.out",
             scrollTrigger: {
-              trigger: gridRef.current,
-              start: "top 82%",
+              trigger: leftRef.current,
+              start: "top 85%",
               once: true,
             },
           }
@@ -242,138 +245,230 @@ export function MagnificentDifference() {
     }, sectionRef);
 
     return () => ctx.revert();
-  }, []);
+  }, [isRtl]);
 
   return (
     <section
       ref={sectionRef}
       id="difference"
-      className="relative py-16 sm:py-24 px-4 sm:px-6 lg:px-8 bg-[#FDFBF7] border-t border-[#C8A232]/25 overflow-hidden"
+      className="relative py-20 sm:py-28 px-4 sm:px-6 lg:px-8 border-t-2 border-[#C8A232]/40 overflow-hidden z-20 shadow-2xl"
       dir={isRtl ? "rtl" : "ltr"}
     >
-      {/* Background Soft Royal Ambient Glows */}
-      <div className="absolute top-1/3 -left-20 w-96 h-96 bg-[#C8A232]/5 rounded-full blur-[150px] pointer-events-none" />
-      <div className="absolute bottom-1/3 -right-20 w-96 h-96 bg-[#022256]/5 rounded-full blur-[150px] pointer-events-none" />
+      {/* 1. Split Section Background: Left is Royal Blue | Right is Warm Gold */}
+      <SplitSectionBackground />
 
-      <div className="max-w-6xl mx-auto relative z-10">
-        
-        {/* Section Header */}
-        <div ref={headerRef} className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
-          <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-[#C8A232]/40 bg-white shadow-xs mb-3.5">
-            <Crown className="w-3.5 h-3.5 text-[#955904]" />
-            <span className="text-xs font-bold text-[#955904] uppercase tracking-wider font-mono">
-              {t("badge")}
-            </span>
+      {/* 2. Content Grid */}
+      <div className="max-w-7xl mx-auto relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+          
+          {/* RIGHT COLUMN (Warm Gold / Parchment Side): 7 Cols on desktop */}
+          {/* Safe buffer pl-16 xl:pl-24 guarantees zero ribbon collision */}
+          <div
+            ref={rightRef}
+            className={`lg:col-span-7 flex flex-col ${
+              isRtl ? "order-2 lg:order-1" : "order-2 lg:order-2"
+            } pl-0 lg:pl-16 xl:pl-24`}
+          >
+            {/* Category Kicker Badge — From the Brochure: OUR APPROACH */}
+            <div className="flex items-center gap-2.5 mb-4">
+              <span className="h-[1px] w-6 bg-[#C8A232]/70" />
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[#C8A232]/50 bg-white/80 shadow-xs backdrop-blur-xs">
+                <Crown className="w-3.5 h-3.5 text-[#9A5F13]" />
+                <span className="text-xs font-bold text-[#9A5F13] uppercase tracking-wider font-mono">
+                  {isRtl ? "نهجنا الطبي • دقة وإتقان دائم" : "OUR APPROACH • WHERE PRECISION MEETS PERFECTION"}
+                </span>
+              </div>
+              <span className="h-[1px] w-6 bg-[#C8A232]/70" />
+            </div>
+
+            {/* Two-Tone Luxury Headline — Aligned with Brochure */}
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-[40px] font-bold font-display leading-[1.28] mb-3">
+              <span className="block text-[#0F266A]">
+                {isRtl ? "معايير دقيقة لطب وتجميل الأسنان" : "Where Precision Meets Perfection"}
+              </span>
+              <span className="block text-[#9A5F13] text-xl sm:text-2xl lg:text-3xl mt-1">
+                {isRtl ? "تكنولوجيا متطورة • عناية لطيفة • نتائج دائمة" : "Advanced Technology • Gentle Care • Lasting Results"}
+              </span>
+            </h2>
+
+            {/* Subtitle */}
+            <p className="text-sm sm:text-base md:text-[17px] text-[#2A3B56] leading-relaxed mb-6 font-body">
+              {isRtl
+                ? "نلتزم بتقديم حلول علاجية وتجميلية متكاملة مصممة خصيصاً لكل مريض، تجمع بين أحدث ماسحات الـ 3D والمواد السويسرية المعتمدة."
+                : "Advanced digital technology, personalized treatment plans, and comfortable patient experience designed for your lasting oral health."}
+            </p>
+
+            {/* 6 Pillars in an Elegant 2-Column Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
+              {pillars.map((pillar, idx) => {
+                const IconComponent = pillar.icon;
+                const isSelected = activePillarIdx === idx;
+
+                return (
+                  <button
+                    key={pillar.id}
+                    type="button"
+                    onClick={() => setActivePillarIdx(idx)}
+                    className={`group text-start p-3.5 rounded-2xl border transition-all duration-300 cursor-pointer flex items-start gap-3 relative ${
+                      isSelected
+                        ? "bg-white border-[#C8A232] shadow-md ring-2 ring-[#C8A232]/25 scale-101"
+                        : "bg-white/85 border-[#C8A232]/35 hover:border-[#C8A232] hover:bg-white shadow-xs"
+                    }`}
+                  >
+                    {/* Gold Circular Icon Seal */}
+                    <div
+                      className={`w-9 h-9 rounded-full flex items-center justify-center shrink-0 transition-transform group-hover:scale-105 ${
+                        isSelected
+                          ? "bg-[#012052] text-[#DFBF57] shadow-sm"
+                          : "bg-[#FAF1DC] border border-[#C8A232]/40 text-[#9A5F13]"
+                      }`}
+                    >
+                      <IconComponent className="w-4 h-4" />
+                    </div>
+
+                    <div className="min-w-0 flex-1">
+                      <div className="flex items-center justify-between gap-1 mb-1">
+                        <h3
+                          className={`text-xs sm:text-sm font-bold font-display truncate ${
+                            isSelected ? "text-[#0F266A]" : "text-[#2A3B56] group-hover:text-[#0F266A]"
+                          }`}
+                        >
+                          {pillar.title}
+                        </h3>
+                        <span className="text-[10px] font-mono font-bold text-[#9A5F13] shrink-0">
+                          {pillar.num}
+                        </span>
+                      </div>
+                      <p className="text-[11px] text-[#5B6782] line-clamp-1 font-body">
+                        {pillar.desc}
+                      </p>
+                    </div>
+
+                    {/* Active Golden Notch */}
+                    {isSelected && (
+                      <span className={`absolute top-1/2 -translate-y-1/2 ${isRtl ? "-left-1" : "-right-1"} w-2 h-2 rounded-full bg-[#9A5F13] shadow-xs`} />
+                    )}
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Active Pillar Specs & Official Stamp */}
+            <div className="p-4 rounded-2xl bg-white/95 border border-[#C8A232]/35 shadow-sm mb-6">
+              <div className="flex items-center justify-between gap-2 mb-3 pb-2.5 border-b border-[#C8A232]/25">
+                <div className="flex items-center gap-2">
+                  <div className="w-6 h-6 rounded-lg bg-[#FAF1DC] text-[#9A5F13] flex items-center justify-center">
+                    <CurrentIcon className="w-3.5 h-3.5" />
+                  </div>
+                  <span className="text-xs font-bold text-[#0F266A]">
+                    {currentPillar.title}
+                  </span>
+                </div>
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#FAF1DC] border border-[#C8A232]/40 text-[10px] font-mono font-bold text-[#9A5F13]">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#9A5F13] animate-ping" />
+                  <span>{currentPillar.metric}</span>
+                </span>
+              </div>
+
+              <div className="space-y-2 mb-3">
+                {currentPillar.specs.map((spec, sIdx) => (
+                  <div key={sIdx} className="flex items-start gap-2.5 text-xs text-[#0F266A] font-medium">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-[#9A5F13] shrink-0 mt-0.5" />
+                    <span>{spec}</span>
+                  </div>
+                ))}
+              </div>
+
+              <div className="pt-2.5 border-t border-[#C8A232]/20 flex items-center gap-2 text-[11px] font-mono font-bold text-[#9A5F13]">
+                <Shield className="w-3.5 h-3.5 shrink-0" />
+                <span>{currentPillar.stamp}</span>
+              </div>
+            </div>
+
+            {/* Direct Booking Jump CTA */}
+            <div>
+              <a
+                href="#book"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-[#9A5F13] via-[#C8A232] to-[#9A5F13] text-white font-bold text-xs uppercase tracking-wider shadow-md hover:shadow-lg transition-all font-body cursor-pointer"
+              >
+                <span>{isRtl ? "احجز استشارتك الطبية الآن" : "Book Clinical Consultation"}</span>
+                <ArrowIcon className="w-3.5 h-3.5 text-white" />
+              </a>
+            </div>
+
           </div>
 
-          <h2
-            ref={titleRef}
-            className="text-2xl sm:text-3xl lg:text-4xl font-bold font-display text-[#012968] mb-3 leading-tight"
+          {/* LEFT COLUMN (Deep Royal Blue Side): 5 Cols on desktop */}
+          {/* Centered comfortably inside the Royal Blue zone with max-w-[420px], keeping 50-60px clearance to the ribbon */}
+          <div
+            ref={leftRef}
+            className={`lg:col-span-5 relative flex justify-center items-center ${
+              isRtl ? "order-1 lg:order-2" : "order-1 lg:order-1"
+            } w-full`}
           >
-            <SplitTextScrub text={t("title")} wordClassName="split-title-word" />
-          </h2>
+            <div className="w-full max-w-[390px] xl:max-w-[420px] mx-auto">
+              
+              {/* Clinical Pillar Showcase Card */}
+              <div className="group relative rounded-3xl bg-gradient-to-b from-[#0B2456] via-[#07193D] to-[#020B1D] border-2 border-[#C8A232]/70 p-4 shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden">
+                
+                {/* Thin Top 24K Gold Bar */}
+                <div className="h-1 w-full bg-gradient-to-r from-[#9A5F13] via-[#DFBF57] to-[#9A5F13] rounded-full mb-3.5" />
 
-          <p className="text-xs sm:text-sm md:text-base text-[#5B6782] font-body leading-relaxed max-w-2xl mx-auto">
-            {t("subtitle")}
-          </p>
-        </div>
-
-        {/* ============================================================== */}
-        {/* 2 CARDS SIDE-BY-SIDE (3 Balanced Rows • Half the Scroll Length) */}
-        {/* ============================================================== */}
-        <div
-          ref={gridRef}
-          className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8"
-        >
-          {pillars.map((pillar) => {
-            const IconComponent = pillar.icon;
-
-            return (
-              <div
-                key={pillar.id}
-                className="group relative rounded-3xl bg-white border-2 border-[#C8A232]/30 hover:border-[#C8A232] shadow-[0_12px_40px_rgba(2,34,86,0.06)] hover:shadow-[0_22px_55px_rgba(200,162,50,0.15)] transition-all duration-300 transform hover:-translate-y-1.5 flex flex-col justify-between overflow-hidden"
-              >
-                {/* Thin Top Gold Shimmer Accent Line */}
-                <div className="h-1.5 w-full bg-gradient-to-r from-[#955904] via-[#DFBF57] to-[#955904]" />
-
-                {/* Top Photo with Luxury Vignette and Floating Badges */}
-                <div className="relative w-full h-[200px] sm:h-[225px] overflow-hidden bg-[#022256]">
+                {/* High-Resolution Viewport */}
+                <div className="relative w-full h-64 sm:h-72 md:h-80 rounded-2xl overflow-hidden bg-[#020B1D] border border-[#DFBF57]/30 shadow-inner">
                   <Image
-                    src={pillar.image}
-                    alt={pillar.title}
+                    src={currentPillar.image}
+                    alt={currentPillar.title}
                     fill
-                    sizes="(max-width: 768px) 100vw, 550px"
+                    sizes="(max-width: 1024px) 100vw, 420px"
                     className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
+                    priority
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none" />
-                  <div className="absolute inset-0 bg-gradient-to-tr from-[#022256]/30 via-transparent to-[#C8A232]/15 pointer-events-none" />
 
-                  {/* Top Row Badges: Number Pill & Pillar Icon */}
-                  <div className="absolute top-3.5 left-3.5 right-3.5 flex items-center justify-between">
-                    <span className="text-xs font-mono font-bold text-white bg-[#012968]/90 border border-white/20 px-3 py-1 rounded-full shadow-md backdrop-blur-md">
-                      {pillar.num} / 06
+                  {/* Gradient Vignettes */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-black/20 pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-tr from-[#020B1D]/40 via-transparent to-[#DFBF57]/20 pointer-events-none" />
+
+                  {/* Top Badges */}
+                  <div className="absolute top-3 left-3 right-3 flex items-center justify-between">
+                    <span className="text-[10px] sm:text-xs font-mono font-bold text-white bg-[#012052]/90 border border-white/20 px-3 py-1 rounded-full shadow-md backdrop-blur-md">
+                      {currentPillar.num} / 06
                     </span>
 
-                    <div className="w-10 h-10 rounded-xl bg-[#012968]/95 border border-[#DFBF57]/50 text-[#DFBF57] flex items-center justify-center shadow-lg backdrop-blur-md">
-                      <IconComponent className="w-5 h-5" />
-                    </div>
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/75 border border-[#DFBF57]/50 text-[10px] sm:text-xs font-mono font-bold text-[#DFBF57] shadow-md backdrop-blur-md">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#DFBF57] animate-ping" />
+                      <span>{currentPillar.metric}</span>
+                    </span>
                   </div>
 
-                  {/* Bottom Row: Signature Metric & Badge Tag */}
-                  <div className="absolute bottom-3 left-3.5 right-3.5 flex items-center justify-between text-white pointer-events-none">
-                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/70 border border-white/25 text-[10px] sm:text-[11px] font-mono font-bold text-white shadow-md backdrop-blur-md">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#DFBF57] animate-ping" />
-                      <span>{pillar.metric}</span>
+                  {/* Bottom Text Over Photo */}
+                  <div className="absolute bottom-3 left-3 right-3 text-white pointer-events-none">
+                    <span className="text-[10px] sm:text-[11px] font-mono tracking-wider uppercase text-[#DFBF57] font-bold block mb-1">
+                      {isRtl ? currentPillar.badgeAr : currentPillar.badgeEn}
                     </span>
-
-                    <span className="text-[11px] font-mono font-bold text-white/80 drop-shadow">
-                      {isRtl ? pillar.badgeAr : pillar.badgeEn}
-                    </span>
+                    <h3 className="text-base sm:text-lg font-bold font-display text-white leading-snug drop-shadow-sm">
+                      {currentPillar.title}
+                    </h3>
                   </div>
                 </div>
 
-                {/* Card Body Content */}
-                <div className="p-6 sm:p-7 flex flex-col justify-between flex-1">
-                  <div>
-                    {/* Title */}
-                    <h3 className="text-xl sm:text-2xl font-bold font-display text-[#012968] mb-2 leading-snug group-hover:text-[#955904] transition-colors">
-                      {pillar.title}
-                    </h3>
-
-                    {/* Narrative Description */}
-                    <p className="text-xs sm:text-sm text-[#5B6782] font-body leading-relaxed mb-5">
-                      {pillar.desc}
-                    </p>
-
-                    {/* 3 Verified Clinical Bullets */}
-                    <div className="space-y-2.5 mb-6">
-                      {pillar.specs.map((spec, sIdx) => (
-                        <div key={sIdx} className="flex items-start gap-2.5">
-                          <div className="w-4 h-4 rounded-full bg-[#012968] text-[#DFBF57] flex items-center justify-center shrink-0 mt-0.5 shadow-xs">
-                            <CheckCircle2 className="w-3 h-3" />
-                          </div>
-                          <span className="text-xs sm:text-sm font-bold text-[#012968] leading-tight">
-                            {spec}
-                          </span>
-                        </div>
-                      ))}
-                    </div>
+                {/* Quality Standard Footer */}
+                <div className="mt-3.5 pt-3 border-t border-[#DFBF57]/30 flex items-center justify-between text-[#DFBF57] text-xs font-mono">
+                  <div className="flex items-center gap-1.5">
+                    <CheckCircle2 className="w-3.5 h-3.5" />
+                    <span>CERTIFIED MEDICAL EXCELLENCE</span>
                   </div>
-
-                  {/* Official Verified Stamp Line */}
-                  <div className="pt-3.5 border-t border-[#C8A232]/25 flex items-center gap-2">
-                    <Shield className="w-4 h-4 text-[#955904] shrink-0" />
-                    <span className="text-[11px] sm:text-xs font-bold text-[#955904] font-mono truncate">
-                      {pillar.stamp}
-                    </span>
-                  </div>
+                  <span className="text-[11px] text-white/70">
+                    {isRtl ? "معايير دقيقة معتمدة" : "European Clinical Standard"}
+                  </span>
                 </div>
 
               </div>
-            );
-          })}
-        </div>
 
+            </div>
+          </div>
+
+        </div>
       </div>
     </section>
   );

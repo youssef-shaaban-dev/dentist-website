@@ -1,151 +1,337 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
+import Image from "next/image";
 import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useTranslations } from "next-intl";
 import { useLanguage } from "@/i18n/IntlProviderWrapper";
-
-// Mathematically defined Organic Dental Smile Arch (قوس الابتسامة الملكي)
-// 13 harmonized points with a horizontal tangent at the apex (zero sharp tip, 100% rounded dental dome)
-const FLAT_RECT =
-  "polygon(0% 0%, 100% 0%, 100% 100%, 92% 100%, 82% 100%, 72% 100%, 62% 100%, 54% 100%, 50% 100%, 46% 100%, 38% 100%, 28% 100%, 18% 100%, 8% 100%, 0% 100%)";
-const SMILE_ARCH =
-  "polygon(0% 0%, 100% 0%, 100% 100%, 92% 98%, 82% 94%, 72% 89.5%, 62% 86%, 54% 84.2%, 50% 84%, 46% 84.2%, 38% 86%, 28% 89.5%, 18% 94%, 8% 98%, 0% 100%)";
+import { SplitSectionBackground } from "@/components/ui/SplitSectionBackground";
+import {
+  Sparkles,
+  ArrowRight,
+  ArrowLeft,
+  Play,
+  X,
+  MapPin,
+  CalendarCheck,
+  ShieldCheck,
+  Building2,
+  Crown,
+} from "lucide-react";
 
 export function HeroSection() {
   const { isRtl } = useLanguage();
-  const tHero = useTranslations("hero");
+  const t = useTranslations("hero");
+  const ArrowIcon = isRtl ? ArrowLeft : ArrowRight;
 
   const heroRef = useRef<HTMLElement>(null);
-  const clipContainerRef = useRef<HTMLDivElement>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const scrollIndicatorRef = useRef<HTMLAnchorElement>(null);
+  const rightContentRef = useRef<HTMLDivElement>(null);
+  const leftVisualRef = useRef<HTMLDivElement>(null);
+
+  const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
 
   useEffect(() => {
-    // 1. Ensure video plays immediately across all browsers
-    if (videoRef.current) {
-      videoRef.current.defaultMuted = true;
-      videoRef.current.muted = true;
-      const playPromise = videoRef.current.play();
-      if (playPromise !== undefined) {
-        playPromise.catch(() => {
-          // Auto-play fallback
-        });
-      }
-    }
-
-    gsap.registerPlugin(ScrollTrigger);
-
     const ctx = gsap.context(() => {
-      // 2. Initial Smooth Optical Entrance
-      gsap.fromTo(
-        videoRef.current,
-        { scale: 1.05, opacity: 0 },
-        { scale: 1, opacity: 1, duration: 1.4, ease: "power2.out" }
-      );
+      // 1. Right Content Entrance
+      if (rightContentRef.current) {
+        gsap.fromTo(
+          rightContentRef.current.children,
+          { opacity: 0, y: 25 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            stagger: 0.08,
+            ease: "power2.out",
+            delay: 0.15,
+          }
+        );
+      }
 
-      gsap.fromTo(
-        scrollIndicatorRef.current,
-        { opacity: 0, y: 15 },
-        { opacity: 1, y: 0, duration: 1, ease: "power2.out", delay: 0.6 }
-      );
-
-      // 3. Prestigious Dental "Smile Arch" GSAP Morphing on Scroll
-      // Replaces mechanical polygons with an organic dental smile curve that seamlessly reveals the next section
-      if (clipContainerRef.current && heroRef.current) {
-        const scrollTl = gsap.timeline({
-          scrollTrigger: {
-            trigger: heroRef.current,
-            start: "top top",
-            end: "55% top", // Completes early in the scroll so the smile arch is immediately prominent
-            scrub: 0.8,
-          },
-        });
-
-        scrollTl
-          // A. Morph bottom edge into the organic Dental Smile Arch (قوس الابتسامة)
-          // power1.out ensures immediate responsive curve from the very first scroll touch
-          .fromTo(
-            clipContainerRef.current,
-            { clipPath: FLAT_RECT },
-            { clipPath: SMILE_ARCH, ease: "power1.out", duration: 1 },
-            0
-          )
-          // B. Gentle cinematic parallax depth zoom inside the video
-          .fromTo(
-            videoRef.current,
-            { yPercent: 0, scale: 1 },
-            { yPercent: 10, scale: 1.07, ease: "none", duration: 1 },
-            0
-          )
-          // C. Rapid early fadeout for the bottom scroll prompt
-          .to(
-            scrollIndicatorRef.current,
-            { opacity: 0, y: 15, duration: 0.18, ease: "power2.in" },
-            0
-          );
+      // 2. Left Visual Entrance
+      if (leftVisualRef.current) {
+        gsap.fromTo(
+          leftVisualRef.current,
+          { opacity: 0, scale: 0.96, y: 20 },
+          {
+            opacity: 1,
+            scale: 1,
+            y: 0,
+            duration: 0.9,
+            ease: "power2.out",
+            delay: 0.1,
+          }
+        );
       }
     }, heroRef);
 
     return () => ctx.revert();
-  }, []);
+  }, [isRtl]);
+
+  const statsList = [
+    {
+      val: t("stats.clinicsVal"),
+      label: isRtl ? "٣ مراكز طبية متطورة" : "3 Advanced Centers",
+      icon: Building2,
+    },
+    {
+      val: t("stats.digitalVal"),
+      label: isRtl ? "١٠٠٪ رقمي بالكامل" : "100% In-House CAD/CAM",
+      icon: ShieldCheck,
+    },
+    {
+      val: t("stats.patientsVal"),
+      label: isRtl ? "+١٥,٠٠٠ حالة ناجحة" : "15,000+ Happy Patients",
+      icon: Sparkles,
+    },
+    {
+      val: "0.01 mm",
+      label: isRtl ? "دقة مسح ميكرونية" : "Micron Precision",
+      icon: Crown,
+    },
+  ];
 
   return (
     <section
       ref={heroRef}
       id="home"
-      aria-label="Cinematic Video Showcase"
-      className="relative z-10 w-full h-[100dvh] min-h-[100dvh] flex flex-col justify-end items-center overflow-hidden select-none bg-[#FDFBF7]"
+      aria-label="Magnificent Smile Dental Center"
+      className="relative z-10 w-full min-h-[100dvh] flex flex-col justify-between overflow-hidden select-none bg-[#FDFBF7]"
       dir={isRtl ? "rtl" : "ltr"}
     >
-      {/* 1. Master Clipping Canvas with Dynamic Dental Smile Arch Morphing */}
-      <div
-        ref={clipContainerRef}
-        className="absolute inset-0 w-full h-full overflow-hidden will-change-[clip-path]"
-        style={{
-          clipPath: FLAT_RECT,
-        }}
-      >
-        {/* Solid dark base so video never flashes before loading */}
-        <div className="absolute inset-0 bg-[#022256]" />
+      {/* 1. Main Stage Container (Clean, Stable, Zero Video Morphing Distortion) */}
+      <div className="relative w-full flex-1 flex flex-col justify-center overflow-hidden pt-24 sm:pt-28 lg:pt-32 pb-12 lg:pb-16">
+        {/* 2. Signature Multi-Line 3D Ribbon Split Background */}
+        <SplitSectionBackground />
 
-        {/* Cinematic Background Video (Fills 100% of Screen to the Absolute Bottom Edge) */}
-        <video
-          ref={videoRef}
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="auto"
-          poster="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=2160&q=85"
-          className="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none will-change-transform"
-        >
-          <source src="/videos/hero-dental.mp4?v=teeth" type="video/mp4" />
-          <source src="/videos/dentist-teeth-brush-39480.mp4" type="video/mp4" />
-          <source src="https://assets.mixkit.co/videos/39480/39480-720.mp4" type="video/mp4" />
-        </video>
+        {/* 3. Hero Main Content Grid */}
+        <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 relative z-10 my-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center min-h-[560px] lg:min-h-[620px]">
+            
+            {/* RIGHT COLUMN (Warm Gold / Parchment Side): 7 Cols on desktop */}
+            {/* Safe buffer pl-16 xl:pl-24 guarantees zero ribbon collision */}
+            <div
+              ref={rightContentRef}
+              className={`lg:col-span-7 flex flex-col justify-center ${
+                isRtl ? "order-2 lg:order-1" : "order-2 lg:order-2"
+              } pl-0 lg:pl-16 xl:pl-24`}
+            >
+              {/* Top Kicker Line — Pure Dental Innovation */}
+              <div className="flex items-center gap-3 mb-4 sm:mb-5">
+                <span className="h-[1px] w-8 sm:w-12 bg-[#9A5F13]/60" />
+                <span className="text-[11px] sm:text-xs font-mono font-bold tracking-[0.2em] uppercase text-[#9A5F13]">
+                  {isRtl
+                    ? "أحدث ابتكارات التكنولوجيا الطبية في طب وتجميل الأسنان"
+                    : "ADVANCED DENTAL TECHNOLOGY & DIGITAL PRECISION"}
+                </span>
+                <span className="h-[1px] w-8 sm:w-12 bg-[#9A5F13]/60" />
+              </div>
 
-        {/* Crisp Light Black Overlay */}
-        <div className="absolute inset-0 bg-black/25 z-[1] pointer-events-none" />
+              {/* Two-Tone Luxury Headline — Grounded in Dental Precision */}
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[52px] font-bold font-display leading-[1.18] mb-5 tracking-tight">
+                <span className="block text-[#0F266A]">
+                  {isRtl ? "ابتسامة صحية وجمال طبيعي." : "A beautiful smile."}
+                </span>
+                <span className="block text-[#9A5F13] font-display italic mt-1 sm:mt-2">
+                  {isRtl ? "مصممة بأعلى معايير الدقة." : "Engineered with precision."}
+                </span>
+              </h1>
+
+              {/* Subtitle Paragraph — Pure Dental Clinical Scope */}
+              <p className="text-sm sm:text-base md:text-lg text-[#2A3B56] font-body leading-relaxed max-w-xl mb-8">
+                {isRtl
+                  ? "نجمع بين المسح الضوئي الرقمي ثلاثي الأبعاد، والتركيبات الخزفية السويسرية فائقة الدقة، والتقويم الشفاف، في بيئة علاجية مجهزة بالكامل لراحتك التامة."
+                  : "Advanced digital 3D scanning, ultra-thin Swiss veneers, crystal clear aligners, and personalized clinical care — designed for natural comfort and lasting results."}
+              </p>
+
+              {/* Action Buttons */}
+              <div className="flex flex-wrap items-center gap-3 sm:gap-4 mb-8">
+                {/* Primary Button */}
+                <a
+                  href="#book"
+                  className="inline-flex items-center gap-2.5 px-7 py-3.5 sm:px-8 sm:py-4 rounded-xl bg-[#012052] hover:bg-[#022A6D] text-white font-bold text-xs sm:text-sm tracking-wider uppercase shadow-[0_6px_25px_rgba(2,34,86,0.35)] hover:shadow-[0_10px_35px_rgba(2,34,86,0.5)] transition-all duration-300 transform hover:-translate-y-0.5 cursor-pointer border border-[#C8A232]/40"
+                >
+                  <CalendarCheck className="w-4 h-4 text-[#DFBF57]" />
+                  <span>{isRtl ? "احجز موعد استشارتك" : "BOOK APPOINTMENT"}</span>
+                  <ArrowIcon className="w-4 h-4 text-[#DFBF57]" />
+                </a>
+
+                {/* Secondary Button */}
+                <a
+                  href="#clinics"
+                  className="inline-flex items-center gap-2 px-6 py-3.5 sm:py-4 rounded-xl bg-white/90 hover:bg-white border border-[#C8A232]/60 hover:border-[#C8A232] text-[#0F266A] font-bold text-xs sm:text-sm tracking-wider uppercase transition-all duration-300 shadow-xs"
+                >
+                  <MapPin className="w-4 h-4 text-[#9A5F13]" />
+                  <span>{isRtl ? "فروعنا ومراكزنا" : "OUR CLINICS"}</span>
+                  <span className="text-[#9A5F13]">↗</span>
+                </a>
+
+                {/* Watch Video Pill Button */}
+                <button
+                  type="button"
+                  onClick={() => setIsVideoModalOpen(true)}
+                  className="inline-flex items-center gap-2 px-4 py-2 sm:py-2.5 rounded-full bg-[#FAF1DC] border border-[#C8A232]/50 hover:bg-[#F3E4C0] text-[#9A5F13] text-xs font-bold font-mono transition-all cursor-pointer shadow-xs"
+                >
+                  <div className="w-5 h-5 rounded-full bg-[#9A5F13] text-white flex items-center justify-center">
+                    <Play className="w-2.5 h-2.5 fill-current ml-0.5" />
+                  </div>
+                  <span>{isRtl ? "شاهد جولة العيادات" : "CLINIC TOUR"}</span>
+                </button>
+              </div>
+
+              {/* 4 Quick Clinical Badges */}
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 pt-5 border-t border-[#C8A232]/30 max-w-xl">
+                {statsList.map((stat, sIdx) => {
+                  const Icon = stat.icon;
+                  return (
+                    <div key={sIdx} className="flex flex-col">
+                      <div className="flex items-center gap-1.5 mb-0.5">
+                        <Icon className="w-3.5 h-3.5 text-[#9A5F13]" />
+                        <span className="text-xs sm:text-sm font-bold font-mono text-[#0F266A]">
+                          {stat.val}
+                        </span>
+                      </div>
+                      <span className="text-[10px] sm:text-[11px] text-[#5B6782] font-body line-clamp-1">
+                        {stat.label}
+                      </span>
+                    </div>
+                  );
+                })}
+              </div>
+
+            </div>
+
+            {/* LEFT COLUMN (Deep Royal Blue Side): 5 Cols on desktop */}
+            {/* Centered comfortably inside the Royal Blue zone with max-w-[420px], keeping 50-60px clearance to the ribbon */}
+            <div
+              ref={leftVisualRef}
+              className={`lg:col-span-5 relative flex justify-center items-center ${
+                isRtl ? "order-1 lg:order-2" : "order-1 lg:order-1"
+              } w-full`}
+            >
+              <div className="w-full max-w-[380px] xl:max-w-[420px] mx-auto relative group">
+                
+                {/* Subtle Glow behind Frame */}
+                <div className="absolute -inset-4 bg-gradient-to-tr from-[#C8A232]/20 via-[#DFBF57]/10 to-transparent rounded-full blur-2xl pointer-events-none" />
+
+                {/* Queen Portrait Frame with 24K Sculpted Gold Trim */}
+                <div className="relative rounded-3xl overflow-hidden border-2 border-[#C8A232]/80 shadow-[0_25px_60px_rgba(0,0,0,0.6)] bg-[#020B1D]">
+                  
+                  {/* Gold Shimmer Bar on Top */}
+                  <div className="h-1.5 w-full bg-gradient-to-r from-[#9A5F13] via-[#DFBF57] to-[#9A5F13]" />
+
+                  {/* Queen Portrait */}
+                  <div className="relative w-full aspect-[4/5] sm:aspect-[3/4] overflow-hidden bg-[#020B1D]">
+                    <Image
+                      src="/images/hero-queen.jpg"
+                      alt="Magnificent Smile — Precision Aesthetic Dentistry"
+                      fill
+                      sizes="(max-width: 1024px) 100vw, 420px"
+                      className="object-cover object-center transition-transform duration-1000 ease-out group-hover:scale-103"
+                      priority
+                    />
+
+                    {/* Royal Blue Atmosphere Vignettes */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#020B1D] via-transparent to-transparent opacity-80 pointer-events-none" />
+                    <div className="absolute inset-0 bg-gradient-to-tr from-[#020B1D]/40 via-transparent to-[#DFBF57]/20 pointer-events-none" />
+
+                    {/* Top Floating Badge */}
+                    <div className="absolute top-3.5 left-3.5 right-3.5 flex items-center justify-between">
+                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#012052]/90 border border-[#DFBF57]/50 text-white text-[11px] font-mono font-bold shadow-md backdrop-blur-md">
+                        <Crown className="w-3.5 h-3.5 text-[#DFBF57]" />
+                        <span>HESY-RA HERITAGE</span>
+                      </span>
+
+                      <button
+                        type="button"
+                        onClick={() => setIsVideoModalOpen(true)}
+                        className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/60 hover:bg-[#012052] border border-white/20 text-white text-[10px] font-mono font-bold shadow-md backdrop-blur-md transition-colors cursor-pointer"
+                        title={isRtl ? "تشغيل جولة الفيديو" : "Play Clinic Video"}
+                      >
+                        <Play className="w-2.5 h-2.5 text-[#DFBF57] fill-current" />
+                        <span>{isRtl ? "جولة العيادات" : "TOUR"}</span>
+                      </button>
+                    </div>
+
+                    {/* Bottom Floating Card: Dental Precision Badge */}
+                    <div className="absolute bottom-3.5 left-3.5 right-3.5 p-3 rounded-2xl bg-[#012052]/90 border border-[#C8A232]/50 text-white shadow-xl backdrop-blur-md">
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <span className="text-[10px] font-mono font-bold text-[#DFBF57] uppercase tracking-wider block">
+                            {isRtl ? "معايير الجمال الطبيعي" : "NATURAL AESTHETICS"}
+                          </span>
+                          <span className="text-xs font-bold font-display text-white">
+                            {isRtl ? "تصميم وتجميل الابتسامة الرقمي" : "Digital Smile Architecture"}
+                          </span>
+                        </div>
+                        <Sparkles className="w-4 h-4 text-[#DFBF57]" />
+                      </div>
+                    </div>
+
+                  </div>
+
+                  {/* Footer Bar */}
+                  <div className="px-4 py-2.5 bg-[#010F28] border-t border-[#DFBF57]/30 flex items-center justify-between text-[#DFBF57] text-[11px] font-mono">
+                    <span>MAGNIFICENT SMILE</span>
+                    <span className="text-white/60">
+                      {isRtl ? "عيادات · تقويم شفاف · معمل" : "Clinics • Aligners • Lab"}
+                    </span>
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+
       </div>
 
-      {/* 2. Minimalist Floating Scroll Pill (Discreet, Crisp, Non-Intrusive) */}
-      <a
-        ref={scrollIndicatorRef}
-        href="#welcome"
-        aria-label="Scroll to Clinic Philosophy"
-        className="relative z-20 mb-8 sm:mb-10 inline-flex flex-col items-center gap-2 group cursor-pointer transition-transform duration-300 hover:scale-105"
-      >
-        <span className="text-xs sm:text-sm font-semibold tracking-wider text-white bg-black/45 border border-white/30 px-4 py-1.5 rounded-full shadow-lg font-body group-hover:bg-black/65 group-hover:border-[#DFBF57] transition-all">
-          {tHero("scrollPrompt")} ↓
-        </span>
+      {/* =================================================================== */}
+      {/* 6. CINEMATIC CLINIC TOUR VIDEO MODAL                               */}
+      {/* =================================================================== */}
+      {isVideoModalOpen && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-md animate-fadeIn"
+          role="dialog"
+          aria-modal="true"
+        >
+          <div className="relative w-full max-w-4xl rounded-3xl overflow-hidden border-2 border-[#C8A232] bg-black shadow-2xl">
+            {/* Modal Header */}
+            <div className="flex items-center justify-between p-4 bg-[#010E24] border-b border-[#C8A232]/40">
+              <div className="flex items-center gap-2 text-white">
+                <Crown className="w-4 h-4 text-[#DFBF57]" />
+                <span className="text-sm font-bold font-display">
+                  {isRtl ? "جولة في مراكز ماغنيفيسنت سمايل الطبية" : "Magnificent Smile Dental Centers Tour"}
+                </span>
+              </div>
 
-        {/* Delicate animated mouse indicator */}
-        <div className="w-5 h-8 rounded-full border-2 border-white/60 group-hover:border-[#DFBF57] flex items-start justify-center p-1 bg-black/25 shadow-sm transition-colors">
-          <div className="w-1 h-2 rounded-full bg-[#DFBF57] animate-bounce" />
+              <button
+                type="button"
+                onClick={() => setIsVideoModalOpen(false)}
+                className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/25 text-white flex items-center justify-center transition-colors cursor-pointer"
+                aria-label="Close video"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+
+            {/* Video Viewport */}
+            <div className="relative aspect-video w-full bg-black">
+              <video
+                autoPlay
+                controls
+                playsInline
+                className="w-full h-full object-contain"
+              >
+                <source src="/videos/hero-dental.mp4" type="video/mp4" />
+                <source src="/videos/dentist-teeth-brush-39480.mp4" type="video/mp4" />
+              </video>
+            </div>
+          </div>
         </div>
-      </a>
+      )}
     </section>
   );
 }

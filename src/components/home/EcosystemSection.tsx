@@ -1,12 +1,12 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useTranslations } from "next-intl";
 import { useLanguage } from "@/i18n/IntlProviderWrapper";
-import { SplitTextScrub } from "@/components/ui/SplitTextScrub";
+import { SplitSectionBackground } from "@/components/ui/SplitSectionBackground";
 import {
   Sparkles,
   Building2,
@@ -112,64 +112,51 @@ export function EcosystemSection() {
   const ArrowIcon = isRtl ? ArrowLeft : ArrowRight;
 
   const sectionRef = useRef<HTMLElement>(null);
-  const headerRef = useRef<HTMLDivElement>(null);
-  const titleRef = useRef<HTMLHeadingElement>(null);
-  const gridRef = useRef<HTMLDivElement>(null);
+  const rightRef = useRef<HTMLDivElement>(null);
+  const leftRef = useRef<HTMLDivElement>(null);
+
+  const [activePillarIdx, setActivePillarIdx] = useState<number>(1);
+  const currentPillar = pillars[activePillarIdx] || pillars[1];
+  const CurrentIcon = currentPillar.icon;
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
     const ctx = gsap.context(() => {
-      // 1. Badge & Subtitle entrance
-      if (headerRef.current) {
+      // 1. Right Column Entrance
+      if (rightRef.current) {
         gsap.fromTo(
-          headerRef.current.children,
-          { opacity: 0, y: 20 },
+          rightRef.current.children,
+          { opacity: 0, y: 25 },
           {
             opacity: 1,
             y: 0,
             duration: 0.8,
+            stagger: 0.08,
             ease: "power2.out",
             scrollTrigger: {
-              trigger: headerRef.current,
-              start: "top 88%",
+              trigger: rightRef.current,
+              start: "top 85%",
               once: true,
             },
           }
         );
       }
 
-      // 2. TextSplit Scrub for Main Headline
-      const titleWords = titleRef.current?.querySelectorAll(".split-title-word");
-      if (titleWords && titleWords.length > 0) {
-        gsap.to(titleWords, {
-          y: "0%",
-          opacity: 1,
-          stagger: 0.04,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: titleRef.current,
-            start: "top 85%",
-            end: "bottom 55%",
-            scrub: 0.8,
-          },
-        });
-      }
-
-      // 3. Pillars cards entrance
-      if (gridRef.current) {
+      // 2. Left Column Entrance
+      if (leftRef.current) {
         gsap.fromTo(
-          gridRef.current.children,
-          { opacity: 0, y: 35 },
+          leftRef.current,
+          { opacity: 0, y: 30, scale: 0.96 },
           {
             opacity: 1,
             y: 0,
-            duration: 0.85,
-            stagger: 0.15,
-            ease: "power3.out",
+            scale: 1,
+            duration: 0.9,
+            ease: "power2.out",
             scrollTrigger: {
-              trigger: gridRef.current,
-              start: "top 82%",
+              trigger: leftRef.current,
+              start: "top 85%",
               once: true,
             },
           }
@@ -178,163 +165,214 @@ export function EcosystemSection() {
     }, sectionRef);
 
     return () => ctx.revert();
-  }, []);
+  }, [isRtl]);
 
   return (
     <section
       ref={sectionRef}
       id="ecosystem"
-      className="relative py-20 sm:py-28 px-4 sm:px-6 lg:px-8 bg-[#F7F4EE] border-t border-[#C8A232]/25 overflow-hidden"
+      className="relative py-20 sm:py-28 px-4 sm:px-6 lg:px-8 border-t-2 border-[#C8A232]/40 overflow-hidden z-20 shadow-2xl"
       dir={isRtl ? "rtl" : "ltr"}
     >
-      {/* Background Royal Ambient Light */}
-      <div className="absolute top-1/3 left-0 w-96 h-96 bg-[#C8A232]/7 rounded-full blur-[150px] pointer-events-none" />
-      <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-[#022256]/6 rounded-full blur-[160px] pointer-events-none" />
+      {/* 1. Signature Multi-Line 3D Ribbon Split Background */}
+      <SplitSectionBackground />
 
+      {/* 2. Content Grid */}
       <div className="max-w-7xl mx-auto relative z-10">
-        
-        {/* ============================================================== */}
-        {/* SECTION HEADER                                                */}
-        {/* ============================================================== */}
-        <div ref={headerRef} className="text-center max-w-3xl mx-auto mb-14 sm:mb-18">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#C8A232]/40 bg-white shadow-xs mb-3.5">
-            <Crown className="w-3.5 h-3.5 text-[#955904]" />
-            <span className="text-xs font-bold text-[#955904] uppercase tracking-wider font-mono">
-              {t("tag")}
-            </span>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+          
+          {/* RIGHT COLUMN (Warm Gold / Parchment Side): 7 Cols on desktop */}
+          {/* Safe buffer pl-16 xl:pl-24 guarantees zero ribbon collision */}
+          <div
+            ref={rightRef}
+            className={`lg:col-span-7 flex flex-col ${
+              isRtl ? "order-2 lg:order-1" : "order-2 lg:order-2"
+            } pl-0 lg:pl-16 xl:pl-24`}
+          >
+            {/* Category Kicker Badge */}
+            <div className="flex items-center gap-2.5 mb-4">
+              <span className="h-[1px] w-6 bg-[#C8A232]/70" />
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[#C8A232]/50 bg-white/80 shadow-xs backdrop-blur-xs">
+                <Crown className="w-3.5 h-3.5 text-[#9A5F13]" />
+                <span className="text-xs font-bold text-[#9A5F13] uppercase tracking-wider font-mono">
+                  {t("tag")}
+                </span>
+              </div>
+              <span className="h-[1px] w-6 bg-[#C8A232]/70" />
+            </div>
+
+            {/* Two-Tone Luxury Headline */}
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-[40px] font-bold font-display leading-[1.28] mb-3">
+              <span className="block text-[#0F266A]">
+                {t("title")}
+              </span>
+              <span className="block text-[#9A5F13] text-xl sm:text-2xl lg:text-3xl mt-1">
+                {t(currentPillar.titleKey)}
+              </span>
+            </h2>
+
+            {/* Subtitle */}
+            <p className="text-sm sm:text-base md:text-[17px] text-[#2A3B56] leading-relaxed mb-6 font-body">
+              {t("subtitle")}
+            </p>
+
+            {/* 3 Pillar Selector Cards */}
+            <div className="space-y-3 mb-6 max-w-xl">
+              {pillars.map((pillar, idx) => {
+                const Icon = pillar.icon;
+                const isSelected = activePillarIdx === idx;
+
+                return (
+                  <button
+                    key={pillar.id}
+                    type="button"
+                    onClick={() => setActivePillarIdx(idx)}
+                    className={`w-full text-start p-3.5 sm:p-4 rounded-2xl border transition-all duration-300 cursor-pointer flex items-center justify-between gap-3 ${
+                      isSelected
+                        ? "bg-white border-[#C8A232] shadow-md ring-2 ring-[#C8A232]/25 scale-101"
+                        : "bg-white/85 border-[#C8A232]/35 hover:border-[#C8A232] hover:bg-white shadow-xs"
+                    }`}
+                  >
+                    <div className="flex items-center gap-3 min-w-0">
+                      <div
+                        className={`w-10 h-10 rounded-full flex items-center justify-center shrink-0 transition-transform ${
+                          isSelected
+                            ? "bg-[#012052] text-[#DFBF57] shadow-sm"
+                            : "bg-[#FAF1DC] border border-[#C8A232]/40 text-[#9A5F13]"
+                        }`}
+                      >
+                        <Icon className="w-5 h-5" />
+                      </div>
+
+                      <div className="min-w-0">
+                        <div className="flex items-center gap-2 mb-0.5">
+                          <span className="text-[10px] font-mono font-bold text-[#9A5F13]">
+                            {pillar.serial} / 03
+                          </span>
+                          <span className="text-xs font-bold text-[#0F266A] font-display truncate">
+                            {t(pillar.titleKey)}
+                          </span>
+                        </div>
+                        <p className="text-[11px] text-[#5B6782] line-clamp-1 font-body">
+                          {t(pillar.descKey)}
+                        </p>
+                      </div>
+                    </div>
+
+                    <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#FAF1DC] border border-[#C8A232]/35 text-[10px] font-mono font-bold text-[#9A5F13] shrink-0">
+                      <span>{t(pillar.metricKey)}</span>
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Active Pillar Distinction Perks */}
+            <div className="p-4 rounded-2xl bg-white/95 border border-[#C8A232]/35 shadow-sm mb-6 max-w-xl">
+              <span className="text-xs font-mono font-bold text-[#9A5F13] uppercase tracking-wider block mb-2.5">
+                {isRtl ? "مزايا وتكامل هذا الصرح" : "Integrated Pillar Advantages"}
+              </span>
+
+              <div className="space-y-2">
+                {(isRtl ? currentPillar.perksAr : currentPillar.perksEn).map((perk, pIdx) => (
+                  <div key={pIdx} className="flex items-start gap-2.5 text-xs text-[#0F266A] font-medium">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-[#9A5F13] shrink-0 mt-0.5" />
+                    <span>{perk}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Action CTA */}
+            <div>
+              <a
+                href={currentPillar.href}
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-[#9A5F13] via-[#C8A232] to-[#9A5F13] text-white font-bold text-xs uppercase tracking-wider shadow-md hover:shadow-lg transition-all font-body cursor-pointer"
+              >
+                <span>{t(currentPillar.ctaKey)}</span>
+                <ArrowIcon className="w-3.5 h-3.5 text-white" />
+              </a>
+            </div>
+
           </div>
 
-          <h2
-            ref={titleRef}
-            className="text-3xl sm:text-4xl md:text-5xl font-bold font-display text-[#012968] mb-3.5 leading-tight"
+          {/* LEFT COLUMN (Deep Royal Blue Side): 5 Cols on desktop */}
+          {/* Centered comfortably inside the Royal Blue zone with max-w-[420px], keeping 50-60px clearance to the ribbon */}
+          <div
+            ref={leftRef}
+            className={`lg:col-span-5 relative flex justify-center items-center ${
+              isRtl ? "order-1 lg:order-2" : "order-1 lg:order-1"
+            } w-full`}
           >
-            <SplitTextScrub text={t("title")} wordClassName="split-title-word" />
-          </h2>
+            <div className="w-full max-w-[390px] xl:max-w-[420px] mx-auto">
+              
+              {/* Luxury Spotlight Card */}
+              <div className="group relative rounded-3xl bg-gradient-to-b from-[#0B2456] via-[#07193D] to-[#020B1D] border-2 border-[#C8A232]/70 p-4 shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden">
+                
+                {/* Thin Top 24K Gold Bar */}
+                <div className="h-1 w-full bg-gradient-to-r from-[#9A5F13] via-[#DFBF57] to-[#9A5F13] rounded-full mb-3.5" />
 
-          <p className="text-sm sm:text-base md:text-lg text-[#5B6782] font-body leading-relaxed max-w-2xl mx-auto">
-            {t("subtitle")}
-          </p>
-        </div>
-
-        {/* ============================================================== */}
-        {/* 3 PRESTIGIOUS ECOSYSTEM PILLARS                                */}
-        {/* ============================================================== */}
-        <div
-          ref={gridRef}
-          className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 items-stretch"
-        >
-          {pillars.map((pillar) => {
-            const Icon = pillar.icon;
-            const isFeatured = pillar.featured;
-
-            return (
-              <div
-                key={pillar.id}
-                className={`group relative rounded-3xl bg-white overflow-hidden shadow-[0_15px_45px_rgba(2,34,86,0.06)] hover:shadow-[0_25px_65px_rgba(200,162,50,0.2)] transition-all duration-300 transform hover:-translate-y-2 flex flex-col justify-between ${
-                  isFeatured
-                    ? "border-2 border-[#C8A232] ring-4 ring-[#C8A232]/10"
-                    : "border-2 border-[#C8A232]/35 hover:border-[#C8A232]"
-                }`}
-              >
-                {/* Top 24K Gold Bar */}
-                <div
-                  className={`h-1.5 w-full bg-gradient-to-r ${
-                    isFeatured
-                      ? "from-[#955904] via-[#DFBF57] to-[#955904]"
-                      : "from-[#C8A232]/60 via-[#DFBF57]/80 to-[#C8A232]/60"
-                  }`}
-                />
-
-                {/* 1. High-Resolution Visual Header */}
-                <div className="relative w-full h-56 sm:h-60 overflow-hidden bg-[#022256]">
+                {/* Viewport Photo */}
+                <div className="relative w-full h-64 sm:h-72 md:h-80 rounded-2xl overflow-hidden bg-[#020B1D] border border-[#DFBF57]/30 shadow-inner">
                   <Image
-                    src={pillar.image}
-                    alt={t(pillar.titleKey)}
+                    src={currentPillar.image}
+                    alt={t(currentPillar.titleKey)}
                     fill
                     sizes="(max-width: 1024px) 100vw, 420px"
                     className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
-                    priority={isFeatured}
+                    priority
                   />
 
                   {/* Gradient Overlays */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-black/25 pointer-events-none" />
-                  <div className="absolute inset-0 bg-gradient-to-tr from-[#022256]/40 via-transparent to-[#C8A232]/25 pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-black/20 pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-tr from-[#020B1D]/40 via-transparent to-[#DFBF57]/20 pointer-events-none" />
 
-                  {/* Top Badges: Serial Number & Entity Badge */}
-                  <div className="absolute top-3.5 left-3.5 right-3.5 flex items-center justify-between">
-                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/95 border border-[#C8A232]/50 text-[10px] sm:text-xs font-mono font-bold text-[#955904] shadow-md backdrop-blur-md">
-                      {isFeatured && <span className="w-2 h-2 rounded-full bg-[#DFBF57] animate-ping" />}
-                      <span>{t(pillar.badgeKey)}</span>
+                  {/* Top Badges */}
+                  <div className="absolute top-3 left-3 right-3 flex items-center justify-between">
+                    <span className="text-[10px] sm:text-xs font-mono font-bold text-white bg-[#012052]/90 border border-white/20 px-3 py-1 rounded-full shadow-md backdrop-blur-md">
+                      {currentPillar.serial} / 03
                     </span>
 
-                    <span className="text-xs font-mono font-bold text-white bg-[#012968]/90 border border-white/20 px-2.5 py-1 rounded-full shadow-md backdrop-blur-md">
-                      {pillar.serial} / 03
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/95 border border-[#C8A232]/50 text-[10px] sm:text-xs font-mono font-bold text-[#9A5F13] shadow-md backdrop-blur-md">
+                      <Sparkles className="w-3 h-3 text-[#DFBF57]" />
+                      <span>{t(currentPillar.badgeKey)}</span>
                     </span>
                   </div>
 
-                  {/* Bottom Text Over Image: Icon + Entity Title */}
-                  <div className="absolute bottom-3.5 left-3.5 right-3.5 text-white pointer-events-none">
-                    <div className="flex items-center gap-2 mb-1.5">
-                      <div className="w-7 h-7 rounded-lg bg-[#C8A232] text-[#012968] flex items-center justify-center shadow-md">
-                        <Icon className="w-4 h-4" />
+                  {/* Bottom Text Over Photo */}
+                  <div className="absolute bottom-3 left-3 right-3 text-white pointer-events-none">
+                    <div className="flex items-center gap-2 mb-1">
+                      <div className="w-6 h-6 rounded-lg bg-[#DFBF57] text-[#012052] flex items-center justify-center shadow-md">
+                        <CurrentIcon className="w-3.5 h-3.5" />
                       </div>
                       <span className="text-[10px] sm:text-[11px] font-mono tracking-wider uppercase text-[#DFBF57] font-bold">
-                        {pillar.id.toUpperCase()}
+                        {currentPillar.id.toUpperCase()}
                       </span>
                     </div>
 
-                    <h3 className="text-xl sm:text-2xl font-bold font-display text-white leading-snug drop-shadow-sm">
-                      {t(pillar.titleKey)}
+                    <h3 className="text-base sm:text-lg font-bold font-display text-white leading-snug drop-shadow-sm">
+                      {t(currentPillar.titleKey)}
                     </h3>
                   </div>
                 </div>
 
-                {/* 2. Entity Body & Clinical Proof Points */}
-                <div className="p-6 sm:p-7 flex flex-col justify-between flex-1">
-                  <div>
-                    {/* Entity Description */}
-                    <p className="text-xs sm:text-sm text-[#5B6782] font-body leading-relaxed mb-4">
-                      {t(pillar.descKey)}
-                    </p>
-
-                    {/* Metric Chip */}
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-xl bg-[#012968]/5 border border-[#012968]/15 text-[#012968] font-mono font-bold text-xs mb-5">
-                      <Sparkles className="w-3.5 h-3.5 text-[#955904]" />
-                      <span>{t(pillar.metricKey)}</span>
-                    </div>
-
-                    {/* 3 Verified Distinction Perks */}
-                    <div className="space-y-2 mb-6 p-3.5 rounded-2xl bg-[#FAF8F5] border border-[#C8A232]/25">
-                      {(isRtl ? pillar.perksAr : pillar.perksEn).map((perk, pIdx) => (
-                        <div key={pIdx} className="flex items-start gap-2.5 text-[11px] sm:text-xs font-bold text-[#012968] leading-snug">
-                          <CheckCircle2 className="w-3.5 h-3.5 text-[#955904] shrink-0 mt-0.5" />
-                          <span>{perk}</span>
-                        </div>
-                      ))}
-                    </div>
+                {/* Hesy-Ra Ecosystem Triad Seal Footer */}
+                <div className="mt-3.5 pt-3 border-t border-[#DFBF57]/30 flex items-center justify-between text-[#DFBF57] text-xs font-mono">
+                  <div className="flex items-center gap-1.5">
+                    <Crown className="w-3.5 h-3.5" />
+                    <span>HESY-RA TRIAD</span>
                   </div>
-
-                  {/* 3. Action CTA Button */}
-                  <div className="pt-2">
-                    <a
-                      href={pillar.href}
-                      className={`w-full py-3 px-4 rounded-xl text-xs font-bold uppercase tracking-wider transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer shadow-sm ${
-                        isFeatured
-                          ? "bg-gradient-to-r from-[#955904] via-[#C8A232] to-[#955904] text-white shadow-[0_4px_16px_rgba(200,162,50,0.3)] hover:shadow-[0_6px_22px_rgba(200,162,50,0.5)] transform hover:-translate-y-0.5"
-                          : "border-2 border-[#C8A232]/50 bg-white hover:bg-[#FAF8F5] text-[#012968] hover:border-[#C8A232]"
-                      }`}
-                    >
-                      <span>{t(pillar.ctaKey)}</span>
-                      <ArrowIcon className="w-3.5 h-3.5" />
-                    </a>
-                  </div>
+                  <span className="text-[11px] text-white/70">
+                    {isRtl ? "منظومة علاجية مغلقة" : "Closed-Loop Synergy"}
+                  </span>
                 </div>
 
               </div>
-            );
-          })}
-        </div>
 
+            </div>
+          </div>
+
+        </div>
       </div>
     </section>
   );

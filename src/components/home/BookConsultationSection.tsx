@@ -5,8 +5,17 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useTranslations } from "next-intl";
 import { useLanguage } from "@/i18n/IntlProviderWrapper";
-import { Phone, CalendarCheck } from "lucide-react";
-import { SplitTextScrub } from "@/components/ui/SplitTextScrub";
+import { SplitSectionBackground } from "@/components/ui/SplitSectionBackground";
+import {
+  Phone,
+  CalendarCheck,
+  Clock,
+  ShieldCheck,
+  CheckCircle2,
+  ArrowRight,
+  ArrowLeft,
+  Building,
+} from "lucide-react";
 
 function WhatsAppIcon({ className = "w-5 h-5" }: { className?: string }) {
   return (
@@ -24,11 +33,11 @@ function WhatsAppIcon({ className = "w-5 h-5" }: { className?: string }) {
 export function BookConsultationSection() {
   const t = useTranslations("booking");
   const { isRtl, locale } = useLanguage();
+  const ArrowIcon = isRtl ? ArrowLeft : ArrowRight;
 
   const sectionRef = useRef<HTMLElement>(null);
-  const headerRef = useRef<HTMLDivElement>(null);
-  const titleRef = useRef<HTMLHeadingElement>(null);
-  const ctaRef = useRef<HTMLDivElement>(null);
+  const rightRef = useRef<HTMLDivElement>(null);
+  const leftRef = useRef<HTMLDivElement>(null);
 
   const defaultMessage =
     locale === "ar"
@@ -46,55 +55,39 @@ export function BookConsultationSection() {
     gsap.registerPlugin(ScrollTrigger);
 
     const ctx = gsap.context(() => {
-      // 1. Badge & subtitle entrance
-      if (headerRef.current) {
+      // 1. Content Entrance
+      if (rightRef.current) {
         gsap.fromTo(
-          headerRef.current.children,
-          { opacity: 0, y: 20 },
+          rightRef.current.children,
+          { opacity: 0, y: 25 },
           {
             opacity: 1,
             y: 0,
             duration: 0.8,
+            stagger: 0.08,
             ease: "power2.out",
             scrollTrigger: {
-              trigger: headerRef.current,
-              start: "top 88%",
+              trigger: rightRef.current,
+              start: "top 85%",
               once: true,
             },
           }
         );
       }
 
-      // 2. TextSplit Scrub for Main Headline
-      const titleWords = titleRef.current?.querySelectorAll(".split-title-word");
-      if (titleWords && titleWords.length > 0) {
-        gsap.to(titleWords, {
-          y: "0%",
-          opacity: 1,
-          stagger: 0.04,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: titleRef.current,
-            start: "top 85%",
-            end: "bottom 55%",
-            scrub: 0.8,
-          },
-        });
-      }
-
-      // 3. CTA Buttons entrance
-      if (ctaRef.current) {
+      // 2. Concierge Entrance
+      if (leftRef.current) {
         gsap.fromTo(
-          ctaRef.current,
-          { opacity: 0, y: 25, scale: 0.98 },
+          leftRef.current,
+          { opacity: 0, y: 30, scale: 0.96 },
           {
             opacity: 1,
             y: 0,
             scale: 1,
-            duration: 0.8,
+            duration: 0.9,
             ease: "power2.out",
             scrollTrigger: {
-              trigger: ctaRef.current,
+              trigger: leftRef.current,
               start: "top 85%",
               once: true,
             },
@@ -104,64 +97,168 @@ export function BookConsultationSection() {
     }, sectionRef);
 
     return () => ctx.revert();
-  }, []);
+  }, [isRtl]);
 
   return (
     <section
       ref={sectionRef}
       id="book"
-      className="relative py-20 sm:py-28 px-4 sm:px-6 lg:px-8 bg-[#FDFBF7] border-t border-[#C8A232]/20 overflow-hidden"
+      className="relative py-20 sm:py-28 px-4 sm:px-6 lg:px-8 border-t-2 border-[#C8A232]/40 overflow-hidden z-20 shadow-2xl"
       dir={isRtl ? "rtl" : "ltr"}
     >
-      <div className="max-w-3xl mx-auto text-center relative z-10">
-        {/* Subtle Category Badge */}
-        <div ref={headerRef} className="mb-4">
-          <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-[#C8A232]/40 bg-white shadow-xs">
-            <CalendarCheck className="w-3.5 h-3.5 text-[#955904]" />
-            <span className="text-[11px] font-bold text-[#955904] uppercase tracking-wider font-mono">
-              {t("badge")}
-            </span>
+      {/* 1. Split Section Background: Left is Royal Blue | Right is Warm Gold */}
+      <SplitSectionBackground />
+
+      {/* 2. Content Grid */}
+      <div className="max-w-7xl mx-auto relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+          
+          {/* RIGHT COLUMN (Warm Gold / Parchment Side): 7 Cols on desktop */}
+          {/* Safe buffer pl-16 xl:pl-24 guarantees zero ribbon collision */}
+          <div
+            ref={rightRef}
+            className={`lg:col-span-7 flex flex-col ${
+              isRtl ? "order-2 lg:order-1" : "order-2 lg:order-2"
+            } pl-0 lg:pl-16 xl:pl-24`}
+          >
+            {/* Category Kicker Badge */}
+            <div className="flex items-center gap-2.5 mb-4">
+              <span className="h-[1px] w-6 bg-[#C8A232]/70" />
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[#C8A232]/50 bg-white/80 shadow-xs backdrop-blur-xs">
+                <CalendarCheck className="w-3.5 h-3.5 text-[#9A5F13]" />
+                <span className="text-xs font-bold text-[#9A5F13] uppercase tracking-wider font-mono">
+                  {isRtl ? "حجز موعد استشارة طبية" : "SCHEDULE YOUR CONSULTATION"}
+                </span>
+              </div>
+              <span className="h-[1px] w-6 bg-[#C8A232]/70" />
+            </div>
+
+            {/* Two-Tone Luxury Headline */}
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-[40px] font-bold font-display leading-[1.28] mb-3">
+              <span className="block text-[#0F266A]">
+                {t("title")}
+              </span>
+              <span className="block text-[#9A5F13] text-xl sm:text-2xl lg:text-3xl mt-1">
+                {isRtl ? "استشارة مخصصة وراحة سريرية تامة" : "Personalized Care & Transparent Planning"}
+              </span>
+            </h2>
+
+            {/* Subtitle */}
+            <p className="text-sm sm:text-base md:text-[17px] text-[#2A3B56] leading-relaxed mb-8 font-body">
+              {t("subtitle")}
+            </p>
+
+            {/* Action Buttons */}
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 mb-6">
+              <a
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl bg-gradient-to-r from-[#9A5F13] via-[#C8A232] to-[#9A5F13] text-white font-bold text-xs uppercase tracking-wider shadow-md hover:shadow-lg transition-all font-body cursor-pointer"
+              >
+                <WhatsAppIcon className="w-5 h-5 text-white shrink-0" />
+                <span>{t("whatsappBtn")}</span>
+                <ArrowIcon className="w-4 h-4 text-white" />
+              </a>
+
+              <a
+                href={`tel:${cleanPhone}`}
+                className="inline-flex items-center justify-center gap-2.5 px-6 py-4 rounded-xl border border-[#C8A232]/50 bg-white hover:bg-[#FAF1DC]/60 text-[#0F266A] font-bold text-xs uppercase tracking-wider transition-all shadow-sm font-body"
+              >
+                <Phone className="w-4 h-4 text-[#9A5F13] shrink-0" />
+                <span>{t("phoneLabel")}</span>
+                <span className="font-mono text-xs text-[#9A5F13]" dir="ltr">
+                  {t("hotline")}
+                </span>
+              </a>
+            </div>
+
+            {/* 3 Quick VIP Guarantees */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-5 border-t border-[#C8A232]/35">
+              <div className="flex items-center gap-2 text-xs font-semibold text-[#0F266A]">
+                <Clock className="w-4 h-4 text-[#9A5F13] shrink-0" />
+                <span>{isRtl ? "رد فوري خلال ٥ دقائق" : "5-Min Fast Reply"}</span>
+              </div>
+
+              <div className="flex items-center gap-2 text-xs font-semibold text-[#0F266A]">
+                <ShieldCheck className="w-4 h-4 text-[#9A5F13] shrink-0" />
+                <span>{isRtl ? "تقييم أولي مع الاستشاري" : "Consultant Review"}</span>
+              </div>
+
+              <div className="flex items-center gap-2 text-xs font-semibold text-[#0F266A]">
+                <Building className="w-4 h-4 text-[#9A5F13] shrink-0" />
+                <span>{isRtl ? "أجنحة خاصة لراحة المرضى" : "Private Patient Suites"}</span>
+              </div>
+            </div>
+
           </div>
-        </div>
 
-        {/* Clean, Modern Title with SplitTextScrub */}
-        <h2
-          ref={titleRef}
-          className="text-3xl sm:text-4xl md:text-5xl font-bold font-display text-[#012968] mb-4"
-        >
-          <SplitTextScrub text={t("title")} wordClassName="split-title-word" />
-        </h2>
-
-        {/* Calm Subtitle */}
-        <p className="text-base sm:text-lg text-[#5B6782] font-body max-w-xl mx-auto mb-10 leading-relaxed">
-          {t("subtitle")}
-        </p>
-
-        {/* Clean, Premium WhatsApp & Phone Buttons */}
-        <div
-          ref={ctaRef}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4"
-        >
-          <a
-            href={whatsappUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-[#25D366] hover:bg-[#20BD5A] text-white font-bold text-sm tracking-wide shadow-[0_6px_25px_rgba(37,211,102,0.3)] hover:shadow-[0_10px_35px_rgba(37,211,102,0.45)] transition-all transform hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
+          {/* LEFT COLUMN (Deep Royal Blue Side): 5 Cols on desktop */}
+          {/* Centered comfortably inside the Royal Blue zone with max-w-[420px], keeping 50-60px clearance to the ribbon */}
+          <div
+            ref={leftRef}
+            className={`lg:col-span-5 relative flex justify-center items-center ${
+              isRtl ? "order-1 lg:order-2" : "order-1 lg:order-1"
+            } w-full`}
           >
-            <WhatsAppIcon className="w-5 h-5 text-white shrink-0" />
-            <span>{t("whatsappBtn")}</span>
-          </a>
+            <div className="w-full max-w-[390px] xl:max-w-[420px] mx-auto">
+              
+              {/* Medical Coordination Desk Card */}
+              <div className="group relative rounded-3xl bg-gradient-to-b from-[#0B2456] via-[#07193D] to-[#020B1D] border-2 border-[#C8A232]/70 p-6 sm:p-7 shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden text-center">
+                
+                {/* Thin Top 24K Gold Bar */}
+                <div className="h-1 w-full bg-gradient-to-r from-[#9A5F13] via-[#DFBF57] to-[#9A5F13] rounded-full mb-6" />
 
-          <a
-            href={`tel:${cleanPhone}`}
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 py-4 rounded-full border border-[#C8A232]/40 bg-white hover:bg-[#FAF8F5] text-[#012968] font-bold text-sm transition-all shadow-sm"
-          >
-            <Phone className="w-4 h-4 text-[#955904] shrink-0" />
-            <span>{t("phoneLabel")}</span>
-            <span className="font-mono text-xs text-[#5B6782]" dir="ltr">
-              {t("hotline")}
-            </span>
-          </a>
+                {/* Badge Icon */}
+                <div className="w-16 h-16 mx-auto rounded-full bg-gradient-to-br from-[#DFBF57] via-[#C8A232] to-[#9A5F13] text-[#020B1D] flex items-center justify-center shadow-lg border-2 border-white/30 mb-4">
+                  <CalendarCheck className="w-8 h-8" />
+                </div>
+
+                <h3 className="text-lg sm:text-xl font-bold font-display text-white mb-1">
+                  {isRtl ? "مكتب التنسيق الطبي وحجز المواعيد" : "Medical Coordination & Booking Desk"}
+                </h3>
+
+                <p className="text-xs text-white/75 font-body mb-5">
+                  {isRtl
+                    ? "فريق طبي وإداري مخصص لتنسيق مواعيدك والرد على كافة استفساراتك العلاجية بكل دقة وسرية."
+                    : "Dedicated clinical coordinators to arrange your visit and answer all treatment questions."}
+                </p>
+
+                {/* Direct Phone Highlight */}
+                <div className="p-3.5 rounded-2xl bg-white/5 border border-white/10 mb-5">
+                  <span className="text-[10px] font-mono text-[#DFBF57] tracking-wider uppercase block mb-1">
+                    {isRtl ? "الخط الساخن المباشر للمراكز" : "Direct Center Hotline"}
+                  </span>
+                  <a
+                    href={`tel:${cleanPhone}`}
+                    className="text-lg sm:text-xl font-bold font-mono text-white hover:text-[#DFBF57] transition-colors"
+                    dir="ltr"
+                  >
+                    {t("hotline")}
+                  </a>
+                </div>
+
+                {/* 3 Perks */}
+                <div className="space-y-2 text-start pt-4 border-t border-[#DFBF57]/25">
+                  <div className="flex items-center gap-2 text-xs text-white/90">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-[#DFBF57] shrink-0" />
+                    <span>{isRtl ? "مواقف سيارات خاصة وخدمة مساعدة الزوار" : "Convenient Valet & Parking"}</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-xs text-white/90">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-[#DFBF57] shrink-0" />
+                    <span>{isRtl ? "أجنحة خاصة لراحة المرضى والعائلات" : "Private Patient Waiting Suites"}</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-xs text-white/90">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-[#DFBF57] shrink-0" />
+                    <span>{isRtl ? "خدمة استشارية سريعة لرجال الأعمال والمغتربين" : "Executive Fast-Track Scheduling"}</span>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+
         </div>
       </div>
     </section>

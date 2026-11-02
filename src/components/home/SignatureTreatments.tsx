@@ -8,6 +8,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useTranslations } from "next-intl";
 import { useLanguage } from "@/i18n/IntlProviderWrapper";
 import { SplitTextScrub } from "@/components/ui/SplitTextScrub";
+import { SplitSectionBackground } from "@/components/ui/SplitSectionBackground";
 import {
   Sparkles,
   ArrowRight,
@@ -106,92 +107,59 @@ export function SignatureTreatments() {
   const ArrowIcon = isRtl ? ArrowLeft : ArrowRight;
 
   const sectionRef = useRef<HTMLElement>(null);
-  const headerRef = useRef<HTMLDivElement>(null);
-  const titleRef = useRef<HTMLHeadingElement>(null);
-  const stageRef = useRef<HTMLDivElement>(null);
+  const leftRef = useRef<HTMLDivElement>(null);
+  const rightRef = useRef<HTMLDivElement>(null);
+
+  const [activeKey, setActiveKey] = useState<string>("implants");
 
   const treatmentKeys = [
     { key: "implants", num: "01", icon: ShieldCheck },
-    { key: "veneers", num: "02", icon: Smile },
-    { key: "allon4", num: "03", icon: Activity },
-    { key: "aligners", num: "04", icon: Sparkles },
-    { key: "whitening", num: "05", icon: Zap },
-    { key: "rootCanal", num: "06", icon: Eye },
+    { key: "veneers", num: "02", icon: Sparkles },
+    { key: "allon4", num: "03", icon: Zap },
+    { key: "aligners", num: "04", icon: Smile },
+    { key: "whitening", num: "05", icon: Eye },
+    { key: "rootCanal", num: "06", icon: Activity },
   ];
 
-  const [activeKey, setActiveKey] = useState<string>("implants");
-  const activeIndex = treatmentKeys.findIndex((item) => item.key === activeKey);
-  const activeItem = treatmentKeys[activeIndex] || treatmentKeys[0];
-  const activeSpec = treatmentSpecs[activeItem.key];
-
-  const activeTitle = t(`items.${activeItem.key}.title`);
-  const activeDesc = t(`items.${activeItem.key}.desc`);
-  const activeTag = t(`items.${activeItem.key}.tag`);
-
-  // WhatsApp Pre-filled message tailored to the chosen treatment
-  const whatsappUrl = `https://wa.me/201008901234?text=${encodeURIComponent(
-    locale === "ar"
-      ? `مرحباً، أود حجز موعد استشارة بخصوص علاج (${activeTitle}) في عيادات ماغنيفيسنت سمايل.`
-      : locale === "fr"
-      ? `Bonjour, je souhaite réserver une consultation pour le traitement (${activeTitle}) chez Magnificent Smile.`
-      : locale === "ru"
-      ? `Здравствуйте, я хочу записаться на приём по лечению (${activeTitle}) в клинику Magnificent Smile.`
-      : `Hello, I would like to book a consultation regarding (${activeTitle}) at Magnificent Smile Clinics.`
-  )}`;
+  const activeSpec = treatmentSpecs[activeKey] || treatmentSpecs["implants"];
+  const activeTitle = t(`items.${activeKey}.title`);
+  const activeDesc = t(`items.${activeKey}.desc`);
+  const activeTag = t(`items.${activeKey}.tag`);
+  const activeItem = treatmentKeys.find((k) => k.key === activeKey) || treatmentKeys[0];
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
     const ctx = gsap.context(() => {
-      // 1. Badge & Subtitle entrance
-      if (headerRef.current) {
+      if (leftRef.current) {
         gsap.fromTo(
-          headerRef.current.children,
-          { opacity: 0, y: 20 },
+          leftRef.current,
+          { opacity: 0, x: isRtl ? 35 : -35 },
           {
             opacity: 1,
-            y: 0,
-            duration: 0.8,
+            x: 0,
+            duration: 1,
             ease: "power2.out",
             scrollTrigger: {
-              trigger: headerRef.current,
-              start: "top 88%",
+              trigger: sectionRef.current,
+              start: "top 82%",
               once: true,
             },
           }
         );
       }
 
-      // 2. TextSplit Scrub for Main Headline
-      const titleWords = titleRef.current?.querySelectorAll(".split-title-word");
-      if (titleWords && titleWords.length > 0) {
-        gsap.to(titleWords, {
-          y: "0%",
-          opacity: 1,
-          stagger: 0.04,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: titleRef.current,
-            start: "top 85%",
-            end: "bottom 55%",
-            scrub: 0.8,
-          },
-        });
-      }
-
-      // 3. Stage Entrance
-      if (stageRef.current) {
+      if (rightRef.current) {
         gsap.fromTo(
-          stageRef.current,
-          { opacity: 0, y: 35, scale: 0.98 },
+          rightRef.current,
+          { opacity: 0, y: 30 },
           {
             opacity: 1,
             y: 0,
-            scale: 1,
             duration: 0.9,
-            ease: "power3.out",
+            ease: "power2.out",
             scrollTrigger: {
-              trigger: stageRef.current,
+              trigger: sectionRef.current,
               start: "top 82%",
               once: true,
             },
@@ -201,310 +169,205 @@ export function SignatureTreatments() {
     }, sectionRef);
 
     return () => ctx.revert();
-  }, []);
+  }, [isRtl]);
 
-  const handleNext = () => {
-    const nextIndex = (activeIndex + 1) % treatmentKeys.length;
-    setActiveKey(treatmentKeys[nextIndex].key);
-  };
+  const whatsappMessage =
+    locale === "ar"
+      ? `مرحباً، أود حجز موعد استشارة بخصوص علاج (${activeTitle}) في عيادات ماغنيفيسنت سمايل.`
+      : locale === "fr"
+      ? `Bonjour, je souhaite réserver une consultation concernant (${activeTitle}) chez Magnificent Smile.`
+      : locale === "ru"
+      ? `Здравствуйте, хочу проконсультироваться по поводу (${activeTitle}) в клинике Magnificent Smile.`
+      : `Hello, I would like to book a consultation regarding (${activeTitle}) at Magnificent Smile Clinics.`;
 
-  const handlePrev = () => {
-    const prevIndex = (activeIndex - 1 + treatmentKeys.length) % treatmentKeys.length;
-    setActiveKey(treatmentKeys[prevIndex].key);
-  };
+  const whatsappUrl = `https://wa.me/201008901234?text=${encodeURIComponent(whatsappMessage)}`;
 
   return (
     <section
       ref={sectionRef}
       id="treatments"
-      className="relative py-24 sm:py-32 px-4 sm:px-6 lg:px-8 bg-[#FDFBF7] border-t border-[#C8A232]/25 overflow-hidden"
+      className="relative py-20 sm:py-28 px-4 sm:px-6 lg:px-8 border-t-2 border-[#C8A232]/40 overflow-hidden z-20 shadow-2xl"
       dir={isRtl ? "rtl" : "ltr"}
     >
-      {/* Background Royal Ambient Light */}
-      <div className="absolute top-1/4 right-0 w-[500px] h-[500px] bg-[#C8A232]/6 rounded-full blur-[160px] pointer-events-none" />
-      <div className="absolute bottom-1/4 left-0 w-[500px] h-[500px] bg-[#022256]/6 rounded-full blur-[170px] pointer-events-none" />
+      {/* 1. Signature Multi-Line 3D Ribbon Split Background */}
+      <SplitSectionBackground />
 
+      {/* 2. Content Grid: Perfectly Aligned to Prevent Overlap */}
       <div className="max-w-7xl mx-auto relative z-10">
-        
-        {/* Section Header */}
-        <div ref={headerRef} className="text-center max-w-3xl mx-auto mb-14 sm:mb-16">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#C8A232]/40 bg-white shadow-sm mb-4">
-            <Stethoscope className="w-3.5 h-3.5 text-[#955904]" />
-            <span className="text-xs font-bold text-[#955904] uppercase tracking-wider font-mono">
-              {t("badge")}
-            </span>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+          
+          {/* RIGHT COLUMN (Warm Gold / Parchment Side): 7 Cols on desktop */}
+          {/* Safe buffer pl-16 xl:pl-24 guarantees zero ribbon collision */}
+          <div
+            ref={rightRef}
+            className={`lg:col-span-7 flex flex-col ${
+              isRtl ? "order-2 lg:order-1" : "order-2 lg:order-2"
+            } pl-0 lg:pl-16 xl:pl-24`}
+          >
+            
+            {/* Category Kicker Badge */}
+            <div className="flex items-center gap-2.5 mb-4">
+              <span className="h-[1px] w-6 bg-[#C8A232]/70" />
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[#C8A232]/50 bg-white/80 shadow-xs backdrop-blur-xs">
+                <Stethoscope className="w-3.5 h-3.5 text-[#9A5F13]" />
+                <span className="text-xs font-bold text-[#9A5F13] uppercase tracking-wider font-mono">
+                  {t("badge")}
+                </span>
+              </div>
+              <span className="h-[1px] w-6 bg-[#C8A232]/70" />
+            </div>
+
+            {/* Two-Tone Luxury Headline */}
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-[40px] font-bold font-display leading-[1.28] mb-4">
+              <span className="block text-[#0F266A]">
+                {t("title")}
+              </span>
+              <span className="block text-[#9A5F13] text-xl sm:text-2xl lg:text-3xl mt-1">
+                {activeTitle}
+              </span>
+            </h2>
+
+            {/* Description */}
+            <p className="text-sm sm:text-base md:text-[17px] text-[#2A3B56] leading-relaxed mb-6 font-body">
+              {activeDesc}
+            </p>
+
+            {/* 6 Interactive Treatment Selector Tabs in 2 Rows */}
+            <div className="grid grid-cols-3 sm:grid-cols-6 gap-1.5 sm:gap-2 p-1.5 rounded-2xl bg-white/90 border border-[#C8A232]/35 shadow-sm mb-6">
+              {treatmentKeys.map((item) => {
+                const isSelected = item.key === activeKey;
+                const Icon = item.icon;
+
+                return (
+                  <button
+                    key={item.key}
+                    type="button"
+                    onClick={() => setActiveKey(item.key)}
+                    className={`py-2 px-1 rounded-xl text-[11px] sm:text-xs font-bold transition-all duration-300 cursor-pointer flex flex-col items-center justify-center gap-1 ${
+                      isSelected
+                        ? "bg-[#012052] text-white shadow-md scale-102"
+                        : "text-[#4A5E7B] hover:text-[#012052] hover:bg-[#FAF1DC]/50"
+                    }`}
+                  >
+                    <Icon className={`w-3.5 h-3.5 ${isSelected ? "text-[#DFBF57]" : "text-[#9A5F13]"}`} />
+                    <span className="truncate max-w-full font-mono">{item.num}</span>
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* 3 Clinical Guarantees for the Active Treatment */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6 p-4 rounded-2xl bg-[#FCFAF5] border border-[#C8A232]/35">
+              <div className="flex items-center gap-2.5">
+                <Clock className="w-4 h-4 text-[#9A5F13] shrink-0" />
+                <div>
+                  <span className="text-[10px] text-[#718096] font-mono block">المدة السريرية</span>
+                  <span className="text-xs font-bold text-[#0F266A]">
+                    {isRtl ? activeSpec.durationAr : activeSpec.durationEn}
+                  </span>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-2.5">
+                <Cpu className="w-4 h-4 text-[#9A5F13] shrink-0" />
+                <div>
+                  <span className="text-[10px] text-[#718096] font-mono block">التقنية المعتمدة</span>
+                  <span className="text-xs font-bold text-[#0F266A]">
+                    {isRtl ? activeSpec.techAr : activeSpec.techEn}
+                  </span>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-2.5">
+                <ShieldCheck className="w-4 h-4 text-[#9A5F13] shrink-0" />
+                <div>
+                  <span className="text-[10px] text-[#718096] font-mono block">الضمان السريري</span>
+                  <span className="text-xs font-bold text-[#0F266A]">
+                    {isRtl ? activeSpec.warrantyAr : activeSpec.warrantyEn}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Action Row */}
+            <div className="flex flex-wrap items-center gap-3">
+              <a
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-[#9A5F13] via-[#C8A232] to-[#9A5F13] text-white font-bold text-xs uppercase tracking-wider shadow-md hover:shadow-lg transition-all font-body cursor-pointer"
+              >
+                <WhatsAppIcon className="w-4 h-4 text-white" />
+                <span>{t("bookBtn")}</span>
+                <ArrowIcon className="w-3.5 h-3.5 text-white" />
+              </a>
+
+              <Link
+                href="/treatments"
+                className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-white border border-[#C8A232]/50 text-[#0F266A] font-bold text-xs uppercase tracking-wider hover:bg-[#FAF1DC]/60 transition-all font-body"
+              >
+                <span>{t("viewAll")}</span>
+                <ArrowIcon className="w-3.5 h-3.5 text-[#9A5F13]" />
+              </Link>
+            </div>
+
           </div>
 
-          <h2
-            ref={titleRef}
-            className="text-3xl sm:text-4xl md:text-5xl font-bold font-display text-[#012968] mb-4"
+          {/* LEFT COLUMN (Deep Royal Blue Side): 5 Cols on desktop */}
+          {/* Centered with max-w-[400px], keeping a 60px safe buffer away from the ribbon */}
+          <div
+            ref={leftRef}
+            className={`lg:col-span-5 relative flex justify-center items-center ${
+              isRtl ? "order-1 lg:order-2" : "order-1 lg:order-1"
+            } w-full`}
           >
-            <SplitTextScrub text={t("title")} wordClassName="split-title-word" />
-          </h2>
-
-          <p className="text-base sm:text-lg text-[#5B6782] font-body leading-relaxed">
-            {t("subtitle")}
-          </p>
-        </div>
-
-        {/* ============================================================== */}
-        {/* MOBILE HORIZONTAL SELECTOR PILLS (Fast & Intuitive on Phones) */}
-        {/* ============================================================== */}
-        <div className="lg:hidden mb-6 flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none snap-x">
-          {treatmentKeys.map((item) => {
-            const isCurrent = item.key === activeKey;
-            const itemTitle = t(`items.${item.key}.title`);
-
-            return (
-              <button
-                key={item.key}
-                type="button"
-                onClick={() => setActiveKey(item.key)}
-                className={`snap-start shrink-0 px-4 py-2 rounded-full text-xs font-bold font-display transition-all duration-300 border cursor-pointer flex items-center gap-2 ${
-                  isCurrent
-                    ? "bg-[#012968] text-white border-[#C8A232] shadow-md scale-102"
-                    : "bg-white text-[#5B6782] border-[#C8A232]/30 hover:bg-[#FAF8F5]"
-                }`}
-              >
-                <span className={`font-mono text-[11px] ${isCurrent ? "text-[#DFBF57]" : "text-[#955904]"}`}>
-                  {item.num}
-                </span>
-                <span>{itemTitle}</span>
-              </button>
-            );
-          })}
-        </div>
-
-        {/* ============================================================== */}
-        {/* THE ROYAL TREATMENT ATELIER (Desktop Split / Mobile Showcase) */}
-        {/* ============================================================== */}
-        <div
-          ref={stageRef}
-          className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch bg-white rounded-3xl border-2 border-[#C8A232]/35 p-4 sm:p-7 shadow-[0_25px_60px_rgba(2,34,86,0.08)] backdrop-blur-xl"
-        >
-          {/* A. The Left/Center Cinematic Stage Viewport (7 Cols on desktop) */}
-          <div className="lg:col-span-7 flex flex-col justify-between">
-            {/* Visual Cinematic Container with Keyed Animation */}
-            <div className="relative w-full aspect-[16/10] sm:aspect-[16/9] lg:aspect-[16/10] rounded-2xl overflow-hidden shadow-md border border-[#C8A232]/25 group bg-[#022256]">
-              <div
-                key={activeKey}
-                className="relative w-full h-full animate-in fade-in zoom-in-95 duration-500"
-              >
+            <div className="w-full max-w-[390px] xl:max-w-[415px] mx-auto rounded-3xl overflow-hidden border-2 border-[#DFBF57]/60 shadow-[0_20px_50px_rgba(0,0,0,0.65)] bg-[#011438] group">
+              
+              {/* Photo Viewport */}
+              <div className="relative w-full aspect-[4/3] overflow-hidden bg-[#022256]">
                 <Image
+                  key={activeKey}
                   src={activeSpec.image}
                   alt={activeTitle}
                   fill
-                  sizes="(max-width: 1024px) 100vw, 750px"
-                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                  sizes="(max-width: 1024px) 100vw, 420px"
+                  className="object-cover transition-all duration-700 ease-out group-hover:scale-105"
                   priority
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#010E24] via-black/40 to-transparent pointer-events-none" />
 
-                {/* Cinematic Ambient Dark & Gold Gradient Overlays */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent pointer-events-none" />
-                <div className="absolute inset-0 bg-gradient-to-tr from-[#022256]/30 via-transparent to-[#C8A232]/15 pointer-events-none" />
-
-                {/* Subtle Luxury Golden Light Beam Wipe on change */}
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#DFBF57]/30 to-transparent pointer-events-none animate-in slide-in-from-left duration-700" />
-
-                {/* Floating Top Clinical Badges */}
-                <div className="absolute top-4 left-4 right-4 flex items-center justify-between gap-2 pointer-events-none">
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/95 border border-[#C8A232]/50 text-xs font-mono font-bold text-[#955904] shadow-md backdrop-blur-md">
+                {/* Floating Top Badges */}
+                <div className="absolute top-3.5 left-3.5 right-3.5 flex items-center justify-between">
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/95 border border-[#C8A232]/50 text-[11px] font-mono font-bold text-[#9A5F13] shadow-md backdrop-blur-md">
                     <span className="w-2 h-2 rounded-full bg-[#DFBF57] animate-ping" />
                     <span>{activeTag}</span>
                   </span>
 
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#022256]/90 text-white text-xs font-mono font-bold shadow-md border border-white/20">
-                    <Sparkles className="w-3.5 h-3.5 text-[#DFBF57]" />
-                    <span>{activeItem.num} / 06</span>
+                  <span className="text-xs font-mono font-bold text-white bg-[#011438]/90 border border-white/20 px-2.5 py-1 rounded-full shadow-md backdrop-blur-md">
+                    {activeItem.num} / 06
                   </span>
                 </div>
 
-                {/* Floating Bottom Metadata Details */}
-                <div className="absolute bottom-4 left-4 right-4 text-white drop-shadow">
-                  <span className="text-xs uppercase tracking-widest font-mono text-[#DFBF57] font-semibold mb-1 block">
+                {/* Bottom Title on Image */}
+                <div className="absolute bottom-3.5 left-4 right-4 text-white">
+                  <span className="text-[10px] uppercase tracking-widest font-mono text-[#DFBF57] font-semibold block mb-0.5">
                     MAGNIFICENT CLINICAL STANDARD
                   </span>
-                  <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold font-display leading-tight text-white mb-2">
+                  <h3 className="text-lg sm:text-xl font-bold font-display text-white leading-tight">
                     {activeTitle}
                   </h3>
                 </div>
-
-                {/* Mobile Swipe Buttons overlaid on image */}
-                <div className="lg:hidden absolute bottom-4 right-4 flex items-center gap-1.5">
-                  <button
-                    type="button"
-                    onClick={handlePrev}
-                    className="w-8 h-8 rounded-full bg-black/60 hover:bg-black/80 text-white flex items-center justify-center border border-white/30 backdrop-blur-md cursor-pointer active:scale-90 transition-transform"
-                    aria-label="Previous Treatment"
-                  >
-                    <ChevronLeft className="w-4 h-4" />
-                  </button>
-                  <button
-                    type="button"
-                    onClick={handleNext}
-                    className="w-8 h-8 rounded-full bg-black/60 hover:bg-black/80 text-white flex items-center justify-center border border-white/30 backdrop-blur-md cursor-pointer active:scale-90 transition-transform"
-                    aria-label="Next Treatment"
-                  >
-                    <ChevronRight className="w-4 h-4" />
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            {/* Description & Clinical Specs Box with Animated Reveal */}
-            <div
-              key={`content-${activeKey}`}
-              className="mt-6 flex flex-col justify-between flex-grow animate-in fade-in slide-in-from-bottom-3 duration-400"
-            >
-              <p className="text-sm sm:text-base text-[#3D5A80] font-body leading-relaxed mb-5">
-                {activeDesc}
-              </p>
-
-              {/* 3 Key Clinical Guarantees */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-4 border-t border-[#C8A232]/25 mb-6">
-                <div className="flex items-center gap-2.5 p-2.5 rounded-xl bg-[#FAF8F5] border border-[#C8A232]/20">
-                  <Clock className="w-4 h-4 text-[#955904] shrink-0" />
-                  <div className="flex flex-col">
-                    <span className="text-[10px] text-[#5B6782] font-mono">المدة السريرية</span>
-                    <span className="text-xs font-bold text-[#012968] line-clamp-1">
-                      {isRtl ? activeSpec.durationAr : activeSpec.durationEn}
-                    </span>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-2.5 p-2.5 rounded-xl bg-[#FAF8F5] border border-[#C8A232]/20">
-                  <Cpu className="w-4 h-4 text-[#955904] shrink-0" />
-                  <div className="flex flex-col">
-                    <span className="text-[10px] text-[#5B6782] font-mono">التقنية المعتمدة</span>
-                    <span className="text-xs font-bold text-[#012968] line-clamp-1">
-                      {isRtl ? activeSpec.techAr : activeSpec.techEn}
-                    </span>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-2.5 p-2.5 rounded-xl bg-[#FAF8F5] border border-[#C8A232]/20">
-                  <Award className="w-4 h-4 text-[#955904] shrink-0" />
-                  <div className="flex flex-col">
-                    <span className="text-[10px] text-[#5B6782] font-mono">الضمان الملكي</span>
-                    <span className="text-xs font-bold text-[#012968] line-clamp-1">
-                      {isRtl ? activeSpec.warrantyAr : activeSpec.warrantyEn}
-                    </span>
-                  </div>
-                </div>
               </div>
 
-              {/* Direct Action Hub (WhatsApp + On-page Book Jump) */}
-              <div className="flex flex-col sm:flex-row items-center gap-3">
-                {/* 1. Primary Direct WhatsApp Consultation */}
-                <a
-                  href={whatsappUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full sm:w-auto flex-1 py-3 px-6 rounded-full bg-gradient-to-r from-[#955904] via-[#C8A232] to-[#955904] text-white font-bold text-xs tracking-wider uppercase shadow-[0_4px_20px_rgba(200,162,50,0.35)] hover:shadow-[0_8px_30px_rgba(200,162,50,0.55)] transition-all duration-300 transform hover:-translate-y-0.5 flex items-center justify-center gap-2 cursor-pointer"
-                >
-                  <WhatsAppIcon className="w-4 h-4" />
-                  <span>{t("bookBtn")}</span>
-                  <ArrowIcon className="w-3.5 h-3.5" />
-                </a>
-
-                {/* 2. On-Page Booking Form Jump */}
-                <a
-                  href="#book"
-                  className="w-full sm:w-auto px-6 py-3 rounded-full border border-[#C8A232]/60 bg-white hover:bg-[#FAF8F5] text-[#012968] font-bold text-xs tracking-wider uppercase transition-all duration-300 flex items-center justify-center gap-2"
-                >
-                  <span>استشارة الطبيب بالعيادة</span>
-                  <span className="text-[#955904]">↓</span>
-                </a>
+              {/* Card Bottom Meta Footer */}
+              <div className="p-3.5 bg-[#010E24] border-t border-[#DFBF57]/30 flex items-center justify-between text-xs text-white/80">
+                <span className="font-mono text-[#DFBF57] font-bold">100% DIGITAL WORKFLOW</span>
+                <span className="text-[11px] text-white/60">SWISS & GERMAN MATERIALS</span>
               </div>
             </div>
           </div>
 
-          {/* B. The Right Interactive 6-Item Navigator (5 Cols on desktop) */}
-          <div className="hidden lg:flex lg:col-span-5 flex-col justify-between gap-2.5 border-s border-[#C8A232]/20 ps-6">
-            <div className="flex items-center justify-between mb-2">
-              <span className="text-xs font-mono font-bold text-[#955904] tracking-wider uppercase">
-                فهرس العلاجات الملكية
-              </span>
-              <span className="text-xs font-mono text-[#5B6782]">اختر للاستعراض ✦</span>
-            </div>
-
-            {treatmentKeys.map((item) => {
-              const isSelected = item.key === activeKey;
-              const title = t(`items.${item.key}.title`);
-              const tag = t(`items.${item.key}.tag`);
-              const IconComp = item.icon;
-
-              return (
-                <div
-                  key={item.key}
-                  onClick={() => setActiveKey(item.key)}
-                  className={`group relative p-3.5 rounded-2xl border transition-all duration-300 cursor-pointer flex items-center justify-between active:scale-98 ${
-                    isSelected
-                      ? "bg-[#FAF8F5] border-[#C8A232] shadow-md scale-102 ring-1 ring-[#C8A232]/40"
-                      : "bg-white/70 border-transparent hover:border-[#C8A232]/30 hover:bg-[#FAF8F5]/60"
-                  }`}
-                >
-                  {/* Left Side: Number, Icon & Title */}
-                  <div className="flex items-center gap-3.5">
-                    <span
-                      className={`text-sm font-bold font-mono transition-colors ${
-                        isSelected ? "text-[#955904]" : "text-[#5B6782]"
-                      }`}
-                    >
-                      {item.num}
-                    </span>
-
-                    <div
-                      className={`w-9 h-9 rounded-xl flex items-center justify-center transition-all ${
-                        isSelected
-                          ? "bg-[#012968] text-[#DFBF57] shadow-sm"
-                          : "bg-[#FAF8F5] text-[#5B6782] group-hover:text-[#955904]"
-                      }`}
-                    >
-                      <IconComp className="w-4 h-4" />
-                    </div>
-
-                    <div className="flex flex-col">
-                      <h4
-                        className={`text-sm font-bold font-display transition-colors ${
-                          isSelected ? "text-[#012968]" : "text-[#5B6782] group-hover:text-[#012968]"
-                        }`}
-                      >
-                        {title}
-                      </h4>
-                      <span className="text-[11px] text-[#955904] font-mono">{tag}</span>
-                    </div>
-                  </div>
-
-                  {/* Right Side: Active Arrow Indicator */}
-                  <div
-                    className={`w-7 h-7 rounded-full flex items-center justify-center transition-all ${
-                      isSelected
-                        ? "bg-[#C8A232] text-white scale-110 shadow-sm"
-                        : "text-[#5B6782]/40 opacity-0 group-hover:opacity-100"
-                    }`}
-                  >
-                    <ArrowIcon className="w-3.5 h-3.5" />
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-
         </div>
-
-        {/* View All Treatments CTA */}
-        <div className="mt-14 text-center">
-          <Link
-            href="/treatments"
-            className="inline-flex items-center gap-2.5 px-8 py-3.5 rounded-full border-2 border-[#C8A232] bg-white text-[#012968] font-bold text-xs uppercase tracking-wider shadow-sm hover:shadow-md hover:bg-[#FAF8F5] transition-all transform hover:-translate-y-0.5"
-          >
-            <Sparkles className="w-4 h-4 text-[#955904]" />
-            <span>{t("viewAll")}</span>
-            <ArrowIcon className="w-4 h-4 text-[#955904]" />
-          </Link>
-        </div>
-
       </div>
     </section>
   );
