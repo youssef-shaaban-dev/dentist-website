@@ -25,7 +25,7 @@ export default function Home() {
         {/* 1. Section 01: Hero Section */}
         <HeroSection />
 
-        {/* 3D Wavy Ribbon Divider: Hero -> Welcome */}
+        {/* 3D Horizontal Wavy Ribbon Divider: Hero -> Welcome */}
         <div className="relative w-full z-25 -my-4 sm:-my-5 pointer-events-none select-none">
           <SectionWavyDivider />
         </div>
@@ -34,7 +34,7 @@ export default function Home() {
         <WelcomeSection />
       </div>
 
-      {/* 3D Wavy Ribbon Divider: Welcome -> Signature Treatments */}
+      {/* 3D Horizontal Wavy Ribbon Divider: Welcome -> Signature Treatments */}
       <div className="relative w-full z-25 -my-4 sm:-my-5 pointer-events-none select-none">
         <SectionWavyDivider inverted />
       </div>
@@ -42,7 +42,7 @@ export default function Home() {
       {/* 3. Section 03: Signature Treatments (Clean - Zero Column Overflow) */}
       <SignatureTreatments />
 
-      {/* 3D Wavy Ribbon Divider: Treatments -> Specialists */}
+      {/* 3D Horizontal Wavy Ribbon Divider: Treatments -> Specialists */}
       <div className="relative w-full z-25 -my-4 sm:-my-5 pointer-events-none select-none">
         <SectionWavyDivider />
       </div>
@@ -50,7 +50,7 @@ export default function Home() {
       {/* 4. Section 04: Meet Our Specialists */}
       <SpecialistsSection />
 
-      {/* 3D Wavy Ribbon Divider: Specialists -> Transformations */}
+      {/* 3D Horizontal Wavy Ribbon Divider: Specialists -> Transformations */}
       <div className="relative w-full z-25 -my-4 sm:-my-5 pointer-events-none select-none">
         <SectionWavyDivider inverted />
       </div>
@@ -58,7 +58,7 @@ export default function Home() {
       {/* 5. Section 05: Smile Transformations */}
       <SmileTransformations />
 
-      {/* 3D Wavy Ribbon Divider: Transformations -> Difference */}
+      {/* 3D Horizontal Wavy Ribbon Divider: Transformations -> Difference */}
       <div className="relative w-full z-25 -my-4 sm:-my-5 pointer-events-none select-none">
         <SectionWavyDivider />
       </div>
@@ -66,7 +66,7 @@ export default function Home() {
       {/* 6. Section 06: The Magnificent Difference */}
       <MagnificentDifference />
 
-      {/* 3D Wavy Ribbon Divider: Difference -> Clinics */}
+      {/* 3D Horizontal Wavy Ribbon Divider: Difference -> Clinics */}
       <div className="relative w-full z-25 -my-4 sm:-my-5 pointer-events-none select-none">
         <SectionWavyDivider inverted />
       </div>
@@ -74,7 +74,7 @@ export default function Home() {
       {/* 7. Section 07: Our Clinics */}
       <ClinicsSection />
 
-      {/* 3D Wavy Ribbon Divider: Clinics -> Reviews */}
+      {/* 3D Horizontal Wavy Ribbon Divider: Clinics -> Reviews */}
       <div className="relative w-full z-25 -my-4 sm:-my-5 pointer-events-none select-none">
         <SectionWavyDivider />
       </div>
@@ -82,7 +82,7 @@ export default function Home() {
       {/* 8. Section 08: Patient Reviews */}
       <PatientReviews />
 
-      {/* 3D Wavy Ribbon Divider: Reviews -> Ecosystem */}
+      {/* 3D Horizontal Wavy Ribbon Divider: Reviews -> Ecosystem */}
       <div className="relative w-full z-25 -my-4 sm:-my-5 pointer-events-none select-none">
         <SectionWavyDivider inverted />
       </div>
@@ -90,7 +90,7 @@ export default function Home() {
       {/* 9. Section 09: Our Ecosystem */}
       <EcosystemSection />
 
-      {/* 3D Wavy Ribbon Divider: Ecosystem -> Book Consultation */}
+      {/* 3D Horizontal Wavy Ribbon Divider: Ecosystem -> Book Consultation */}
       <div className="relative w-full z-25 -my-4 sm:-my-5 pointer-events-none select-none">
         <SectionWavyDivider />
       </div>

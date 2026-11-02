@@ -6,7 +6,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useTranslations } from "next-intl";
 import { useLanguage } from "@/i18n/IntlProviderWrapper";
 import { RoyalSmileShowcase } from "./RoyalSmileShowcase";
-import { SplitTextScrub } from "@/components/ui/SplitTextScrub";
 import { SplitSectionBackground } from "@/components/ui/SplitSectionBackground";
 import {
   Sparkles,
@@ -183,14 +182,14 @@ export function WelcomeSection() {
               ref={desc1Ref}
               className="text-sm sm:text-base md:text-[17px] text-[#2A3B56] leading-relaxed mb-4 font-body"
             >
-              <SplitTextScrub text={t("desc1")} wordClassName="split-desc1-word" />
+              {t("desc1")}
             </p>
 
             <p
               ref={desc2Ref}
-              className="text-sm sm:text-base md:text-[17px] text-[#2A3B56] leading-relaxed mb-8 font-body"
+              className="text-sm sm:text-base md:text-[17px] text-[#2A3B56] leading-relaxed mb-6 font-body"
             >
-              <SplitTextScrub text={t("desc2")} wordClassName="split-desc2-word" />
+              {t("desc2")}
             </p>
 
             {/* 3 Clinical Excellence Pillars — Directly from the Brochure Approach */}
