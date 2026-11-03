@@ -165,18 +165,18 @@ export function SplitSectionBackground({
         )}
       </svg>
 
-      {/* Ambient Royal Blue Glow on Left */}
+      {/* Ambient Royal Blue Glow on Left (Mobile only) */}
       <div
-        className={`absolute top-1/3 ${
-          inverted ? "right-2 lg:right-10" : "left-2 lg:left-10"
-        } w-[200px] lg:w-[420px] h-[200px] lg:h-[420px] bg-[#1355AB]/20 rounded-full blur-[70px] lg:blur-[140px] pointer-events-none`}
+        className={`lg:hidden absolute top-1/3 ${
+          inverted ? "right-2" : "left-2"
+        } w-[200px] h-[200px] bg-[#1355AB]/20 rounded-full blur-[70px] pointer-events-none`}
       />
 
-      {/* Ambient Warm Golden Sheen on Right */}
+      {/* Ambient Warm Golden Sheen on Right (Mobile only) */}
       <div
-        className={`absolute bottom-10 ${
-          inverted ? "left-2 lg:left-10" : "right-2 lg:right-10"
-        } w-[220px] lg:w-[450px] h-[220px] lg:h-[450px] bg-[#C8A232]/12 rounded-full blur-[75px] lg:blur-[150px] pointer-events-none`}
+        className={`lg:hidden absolute bottom-10 ${
+          inverted ? "left-2" : "right-2"
+        } w-[220px] h-[220px] bg-[#C8A232]/12 rounded-full blur-[75px] pointer-events-none`}
       />
 
       {/* Far Right Egyptian Column Relief Shadow (Desktop only) */}

@@ -267,12 +267,12 @@ export function MagnificentDifference() {
             ref={rightRef}
             className={`lg:col-span-6 flex flex-col ${
               isRtl ? "order-2 lg:order-1" : "order-2 lg:order-2"
-            } p-4 sm:p-6 lg:p-0 rounded-3xl lg:rounded-none bg-[#FCFAF5]/95 lg:bg-transparent border border-[#C8A232]/35 lg:border-0 shadow-xl lg:shadow-none backdrop-blur-md pl-4 sm:pl-6 lg:pl-10 xl:pl-14`}
+            } p-4 sm:p-6 lg:p-0 rounded-3xl lg:rounded-none bg-[#FCFAF5]/95 lg:bg-transparent border border-[#C8A232]/35 lg:border-0 shadow-xl lg:shadow-none backdrop-blur-md lg:backdrop-blur-none pl-4 sm:pl-6 lg:pl-10 xl:pl-14`}
           >
             {/* Category Kicker Badge — From the Brochure: OUR APPROACH */}
             <div className="flex items-center gap-2.5 mb-4">
               <span className="h-[1px] w-6 bg-[#C8A232]/70" />
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[#C8A232]/50 bg-white/80 shadow-xs backdrop-blur-xs">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[#C8A232]/50 bg-white/90 shadow-xs backdrop-blur-xs lg:backdrop-blur-none">
                 <Crown className="w-3.5 h-3.5 text-[#9A5F13]" />
                 <span className="text-xs font-bold text-[#9A5F13] uppercase tracking-wider font-mono">
                   {isRtl ? "نهجنا الطبي • دقة وإتقان دائم" : "OUR APPROACH • WHERE PRECISION MEETS PERFECTION"}

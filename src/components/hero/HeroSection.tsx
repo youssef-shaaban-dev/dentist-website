@@ -100,20 +100,20 @@ export function HeroSection() {
       dir={isRtl ? "rtl" : "ltr"}
     >
       {/* 1. Main Stage Container */}
-      <div className="relative w-full flex-1 flex flex-col justify-center overflow-hidden pt-20 sm:pt-24 lg:pt-32 pb-10 sm:pb-14 lg:pb-16">
+      <div className="relative w-full flex-1 flex flex-col justify-center overflow-hidden pt-24 sm:pt-28 lg:pt-36 xl:pt-40 pb-8 sm:pb-12 lg:pb-14">
         {/* 2. Signature Multi-Line 3D Ribbon Split Background */}
         <SplitSectionBackground />
 
         {/* 3. Hero Main Content Grid */}
         <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 relative z-10 my-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-center min-h-0 lg:min-h-[620px]">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-center min-h-0 lg:min-h-[520px] xl:min-h-[560px]">
             
             {/* RIGHT COLUMN (Warm Gold / Parchment Side): Balanced 6 Cols on desktop, luxury card on mobile */}
             <div
               ref={rightContentRef}
               className={`lg:col-span-6 flex flex-col justify-center ${
                 isRtl ? "order-2 lg:order-1" : "order-2 lg:order-2"
-              } p-4 sm:p-6 lg:p-0 rounded-3xl lg:rounded-none bg-[#FCFAF5]/95 lg:bg-transparent border border-[#C8A232]/35 lg:border-0 shadow-xl lg:shadow-none backdrop-blur-md pl-4 sm:pl-6 lg:pl-10 xl:pl-14 pr-4 sm:pr-6 lg:pr-32 xl:pr-40`}
+              } p-4 sm:p-6 lg:p-0 rounded-3xl lg:rounded-none bg-[#FCFAF5]/95 lg:bg-transparent border border-[#C8A232]/35 lg:border-0 shadow-xl lg:shadow-none backdrop-blur-md lg:backdrop-blur-none pl-4 sm:pl-6 lg:pl-10 xl:pl-14 pr-4 sm:pr-6 lg:pr-32 xl:pr-40`}
             >
               {/* Top Kicker Line — Pure Dental Innovation */}
               <div className="flex items-center gap-1.5 sm:gap-3 mb-2 sm:mb-4 lg:mb-5">
