@@ -134,65 +134,80 @@ export function HieroglyphicWall() {
           <div className="absolute inset-y-0 left-2 w-[1px] bg-[#9A5F13]/20 pointer-events-none" />
           <div className="absolute inset-y-0 right-2 w-[1px] bg-[#9A5F13]/20 pointer-events-none" />
 
-          {/* TOP STONE CAPITAL */}
+          {/* ================================================================= */}
+          {/* 1. TOP STONE CAPITAL (قاعدة بداية العمود في الأعلى)               */}
+          {/* ================================================================= */}
           <div className="shrink-0 w-full pt-8 pb-4 flex flex-col items-center border-b-2 border-[#C8A232]/60 bg-gradient-to-b from-[#EEDBB7] to-[#FAF1DD] relative shadow-xs">
+            {/* Lotus Petal Relief Header */}
             <div className="w-10 h-10 rounded-full bg-[#012052] border-2 border-[#DFBF57] text-[#DFBF57] flex items-center justify-center shadow-md mb-2">
               <Crown className="w-5 h-5 text-[#DFBF57]" />
             </div>
 
-            <span className="text-[10px] font-mono font-bold text-[#9A5F13] tracking-widest uppercase block">
+            <span className="text-[10px] font-mono font-bold text-[#9A5F13] tracking-widest uppercase block text-center leading-none">
               HESY-RA
             </span>
-            <span className="text-[8px] font-mono text-[#4A2F08]/75 tracking-wider block mt-0.5">
+            <span className="text-[8px] font-mono text-[#4A2F08]/75 tracking-wider block mt-1 text-center leading-none">
               SAQQARA 2600 B.C.
             </span>
 
+            {/* Stepped Cornice Trim */}
             <div className="w-16 h-1 bg-gradient-to-r from-transparent via-[#C8A232] to-transparent mt-3" />
           </div>
 
-          {/* SHAFT: CARVED HIEROGLYPHIC BLOCKS */}
+          {/* ================================================================= */}
+          {/* 2. SHAFT OF THE COLUMN: COMPLETE CARVED HIEROGLYPHIC BLOCKS        */}
+          {/* ================================================================= */}
           <div className="flex-1 w-full py-4 px-2 flex flex-col justify-evenly items-center">
             
             {/* Register I Title Stamp */}
             <div className="flex items-center gap-1 my-1">
               <span className="w-2 h-[1px] bg-[#C8A232]" />
               <span className="text-[9px] font-mono font-bold text-[#9A5F13] uppercase tracking-wider">
-                {isRtl ? "إرث حسي رع" : "HESY-RA"}
+                {isRtl ? "شفرة سقارة" : "SAQQARA"}
               </span>
               <span className="w-2 h-[1px] bg-[#C8A232]" />
             </div>
 
-            {HIEROGLYPHIC_LINES.map((line, idx) => {
+            {HIEROGLYPHIC_LINES.map((line) => {
+              const isRegisterBreak = line.id === "h7";
               const isHovered = hoveredId === line.id;
-              const isRegisterBreak = idx === 6;
 
               return (
                 <React.Fragment key={line.id}>
                   <div
                     onMouseEnter={() => setHoveredId(line.id)}
                     onMouseLeave={() => setHoveredId(null)}
-                    className="relative w-full py-1.5 px-1.5 rounded-xl transition-all duration-300 cursor-pointer flex flex-col items-center group hover:bg-[#C8A232]/20 border border-transparent hover:border-[#C8A232]/50"
+                    className="relative group w-full flex flex-col items-center py-1 transition-all duration-300 cursor-pointer"
                   >
-                    <div className="flex items-center justify-center gap-1.5 flex-wrap font-serif text-xl sm:text-2xl text-[#4A2F08] drop-shadow-[0_1px_1px_rgba(255,255,255,0.8)] transition-all group-hover:scale-108 group-hover:text-[#9A5F13]">
-                      {line.glyphs.map((glyph, gIdx) => (
-                        <span key={gIdx} className="inline-block select-all">
-                          {glyph}
+                    {/* Hieroglyphic Glyphs Cartouche */}
+                    <div
+                      className={`flex items-center justify-center gap-1.5 px-2 py-1 rounded-md transition-all duration-300 ${
+                        isHovered
+                          ? "bg-[#012052] shadow-md border border-[#DFBF57] scale-110"
+                          : "hover:bg-[#C8A232]/20"
+                      }`}
+                    >
+                      {line.glyphs.map((g, gIdx) => (
+                        <span
+                          key={gIdx}
+                          className={`font-serif text-lg lg:text-xl transition-all duration-300 select-none ${
+                            isHovered
+                              ? "text-[#DFBF57] drop-shadow-[0_0_8px_rgba(223,191,87,0.8)]"
+                              : "text-[#4A2F08] drop-shadow-[0_1px_0_rgba(255,255,255,0.8)]"
+                          }`}
+                        >
+                          {g}
                         </span>
                       ))}
                     </div>
 
-                    {isHovered && (
-                      <div className="absolute -bottom-1 left-3 right-3 h-0.5 bg-gradient-to-r from-transparent via-[#DFBF57] to-transparent shadow-[0_0_8px_#DFBF57] animate-pulse" />
-                    )}
-
-                    {/* COMPACT HOVER TRANSLATION TOOLTIP */}
+                    {/* Interactive Tooltip on Hover */}
                     {isHovered && (
                       <div
-                        className="absolute right-full mr-3 top-1/2 -translate-y-1/2 w-64 sm:w-72 p-3 rounded-2xl bg-[#011438]/95 border border-[#DFBF57]/80 text-white shadow-[0_12px_35px_rgba(1,20,56,0.6)] backdrop-blur-xl z-50 pointer-events-none transition-all duration-200 animate-fadeIn"
-                        dir="rtl"
+                        className={`absolute top-1/2 -translate-y-1/2 ${
+                          isRtl ? "left-full ml-3" : "right-full mr-3"
+                        } w-56 p-3 rounded-xl bg-[#011438]/95 border-2 border-[#DFBF57] shadow-2xl backdrop-blur-xl z-50 pointer-events-none animate-fadeIn`}
                       >
-                        <div className="h-0.5 w-full bg-gradient-to-r from-transparent via-[#DFBF57] to-transparent mb-2" />
-
                         <div className="flex items-center justify-between mb-1.5">
                           <span className="text-[10px] font-mono text-[#DFBF57] font-bold flex items-center gap-1">
                             <Sparkles className="w-3 h-3 text-[#DFBF57]" />
@@ -231,7 +246,9 @@ export function HieroglyphicWall() {
 
           </div>
 
-          {/* BOTTOM STONE BASE */}
+          {/* ================================================================= */}
+          {/* 3. BOTTOM STONE BASE (قاعدة نهاية العمود في الأسفل)                */}
+          {/* ================================================================= */}
           <div className="shrink-0 w-full pt-4 pb-6 flex flex-col items-center border-t-2 border-[#C8A232]/60 bg-gradient-to-b from-[#FAF1DD] to-[#E8D4AE] relative shadow-inner">
             <div className="w-16 h-1 bg-gradient-to-r from-transparent via-[#C8A232] to-transparent mb-3" />
 
@@ -239,10 +256,10 @@ export function HieroglyphicWall() {
               <BookOpen className="w-4 h-4 text-[#DFBF57]" />
             </div>
 
-            <span className="text-[10px] font-mono font-bold text-[#9A5F13] tracking-widest uppercase block">
+            <span className="text-[10px] font-mono font-bold text-[#9A5F13] tracking-widest uppercase block text-center leading-none">
               MAGNIFICENT
             </span>
-            <span className="text-[8px] font-mono text-[#4A2F08]/75 tracking-wider block mt-0.5">
+            <span className="text-[8px] font-mono text-[#4A2F08]/75 tracking-wider block mt-1 text-center leading-none">
               DENTAL HERITAGE
             </span>
 
@@ -278,7 +295,7 @@ export function HieroglyphicWall() {
             {allMobileGlyphs.slice(0, 14).map((glyph, gIdx) => (
               <span
                 key={gIdx}
-                className="font-serif text-lg text-[#4A2F08] drop-shadow-[0_1px_0_rgba(255,255,255,0.85)] inline-block select-none transform hover:scale-110 transition-transform"
+                className="font-serif text-lg text-[#4A2F08] drop-shadow-[0_1px_0_rgba(255,255,255,0.85)] inline-block select-none"
               >
                 {glyph}
               </span>

@@ -88,12 +88,12 @@ export function PatientReviews() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
           
           {/* RIGHT COLUMN (Warm Gold / Parchment Side): Balanced 6 Cols on desktop */}
-          {/* Safe buffer pl-10 xl:pl-14 guarantees zero ribbon collision */}
+          {/* On mobile, wrapped in a luxury parchment card so dark blue text never bleeds into dark blue background */}
           <div
             ref={rightRef}
             className={`lg:col-span-6 flex flex-col ${
               isRtl ? "order-2 lg:order-1" : "order-2 lg:order-2"
-            } pl-0 lg:pl-10 xl:pl-14`}
+            } p-4 sm:p-6 lg:p-0 rounded-3xl lg:rounded-none bg-[#FCFAF5]/95 lg:bg-transparent border border-[#C8A232]/35 lg:border-0 shadow-xl lg:shadow-none backdrop-blur-md pl-4 sm:pl-6 lg:pl-10 xl:pl-14`}
           >
             {/* Category Kicker Badge */}
             <div className="flex items-center gap-2.5 mb-4">

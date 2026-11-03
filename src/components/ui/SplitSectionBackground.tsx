@@ -29,14 +29,14 @@ export function SplitSectionBackground({
       className={`absolute inset-0 w-full h-full pointer-events-none -z-10 overflow-hidden ${className}`}
     >
       {/* =================================================================== */}
-      {/* 1. DESKTOP SVG: Left Royal Blue + Multi-Line 3D Ribbon + Right Gold */}
-      {/* Wave Curve mathematically sculpted from user's reference image      */}
-      {/* Top convex arch (y:140) -> Middle waist (y:360) -> Deep belly (y:650) */}
+      {/* 3D S-CURVE VERTICAL BACKGROUND (Unified across Desktop & Mobile)     */}
+      {/* Left Royal Blue + Multi-Line 3D Ribbon + Right Warm Antique Gold    */}
+      {/* Continuous C1-smooth luxury S-curve identical across all viewports  */}
       {/* =================================================================== */}
       <svg
         viewBox="0 0 1000 800"
         preserveAspectRatio="none"
-        className="hidden lg:block w-full h-full"
+        className="w-full h-full block"
         style={inverted ? { transform: "scaleX(-1)", transformOrigin: "center" } : undefined}
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -95,8 +95,7 @@ export function SplitSectionBackground({
         {/* Base: Deep Royal Blue (Left Half) */}
         <rect width="1000" height="800" fill={`url(#${blueGradId})`} />
 
-        {/* Warm Antique Parchment Gold along the Exact Reference Wave Contour */}
-        {/* Continuous C1-smooth luxury S-curve: exits at x=500 with vertical slope, matching next section perfectly */}
+        {/* Warm Antique Parchment Gold along the Continuous C1-smooth S-curve */}
         <path
           d="M 500,0 C 500,100 470,180 470,260 C 470,360 530,440 530,540 C 530,640 500,720 500,800 L 1000,800 L 1000,0 Z"
           fill={`url(#${goldGradId})`}
@@ -110,7 +109,8 @@ export function SplitSectionBackground({
               fill="none"
               stroke="#010A1A"
               strokeWidth="24"
-              strokeOpacity="0.6"
+              strokeOpacity="0.8"
+              filter={`url(#${shadowFilterId})`}
               vectorEffect="non-scaling-stroke"
             />
 
@@ -167,94 +167,26 @@ export function SplitSectionBackground({
 
       {/* Ambient Royal Blue Glow on Left */}
       <div
-        className={`hidden lg:block absolute top-1/3 ${
-          inverted ? "right-10" : "left-10"
-        } w-[420px] h-[420px] bg-[#1355AB]/20 rounded-full blur-[140px] pointer-events-none`}
+        className={`absolute top-1/3 ${
+          inverted ? "right-2 lg:right-10" : "left-2 lg:left-10"
+        } w-[200px] lg:w-[420px] h-[200px] lg:h-[420px] bg-[#1355AB]/20 rounded-full blur-[70px] lg:blur-[140px] pointer-events-none`}
       />
 
       {/* Ambient Warm Golden Sheen on Right */}
       <div
-        className={`hidden lg:block absolute bottom-10 ${
-          inverted ? "left-10" : "right-10"
-        } w-[450px] h-[450px] bg-[#C8A232]/12 rounded-full blur-[150px] pointer-events-none`}
+        className={`absolute bottom-10 ${
+          inverted ? "left-2 lg:left-10" : "right-2 lg:right-10"
+        } w-[220px] lg:w-[450px] h-[220px] lg:h-[450px] bg-[#C8A232]/12 rounded-full blur-[75px] lg:blur-[150px] pointer-events-none`}
       />
 
-      {/* Far Right Egyptian Column Relief Shadow (As in Reference Image) */}
+      {/* Far Right Egyptian Column Relief Shadow (Desktop only) */}
       <div
         className={`hidden lg:block absolute top-0 ${
           inverted ? "left-0" : "right-0"
-        } bottom-0 w-32 opacity-15 pointer-events-none bg-[radial-gradient(circle_at_${
+        } bottom-0 w-24 sm:w-28 lg:w-32 opacity-15 pointer-events-none bg-[radial-gradient(circle_at_${
           inverted ? "left" : "right"
         },_rgba(154,95,19,0.4)_0%,_transparent_75%)]`}
       />
-
-      {/* =================================================================== */}
-      {/* 2. MOBILE RESPONSIVE BACKGROUND (< lg)                             */}
-      {/* Fluid Horizontal 3D S-Curve Wave dividing Visual from Content       */}
-      {/* =================================================================== */}
-      <svg
-        viewBox="0 0 400 900"
-        preserveAspectRatio="none"
-        className="block lg:hidden w-full h-full"
-        style={inverted ? { transform: "scaleY(-1)", transformOrigin: "center" } : undefined}
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        {/* Upper Visual Foundation: Deep Royal Blue */}
-        <rect width="400" height="900" fill={`url(#${blueGradId})`} />
-
-        {/* Lower Content Foundation: Warm Sand / Parchment Gold along 3D Wave */}
-        <path
-          d="M 0,440 C 90,405 170,475 240,430 C 310,390 365,455 400,430 L 400,900 L 0,900 Z"
-          fill={`url(#${goldGradId})`}
-        />
-
-        {showDivider && (
-          <g>
-            {/* Layer 1: Realistic 3D Wave Drop Shadow */}
-            <path
-              d="M 0,440 C 90,405 170,475 240,430 C 310,390 365,455 400,430"
-              fill="none"
-              stroke="#020B1D"
-              strokeWidth="10"
-              strokeOpacity="0.45"
-              filter={`url(#${shadowFilterId})`}
-            />
-
-            {/* Layer 2: Deep Royal Blue Enamel Channel */}
-            <path
-              d="M 0,440 C 90,405 170,475 240,430 C 310,390 365,455 400,430"
-              fill="none"
-              stroke={`url(#${ribbonBlueId})`}
-              strokeWidth="7"
-            />
-
-            {/* Layer 3: Main 24K Sculpted Gold Ribbon */}
-            <path
-              d="M 0,441 C 90,406 170,476 240,431 C 310,391 365,456 400,431"
-              fill="none"
-              stroke={`url(#${ribbonGoldId})`}
-              strokeWidth="8"
-            />
-
-            {/* Layer 4: Specular Glint Highlight Filament */}
-            <path
-              d="M 0,440.5 C 90,405.5 170,475.5 240,430.5 C 310,390.5 365,455.5 400,430.5"
-              fill="none"
-              stroke="#FFFDF5"
-              strokeWidth="1.6"
-              strokeOpacity="0.95"
-            />
-
-            {/* Layer 5: Gold Echo Tracer Filament */}
-            <path
-              d="M 0,446 C 90,411 170,481 240,436 C 310,396 365,461 400,436"
-              fill="none"
-              stroke={`url(#${ribbonTracerId})`}
-              strokeWidth="2"
-            />
-          </g>
-        )}
-      </svg>
     </div>
   );
 }

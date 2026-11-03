@@ -96,102 +96,88 @@ export function HeroSection() {
       ref={heroRef}
       id="home"
       aria-label="Magnificent Smile Dental Center"
-      className="relative z-10 w-full min-h-[100dvh] flex flex-col justify-between overflow-hidden select-none bg-[#FDFBF7]"
+      className="relative z-10 w-full min-h-0 lg:min-h-[100dvh] flex flex-col justify-between overflow-hidden select-none bg-[#FDFBF7]"
       dir={isRtl ? "rtl" : "ltr"}
     >
       {/* 1. Main Stage Container (Clean, Stable, Zero Video Morphing Distortion) */}
-      <div className="relative w-full flex-1 flex flex-col justify-center overflow-hidden pt-24 sm:pt-28 lg:pt-32 pb-12 lg:pb-16">
+      <div className="relative w-full flex-1 flex flex-col justify-center overflow-hidden pt-14 sm:pt-20 lg:pt-32 pb-6 sm:pb-10 lg:pb-16">
         {/* 2. Signature Multi-Line 3D Ribbon Split Background */}
         <SplitSectionBackground />
 
         {/* 3. Hero Main Content Grid */}
-        <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 relative z-10 my-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center min-h-[560px] lg:min-h-[620px]">
+        <div className="max-w-7xl mx-auto w-full px-2 sm:px-6 lg:px-8 relative z-10 my-auto">
+          <div className="grid grid-cols-12 gap-2 sm:gap-6 lg:gap-10 items-center min-h-0 lg:min-h-[620px]">
             
-            {/* RIGHT COLUMN (Warm Gold / Parchment Side): Balanced 6 Cols on desktop */}
-            {/* Safe buffer: pl-8 xl:pl-10 protects from center wave, pr-32 xl:pr-40 pushes away from hieroglyphic pillar */}
+            {/* RIGHT COLUMN (Warm Gold / Parchment Side): Sits gracefully in right gold field */}
             <div
               ref={rightContentRef}
-              className={`lg:col-span-6 flex flex-col justify-center ${
-                isRtl ? "order-2 lg:order-1" : "order-2 lg:order-2"
-              } pl-0 lg:pl-8 xl:pl-10 pr-0 lg:pr-32 xl:pr-40`}
+              className={`col-span-7 lg:col-span-6 flex flex-col justify-center ${
+                isRtl ? "order-1" : "order-2"
+              } pl-1 sm:pl-3 lg:pl-8 xl:pl-10 pr-2 sm:pr-4 lg:pr-32 xl:pr-40`}
             >
               {/* Top Kicker Line — Pure Dental Innovation */}
-              <div className="flex items-center gap-3 mb-4 sm:mb-5">
-                <span className="h-[1px] w-8 sm:w-12 bg-[#9A5F13]/60" />
-                <span className="text-[11px] sm:text-xs font-mono font-bold tracking-[0.2em] uppercase text-[#9A5F13]">
+              <div className="flex items-center gap-1 sm:gap-3 mb-1.5 sm:mb-4 lg:mb-5">
+                <span className="h-[1px] w-3 sm:w-8 lg:w-12 bg-[#9A5F13]/60" />
+                <span className="text-[7.5px] sm:text-[11px] lg:text-xs font-mono font-bold tracking-wider uppercase text-[#9A5F13] truncate">
                   {isRtl
                     ? "أحدث ابتكارات التكنولوجيا الطبية في طب وتجميل الأسنان"
                     : "ADVANCED DENTAL TECHNOLOGY & DIGITAL PRECISION"}
                 </span>
-                <span className="h-[1px] w-8 sm:w-12 bg-[#9A5F13]/60" />
+                <span className="h-[1px] w-3 sm:w-8 lg:w-12 bg-[#9A5F13]/60" />
               </div>
 
               {/* Two-Tone Luxury Headline — Grounded in Dental Precision */}
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[52px] font-bold font-display leading-[1.18] mb-5 tracking-tight">
+              <h1 className="text-sm sm:text-2xl md:text-4xl lg:text-[52px] font-bold font-display leading-[1.2] mb-1.5 sm:mb-4 lg:mb-5 tracking-tight">
                 <span className="block text-[#0F266A]">
                   {isRtl ? "ابتسامة صحية وجمال طبيعي." : "A beautiful smile."}
                 </span>
-                <span className="block text-[#9A5F13] font-display italic mt-1 sm:mt-2">
+                <span className="block text-[#9A5F13] font-display italic mt-0.5 sm:mt-1">
                   {isRtl ? "مصممة بأعلى معايير الدقة." : "Engineered with precision."}
                 </span>
               </h1>
 
               {/* Subtitle Paragraph — Pure Dental Clinical Scope */}
-              <p className="text-sm sm:text-base md:text-lg text-[#2A3B56] font-body leading-relaxed max-w-xl mb-8">
+              <p className="text-[9.5px] sm:text-sm md:text-base lg:text-lg text-[#2A3B56] font-body leading-relaxed max-w-xl mb-2.5 sm:mb-6 lg:mb-8 line-clamp-3 sm:line-clamp-none">
                 {isRtl
-                  ? "نجمع بين المسح الضوئي الرقمي ثلاثي الأبعاد، والتركيبات الخزفية السويسرية فائقة الدقة، والتقويم الشفاف، في بيئة علاجية مجهزة بالكامل لراحتك التامة."
-                  : "Advanced digital 3D scanning, ultra-thin Swiss veneers, crystal clear aligners, and personalized clinical care — designed for natural comfort and lasting results."}
+                  ? "نجمع بين المسح الضوئي الرقمي ثلاثي الأبعاد، والتركيبات الخزفية السويسرية فائقة الدقة، والتقويم الشفاف، لراحتك التامة."
+                  : "Advanced digital 3D scanning, ultra-thin Swiss veneers, crystal clear aligners, and personalized clinical care."}
               </p>
 
               {/* Action Buttons */}
-              <div className="flex flex-wrap items-center gap-3 sm:gap-4 mb-8">
+              <div className="flex flex-wrap items-center gap-1.5 sm:gap-3 lg:gap-4 mb-2.5 sm:mb-6 lg:mb-8">
                 {/* Primary Button */}
                 <a
                   href="#book"
-                  className="inline-flex items-center gap-2.5 px-7 py-3.5 sm:px-8 sm:py-4 rounded-xl bg-[#012052] hover:bg-[#022A6D] text-white font-bold text-xs sm:text-sm tracking-wider uppercase shadow-[0_6px_25px_rgba(2,34,86,0.35)] hover:shadow-[0_10px_35px_rgba(2,34,86,0.5)] transition-all duration-300 transform hover:-translate-y-0.5 cursor-pointer border border-[#C8A232]/40"
+                  className="inline-flex items-center gap-1 sm:gap-2 px-2.5 py-1.5 sm:px-6 sm:py-3.5 lg:px-8 lg:py-4 rounded-xl bg-[#012052] hover:bg-[#022A6D] text-white font-bold text-[9px] sm:text-xs lg:text-sm tracking-wider uppercase shadow-md transition-all cursor-pointer border border-[#C8A232]/40"
                 >
-                  <CalendarCheck className="w-4 h-4 text-[#DFBF57]" />
-                  <span>{isRtl ? "احجز موعد استشارتك" : "BOOK APPOINTMENT"}</span>
-                  <ArrowIcon className="w-4 h-4 text-[#DFBF57]" />
+                  <CalendarCheck className="w-3 h-3 sm:w-4 sm:h-4 text-[#DFBF57]" />
+                  <span>{isRtl ? "احجز استشارتك" : "BOOK"}</span>
+                  <ArrowIcon className="w-3 h-3 sm:w-4 sm:h-4 text-[#DFBF57]" />
                 </a>
 
                 {/* Secondary Button */}
                 <a
                   href="#clinics"
-                  className="inline-flex items-center gap-2 px-6 py-3.5 sm:py-4 rounded-xl bg-white/90 hover:bg-white border border-[#C8A232]/60 hover:border-[#C8A232] text-[#0F266A] font-bold text-xs sm:text-sm tracking-wider uppercase transition-all duration-300 shadow-xs"
+                  className="inline-flex items-center gap-1 sm:gap-2 px-2 py-1.5 sm:px-5 sm:py-3.5 rounded-xl bg-white/90 hover:bg-white border border-[#C8A232]/60 text-[#0F266A] font-bold text-[9px] sm:text-xs lg:text-sm tracking-wider uppercase transition-all shadow-xs"
                 >
-                  <MapPin className="w-4 h-4 text-[#9A5F13]" />
-                  <span>{isRtl ? "فروعنا ومراكزنا" : "OUR CLINICS"}</span>
-                  <span className="text-[#9A5F13]">↗</span>
+                  <MapPin className="w-3 h-3 sm:w-4 sm:h-4 text-[#9A5F13]" />
+                  <span>{isRtl ? "فروعنا" : "CLINICS"}</span>
                 </a>
-
-                {/* Watch Video Pill Button */}
-                <button
-                  type="button"
-                  onClick={() => setIsVideoModalOpen(true)}
-                  className="inline-flex items-center gap-2 px-4 py-2 sm:py-2.5 rounded-full bg-[#FAF1DC] border border-[#C8A232]/50 hover:bg-[#F3E4C0] text-[#9A5F13] text-xs font-bold font-mono transition-all cursor-pointer shadow-xs"
-                >
-                  <div className="w-5 h-5 rounded-full bg-[#9A5F13] text-white flex items-center justify-center">
-                    <Play className="w-2.5 h-2.5 fill-current ml-0.5" />
-                  </div>
-                  <span>{isRtl ? "شاهد جولة العيادات" : "CLINIC TOUR"}</span>
-                </button>
               </div>
 
-              {/* 4 Quick Clinical Badges */}
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 pt-5 border-t border-[#C8A232]/30 max-w-xl">
+              {/* Quick Clinical Badges */}
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-1 sm:gap-2.5 pt-1.5 sm:pt-4 border-t border-[#C8A232]/30 max-w-full overflow-hidden">
                 {statsList.map((stat, sIdx) => {
                   const Icon = stat.icon;
                   return (
-                    <div key={sIdx} className="flex flex-col">
-                      <div className="flex items-center gap-1.5 mb-0.5">
-                        <Icon className="w-3.5 h-3.5 text-[#9A5F13]" />
-                        <span className="text-xs sm:text-sm font-bold font-mono text-[#0F266A]">
+                    <div key={sIdx} className="flex flex-col min-w-0">
+                      <div className="flex items-center gap-1 mb-0.5 min-w-0">
+                        <Icon className="w-2.5 h-2.5 sm:w-3.5 sm:h-3.5 text-[#9A5F13] shrink-0" />
+                        <span className="text-[9px] sm:text-xs lg:text-sm font-bold font-mono text-[#0F266A] truncate">
                           {stat.val}
                         </span>
                       </div>
-                      <span className="text-[10px] sm:text-[11px] text-[#5B6782] font-body line-clamp-1">
+                      <span className="text-[7.5px] sm:text-[10px] lg:text-[11px] text-[#5B6782] font-body truncate">
                         {stat.label}
                       </span>
                     </div>
@@ -201,80 +187,70 @@ export function HeroSection() {
 
             </div>
 
-            {/* LEFT COLUMN (Deep Royal Blue Side): Balanced 6 Cols on desktop */}
-            {/* Centered comfortably inside the Royal Blue half with max-w-[390px], keeping >80px clearance to the ribbon */}
+            {/* LEFT COLUMN (Deep Royal Blue Side): Sits gracefully in left blue field */}
             <div
               ref={leftVisualRef}
-              className={`lg:col-span-6 relative flex justify-center items-center ${
-                isRtl ? "order-1 lg:order-2" : "order-1 lg:order-1"
-              } w-full`}
+              className={`col-span-5 lg:col-span-6 relative flex justify-center items-center ${
+                isRtl ? "order-2" : "order-1"
+              } w-full pr-1 sm:pr-3 lg:pr-8 pl-1 sm:pl-3 lg:pl-10`}
             >
-              <div className="w-full max-w-[380px] xl:max-w-[400px] mx-auto relative group">
+              <div className="w-full max-w-[145px] sm:max-w-[240px] md:max-w-[300px] lg:max-w-[380px] xl:max-w-[400px] mx-auto relative group">
                 
                 {/* Subtle Glow behind Frame */}
-                <div className="absolute -inset-4 bg-gradient-to-tr from-[#C8A232]/20 via-[#DFBF57]/10 to-transparent rounded-full blur-2xl pointer-events-none" />
+                <div className="absolute -inset-2 sm:-inset-4 bg-gradient-to-tr from-[#C8A232]/20 via-[#DFBF57]/10 to-transparent rounded-full blur-xl sm:blur-2xl pointer-events-none" />
 
                 {/* Queen Portrait Frame with 24K Sculpted Gold Trim */}
-                <div className="relative rounded-3xl overflow-hidden border-2 border-[#C8A232]/80 shadow-[0_25px_60px_rgba(0,0,0,0.6)] bg-[#020B1D]">
+                <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden border-1.5 sm:border-2 border-[#C8A232]/80 shadow-[0_15px_40px_rgba(0,0,0,0.6)] bg-[#020B1D]">
                   
                   {/* Gold Shimmer Bar on Top */}
-                  <div className="h-1.5 w-full bg-gradient-to-r from-[#9A5F13] via-[#DFBF57] to-[#9A5F13]" />
+                  <div className="h-1 sm:h-1.5 w-full bg-gradient-to-r from-[#9A5F13] via-[#DFBF57] to-[#9A5F13]" />
 
                   {/* Queen Portrait */}
-                  <div className="relative w-full aspect-[4/5] sm:aspect-[3/4] overflow-hidden bg-[#020B1D]">
+                  <div className="relative w-full aspect-[3/4] overflow-hidden bg-[#020B1D]">
                     <Image
                       src="/images/hero-queen.jpg"
-                      alt="Magnificent Smile — Precision Aesthetic Dentistry"
+                      alt={isRtl ? "ابتسامة ملكية متألقة" : "Queen of Magnificent Smile"}
                       fill
-                      sizes="(max-width: 1024px) 100vw, 420px"
-                      className="object-cover object-center transition-transform duration-1000 ease-out group-hover:scale-103"
+                      className="object-cover object-center transform transition-transform duration-700 group-hover:scale-105"
                       priority
+                      sizes="(max-width: 640px) 150px, (max-width: 1024px) 300px, 420px"
                     />
 
-                    {/* Royal Blue Atmosphere Vignettes */}
+                    {/* Gradient Vignette Overlay */}
                     <div className="absolute inset-0 bg-gradient-to-t from-[#020B1D] via-transparent to-transparent opacity-80 pointer-events-none" />
-                    <div className="absolute inset-0 bg-gradient-to-tr from-[#020B1D]/40 via-transparent to-[#DFBF57]/20 pointer-events-none" />
 
-                    {/* Top Floating Badge */}
-                    <div className="absolute top-3.5 left-3.5 right-3.5 flex items-center justify-between">
-                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#012052]/90 border border-[#DFBF57]/50 text-white text-[11px] font-mono font-bold shadow-md backdrop-blur-md">
-                        <Crown className="w-3.5 h-3.5 text-[#DFBF57]" />
-                        <span>HESY-RA HERITAGE</span>
+                    {/* Royal Badge Stamp on Image */}
+                    <div className="absolute top-2 sm:top-3.5 right-2 sm:right-3.5 px-1.5 sm:px-2.5 py-0.5 sm:py-1 rounded-full bg-[#011438]/85 border border-[#DFBF57]/60 backdrop-blur-md flex items-center gap-1 shadow-md">
+                      <Crown className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-[#DFBF57]" />
+                      <span className="text-[7.5px] sm:text-[9px] font-mono font-bold text-[#DFBF57] tracking-wider uppercase">
+                        HESY-RA
                       </span>
-
-                      <button
-                        type="button"
-                        onClick={() => setIsVideoModalOpen(true)}
-                        className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/60 hover:bg-[#012052] border border-white/20 text-white text-[10px] font-mono font-bold shadow-md backdrop-blur-md transition-colors cursor-pointer"
-                        title={isRtl ? "تشغيل جولة الفيديو" : "Play Clinic Video"}
-                      >
-                        <Play className="w-2.5 h-2.5 text-[#DFBF57] fill-current" />
-                        <span>{isRtl ? "جولة العيادات" : "TOUR"}</span>
-                      </button>
                     </div>
 
-                    {/* Bottom Floating Card: Dental Precision Badge */}
-                    <div className="absolute bottom-3.5 left-3.5 right-3.5 p-3 rounded-2xl bg-[#012052]/90 border border-[#C8A232]/50 text-white shadow-xl backdrop-blur-md">
-                      <div className="flex items-center justify-between">
-                        <div>
-                          <span className="text-[10px] font-mono font-bold text-[#DFBF57] uppercase tracking-wider block">
-                            {isRtl ? "معايير الجمال الطبيعي" : "NATURAL AESTHETICS"}
-                          </span>
-                          <span className="text-xs font-bold font-display text-white">
-                            {isRtl ? "تصميم وتجميل الابتسامة الرقمي" : "Digital Smile Architecture"}
-                          </span>
-                        </div>
-                        <Sparkles className="w-4 h-4 text-[#DFBF57]" />
-                      </div>
-                    </div>
+                    {/* Clinic Tour Play Button */}
+                    <button
+                      type="button"
+                      onClick={() => setIsVideoModalOpen(true)}
+                      className="absolute top-2 sm:top-3.5 left-2 sm:left-3.5 px-1.5 sm:px-2.5 py-0.5 sm:py-1 rounded-full bg-[#011438]/85 hover:bg-[#012052] border border-[#DFBF57]/60 backdrop-blur-md flex items-center gap-1 shadow-md text-[#DFBF57] text-[7.5px] sm:text-[9px] font-mono font-bold transition-colors cursor-pointer z-10"
+                      title={isRtl ? "تشغيل جولة الفيديو" : "Play Clinic Video"}
+                    >
+                      <Play className="w-2.5 h-2.5 text-[#DFBF57] fill-current" />
+                      <span>{isRtl ? "جولة العيادات" : "TOUR"}</span>
+                    </button>
 
+                    {/* Bottom Caption Pill */}
+                    <div className="absolute bottom-2 sm:bottom-3.5 left-2 sm:left-3.5 right-2 sm:right-3.5 p-1.5 sm:p-2.5 rounded-xl bg-[#011438]/90 border border-[#DFBF57]/40 backdrop-blur-md shadow-lg text-center">
+                      <span className="text-[8px] sm:text-[10px] lg:text-xs font-bold text-white block">
+                        {isRtl ? "تصميم وتجميل الابتسامة الرقمي" : "Digital Smile Architecture"}
+                      </span>
+                    </div>
                   </div>
 
                   {/* Footer Bar */}
-                  <div className="px-4 py-2.5 bg-[#010F28] border-t border-[#DFBF57]/30 flex items-center justify-between text-[#DFBF57] text-[11px] font-mono">
+                  <div className="px-2.5 sm:px-4 py-1.5 sm:py-2.5 bg-[#010F28] border-t border-[#DFBF57]/30 flex items-center justify-between text-[#DFBF57] text-[8.5px] sm:text-[11px] font-mono">
                     <span>MAGNIFICENT SMILE</span>
                     <span className="text-white/60">
-                      {isRtl ? "عيادات · تقويم شفاف · معمل" : "Clinics • Aligners • Lab"}
+                      {isRtl ? "عيادات · تقويم · معمل" : "Clinics • Aligners • Lab"}
                     </span>
                   </div>
 
@@ -285,7 +261,6 @@ export function HeroSection() {
 
           </div>
         </div>
-
       </div>
 
       {/* =================================================================== */}
