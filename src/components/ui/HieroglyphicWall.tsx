@@ -126,9 +126,17 @@ export function HieroglyphicWall() {
       {/* =================================================================== */}
       <aside
         aria-label="Ancient Egyptian Architectural Stone Pillar"
-        className="hidden lg:flex flex-col absolute top-0 right-0 bottom-0 z-30 select-none pointer-events-auto"
+        className={`hidden lg:flex flex-col absolute top-0 ${
+          isRtl ? "right-0" : "left-0"
+        } bottom-0 z-30 select-none pointer-events-auto`}
       >
-        <div className="relative w-24 sm:w-28 xl:w-32 h-full flex flex-col justify-between items-center bg-gradient-to-l from-[#DFBF57]/30 via-[#FAF1DD] to-[#F1DFC0] border-l-2 border-[#C8A232]/80 shadow-[-12px_0_35px_rgba(154,95,19,0.22)]">
+        <div
+          className={`relative w-24 sm:w-28 xl:w-32 h-full flex flex-col justify-between items-center ${
+            isRtl
+              ? "bg-gradient-to-l from-[#DFBF57]/30 via-[#FAF1DD] to-[#F1DFC0] border-l-2 border-[#C8A232]/80 shadow-[-12px_0_35px_rgba(154,95,19,0.22)]"
+              : "bg-gradient-to-r from-[#DFBF57]/30 via-[#FAF1DD] to-[#F1DFC0] border-r-2 border-[#C8A232]/80 shadow-[12px_0_35px_rgba(154,95,19,0.22)]"
+          }`}
+        >
           
           {/* Ancient Vertical Fluting Lines on Sandstone */}
           <div className="absolute inset-y-0 left-2 w-[1px] bg-[#9A5F13]/20 pointer-events-none" />
@@ -205,7 +213,7 @@ export function HieroglyphicWall() {
                     {isHovered && (
                       <div
                         className={`absolute top-1/2 -translate-y-1/2 ${
-                          isRtl ? "left-full ml-3" : "right-full mr-3"
+                          isRtl ? "right-full mr-3" : "left-full ml-3"
                         } w-56 p-3 rounded-xl bg-[#011438]/95 border-2 border-[#DFBF57] shadow-2xl backdrop-blur-xl z-50 pointer-events-none animate-fadeIn`}
                       >
                         <div className="flex items-center justify-between mb-1.5">

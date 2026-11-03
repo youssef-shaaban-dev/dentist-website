@@ -102,18 +102,18 @@ export function HeroSection() {
       {/* 1. Main Stage Container */}
       <div className="relative w-full flex-1 flex flex-col justify-center overflow-hidden pt-24 sm:pt-28 lg:pt-36 xl:pt-40 pb-8 sm:pb-12 lg:pb-14">
         {/* 2. Signature Multi-Line 3D Ribbon Split Background */}
-        <SplitSectionBackground />
+        <SplitSectionBackground inverted={!isRtl} />
 
         {/* 3. Hero Main Content Grid */}
         <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 relative z-10 my-auto">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-center min-h-0 lg:min-h-[520px] xl:min-h-[560px]">
             
-            {/* RIGHT COLUMN (Warm Gold / Parchment Side): Balanced 6 Cols on desktop, luxury card on mobile */}
+            {/* CONTENT COLUMN (Warm Gold / Parchment Side): Order 1 on Desktop */}
             <div
               ref={rightContentRef}
-              className={`lg:col-span-6 flex flex-col justify-center ${
-                isRtl ? "order-2 lg:order-1" : "order-2 lg:order-2"
-              } p-4 sm:p-6 lg:p-0 rounded-3xl lg:rounded-none bg-[#FCFAF5]/95 lg:bg-transparent border border-[#C8A232]/35 lg:border-0 shadow-xl lg:shadow-none backdrop-blur-md lg:backdrop-blur-none pl-4 sm:pl-6 lg:pl-10 xl:pl-14 pr-4 sm:pr-6 lg:pr-32 xl:pr-40`}
+              className={`lg:col-span-6 flex flex-col justify-center order-2 lg:order-1 p-4 sm:p-6 lg:p-0 rounded-3xl lg:rounded-none bg-[#FCFAF5]/95 lg:bg-transparent border border-[#C8A232]/35 lg:border-0 shadow-xl lg:shadow-none backdrop-blur-md lg:backdrop-blur-none pl-4 sm:pl-6 ${
+                isRtl ? "lg:pl-10 xl:pl-14 lg:pr-32 xl:pr-40" : "lg:pr-10 xl:pr-14 lg:pl-32 xl:pl-40"
+              } pr-4 sm:pr-6`}
             >
               {/* Top Kicker Line — Pure Dental Innovation */}
               <div className="flex items-center gap-1.5 sm:gap-3 mb-2 sm:mb-4 lg:mb-5">
@@ -187,12 +187,12 @@ export function HeroSection() {
 
             </div>
 
-            {/* LEFT COLUMN (Deep Royal Blue Side): Sits gracefully in left blue field */}
+            {/* VISUAL COLUMN (Deep Royal Blue Side): Order 2 on Desktop */}
             <div
               ref={leftVisualRef}
-              className={`lg:col-span-6 relative flex justify-center items-center ${
-                isRtl ? "order-1 lg:order-2" : "order-1 lg:order-1"
-              } w-full pt-2 pb-4 lg:py-0 lg:pr-8 xl:pr-10`}
+              className={`lg:col-span-6 relative flex justify-center items-center order-1 lg:order-2 w-full pt-2 pb-4 lg:py-0 ${
+                isRtl ? "lg:pl-8 xl:pl-10" : "lg:pr-8 xl:pr-10"
+              }`}
             >
               <div className="w-full max-w-[240px] sm:max-w-[300px] md:max-w-[340px] lg:max-w-[380px] xl:max-w-[400px] mx-auto relative group">
                 

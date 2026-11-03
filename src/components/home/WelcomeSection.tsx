@@ -138,18 +138,18 @@ export function WelcomeSection() {
       className="relative pt-10 sm:pt-16 lg:pt-28 pb-10 sm:pb-16 lg:pb-28 px-4 sm:px-6 lg:px-8 overflow-hidden z-20 shadow-2xl"
       dir={isRtl ? "rtl" : "ltr"}
     >
-      {/* 1. Split Section Background: Left is Royal Blue | Right is Warm Gold */}
-      <SplitSectionBackground />
+      {/* 1. Split Section Background: Inverted in LTR so Gold is on Left */}
+      <SplitSectionBackground inverted={!isRtl} />
 
       {/* 2. SECTION CONTENT: Unified Standard Layout */}
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-center">
           
-          {/* RIGHT COLUMN (Warm Gold / Parchment Side): Balanced 6 Cols on desktop, luxury card on mobile */}
+          {/* CONTENT COLUMN (Warm Gold / Parchment Side): Order 1 on Desktop */}
           <div
-            className={`lg:col-span-6 flex flex-col justify-center ${
-              isRtl ? "order-2 lg:order-1" : "order-2 lg:order-2"
-            } p-4 sm:p-6 lg:p-0 rounded-3xl lg:rounded-none bg-[#FCFAF5]/95 lg:bg-transparent border border-[#C8A232]/35 lg:border-0 shadow-xl lg:shadow-none backdrop-blur-md lg:backdrop-blur-none pl-4 sm:pl-6 lg:pl-10 xl:pl-14 pr-4 sm:pr-6 lg:pr-32 xl:pr-40`}
+            className={`lg:col-span-6 flex flex-col justify-center order-2 lg:order-1 p-4 sm:p-6 lg:p-0 rounded-3xl lg:rounded-none bg-[#FCFAF5]/95 lg:bg-transparent border border-[#C8A232]/35 lg:border-0 shadow-xl lg:shadow-none backdrop-blur-md lg:backdrop-blur-none pl-4 sm:pl-6 ${
+              isRtl ? "lg:pl-10 xl:pl-14 lg:pr-32 xl:pr-40" : "lg:pr-10 xl:pr-14 lg:pl-32 xl:pl-40"
+            } pr-4 sm:pr-6`}
           >
             {/* Category Kicker Badge */}
             <div ref={badgeRef} className="flex items-center gap-1 sm:gap-2.5 mb-2 sm:mb-4">
@@ -247,12 +247,12 @@ export function WelcomeSection() {
 
           </div>
 
-          {/* LEFT COLUMN (Deep Royal Blue Side): Sits gracefully in left blue field */}
+          {/* VISUAL COLUMN (Deep Royal Blue Side): Order 2 on Desktop */}
           <div
             ref={toothColRef}
-            className={`lg:col-span-6 relative flex justify-center items-center ${
-              isRtl ? "order-1 lg:order-2" : "order-1 lg:order-1"
-            } w-full pt-2 pb-4 lg:py-0 lg:pr-8 xl:pr-10`}
+            className={`lg:col-span-6 relative flex justify-center items-center order-1 lg:order-2 w-full pt-2 pb-4 lg:py-0 ${
+              isRtl ? "lg:pl-8 xl:pl-10" : "lg:pr-8 xl:pr-10"
+            }`}
           >
             <div className="w-full max-w-[300px] sm:max-w-[360px] lg:max-w-[380px] xl:max-w-[400px] mx-auto">
               <RoyalSmileShowcase />

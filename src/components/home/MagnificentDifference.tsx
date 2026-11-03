@@ -255,19 +255,18 @@ export function MagnificentDifference() {
       dir={isRtl ? "rtl" : "ltr"}
     >
       {/* 1. Split Section Background: Left is Royal Blue | Right is Warm Gold */}
-      <SplitSectionBackground />
+      <SplitSectionBackground inverted={!isRtl} />
 
       {/* 2. Content Grid */}
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
           
-          {/* RIGHT COLUMN (Warm Gold / Parchment Side): Balanced 6 Cols on desktop */}
-          {/* On mobile, wrapped in a luxury parchment card so dark blue text never bleeds into dark blue background */}
+          {/* CONTENT COLUMN (Warm Gold / Parchment Side): Order 1 on Desktop */}
           <div
             ref={rightRef}
-            className={`lg:col-span-6 flex flex-col ${
-              isRtl ? "order-2 lg:order-1" : "order-2 lg:order-2"
-            } p-4 sm:p-6 lg:p-0 rounded-3xl lg:rounded-none bg-[#FCFAF5]/95 lg:bg-transparent border border-[#C8A232]/35 lg:border-0 shadow-xl lg:shadow-none backdrop-blur-md lg:backdrop-blur-none pl-4 sm:pl-6 lg:pl-10 xl:pl-14`}
+            className={`lg:col-span-6 flex flex-col order-2 lg:order-1 p-4 sm:p-6 lg:p-0 rounded-3xl lg:rounded-none bg-[#FCFAF5]/95 lg:bg-transparent border border-[#C8A232]/35 lg:border-0 shadow-xl lg:shadow-none backdrop-blur-md lg:backdrop-blur-none pl-4 sm:pl-6 ${
+              isRtl ? "lg:pr-10 xl:pr-14 lg:pl-6" : "lg:pl-10 xl:pl-14 lg:pr-6"
+            }`}
           >
             {/* Category Kicker Badge — From the Brochure: OUR APPROACH */}
             <div className="flex items-center gap-2.5 mb-4">
@@ -398,13 +397,12 @@ export function MagnificentDifference() {
 
           </div>
 
-          {/* LEFT COLUMN (Deep Royal Blue Side): Balanced 6 Cols on desktop */}
-          {/* Centered comfortably inside the Royal Blue half with max-w-[380px], keeping >80px clearance to the ribbon */}
+          {/* VISUAL COLUMN (Deep Royal Blue Side): Order 2 on Desktop */}
           <div
             ref={leftRef}
-            className={`lg:col-span-6 relative flex justify-center items-center ${
-              isRtl ? "order-1 lg:order-2" : "order-1 lg:order-1"
-            } w-full`}
+            className={`lg:col-span-6 relative flex justify-center items-center order-1 lg:order-2 w-full ${
+              isRtl ? "lg:pl-6 xl:pl-8" : "lg:pr-6 xl:pr-8"
+            }`}
           >
             <div className="w-full max-w-[380px] xl:max-w-[400px] mx-auto">
               
