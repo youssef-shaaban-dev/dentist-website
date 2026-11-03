@@ -99,35 +99,35 @@ export function HeroSection() {
       className="relative z-10 w-full min-h-0 lg:min-h-[100dvh] flex flex-col justify-between overflow-hidden select-none bg-[#FDFBF7]"
       dir={isRtl ? "rtl" : "ltr"}
     >
-      {/* 1. Main Stage Container (Clean, Stable, Zero Video Morphing Distortion) */}
-      <div className="relative w-full flex-1 flex flex-col justify-center overflow-hidden pt-14 sm:pt-20 lg:pt-32 pb-6 sm:pb-10 lg:pb-16">
+      {/* 1. Main Stage Container */}
+      <div className="relative w-full flex-1 flex flex-col justify-center overflow-hidden pt-20 sm:pt-24 lg:pt-32 pb-10 sm:pb-14 lg:pb-16">
         {/* 2. Signature Multi-Line 3D Ribbon Split Background */}
         <SplitSectionBackground />
 
         {/* 3. Hero Main Content Grid */}
-        <div className="max-w-7xl mx-auto w-full px-2 sm:px-6 lg:px-8 relative z-10 my-auto">
-          <div className="grid grid-cols-12 gap-2 sm:gap-6 lg:gap-10 items-center min-h-0 lg:min-h-[620px]">
+        <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 relative z-10 my-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-center min-h-0 lg:min-h-[620px]">
             
-            {/* RIGHT COLUMN (Warm Gold / Parchment Side): Sits gracefully in right gold field */}
+            {/* RIGHT COLUMN (Warm Gold / Parchment Side): Balanced 6 Cols on desktop, luxury card on mobile */}
             <div
               ref={rightContentRef}
-              className={`col-span-7 lg:col-span-6 flex flex-col justify-center ${
-                isRtl ? "order-1" : "order-2"
-              } pl-1 sm:pl-3 lg:pl-8 xl:pl-10 pr-2 sm:pr-4 lg:pr-32 xl:pr-40`}
+              className={`lg:col-span-6 flex flex-col justify-center ${
+                isRtl ? "order-2 lg:order-1" : "order-2 lg:order-2"
+              } p-4 sm:p-6 lg:p-0 rounded-3xl lg:rounded-none bg-[#FCFAF5]/95 lg:bg-transparent border border-[#C8A232]/35 lg:border-0 shadow-xl lg:shadow-none backdrop-blur-md pl-4 sm:pl-6 lg:pl-10 xl:pl-14 pr-4 sm:pr-6 lg:pr-32 xl:pr-40`}
             >
               {/* Top Kicker Line — Pure Dental Innovation */}
-              <div className="flex items-center gap-1 sm:gap-3 mb-1.5 sm:mb-4 lg:mb-5">
-                <span className="h-[1px] w-3 sm:w-8 lg:w-12 bg-[#9A5F13]/60" />
-                <span className="text-[7.5px] sm:text-[11px] lg:text-xs font-mono font-bold tracking-wider uppercase text-[#9A5F13] truncate">
+              <div className="flex items-center gap-1.5 sm:gap-3 mb-2 sm:mb-4 lg:mb-5">
+                <span className="h-[1px] w-4 sm:w-8 lg:w-12 bg-[#9A5F13]/60" />
+                <span className="text-[9px] sm:text-[11px] lg:text-xs font-mono font-bold tracking-wider uppercase text-[#9A5F13] truncate">
                   {isRtl
                     ? "أحدث ابتكارات التكنولوجيا الطبية في طب وتجميل الأسنان"
                     : "ADVANCED DENTAL TECHNOLOGY & DIGITAL PRECISION"}
                 </span>
-                <span className="h-[1px] w-3 sm:w-8 lg:w-12 bg-[#9A5F13]/60" />
+                <span className="h-[1px] w-4 sm:w-8 lg:w-12 bg-[#9A5F13]/60" />
               </div>
 
               {/* Two-Tone Luxury Headline — Grounded in Dental Precision */}
-              <h1 className="text-sm sm:text-2xl md:text-4xl lg:text-[52px] font-bold font-display leading-[1.2] mb-1.5 sm:mb-4 lg:mb-5 tracking-tight">
+              <h1 className="text-xl sm:text-2xl md:text-4xl lg:text-[52px] font-bold font-display leading-[1.25] mb-2 sm:mb-4 lg:mb-5 tracking-tight">
                 <span className="block text-[#0F266A]">
                   {isRtl ? "ابتسامة صحية وجمال طبيعي." : "A beautiful smile."}
                 </span>
@@ -137,47 +137,47 @@ export function HeroSection() {
               </h1>
 
               {/* Subtitle Paragraph — Pure Dental Clinical Scope */}
-              <p className="text-[9.5px] sm:text-sm md:text-base lg:text-lg text-[#2A3B56] font-body leading-relaxed max-w-xl mb-2.5 sm:mb-6 lg:mb-8 line-clamp-3 sm:line-clamp-none">
+              <p className="text-xs sm:text-sm md:text-base lg:text-lg text-[#2A3B56] font-body leading-relaxed max-w-xl mb-4 sm:mb-6 lg:mb-8">
                 {isRtl
                   ? "نجمع بين المسح الضوئي الرقمي ثلاثي الأبعاد، والتركيبات الخزفية السويسرية فائقة الدقة، والتقويم الشفاف، لراحتك التامة."
                   : "Advanced digital 3D scanning, ultra-thin Swiss veneers, crystal clear aligners, and personalized clinical care."}
               </p>
 
               {/* Action Buttons */}
-              <div className="flex flex-wrap items-center gap-1.5 sm:gap-3 lg:gap-4 mb-2.5 sm:mb-6 lg:mb-8">
+              <div className="flex flex-wrap items-center gap-2 sm:gap-3 lg:gap-4 mb-4 sm:mb-6 lg:mb-8">
                 {/* Primary Button */}
                 <a
                   href="#book"
-                  className="inline-flex items-center gap-1 sm:gap-2 px-2.5 py-1.5 sm:px-6 sm:py-3.5 lg:px-8 lg:py-4 rounded-xl bg-[#012052] hover:bg-[#022A6D] text-white font-bold text-[9px] sm:text-xs lg:text-sm tracking-wider uppercase shadow-md transition-all cursor-pointer border border-[#C8A232]/40"
+                  className="inline-flex items-center gap-1.5 sm:gap-2 px-4 py-2.5 sm:px-6 sm:py-3.5 lg:px-8 lg:py-4 rounded-xl bg-[#012052] hover:bg-[#022A6D] text-white font-bold text-xs sm:text-xs lg:text-sm tracking-wider uppercase shadow-md transition-all cursor-pointer border border-[#C8A232]/40"
                 >
-                  <CalendarCheck className="w-3 h-3 sm:w-4 sm:h-4 text-[#DFBF57]" />
+                  <CalendarCheck className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#DFBF57]" />
                   <span>{isRtl ? "احجز استشارتك" : "BOOK"}</span>
-                  <ArrowIcon className="w-3 h-3 sm:w-4 sm:h-4 text-[#DFBF57]" />
+                  <ArrowIcon className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#DFBF57]" />
                 </a>
 
                 {/* Secondary Button */}
                 <a
                   href="#clinics"
-                  className="inline-flex items-center gap-1 sm:gap-2 px-2 py-1.5 sm:px-5 sm:py-3.5 rounded-xl bg-white/90 hover:bg-white border border-[#C8A232]/60 text-[#0F266A] font-bold text-[9px] sm:text-xs lg:text-sm tracking-wider uppercase transition-all shadow-xs"
+                  className="inline-flex items-center gap-1 sm:gap-2 px-3 py-2.5 sm:px-5 sm:py-3.5 rounded-xl bg-white/90 hover:bg-white border border-[#C8A232]/60 text-[#0F266A] font-bold text-xs sm:text-xs lg:text-sm tracking-wider uppercase transition-all shadow-xs"
                 >
-                  <MapPin className="w-3 h-3 sm:w-4 sm:h-4 text-[#9A5F13]" />
+                  <MapPin className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#9A5F13]" />
                   <span>{isRtl ? "فروعنا" : "CLINICS"}</span>
                 </a>
               </div>
 
               {/* Quick Clinical Badges */}
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-1 sm:gap-2.5 pt-1.5 sm:pt-4 border-t border-[#C8A232]/30 max-w-full overflow-hidden">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-2.5 pt-3 sm:pt-4 border-t border-[#C8A232]/30 max-w-xl">
                 {statsList.map((stat, sIdx) => {
                   const Icon = stat.icon;
                   return (
                     <div key={sIdx} className="flex flex-col min-w-0">
                       <div className="flex items-center gap-1 mb-0.5 min-w-0">
-                        <Icon className="w-2.5 h-2.5 sm:w-3.5 sm:h-3.5 text-[#9A5F13] shrink-0" />
-                        <span className="text-[9px] sm:text-xs lg:text-sm font-bold font-mono text-[#0F266A] truncate">
+                        <Icon className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#9A5F13] shrink-0" />
+                        <span className="text-[11px] sm:text-xs lg:text-sm font-bold font-mono text-[#0F266A] truncate">
                           {stat.val}
                         </span>
                       </div>
-                      <span className="text-[7.5px] sm:text-[10px] lg:text-[11px] text-[#5B6782] font-body truncate">
+                      <span className="text-[9px] sm:text-[10px] lg:text-[11px] text-[#5B6782] font-body truncate">
                         {stat.label}
                       </span>
                     </div>
@@ -190,11 +190,11 @@ export function HeroSection() {
             {/* LEFT COLUMN (Deep Royal Blue Side): Sits gracefully in left blue field */}
             <div
               ref={leftVisualRef}
-              className={`col-span-5 lg:col-span-6 relative flex justify-center items-center ${
-                isRtl ? "order-2" : "order-1"
-              } w-full pr-1 sm:pr-3 lg:pr-8 pl-1 sm:pl-3 lg:pl-10`}
+              className={`lg:col-span-6 relative flex justify-center items-center ${
+                isRtl ? "order-1 lg:order-2" : "order-1 lg:order-1"
+              } w-full pt-2 pb-4 lg:py-0 lg:pr-8 xl:pr-10`}
             >
-              <div className="w-full max-w-[145px] sm:max-w-[240px] md:max-w-[300px] lg:max-w-[380px] xl:max-w-[400px] mx-auto relative group">
+              <div className="w-full max-w-[240px] sm:max-w-[300px] md:max-w-[340px] lg:max-w-[380px] xl:max-w-[400px] mx-auto relative group">
                 
                 {/* Subtle Glow behind Frame */}
                 <div className="absolute -inset-2 sm:-inset-4 bg-gradient-to-tr from-[#C8A232]/20 via-[#DFBF57]/10 to-transparent rounded-full blur-xl sm:blur-2xl pointer-events-none" />
