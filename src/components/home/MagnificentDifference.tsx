@@ -30,169 +30,115 @@ export function MagnificentDifference() {
   const leftRef = useRef<HTMLDivElement>(null);
   const [activePillarIdx, setActivePillarIdx] = useState<number>(0);
 
-  // 6 Clinical Excellence Pillars directly aligned with the brochure
+  // 4 Clinical Excellence Pillars directly aligned with the client's "OUR APPROACH" design
   const pillars = [
     {
       id: "01",
       num: "01",
-      badgeAr: "المنظومة الرقمية المتكاملة",
-      badgeEn: "Integrated Digital Ecosystem",
-      title: isRtl ? "منظومة علاجية متكاملة تحت سقف واحد" : "Integrated Ecosystem Under One Roof",
+      badgeAr: "الدقة الرقمية",
+      badgeEn: "Digital Precision",
+      title: isRtl ? "الدقة الرقمية" : "Digital Precision",
       desc: isRtl
-        ? "تكامل مباشر بين العيادات الجراحية ومعمل التقويم ومعمل التعويضات لسرعة الإنجاز."
-        : "Direct synergy between surgical suites, clear aligners lab, and 3D milling lab.",
-      image: "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=1200&q=85",
-      icon: Crown,
-      specs: isRtl
-        ? [
-            "عيادات جراحة وتجميل الأسنان في نفس الصرح الطبي",
-            "معمل رقمي متخصص للتقويم الشفاف بدون وسيط",
-            "معمل CAD/CAM لتصنيع الزركونيا والإيماكس خلال 48 ساعة",
-          ]
-        : [
-            "Surgical & aesthetic suites under one roof",
-            "Certified in-house digital clear aligners lab",
-            "Monolithic 3D CAD/CAM zirconia milling lab",
-          ],
-      stamp: isRtl
-        ? "تصنيع داخلي بنسبة 100% وسرعة تسليم خلال 48 ساعة"
-        : "100% In-House Production with 48-Hour Delivery",
-      metric: "100% IN-HOUSE",
-    },
-    {
-      id: "02",
-      num: "02",
-      badgeAr: "التشخيص الرقمي الميكروني",
-      badgeEn: "Digital Precision Diagnostics",
-      title: isRtl ? "دقة تشخيصية ميكرونية 0.01 مم" : "Digital Precision & Accurate Planning",
-      desc: isRtl
-        ? "أجهزة مسح مقطعي ثلاثي الأبعاد CBCT لتخطيط علاج وزراعة الأسنان بدقة جراحية."
-        : "3D volumetric CBCT scanning for virtual-guided surgical implant placement.",
+        ? "تقنيات رقمية متطورة لتشخيص وتخطيط علاجي فائق الدقة."
+        : "Advanced digital technology for accurate diagnosis and planning.",
       image: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=1200&q=85",
       icon: Scan,
       specs: isRtl
         ? [
-            "مسح مقطعي ثلاثي الأبعاد فائق الدقة 0.01 ملم",
-            "جرعة إشعاعية منخفضة بنسبة 80% عن الأشعة التقليدية",
-            "محاكاة رقمية افتراضية مسبقة لضمان دقة الزرع 99.8%",
+            "مسح مقطعي ثلاثي الأبعاد 3D CBCT لتشخيص جراحي متناهي الدقة",
+            "محاكاة رقمية مسبقة للابتسامة قبل بدء أي إجراء طبي",
+            "دقة ميكرونية 0.01 مم تضمن أعلى نسب النجاح والتطابق",
           ]
         : [
-            "0.01mm ultra-precision 3D volumetric scanning",
-            "80% lower radiation dose than conventional CT",
-            "Virtual computer-guided surgical planning",
+            "3D CBCT volumetric scans for micron surgical diagnostics",
+            "Virtual smile simulation before starting any procedure",
+            "0.01mm precision guaranteeing optimal clinical outcomes",
           ],
       stamp: isRtl
-        ? "تشخيص ميكروني آمن ومعتمد من المعايير الدولية"
-        : "Ultra-Safe Micron Diagnostics Certified Globally",
-      metric: "0.01mm PRECISION",
+        ? "تكنولوجيا متطورة • تشخيص دقيق وموثق"
+        : "Advanced Digital Technology • Accurate Diagnosis",
+      metric: "DIGITAL PRECISION",
+    },
+    {
+      id: "02",
+      num: "02",
+      badgeAr: "خطة علاجية مخصصة",
+      badgeEn: "Personalized Treatment",
+      title: isRtl ? "خطة علاجية مخصصة" : "Personalized Treatment",
+      desc: isRtl
+        ? "حلول علاجية مصممة خصيصاً لتلبي احتياجات ابتسامتك الفردية."
+        : "Tailored solutions designed for your unique needs.",
+      image: "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=1200&q=85",
+      icon: Crown,
+      specs: isRtl
+        ? [
+            "بروتوكولات علاجية فردية تناسب التركيب التشريحي لكل مريض",
+            "استشارات متكاملة مع نخبة من الاستشاريين المتخصصين",
+            "متابعة دورية مستمرة لضمان ديمومة النتائج واستقرارها",
+          ]
+        : [
+            "Individualized protocols tailored to facial & dental anatomy",
+            "Comprehensive consultations with dedicated specialists",
+            "Continuous follow-up ensuring lasting stability and health",
+          ],
+      stamp: isRtl
+        ? "حلول مخصصة • رعاية شخصية لكل مريض"
+        : "Tailored Solutions • Unique Patient Care",
+      metric: "TAILORED CARE",
     },
     {
       id: "03",
       num: "03",
-      badgeAr: "التعقيم والأمان السريري",
-      badgeEn: "Hospital-Grade Sterilization",
-      title: isRtl ? "أعلى معايير الأمان والتعقيم الأوروبي" : "Rigorous Clinical Safety & Sterilization",
+      badgeAr: "جمالية طبيعية",
+      badgeEn: "Natural Aesthetics",
+      title: isRtl ? "جمالية طبيعية متناسقة" : "Natural Aesthetics",
       desc: isRtl
-        ? "بروتوكولات تعقيم صارمة بأجهزة فئة B معتمدة عالمياً لضمان سلامة كل مريض."
-        : "European Class-B autoclaves with digital spore tracking for zero contamination.",
-      image: "https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=1200&q=85",
-      icon: ShieldCheck,
+        ? "نتائج وظيفية وجمالية فائقة تمنحك مظهراً وشعوراً طبيعياً بالكامل."
+        : "Beautiful, functional results that look and feel natural.",
+      image: "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&w=1200&q=85",
+      icon: SmilePlus,
       specs: isRtl
         ? [
-            "أجهزة أوتوكلاف طبية فئة B معتمدة أوروبياً",
-            "تغليف مفرغ من الهواء وتتبع إلكتروني لكل أداة",
-            "اختبارات بيولوجية دورية للرقابة الصارمة على التعقيم",
+            "عدسات سويسرية فائقة الشفافية تحاكي بياض الأسنان الطبيعي",
+            "تطابق مثالي مع النسب الذهبية لملامح الوجه والابتسامة",
+            "استعادة وظائف المضغ والنطق الكاملة بأعلى درجات الراحة",
           ]
         : [
-            "European Class-B fractional vacuum autoclaves",
-            "Hermetic vacuum sealing & digital batch tracking",
-            "Continuous biological spore testing verification",
+            "Ultra-thin Swiss ceramics mimicking natural enamel translucency",
+            "Perfect harmony with facial golden ratios and smile curves",
+            "Complete restoration of mastication and speech comfort",
           ],
       stamp: isRtl
-        ? "مطابق لأعلى معايير مستشفيات جراحة الوجه والفكين"
-        : "Compliant with European Maxillofacial Hospital Standards",
-      metric: "100% STERILE",
+        ? "جمال طبيعي • نتائج وظيفية فائقة"
+        : "Natural Aesthetics • Lasting Functional Results",
+      metric: "NATURAL BEAUTY",
     },
     {
       id: "04",
       num: "04",
-      badgeAr: "العناية اللطيفة والراحة",
-      badgeEn: "Gentle Care & Absolute Comfort",
-      title: isRtl ? "تجربة علاجية مريحة وتخدير لطيف" : "Comfortable Experience & Pain-Free Protocol",
+      badgeAr: "تجربة مريحة",
+      badgeEn: "Comfortable Experience",
+      title: isRtl ? "تجربة علاجية مريحة" : "Comfortable Experience",
       desc: isRtl
-        ? "نظام التخدير المحوسب الذكي بدون وخز لتجربة هادئة خالية تماماً من الألم."
-        : "Computerized injection-free anesthesia delivering micro-flow gentle care.",
+        ? "بيئة سريرية هادئة ومفعمة بالاهتمام والرعاية في كل زيارة."
+        : "A calm and caring environment at every visit.",
       image: "https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1200&q=85",
-      icon: SmilePlus,
+      icon: ShieldCheck,
       specs: isRtl
         ? [
-            "نظام The Wand للتخدير المحوسب الذكي بدون وخز إبرة",
-            "تحكم ديناميكي في تدفق المخدر لتجنب تنميل الوجه المزعج",
-            "أجنحة خاصة معزولة صوتياً ومجهزة لأقصى سبل الراحة والهدوء",
+            "تخدير إلكتروني محوسب بدون أي ألم لراحة المريض التامة",
+            "أجنحة خاصة معزولة توفر أقصى درجات الخصوصية والهدوء",
+            "فريق تمريض ورعاية فندقية يرافقك طوال مراحل العلاج",
           ]
         : [
-            "The Wand computerized injection-free anesthesia",
-            "Micro-flow regulation eliminating facial numbness",
-            "Private soundproof suites designed for relaxation",
+            "Computerized painless local anesthesia for zero anxiety",
+            "Private acoustic suites ensuring serenity and privacy",
+            "Attentive clinical team ensuring a gentle, caring journey",
           ],
       stamp: isRtl
-        ? "بروتوكول راحة سريرية متقدم يزيل قلق وخوف الأسنان"
-        : "Advanced Zero-Anxiety Comfort Protocol for Gentle Care",
-      metric: "0% PAIN PROTOCOL",
-    },
-    {
-      id: "05",
-      num: "05",
-      badgeAr: "الضمان والجودة السويسرية",
-      badgeEn: "Swiss Quality & Written Guarantee",
-      title: isRtl ? "شهادات اعتماد وضمان موثق" : "Certified Guarantee & Authentic Materials",
-      desc: isRtl
-        ? "غرسات سويسرية وألمانية أصلية برقم تسلسلي موثق مع شهادة ضمان معتمدة."
-        : "Original Swiss & German restorations backed by official serial passports.",
-      image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=1200&q=85",
-      icon: FileCheck,
-      specs: isRtl
-        ? [
-            "شهادة توثيق سويسرية رسمية مع الرقم التسلسلي لكل زرعة",
-            "خامات E.max الأصلية مختومة بشهادة الجودة المعتمدة",
-            "برنامج فحص ومتابعة دوري مجاني كل 6 أشهر لصحة الأسنان",
-          ]
-        : [
-            "Official Swiss passport & serial number for each implant",
-            "Genuine Swiss E.max certificates with authenticity seals",
-            "Complimentary bi-annual clinical checkups for life",
-          ],
-      stamp: isRtl
-        ? "ضمان موثق وشامل على الغرسات والتركيبات"
-        : "Documented Lifetime Written Guarantee on Restorations",
-      metric: "LIFETIME WARRANTY",
-    },
-    {
-      id: "06",
-      num: "06",
-      badgeAr: "خدمة المرضى الفندقية",
-      badgeEn: "Executive Patient Concierge",
-      title: isRtl ? "خدمة استثنائية لكافة المرضى والزوار" : "Executive Concierge & VIP Care",
-      desc: isRtl
-        ? "مساعد رعاية شخصي لتنسيق المواعيد وخدمات الاستقبال الفندقي لضيوف المركز."
-        : "Dedicated patient coordinators ensuring smooth appointments and VIP care.",
-      image: "https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=1200&q=85",
-      icon: Sparkles,
-      specs: isRtl
-        ? [
-            "تنسيق مواعيد فوري بدون انتظار مع متابعة مستمرة",
-            "مساعد رعاية شخصي مخصص على مدار الساعة للإجابة على استفساراتك",
-            "أجنحة خاصة مجهزة لراحة المرضى والعائلات الزائرة",
-          ]
-        : [
-            "Fast-track appointments with zero waiting time",
-            "Dedicated 24/7 personal care coordinator throughout visit",
-            "Private suites designed for family comfort and privacy",
-          ],
-      stamp: isRtl
-        ? "رعاية متكاملة مصممة لتجربة استثنائية ومريحة"
-        : "Comprehensive High-End Medical Concierge for All Guests",
-      metric: "24/7 COORDINATION",
+        ? "عناية لطيفة • بيئة هادئة ومريحة"
+        : "Gentle Care • Calm & Caring Environment",
+      metric: "GENTLE CARE",
     },
   ];
 

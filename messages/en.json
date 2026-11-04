@@ -170,60 +170,55 @@
     ]
   },
   "difference": {
-    "badge": "SIX PILLARS OF EXCELLENCE",
-    "title": "Why Discerning Patients Choose Magnificent Smile",
-    "subtitle": "An unmistakable distinction experienced from your first consultation to your final smile reveal.",
+    "badge": "OUR APPROACH",
+    "title": "Where Precision Meets Perfection.",
+    "subtitle": "ADVANCED TECHNOLOGY | GENTLE CARE | LASTING RESULTS",
     "items": [
       {
-        "title": "Integrated Tripartite Ecosystem",
-        "desc": "Clinics, aligners, and dental lab under one roof ensuring zero manufacturing delays or third-party errors."
+        "title": "Digital Precision",
+        "desc": "Advanced digital technology for accurate diagnosis and planning."
       },
       {
-        "title": "Ultra-Low Dose 3D CBCT",
-        "desc": "High-definition volumetric scans providing sub-millimeter surgical accuracy with minimal radiation."
+        "title": "Personalized Treatment",
+        "desc": "Tailored solutions designed for your unique needs."
       },
       {
-        "title": "7-Stage Royal Sterilization",
-        "desc": "European Class-B autoclaves guaranteeing 100% surgical-grade sterilization for every instrument."
+        "title": "Natural Aesthetics",
+        "desc": "Beautiful, functional results that look and feel natural."
       },
       {
-        "title": "Entirely Painless Sessions",
-        "desc": "Computerized painless local anesthesia ensuring complete physical and mental serenity throughout."
-      },
-      {
-        "title": "Written Warranty Certificate",
-        "desc": "Official passport of authenticity for every implant and veneer with complimentary periodic reviews."
-      },
-      {
-        "title": "Personal Concierge Service",
-        "desc": "Dedicated care coordinator managing appointments, private parking, and international patient transfers."
+        "title": "Comfortable Experience",
+        "desc": "A calm and caring environment at every visit."
       }
     ]
   },
   "clinics": {
-    "badge": "SANCTUARIES OF LUXURY",
-    "title": "Our Three Premier Locations",
-    "subtitle": "Architectural gems situated in Egypt's most prestigious districts, tailored for privacy and ease of access.",
+    "badge": "OUR CLINICS",
+    "title": "Different Specialties. One Magnificent Vision.",
+    "subtitle": "EXCEPTIONAL CARE, GUIDED BY DEDICATED SPECIALISTS.",
+    "locationsBadge": "OUR LOCATIONS",
+    "locationsSubtitle": "CLINICS • LAB SERVICES • ALIGNERS",
+    "website": "www.magnificentsmilegroup.com",
     "branch1": {
-      "name": "Sheikh Zayed Flagship",
-      "area": "Palm Hills · Beverly Hills Compound",
+      "name": "Beverly Hills - Sheikh Zayed",
+      "area": "Icon Mall, Gate 9",
       "hours": "Sat - Thu: 9:00 AM - 10:00 PM",
-      "phone": "+20 100 890 1234",
+      "phone": "01114159449",
       "cta": "Book at Sheikh Zayed"
     },
     "branch2": {
-      "name": "New Cairo Center",
-      "area": "North 90th Street · 5th Settlement",
-      "hours": "Sat - Thu: 10:00 AM - 11:00 PM",
-      "phone": "+20 100 890 5678",
-      "cta": "Book at New Cairo"
+      "name": "Pyramids Road - Giza",
+      "area": "El Taawun - Haram St.",
+      "hours": "Sat - Thu: 10:00 AM - 10:00 PM",
+      "phone": "01124336636",
+      "cta": "Book at Pyramids Road"
     },
     "branch3": {
-      "name": "Maadi Diplomatic Quarter",
-      "area": "Degla Maadi · Street 250",
+      "name": "Hurghada - Red Sea",
+      "area": "El Kawther, Metro St.",
       "hours": "Sat - Thu: 10:00 AM - 9:00 PM",
-      "phone": "+20 100 890 9012",
-      "cta": "Book at Maadi"
+      "phone": "01122208262",
+      "cta": "Book at Hurghada"
     }
   },
   "reviews": {
@@ -257,27 +252,27 @@
     "subtitle": "Contact us directly via WhatsApp to schedule your visit at your convenience.",
     "whatsappBtn": "Book via WhatsApp",
     "phoneLabel": "Or call us directly",
-    "hotline": "+20 100 890 1234"
+    "hotline": "01114159449"
   },
   "ecosystem": {
     "tag": "ONE ECOSYSTEM · THREE SPECIALIZED ENTITIES",
     "title": "Medical Artistry Meets Timeless Prestige",
     "subtitle": "A unified luxury dental experience connecting world-class clinics, proprietary aligners, and an advanced in-house digital laboratory.",
     "clinicsTitle": "Magnificent Smile Clinics",
-    "clinicsDesc": "Specialized oral surgery, veneers, and full-arch rehabilitation in sanctuary-like suites with board-certified consultants.",
+    "clinicsDesc": "Different specialties guided by dedicated specialists. Delivering exceptional care across our state-of-the-art clinics in Zayed, Giza, and Hurghada.",
     "clinicsCta": "Explore Clinics & Branches",
-    "clinicsMetric": "+15,000 Verified Cases",
-    "clinicsBadge": "ELITE CLINICAL SUITES",
-    "alignersTitle": "Magnificent Aligners",
-    "alignersDesc": "Advanced clear aligner systems driven by AI diagnostics, predictive 3D simulations, and precision biomedical polymers.",
-    "alignersCta": "Discover Aligners",
-    "alignersBadge": "Proprietary AI System",
-    "alignersMetric": "100% Invisible & Smart",
-    "labTitle": "CAD/CAM Digital Dental Lab",
-    "labDesc": "Ultra-thin E.max veneers, titanium implant abutments, and robotic 5-axis German milling for elite practitioners.",
-    "labCta": "Partner & Lab Portal",
-    "labMetric": "0.01mm Micron Precision",
-    "labBadge": "IN-HOUSE 5-AXIS ROBOTICS",
+    "clinicsMetric": "8 Dedicated Specialties",
+    "clinicsBadge": "OUR CLINICS",
+    "alignersTitle": "The Magnificent Aligners — Crystal Clear",
+    "alignersDesc": "The world's most advanced clear aligner system. Travel friendly, self-monitoring, completely invisible, comfortable, and removable when needed.",
+    "alignersCta": "Discover Crystal Clear Aligners",
+    "alignersBadge": "OUR ALIGNERS COMPANY",
+    "alignersMetric": "100% Crystal Clear",
+    "labTitle": "Magnificent Smile Dental Lab",
+    "labDesc": "Advanced digital technology and expert craftsmanship come together to create restorations with precision, consistency, and refined aesthetics.",
+    "labCta": "Explore Lab Services",
+    "labMetric": "5-Axis Precision Milling",
+    "labBadge": "OUR DENTAL LAB",
     "loopBadge": "THE CLOSED-LOOP ADVANTAGE",
     "loopTitle": "Why Does an Integrated Ecosystem Make All the Difference?",
     "loopSubtitle": "Clinics, aligners, and digital lab under one roof eliminate third-party delays and errors completely.",

@@ -170,60 +170,55 @@
     ]
   },
   "difference": {
-    "badge": "LES SIX PILIERS DU LUXE",
-    "title": "Pourquoi Choisir Magnificent Smile ?",
-    "subtitle": "Une différence absolue perceptible dès le premier accueil jusqu'au résultat final.",
+    "badge": "NOTRE APPROCHE",
+    "title": "Là où la précision rencontre la perfection.",
+    "subtitle": "TECHNOLOGIE AVANCÉE | SOINS DÉLICATS | RÉSULTATS DURABLES",
     "items": [
       {
-        "title": "Écosystème Intégré Unique",
-        "desc": "Cliniques, aligneurs et laboratoire réunis pour éliminer tout intermédiaire et délai."
+        "title": "Précision numérique",
+        "desc": "Technologie numérique avancée pour un diagnostic et une planification précis."
       },
       {
-        "title": "Imagerie 3D CBCT Basse Dose",
-        "desc": "Tomographie volumique haute définition garantissant une sécurité chirurgicale absolue."
+        "title": "Traitement personnalisé",
+        "desc": "Des solutions sur mesure conçues pour vos besoins uniques."
       },
       {
-        "title": "Stérilisation Royale en 7 Étapes",
-        "desc": "Autoclaves européens de Classe B certifiant 100% de stérilité hospitalière."
+        "title": "Esthétique naturelle",
+        "desc": "Des résultats fonctionnels et esthétiques au rendu parfaitement naturel."
       },
       {
-        "title": "Soins Sans Aucune Douleur",
-        "desc": "Anesthésie locale électronique pour un confort psychologique et physique total."
-      },
-      {
-        "title": "Certificat de Garantie Écrit",
-        "desc": "Passeport d'authenticité pour chaque implant et facette avec suivi gratuit."
-      },
-      {
-        "title": "Conciergerie et Chauffeur Privé",
-        "desc": "Coordinateur dédié pour vos rendez-vous et l'accueil des patients internationaux."
+        "title": "Expérience confortable",
+        "desc": "Un environnement calme et attentionné à chaque visite."
       }
     ]
   },
   "clinics": {
-    "badge": "SANCTUAIRES DE PRESTIGE",
-    "title": "Trois Adresses d'Exception",
-    "subtitle": "Des environnements sereins et luxueux situés dans les quartiers les plus exclusifs.",
+    "badge": "NOS CLINIQUES",
+    "title": "Diverses spécialités. Une vision magnifique.",
+    "subtitle": "DES SOINS D'EXCEPTION, GUIDÉS PAR DES SPÉCIALISTES DÉDIÉS.",
+    "locationsBadge": "NOS EMPLACEMENTS",
+    "locationsSubtitle": "CLINIQUES • SERVICES DE LABORATOIRE • ALIGNEURS",
+    "website": "www.magnificentsmilegroup.com",
     "branch1": {
-      "name": "Flagship Sheikh Zayed",
-      "area": "Palm Hills · Beverly Hills",
+      "name": "Beverly Hills - Sheikh Zayed",
+      "area": "Icon Mall, Porte 9",
       "hours": "Sam - Jeu : 9h00 - 22h00",
-      "phone": "+20 100 890 1234",
+      "phone": "01114159449",
       "cta": "Réserver à Sheikh Zayed"
     },
     "branch2": {
-      "name": "Centre New Cairo",
-      "area": "90th Street Nord · 5th Settlement",
-      "hours": "Sam - Jeu : 10h00 - 23h00",
-      "phone": "+20 100 890 5678",
-      "cta": "Réserver à New Cairo"
+      "name": "Route des Pyramides - Gizeh",
+      "area": "El Taawun - Rue Haram",
+      "hours": "Sam - Jeu : 10h00 - 22h00",
+      "phone": "01124336636",
+      "cta": "Réserver à Gizeh"
     },
     "branch3": {
-      "name": "Quartier Diplomatique Maadi",
-      "area": "Degla Maadi · Rue 250",
+      "name": "Hurghada - Mer Rouge",
+      "area": "El Kawther, Rue Metro",
       "hours": "Sam - Jeu : 10h00 - 21h00",
-      "phone": "+20 100 890 9012",
-      "cta": "Réserver à Maadi"
+      "phone": "01122208262",
+      "cta": "Réserver à Hurghada"
     }
   },
   "reviews": {
@@ -257,27 +252,27 @@
     "subtitle": "Contactez-nous directement via WhatsApp pour planifier votre rendez-vous à votre convenance.",
     "whatsappBtn": "Réserver via WhatsApp",
     "phoneLabel": "Ou appelez-nous directement",
-    "hotline": "+20 100 890 1234"
+    "hotline": "01114159449"
   },
   "ecosystem": {
     "tag": "UN ÉCOSYSTÈME · TROIS PÔLES D’EXCELLENCE",
     "title": "L’Art Dentaire Rencontre la Majesté Éternelle",
     "subtitle": "Une synergie d’exception entre cliniques de luxe, aligneurs sur-mesure et laboratoire de prothèse numérique sous un même toit.",
-    "clinicsTitle": "Cliniques Magnificent",
-    "clinicsDesc": "Chirurgie implantaire guidée et facettes esthétiques dans des suites privées d'un raffinement absolu.",
-    "clinicsCta": "Découvrir les Cliniques",
-    "clinicsMetric": "+15 000 Sourires Réalisés",
-    "clinicsBadge": "SUITES CLINIQUES VIP",
-    "alignersTitle": "Magnificent Aligners",
-    "alignersDesc": "Systèmes d’alignement invisibles assistés par modélisation prédictive 3D et polymères biomédicaux brevetés.",
-    "alignersCta": "Découvrir les Aligneurs",
-    "alignersBadge": "Système Exclusif IA",
-    "alignersMetric": "100% Invisible & Intelligent",
-    "labTitle": "Laboratoire Numérique CAD/CAM",
-    "labDesc": "Usinage robotique 5 axes Zircone Prettau & E.max au micron près au service des praticiens d'élite.",
-    "labCta": "Portail Professionnel & Labo",
-    "labMetric": "Précision Micronique 0,01mm",
-    "labBadge": "ROBOTIQUE 5-AXES INTERNE",
+    "clinicsTitle": "Cliniques Magnificent Smile",
+    "clinicsDesc": "Diverses spécialités guidées par des spécialistes dédiés. Des soins d'exception à travers nos cliniques ultra-modernes à Sheikh Zayed, Gizeh et Hurghada.",
+    "clinicsCta": "Découvrir les Cliniques et Spécialités",
+    "clinicsMetric": "8 Spécialités Dédiées",
+    "clinicsBadge": "NOS CLINIQUES",
+    "alignersTitle": "The Magnificent Aligners — Cristal Pur",
+    "alignersDesc": "Le système d'aligneurs transparents le plus avancé au monde. Adapté aux voyages, auto-surveillance par le patient, invisible, confortable et amovible.",
+    "alignersCta": "Découvrir les Aligneurs Cristal Pur",
+    "alignersBadge": "NOTRE ENTREPRISE D'ALIGNEURS",
+    "alignersMetric": "100% Cristal Pur",
+    "labTitle": "Laboratoire Dentaire Magnificent Smile",
+    "labDesc": "Une technologie numérique avancée associée à un savoir-faire artisanal expert pour créer des restaurations avec précision, régularité et esthétique raffinée.",
+    "labCta": "Explorer les Services du Laboratoire",
+    "labMetric": "Usinage 5-Axes et Matériaux Nobles",
+    "labBadge": "NOTRE LABORATOIRE",
     "loopBadge": "L'AVANTAGE EN CIRCUIT INTÉGRÉ",
     "loopTitle": "Pourquoi un écosystème intégré transforme-t-il votre sourire ?",
     "loopSubtitle": "Cliniques, aligneurs et laboratoire sous le même toit éliminent les retards et garantissent la perfection.",

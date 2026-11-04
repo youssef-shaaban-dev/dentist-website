@@ -48,7 +48,7 @@ export function BookConsultationSection() {
       ? "Здравствуйте, я хочу записаться на приём в клинику Magnificent Smile."
       : "Hello, I would like to book a consultation at Magnificent Smile Clinics.";
 
-  const whatsappUrl = `https://wa.me/201008901234?text=${encodeURIComponent(defaultMessage)}`;
+  const whatsappUrl = `https://wa.me/201114159449?text=${encodeURIComponent(defaultMessage)}`;
   const cleanPhone = t("hotline").replace(/\s+/g, "");
 
   useEffect(() => {

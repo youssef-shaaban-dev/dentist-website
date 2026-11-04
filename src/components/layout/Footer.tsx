@@ -83,28 +83,31 @@ export function Footer() {
               <span>{t("branches")}</span>
             </h4>
 
-            <div className="space-y-4 text-xs text-[#FDFBF7]/80 font-body">
-              <div className="p-3.5 rounded-xl bg-white/5 border border-[#C8A232]/20">
-                <span className="font-bold text-[#F3E5AB] block mb-1">{tClinics("branch1.name")}</span>
-                <span className="text-[11px] block text-[#FDFBF7]/60">{tClinics("branch1.area")}</span>
-                <span className="text-[11px] block text-[#C8A232] mt-1">{tClinics("branch1.hours")}</span>
+            <div className="space-y-3 text-xs text-[#FDFBF7]/80 font-body">
+              <div className="p-3 rounded-xl bg-white/5 border border-[#C8A232]/20">
+                <span className="font-bold text-[#F3E5AB] block mb-0.5">{tClinics("branch1.name")}</span>
+                <span className="text-[11px] block text-[#FDFBF7]/60">{tClinics("branch1.area")} • Tel: 01114159449</span>
               </div>
 
-              <div className="p-3.5 rounded-xl bg-white/5 border border-[#C8A232]/20">
-                <span className="font-bold text-[#F3E5AB] block mb-1">{tClinics("branch2.name")}</span>
-                <span className="text-[11px] block text-[#FDFBF7]/60">{tClinics("branch2.area")}</span>
-                <span className="text-[11px] block text-[#C8A232] mt-1">{tClinics("branch2.hours")}</span>
+              <div className="p-3 rounded-xl bg-white/5 border border-[#C8A232]/20">
+                <span className="font-bold text-[#F3E5AB] block mb-0.5">{tClinics("branch2.name")}</span>
+                <span className="text-[11px] block text-[#FDFBF7]/60">{tClinics("branch2.area")} • Tel: 01124336636</span>
+              </div>
+
+              <div className="p-3 rounded-xl bg-white/5 border border-[#C8A232]/20">
+                <span className="font-bold text-[#F3E5AB] block mb-0.5">{tClinics("branch3.name")}</span>
+                <span className="text-[11px] block text-[#FDFBF7]/60">{tClinics("branch3.area")} • Tel: 01122208262</span>
               </div>
             </div>
 
-            <div className="mt-5 flex items-center gap-6 text-xs text-[#FDFBF7]/70 font-mono">
+            <div className="mt-4 flex flex-wrap items-center gap-4 text-xs text-[#FDFBF7]/70 font-mono">
               <span className="flex items-center gap-2">
                 <Phone className="w-3.5 h-3.5 text-[#C8A232]" />
-                <span dir="ltr">+20 100 890 1234</span>
+                <span dir="ltr">01114159449</span>
               </span>
               <span className="flex items-center gap-2">
                 <Mail className="w-3.5 h-3.5 text-[#C8A232]" />
-                <span>concierge@magnificentsmile.com</span>
+                <span>www.magnificentsmilegroup.com</span>
               </span>
             </div>
           </div>

@@ -50,7 +50,7 @@ export function Navbar() {
       ? "Здравствуйте, я хочу записаться на приём в клинику Magnificent Smile."
       : "Hello, I would like to book a consultation at Magnificent Smile Clinics.";
 
-  const whatsappUrl = `https://wa.me/201008901234?text=${encodeURIComponent(whatsappMessage)}`;
+  const whatsappUrl = `https://wa.me/201114159449?text=${encodeURIComponent(whatsappMessage)}`;
 
   // GSAP Observer: Smart direction & velocity detection for luxury navbar response
   useEffect(() => {

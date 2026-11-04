@@ -32,33 +32,33 @@ interface BranchData {
 const branchesData: BranchData[] = [
   {
     key: "branch1",
-    tagAr: "المقر الرئيسي • صرح جراحي ومعمل متكامل",
-    tagEn: "Main Flagship & Surgical Lab",
+    tagAr: "فرع الشيخ زايد • أيكون مول، بوابة ٩",
+    tagEn: "Sheikh Zayed • Icon Mall, Gate 9",
     image: "https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1200&q=85",
-    mapsUrl: "https://maps.google.com/?q=Palm+Hills+Beverly+Hills+Sheikh+Zayed+Egypt",
-    phoneRaw: "+201008901234",
-    perksAr: ["مواقف سيارات VIP خاصة", "معمل رقمي ثلاثي الأبعاد ملحق", "أجنحة إفاقة فندقية خاصة"],
-    perksEn: ["Private VIP Valet Parking", "In-House 3D Digital Lab", "Private Recovery Suites"],
+    mapsUrl: "https://maps.google.com/?q=Icon+Mall+Gate+9+Beverly+Hills+Sheikh+Zayed+Egypt",
+    phoneRaw: "+201114159449",
+    perksAr: ["أيكون مول بوابة ٩ - بيفرلي هيلز", "عيادات تخصصية ومعمل رقمي متكامل", "أجنحة خاصة لراحة المرضى"],
+    perksEn: ["Icon Mall, Gate 9 - Beverly Hills", "Full Clinical Suites & Digital Lab", "Private Patient Recovery Suites"],
   },
   {
     key: "branch2",
-    tagAr: "مركز تجميل الأسنان • أجنحة DSD الرقمية",
-    tagEn: "Aesthetic Center & Digital DSD",
+    tagAr: "فرع الجيزة • محطة التعاون، شارع الهرم",
+    tagEn: "Giza Branch • El Taawun, Haram St.",
     image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1200&q=85",
-    mapsUrl: "https://maps.google.com/?q=North+90th+Street+New+Cairo+Egypt",
-    phoneRaw: "+201008905678",
-    perksAr: ["تصميم الابتسامة الرقمي DSD", "خدمة سريعة لرجال الأعمال", "أحدث ماسحات ضوئية ميكرونية"],
-    perksEn: ["Digital Smile Design (DSD)", "Executive Fast-Track Care", "Micron 3D Optical Scanners"],
+    mapsUrl: "https://maps.google.com/?q=El+Taawun+Haram+Street+Giza+Egypt",
+    phoneRaw: "+201124336636",
+    perksAr: ["محطة التعاون - شارع الهرم", "تجهيزات رقمية متكاملة لطب الأسنان", "استشاريون مخصصون في كافة التخصصات"],
+    perksEn: ["El Taawun - Haram Street", "Full Digital Clinical Equipment", "Dedicated Specialized Consultants"],
   },
   {
     key: "branch3",
-    tagAr: "الفرع الدبلوماسي • خصوصية واستشارات VIP",
-    tagEn: "Diplomatic Quarter & VIP Privacy",
+    tagAr: "فرع الغردقة • الكوثر، شارع المترو",
+    tagEn: "Hurghada Branch • El Kawther, Metro St.",
     image: "https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=1200&q=85",
-    mapsUrl: "https://maps.google.com/?q=Street+250+Degla+Maadi+Cairo+Egypt",
-    phoneRaw: "+201008909012",
-    perksAr: ["خصوصية دبلوماسية مطلقة", "مساعد شخصي متعدد اللغات", "عيادة عائلية متكاملة"],
-    perksEn: ["Complete Diplomatic Privacy", "Multilingual Patient Host", "Comprehensive Family Clinic"],
+    mapsUrl: "https://maps.google.com/?q=El+Kawther+Metro+Street+Hurghada+Egypt",
+    phoneRaw: "+201122208262",
+    perksAr: ["الكوثر - شارع المترو - البحر الأحمر", "خدمات سياحة علاجية واستشارات فورية", "تقويم شفاف وتركيبات سريعة"],
+    perksEn: ["El Kawther - Metro St. - Red Sea", "International Dental Tourism Care", "Fast Clear Aligners & Veneers"],
   },
 ];
 
@@ -136,7 +136,7 @@ export function ClinicsSection() {
   const currentBranchPhone = t(`${currentBranch.key}.phone`);
   const currentBranchCta = t(`${currentBranch.key}.cta`);
 
-  const branchWhatsAppUrl = `https://wa.me/201008901234?text=${encodeURIComponent(
+  const branchWhatsAppUrl = `https://wa.me/${currentBranch.phoneRaw.replace(/[^0-9]/g, "")}?text=${encodeURIComponent(
     locale === "ar"
       ? `مرحباً، أود حجز موعد في (${currentBranchName}) في عيادات ماغنيفيسنت سمايل.`
       : locale === "fr"
