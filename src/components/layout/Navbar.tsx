@@ -166,16 +166,31 @@ export function Navbar() {
           <Link
             href="/"
             onClick={(e) => handleLinkClick(e, "/")}
-            className="flex items-center group focus:outline-none cursor-pointer py-1"
+            className="flex items-center group focus:outline-none cursor-pointer py-0.5"
             aria-label="Magnificent Smile"
           >
-            <div className="relative h-14 sm:h-16 md:h-18 aspect-[6/5] transition-transform duration-300 group-hover:scale-105">
+            <div className="relative h-16 sm:h-20 md:h-24 w-28 sm:w-36 md:w-44 transition-all duration-300 group-hover:scale-105">
+              {/* Variant 1: Golden letters with glowing gold halo for deep navy dark header */}
               <Image
-                src="/logo.png"
-                alt="Magnificent Smile"
+                src="/logo-clean.png"
+                alt="Magnificent Smile Dental Clinic"
                 fill
-                sizes="(max-width: 640px) 110px, 160px"
-                className="object-contain drop-shadow-[0_2px_12px_rgba(200,162,50,0.35)]"
+                sizes="(max-width: 640px) 140px, 200px"
+                className={`object-contain transition-opacity duration-300 drop-shadow-[0_4px_20px_rgba(223,191,87,0.75)] brightness-105 ${
+                  effectiveScrolled ? "opacity-0 pointer-events-none" : "opacity-100"
+                }`}
+                priority
+              />
+
+              {/* Variant 2: Crisp Deep Navy lettering for light/scrolled header — 100% readable! */}
+              <Image
+                src="/logo-dark.png"
+                alt="Magnificent Smile Dental Clinic"
+                fill
+                sizes="(max-width: 640px) 140px, 200px"
+                className={`object-contain transition-opacity duration-300 drop-shadow-[0_2px_12px_rgba(1,32,82,0.18)] ${
+                  effectiveScrolled ? "opacity-100" : "opacity-0 pointer-events-none"
+                }`}
                 priority
               />
             </div>
