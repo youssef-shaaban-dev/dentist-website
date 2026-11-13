@@ -7,15 +7,18 @@
   },
   "nav": {
     "home": "Accueil",
-    "welcome": "À Propos",
     "treatments": "Traitements",
+    "clinics": "Cliniques",
+    "aligners": "Aligneurs",
+    "dentalLab": "Laboratoire",
+    "ourLab": "Our Laboratory",
+    "forDentists": "For Dentists",
+    "bookConsultation": "Book a Consultation",
+    "welcome": "À Propos",
     "doctors": "Praticiens",
     "transformations": "Résultats",
     "difference": "L'Excellence",
-    "clinics": "Cliniques",
     "reviews": "Témoignages",
-    "aligners": "Aligneurs",
-    "dentalLab": "Laboratoire",
     "labPartners": "Partenaires",
     "bookAppointment": "Prendre RDV"
   },
@@ -41,7 +44,10 @@
       "heritageVal": "2600 av. J.-C.",
       "heritageLabel": "Origine historique de la science dentaire"
     },
-    "scrollPrompt": "Découvrez la Philosophie et le Parcours Patient"
+    "scrollPrompt": "Découvrez la Philosophie et le Parcours Patient",
+    "websiteCopy": "Discover Magnificent Smile Dental Clinic, The Magnificent Aligners, and Magnificent Smile Dental Lab — bringing dental care, clear aligners, and digital craftsmanship together.",
+    "bookCta": "Book a Consultation",
+    "exploreCta": "Explore Our Services"
   },
   "welcome": {
     "badge": "PHILOSOPHIE DU LUXE CLINIQUE",
@@ -97,28 +103,60 @@
     "bookBtn": "Réserver ce Traitement"
   },
   "doctors": {
-    "badge": "ÉQUIPE MÉDICALE D'ÉLITE",
-    "title": "Praticiens Internationaux Dédiés à Votre Sourire",
-    "subtitle": "Un engagement de confiance fondé sur l'excellence académique et la maîtrise clinique.",
-    "cta": "Prendre RDV avec le Spécialiste",
+    "badge": "OUR DOCTORS",
+    "title": "Our Doctors",
+    "subtitle": "Exceptional care, guided by dedicated specialists.",
+    "cta": "Book Consultation with Specialist",
     "list": [
       {
-        "name": "Pr. Dr. Hazem El-Menshawy",
-        "role": "Consultant Principal en Implantologie et Chirurgie Orale",
-        "credentials": "Doctorat en Chirurgie Maxillo-faciale, Fellow du Royal College of Surgeons de Londres",
-        "experience": "+22 Ans de Maîtrise Clinique"
+        "name": "Dr. Amr Khaled",
+        "role": "Consultant Orthodontist & Cosmetic Dentist",
+        "experience": "Consultant",
+        "credentials": [
+          "Consultant Orthodontist & Cosmetic Dentist",
+          "Clear Aligner Specialist",
+          "Digital Smile Design"
+        ]
       },
       {
-        "name": "Dr. Reem El-Mahdy",
-        "role": "Consultante en Esthétique Dentaire et Facettes E.max",
-        "credentials": "Master en Prothèse Fixe, Membre de l'American Academy of Cosmetic Dentistry (AACD)",
-        "experience": "+16 Ans en Conception du Sourire"
+        "name": "Dr. Sally Mosallam",
+        "role": "Consultant Pediatric Dentist",
+        "experience": "Consultant",
+        "credentials": [
+          "Consultant Pediatric Dentist",
+          "Child Dental Health Specialist",
+          "Preventive Dentistry"
+        ]
       },
       {
-        "name": "Dr. Karim El-Sherbini",
-        "role": "Consultant en Orthodontie et Aligneurs Invisibles",
-        "credentials": "MOrth RCS Édimbourg, Praticien Certifié Magnificent Aligners",
-        "experience": "+14 Ans en Malocclusions Complexes"
+        "name": "Dr. Mohamed Hamdy",
+        "role": "Specialist Prosthodontist",
+        "experience": "Specialist",
+        "credentials": [
+          "Specialist Prosthodontist",
+          "Fixed & Removable Restorations",
+          "Implant Prosthetics"
+        ]
+      },
+      {
+        "name": "Dr. Ahmed Magdy",
+        "role": "Consultant Orthodontist",
+        "experience": "Consultant",
+        "credentials": [
+          "Consultant Orthodontist",
+          "Advanced Orthodontic Systems",
+          "Facial Aesthetics"
+        ]
+      },
+      {
+        "name": "Dr. Ahmed Abdel Halim",
+        "role": "Specialist Endodontist",
+        "experience": "Specialist",
+        "credentials": [
+          "Specialist Endodontist",
+          "Microscopic Root Canal Therapy",
+          "Tooth Preservation"
+        ]
       }
     ]
   },
@@ -141,7 +179,11 @@
         "title": "Réhabilitation Complète avec 16 Facettes Céramiques E.max",
         "beforeDiagnosis": "Colorations intrinsèques sévères, usure de l'émail et diastèmes",
         "afterResult": "Sourire éclatant BL1 sculpté selon les proportions du Nombre d'Or",
-        "specs": ["Céramique E.max Suisse", "Précision Micrométrique", "2 Séances en 48h"]
+        "specs": [
+          "Céramique E.max Suisse",
+          "Précision Micrométrique",
+          "2 Séances en 48h"
+        ]
       },
       {
         "id": "implants",
@@ -149,7 +191,11 @@
         "title": "Reconstruction Totale All-on-6 en Zircone Prettau",
         "beforeDiagnosis": "Pertes dentaires multiples, caries sévères et mastication compromise",
         "afterResult": "Arcade fixe sur 6 implants titane d'aspect 100% naturel",
-        "specs": ["Zircone Prettau Suisse", "Mise en Charge 48h", "Garantie à Vie"]
+        "specs": [
+          "Zircone Prettau Suisse",
+          "Mise en Charge 48h",
+          "Garantie à Vie"
+        ]
       },
       {
         "id": "aligners",
@@ -157,7 +203,11 @@
         "title": "Correction d'un Encombrement Sévère par Aligneurs Magnificent",
         "beforeDiagnosis": "Chevauchement incisif prononcé, rotation et articulé croisé",
         "afterResult": "Alignement numérique 3D parfait et sans bagues métalliques",
-        "specs": ["Polymères Invisibles", "Protocole 8 Mois 3D", "Suivi Hebdomadaire IA"]
+        "specs": [
+          "Polymères Invisibles",
+          "Protocole 8 Mois 3D",
+          "Suivi Hebdomadaire IA"
+        ]
       },
       {
         "id": "whitening",
@@ -165,9 +215,15 @@
         "title": "Blanchiment Laser Royal et Détartrage Ultrasonique",
         "beforeDiagnosis": "Jaunissement prononcé, tartre calcifié et taches de café/tabac",
         "afterResult": "Gain immédiat de 8 teintes avec protection de l'émail sans sensibilité",
-        "specs": ["Laser Froid Sans Douleur", "Détartrage Subgingival", "Séance Unique 45 min"]
+        "specs": [
+          "Laser Froid Sans Douleur",
+          "Détartrage Subgingival",
+          "Séance Unique 45 min"
+        ]
       }
-    ]
+    ],
+    "headline": "شاهد الفرق.",
+    "websiteCopy": "استعرض حالات مختارة قبل العلاج وبعده من أعمالنا السريرية."
   },
   "difference": {
     "badge": "NOTRE APPROCHE",
@@ -289,7 +345,18 @@
     "branches": "Cliniques et Horaires",
     "legal": "Tous droits réservés © 2026 Cliniques Magnificent Smile. Agréé par le Ministère de la Santé.",
     "privacy": "Confidentialité",
-    "terms": "Conditions d'Accueil"
+    "terms": "Conditions d'Accueil",
+    "tagline": "Different Specialties. One Magnificent Vision.",
+    "hurghadaPhone": "Hurghada: 01122208262",
+    "zayedPhone": "Beverly Hills — Sheikh Zayed: 01114159449",
+    "gizaPhone": "Pyramids Road — Giza: 01124336636",
+    "website": "www.magnificentsmilegroup.com",
+    "links": {
+      "clinics": "Our Clinics",
+      "forDentists": "For Dentists",
+      "privacy": "Privacy Policy",
+      "terms": "Terms of Use"
+    }
   },
   "pharaonicPillar": {
     "title": "Bas-Relief du Sanctuaire",
@@ -298,5 +365,372 @@
     "hesyra": "Cartouche d'Hésy-Rê — Premier Chef des Médecins Dentistes (2600 av. J.-C.)",
     "lotus": "Lotus Sacré — Pureté et Renaissance Esthétique",
     "scrollHint": "Déplacez le curseur pour illuminer les hiéroglyphes"
+  },
+  "divisions": {
+    "badge": "OUR DIVISIONS",
+    "headline": "Our Divisions",
+    "subheadline": "Bringing dental care, clear aligners, and digital craftsmanship together.",
+    "clinics": {
+      "title": "Dental Clinics",
+      "copy": "Personalised dental care across our Hurghada, Sheikh Zayed, and Giza branches.",
+      "cta": "Explore Treatments"
+    },
+    "aligners": {
+      "title": "The Magnificent Aligners",
+      "copy": "Discover a clear, removable approach to straightening your smile.",
+      "cta": "Discover Aligners"
+    },
+    "lab": {
+      "title": "Magnificent Smile Dental Lab",
+      "copy": "Digital design and dental craftsmanship for restorations created in collaboration with clinicians.",
+      "cta": "Explore Our Lab"
+    }
+  },
+  "locationsBooking": {
+    "badge": "OUR LOCATIONS",
+    "headline": "Three Locations. One Magnificent Smile.",
+    "websiteCopy": "Find your nearest branch and request a consultation.",
+    "bookCta": "Book a Consultation",
+    "branches": {
+      "hurghada": {
+        "name": "Hurghada",
+        "anchor": "hurghada",
+        "address": "Al Kawthar, Metro St., Hurghada, Red Sea",
+        "phone": "01122208262",
+        "phoneRaw": "+201122208262"
+      },
+      "zayed": {
+        "name": "Beverly Hills — Sheikh Zayed",
+        "anchor": "sheikh-zayed",
+        "address": "Icon Mall, Gate 9, Beverly Hills, Sheikh Zayed",
+        "phone": "01114159449",
+        "phoneRaw": "+201114159449"
+      },
+      "giza": {
+        "name": "Pyramids Road — Giza",
+        "anchor": "giza",
+        "address": "El Taawun, Haram St., Giza",
+        "phone": "01124336636",
+        "phoneRaw": "+201124336636"
+      }
+    }
+  },
+  "treatmentsPage": {
+    "headline": "Care for Every Part of Your Smile.",
+    "websiteCopy": "Explore our treatment areas and book a consultation to discuss your needs.",
+    "bookCta": "Book a Consultation",
+    "discoverAligners": "Discover Clear Aligners",
+    "galleryHeadline": "Explore Our Results.",
+    "closingCopy": "Not sure where to start? Book a consultation to discuss your smile.",
+    "closingCta": "Book a Consultation",
+    "cards": [
+      {
+        "id": "cosmetic",
+        "title": "Smile Design & Cosmetic Dentistry",
+        "desc": "Explore smile design, veneers, and cosmetic treatments tailored to your smile."
+      },
+      {
+        "id": "implants",
+        "title": "Dental Implants",
+        "desc": "Discuss implant-based options for replacing missing teeth."
+      },
+      {
+        "id": "ortho",
+        "title": "Orthodontics",
+        "desc": "Explore treatment options to improve tooth alignment, including clear aligners.",
+        "hasAlignersLink": true
+      },
+      {
+        "id": "crowns",
+        "title": "Crowns & Bridges",
+        "desc": "Restore damaged or missing teeth with individually planned crowns and bridges."
+      },
+      {
+        "id": "endo",
+        "title": "Root Canal Treatment",
+        "desc": "Treatment focused on preserving teeth affected by problems within the tooth."
+      },
+      {
+        "id": "perio",
+        "title": "Gum Care",
+        "desc": "Assessment and care for the gums supporting your smile."
+      },
+      {
+        "id": "pediatric",
+        "title": "Pediatric Dentistry",
+        "desc": "Dental care and preventive guidance for growing smiles."
+      },
+      {
+        "id": "general",
+        "title": "General & Preventive Dentistry",
+        "desc": "Routine examinations and preventive care to support your oral health."
+      }
+    ]
+  },
+  "clinicsPage": {
+    "headline": "Find Your Magnificent Smile Clinic.",
+    "websiteCopy": "Visit us in Hurghada, Sheikh Zayed, or Giza. Choose your branch to contact our team or request an appointment.",
+    "bookBranch": "Book This Branch",
+    "call": "Call Branch",
+    "whatsapp": "WhatsApp",
+    "formHeading": "Request an Appointment",
+    "formNotice": "Please note: This is an appointment request. Our team will contact you to confirm availability and your appointment details.",
+    "fullName": "Full Name",
+    "phone": "Phone Number",
+    "preferredBranch": "Preferred Branch",
+    "treatmentOfInterest": "Treatment of Interest",
+    "preferredDateTime": "Preferred Date / Time",
+    "message": "Message",
+    "submitButton": "Request My Appointment",
+    "submitting": "Submitting Request...",
+    "success": "Thank you for your request. Our team will contact you to confirm availability and your appointment details.",
+    "error": "We couldn’t send your request. Please try again or call your selected branch.",
+    "branches": [
+      {
+        "id": "hurghada",
+        "name": "Hurghada",
+        "address": "Al Kawthar, Metro St., Hurghada, Red Sea",
+        "phone": "01122208262",
+        "phoneRaw": "+201122208262",
+        "mapUrl": "https://maps.google.com/?q=Al+Kawthar+Metro+St+Hurghada+Egypt"
+      },
+      {
+        "id": "sheikh-zayed",
+        "name": "Beverly Hills — Sheikh Zayed",
+        "address": "Icon Mall, Gate 9, Beverly Hills, Sheikh Zayed",
+        "phone": "01114159449",
+        "phoneRaw": "+201114159449",
+        "mapUrl": "https://maps.google.com/?q=Icon+Mall+Gate+9+Beverly+Hills+Sheikh+Zayed+Egypt"
+      },
+      {
+        "id": "giza",
+        "name": "Pyramids Road — Giza",
+        "address": "El Taawun, Haram St., Giza",
+        "phone": "01124336636",
+        "phoneRaw": "+201124336636",
+        "mapUrl": "https://maps.google.com/?q=El+Taawun+Haram+St+Giza+Egypt"
+      }
+    ],
+    "treatmentOptions": [
+      "Not Sure / General Consultation",
+      "Clear Aligners",
+      "Smile Design & Cosmetic Dentistry",
+      "Dental Implants",
+      "Orthodontics",
+      "Crowns & Bridges",
+      "Root Canal Treatment",
+      "Gum Care",
+      "Pediatric Dentistry",
+      "General & Preventive Dentistry"
+    ]
+  },
+  "alignersPage": {
+    "headline": "A Clear Approach to Your Smile.",
+    "websiteCopy": "The Magnificent Aligners offers clear, removable aligners designed around an individual treatment plan.",
+    "bookCta": "Book an Aligner Assessment",
+    "benefitsHeading": "Benefits of The Magnificent Aligners",
+    "benefits": [
+      {
+        "title": "Discreet Appearance",
+        "caption": "Clear aligners without visible wires."
+      },
+      {
+        "title": "Removable",
+        "caption": "Remove for meals and daily oral hygiene."
+      },
+      {
+        "title": "Easy to Clean",
+        "caption": "A straightforward cleaning routine."
+      },
+      {
+        "title": "Everyday Comfort",
+        "caption": "Designed with comfort in mind."
+      },
+      {
+        "title": "Easy to Use",
+        "caption": "Wear according to your prescribed instructions."
+      },
+      {
+        "title": "Travel-Friendly",
+        "caption": "Plan your aligner routine around travel with your clinician."
+      },
+      {
+        "title": "Guided Progress Checks",
+        "caption": "Monitor progress alongside professional follow-up."
+      }
+    ],
+    "journeyHeading": "Treatment Journey",
+    "journeySteps": [
+      {
+        "step": "1",
+        "title": "Consultation & Digital Scan",
+        "desc": "Precise 3D optical capture of your teeth."
+      },
+      {
+        "step": "2",
+        "title": "Treatment Planning",
+        "desc": "Custom digital simulation of tooth movements."
+      },
+      {
+        "step": "3",
+        "title": "Aligner Production",
+        "desc": "Precision fabrication of your aligner series."
+      },
+      {
+        "step": "4",
+        "title": "Wear & Follow-Up",
+        "desc": "Wear your aligners daily with periodic checkups."
+      },
+      {
+        "step": "5",
+        "title": "Retention",
+        "desc": "Maintain your newly aligned smile long term."
+      }
+    ],
+    "galleryHeading": "Discover Aligner Transformations",
+    "faqsHeading": "Frequently Asked Questions",
+    "faqs": [
+      {
+        "q": "Is this suitable for me?",
+        "a": "Suitability is determined after a clinical assessment of your teeth and bite."
+      },
+      {
+        "q": "How long will treatment take?",
+        "a": "Your clinician will explain the expected duration after assessing your case."
+      },
+      {
+        "q": "How do I wear and care for my aligners?",
+        "a": "Follow your clinician’s instructions for wear, cleaning, and changing aligners."
+      },
+      {
+        "q": "Will I need follow-up?",
+        "a": "Professional follow-up is part of your treatment plan."
+      }
+    ],
+    "patientCta": "Book an Assessment",
+    "dentistPrompt": "Are you a dentist interested in working with The Magnificent Aligners?",
+    "dentistCta": "Explore Collaboration"
+  },
+  "labPage": {
+    "brandName": "Magnificent Smile Dental Lab",
+    "headline": "Precision. Premium Materials. Advanced Technology.",
+    "websiteCopy": "Digital design and dental craftsmanship for veneers, crowns, bridges, implant restorations, removable prosthetics, and clear aligners.",
+    "managerName": "Mr. Abdulkader Dorgham",
+    "managerTitle": "Dental Laboratory General Manager",
+    "servicesHeading": "Laboratory Services",
+    "services": [
+      {
+        "title": "Digital Restoration Preview",
+        "desc": "Preview the planned restoration to support discussion and design review."
+      },
+      {
+        "title": "Ultra-Thin Highly Aesthetic Swiss Veneers",
+        "desc": "Veneer solutions with a focus on fine detail and aesthetics."
+      },
+      {
+        "title": "Multilayer E.max & Zirconia",
+        "desc": "Restorative options selected according to case requirements."
+      },
+      {
+        "title": "High-Strength Zirconia",
+        "desc": "Zirconia restorations for cases requiring strength and function."
+      },
+      {
+        "title": "Visio.lign Implant Restorations",
+        "desc": "Implant prosthetic solutions using the Visio.lign system."
+      },
+      {
+        "title": "Flexible Removable Dentures",
+        "desc": "Flexible removable prosthetic options for appropriate cases."
+      },
+      {
+        "title": "Clear Aligners",
+        "desc": "Digital planning and manufacturing services for clear aligner cases."
+      }
+    ],
+    "galleryHeading": "Crafted in Detail",
+    "gallerySub": "Genuine veneers, crowns, bridges, implant restorations and other laboratory work.",
+    "techHeading": "Technology and Materials",
+    "techList": [
+      "CAD/CAM",
+      "Digital Smile Design",
+      "3D Printing",
+      "E.max",
+      "Zirconia",
+      "Visio.lign"
+    ],
+    "closingCopy": "Let’s discuss your next case.",
+    "closingCta": "Work With Our Lab"
+  },
+  "forDentistsPage": {
+    "headline": "Your Cases. Our Craftsmanship.",
+    "websiteCopy": "Connect with Magnificent Smile Dental Lab to discuss restorative work, digital design, and clear aligner services for your practice.",
+    "collaborationHeading": "Collaboration Process",
+    "steps": [
+      {
+        "num": "1",
+        "title": "Submit Your Case",
+        "desc": "Contact our team with your case requirements and available records."
+      },
+      {
+        "num": "2",
+        "title": "Review & Approve the Design",
+        "desc": "Discuss the proposed design and required adjustments before production."
+      },
+      {
+        "num": "3",
+        "title": "Production",
+        "desc": "Manufacturing proceeds according to the agreed prescription."
+      },
+      {
+        "num": "4",
+        "title": "Delivery",
+        "desc": "Coordinate delivery and follow-up requirements with our team."
+      }
+    ],
+    "caseRequirementsHeading": "Case Requirements",
+    "caseRequirementsQ": "What do I need to submit?",
+    "caseRequirementsA": "Requirements depend on the service requested. Contact our team to confirm the scans or impressions, clinical photographs, shade information, and prescription needed for your case.",
+    "faqsHeading": "Frequently Asked Questions",
+    "faqs": [
+      {
+        "q": "Which services can I enquire about?",
+        "a": "Veneers, crowns and bridges, implant prosthetics, removable dentures, digital design, and clear aligners."
+      },
+      {
+        "q": "How do I obtain a quotation?",
+        "a": "Send your case requirements so our team can confirm the scope and quotation."
+      },
+      {
+        "q": "What is the turnaround time?",
+        "a": "Production and delivery timing will be confirmed for each case."
+      },
+      {
+        "q": "How do I send digital files?",
+        "a": "Contact the laboratory to confirm supported formats and the submission method."
+      }
+    ],
+    "formHeading": "Professional Enquiry Form",
+    "formNotice": "Connect with our laboratory team to discuss restorative work, digital design, and clear aligner services.",
+    "dentistName": "Dentist’s Name",
+    "clinicName": "Clinic Name",
+    "cityCountry": "City / Country",
+    "phone": "Phone Number",
+    "requiredService": "Required Service",
+    "email": "Email (Optional)",
+    "enquiryDetails": "Enquiry Details (Optional)",
+    "submitButton": "Send an Enquiry",
+    "submitting": "Sending Enquiry...",
+    "success": "Thank you for your enquiry. Our laboratory team will contact you to discuss your requirements.",
+    "error": "We couldn’t send your enquiry. Please try again.",
+    "serviceOptions": [
+      "Veneers",
+      "Crowns & Bridges",
+      "Implant Restorations",
+      "Removable Dentures",
+      "Digital Design",
+      "Clear Aligners",
+      "Other"
+    ]
   }
 }

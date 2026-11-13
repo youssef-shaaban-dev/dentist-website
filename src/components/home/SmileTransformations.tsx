@@ -6,13 +6,10 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useTranslations } from "next-intl";
 import { useLanguage } from "@/i18n/IntlProviderWrapper";
-import { SplitTextScrub } from "@/components/ui/SplitTextScrub";
 import { SplitSectionBackground } from "@/components/ui/SplitSectionBackground";
 import {
   Sparkles,
-  SlidersHorizontal,
   CheckCircle2,
-  AlertTriangle,
   ArrowRight,
   ArrowLeft,
   CalendarCheck,
@@ -132,17 +129,6 @@ export function SmileTransformations() {
     ? { clipPath: `inset(0 0 0 ${100 - sliderPosition}%)` }
     : { clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` };
 
-  const whatsappMessage =
-    locale === "ar"
-      ? `مرحباً، أود استشارة بخصوص علاج (${currentCase.title}) بعد رؤية نتائج الحالات.`
-      : locale === "fr"
-      ? `Bonjour, je souhaite une consultation pour (${currentCase.title}) d'après vos résultats.`
-      : locale === "ru"
-      ? `Здравствуйте, хочу проконсультироваться по поводу (${currentCase.title}).`
-      : `Hello, I would like a consultation for (${currentCase.title}) based on your clinical results.`;
-
-  const whatsappUrl = `https://wa.me/201008901234?text=${encodeURIComponent(whatsappMessage)}`;
-
   return (
     <section
       ref={sectionRef}
@@ -176,22 +162,19 @@ export function SmileTransformations() {
               <span className="h-[1px] w-6 bg-[#C8A232]/70" />
             </div>
 
-            {/* Two-Tone Luxury Headline */}
+            {/* Two-Tone Luxury Headline according to Developer Handoff */}
             <h2
               ref={titleRef}
               className="text-2xl sm:text-3xl md:text-4xl lg:text-[40px] font-bold font-display leading-[1.28] mb-3"
             >
               <span className="block text-[#0F266A]">
-                {t("title")}
-              </span>
-              <span className="block text-[#9A5F13] text-xl sm:text-2xl lg:text-3xl mt-1">
-                {currentCase.title}
+                {t("headline")}
               </span>
             </h2>
 
-            {/* Subtitle */}
+            {/* Subtitle / Website Copy */}
             <p className="text-sm sm:text-base md:text-[17px] text-[#2A3B56] leading-relaxed mb-6 font-body">
-              {t("subtitle")}
+              {t("websiteCopy")}
             </p>
 
             {/* Case Selection Tabs */}
@@ -221,14 +204,14 @@ export function SmileTransformations() {
 
             {/* Clinical Specifications Box */}
             <div className="p-4 sm:p-5 rounded-2xl bg-white/95 border border-[#C8A232]/35 shadow-sm mb-6">
-              <div className="flex items-center justify-between mb-3 pb-2.5 border-b border-[#C8A232]/25">
-                <span className="text-xs font-mono font-bold text-[#9A5F13] uppercase tracking-wider">
+              <div className="flex items-center justify-between gap-3 flex-wrap mb-3 pb-2.5 border-b border-[#C8A232]/25">
+                <span className="text-xs font-bold text-[#9A5F13] tracking-wide">
                   {isRtl ? "المواصفات السريرية المطبقة" : "Applied Clinical Specs"}
                 </span>
-                <div className="flex items-center gap-1.5 text-[11px] font-mono text-[#5B6782]">
-                  <SlidersHorizontal className="w-3.5 h-3.5 text-[#C8A232]" />
-                  <span>{t("sliderHint")}</span>
-                </div>
+                <span className="inline-flex items-center gap-1.5 text-[11px] font-medium text-[#7A6432] bg-[#FAF1DC] px-2.5 py-0.5 rounded-full border border-[#C8A232]/40">
+                  <Sparkles className="w-3 h-3 text-[#9A5F13]" />
+                  <span>{currentCase.tag}</span>
+                </span>
               </div>
 
               <div className="space-y-2.5">
@@ -243,25 +226,22 @@ export function SmileTransformations() {
               </div>
             </div>
 
-            {/* Action CTAs */}
+            {/* Action CTAs according to Developer Handoff */}
             <div className="flex flex-wrap items-center gap-3">
               <a
-                href={whatsappUrl}
-                target="_blank"
-                rel="noopener noreferrer"
+                href="/treatments#smile-gallery"
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-[#9A5F13] via-[#C8A232] to-[#9A5F13] text-white font-bold text-xs uppercase tracking-wider shadow-md hover:shadow-lg transition-all font-body cursor-pointer"
               >
-                <CalendarCheck className="w-4 h-4 text-white" />
-                <span>{isRtl ? "استشر طبيباً حول هذه الحالة" : "Consult a Specialist"}</span>
+                <span>{t("cta")}</span>
                 <ArrowIcon className="w-3.5 h-3.5 text-white" />
               </a>
 
               <a
-                href="#treatments"
+                href="/clinics#booking"
                 className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-white border border-[#C8A232]/50 text-[#0F266A] font-bold text-xs uppercase tracking-wider hover:bg-[#FAF1DC]/60 transition-all font-body"
               >
-                <span>{isRtl ? "جميع العلاجات المتاحة" : "Explore Treatments"}</span>
-                <ArrowIcon className="w-3.5 h-3.5 text-[#9A5F13]" />
+                <CalendarCheck className="w-4 h-4 text-[#9A5F13]" />
+                <span>{isRtl ? "احجز استشارة" : "Book a Consultation"}</span>
               </a>
             </div>
 
@@ -298,9 +278,9 @@ export function SmileTransformations() {
 
                     {/* Clean Teeth Badge */}
                     <div className={`absolute top-3 ${isRtl ? "left-3" : "right-3"} z-10 pointer-events-none`}>
-                      <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#012052]/95 border border-[#DFBF57] text-white text-[10px] sm:text-xs font-bold shadow-md backdrop-blur-md">
+                      <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#012052]/90 border border-[#DFBF57] text-[#FAF1DD] text-[11px] sm:text-xs font-bold shadow-md backdrop-blur-md">
                         <Sparkles className="w-3 h-3 text-[#DFBF57]" />
-                        <span>{currentCase.afterLabel}</span>
+                        <span>{isRtl ? "بعد العلاج" : "After Treatment"}</span>
                       </div>
                     </div>
                   </div>
@@ -321,9 +301,9 @@ export function SmileTransformations() {
 
                     {/* Decayed Teeth Badge */}
                     <div className={`absolute top-3 ${isRtl ? "right-3" : "left-3"} z-10`}>
-                      <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#2B1705]/95 border border-[#DFBF57]/50 text-white text-[10px] sm:text-xs font-bold shadow-md backdrop-blur-md">
-                        <AlertTriangle className="w-3 h-3 text-[#DFBF57]" />
-                        <span>{currentCase.beforeLabel}</span>
+                      <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#1A0E04]/90 border border-amber-500/50 text-amber-200 text-[11px] sm:text-xs font-bold shadow-md backdrop-blur-md">
+                        <span className="w-2 h-2 rounded-full bg-amber-400" />
+                        <span>{isRtl ? "قبل العلاج" : "Before Treatment"}</span>
                       </div>
                     </div>
                   </div>

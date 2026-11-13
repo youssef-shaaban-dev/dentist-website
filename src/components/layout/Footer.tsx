@@ -5,34 +5,32 @@ import Image from "next/image";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { useLanguage } from "@/i18n/IntlProviderWrapper";
-import { MapPin, Phone, Mail, Sparkles, ShieldCheck } from "lucide-react";
+import { MapPin, Phone, Globe, ShieldCheck } from "lucide-react";
 
 export function Footer() {
   const t = useTranslations("footer");
   const tBrand = useTranslations("brand");
   const tNav = useTranslations("nav");
-  const tClinics = useTranslations("clinics");
   const { isRtl } = useLanguage();
 
   return (
     <footer
-      className="relative bg-[#0A1128] text-white pt-20 pb-12 border-t-2 border-[#C8A232]/40 overflow-hidden"
+      className="relative bg-[#020B1D] text-white pt-16 pb-12 border-t border-[#C8A232]/40 overflow-hidden"
       dir={isRtl ? "rtl" : "ltr"}
     >
-      {/* Background Decorative Gold Ambient Glows */}
+      {/* Background Subtle Gold Glow */}
       <div className="absolute top-0 right-1/4 w-96 h-96 bg-[#C8A232]/10 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-[#C8A232]/10 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-[#012968]/40 rounded-full blur-[140px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 pb-16 border-b border-[#C8A232]/20">
-          
-          {/* Brand Manifesto Col (4 cols) */}
-          <div className="lg:col-span-4 flex flex-col">
-            <Link href="#home" className="flex items-center gap-3.5 mb-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-[#C8A232]/20">
+          {/* Brand Col (5 cols) */}
+          <div className="lg:col-span-5 flex flex-col">
+            <Link href="/" className="flex items-center gap-3.5 mb-4 group">
               <div className="relative h-14 sm:h-16 aspect-[6/5]">
                 <Image
                   src="/logo.png"
-                  alt="Magnificent Smile Logo"
+                  alt="Magnificent Smile"
                   fill
                   sizes="96px"
                   className="object-contain drop-shadow-[0_2px_10px_rgba(200,162,50,0.35)]"
@@ -42,85 +40,135 @@ export function Footer() {
                 <span className="font-display text-xl font-bold tracking-wider text-white">
                   {tBrand("name")}
                 </span>
-                <span className="text-[10px] tracking-widest uppercase text-[#F3E5AB]">
-                  {tBrand("subname")}
+                <span className="text-xs font-semibold tracking-wider text-[#DFBF57]">
+                  {t("tagline")}
                 </span>
               </div>
             </Link>
 
-            <p className="text-xs text-[#FDFBF7]/70 leading-relaxed mb-6 font-body">
+            <p className="text-xs text-[#FDFBF7]/70 leading-relaxed mb-4 max-w-md font-body">
               {t("manifesto")}
             </p>
 
-            <div className="flex items-center gap-2 text-xs text-[#F3E5AB] font-mono">
-              <ShieldCheck className="w-4 h-4 text-[#C8A232]" />
-              <span>{tBrand("heritage")}</span>
+            <div className="flex items-center gap-2 text-xs text-[#F3E5AB]">
+              <Globe className="w-3.5 h-3.5 text-[#C8A232]" />
+              <a
+                href="https://www.magnificentsmilegroup.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:underline hover:text-[#DFBF57] transition-colors"
+              >
+                www.magnificentsmilegroup.com
+              </a>
             </div>
           </div>
 
-          {/* Quick Sitemap Links (3 cols) */}
+          {/* Navigation Links (3 cols) */}
           <div className="lg:col-span-3 flex flex-col">
-            <h4 className="text-sm font-bold font-display text-white uppercase tracking-wider mb-5 flex items-center gap-2">
-              <Sparkles className="w-3.5 h-3.5 text-[#C8A232]" />
-              <span>{t("quickLinks")}</span>
+            <h4 className="text-xs font-bold font-display text-white uppercase tracking-wider mb-4 text-[#DFBF57]">
+              {t("quickLinks")}
             </h4>
-            <ul className="space-y-2.5 text-xs text-[#FDFBF7]/75 font-body">
-              <li><a href="#home" className="hover:text-[#C8A232] transition-colors">{tNav("home")}</a></li>
-              <li><a href="#welcome" className="hover:text-[#C8A232] transition-colors">{tNav("welcome")}</a></li>
-              <li><a href="#treatments" className="hover:text-[#C8A232] transition-colors">{tNav("treatments")}</a></li>
-              <li><a href="#doctors" className="hover:text-[#C8A232] transition-colors">{tNav("doctors")}</a></li>
-              <li><a href="#transformations" className="hover:text-[#C8A232] transition-colors">{tNav("transformations")}</a></li>
-              <li><a href="#difference" className="hover:text-[#C8A232] transition-colors">{tNav("difference")}</a></li>
-              <li><a href="#clinics" className="hover:text-[#C8A232] transition-colors">{tNav("clinics")}</a></li>
-              <li><a href="#ecosystem" className="hover:text-[#C8A232] transition-colors">{tNav("aligners")}</a></li>
+            <ul className="space-y-2.5 text-xs text-[#FDFBF7]/80 font-body">
+              <li>
+                <Link href="/" className="hover:text-[#DFBF57] transition-colors">
+                  {tNav("home")}
+                </Link>
+              </li>
+              <li>
+                <Link href="/treatments" className="hover:text-[#DFBF57] transition-colors">
+                  {tNav("treatments")}
+                </Link>
+              </li>
+              <li>
+                <Link href="/clinics" className="hover:text-[#DFBF57] transition-colors">
+                  {t("links.clinics")}
+                </Link>
+              </li>
+              <li>
+                <Link href="/aligners" className="hover:text-[#DFBF57] transition-colors">
+                  {tNav("aligners")}
+                </Link>
+              </li>
+              <li>
+                <Link href="/laboratory" className="hover:text-[#DFBF57] transition-colors">
+                  {tNav("ourLab")}
+                </Link>
+              </li>
+              <li>
+                <Link href="/for-dentists" className="hover:text-[#DFBF57] transition-colors">
+                  {t("links.forDentists")}
+                </Link>
+              </li>
             </ul>
           </div>
 
-          {/* Branches & Hours (5 cols) */}
-          <div className="lg:col-span-5 flex flex-col">
-            <h4 className="text-sm font-bold font-display text-white uppercase tracking-wider mb-5 flex items-center gap-2">
+          {/* Locations & Hotline (4 cols) */}
+          <div className="lg:col-span-4 flex flex-col">
+            <h4 className="text-xs font-bold font-display text-white uppercase tracking-wider mb-4 text-[#DFBF57] flex items-center gap-2">
               <MapPin className="w-3.5 h-3.5 text-[#C8A232]" />
               <span>{t("branches")}</span>
             </h4>
 
-            <div className="space-y-3 text-xs text-[#FDFBF7]/80 font-body">
-              <div className="p-3 rounded-xl bg-white/5 border border-[#C8A232]/20">
-                <span className="font-bold text-[#F3E5AB] block mb-0.5">{tClinics("branch1.name")}</span>
-                <span className="text-[11px] block text-[#FDFBF7]/60">{tClinics("branch1.area")} • Tel: 01114159449</span>
+            <div className="space-y-2.5 text-xs text-[#FDFBF7]/85 font-body">
+              <div className="p-2.5 rounded-lg bg-white/5 border border-[#C8A232]/20 flex items-center justify-between">
+                <div>
+                  <span className="font-semibold block text-white">Hurghada</span>
+                  <span className="text-[11px] text-[#FDFBF7]/65">Al Kawthar, Metro St.</span>
+                </div>
+                <a
+                  href="tel:+201122208262"
+                  className="text-xs font-mono font-bold text-[#DFBF57] hover:underline"
+                >
+                  01122208262
+                </a>
               </div>
 
-              <div className="p-3 rounded-xl bg-white/5 border border-[#C8A232]/20">
-                <span className="font-bold text-[#F3E5AB] block mb-0.5">{tClinics("branch2.name")}</span>
-                <span className="text-[11px] block text-[#FDFBF7]/60">{tClinics("branch2.area")} • Tel: 01124336636</span>
+              <div className="p-2.5 rounded-lg bg-white/5 border border-[#C8A232]/20 flex items-center justify-between">
+                <div>
+                  <span className="font-semibold block text-white">Beverly Hills — Sheikh Zayed</span>
+                  <span className="text-[11px] text-[#FDFBF7]/65">Icon Mall, Gate 9</span>
+                </div>
+                <a
+                  href="tel:+201114159449"
+                  className="text-xs font-mono font-bold text-[#DFBF57] hover:underline"
+                >
+                  01114159449
+                </a>
               </div>
 
-              <div className="p-3 rounded-xl bg-white/5 border border-[#C8A232]/20">
-                <span className="font-bold text-[#F3E5AB] block mb-0.5">{tClinics("branch3.name")}</span>
-                <span className="text-[11px] block text-[#FDFBF7]/60">{tClinics("branch3.area")} • Tel: 01122208262</span>
+              <div className="p-2.5 rounded-lg bg-white/5 border border-[#C8A232]/20 flex items-center justify-between">
+                <div>
+                  <span className="font-semibold block text-white">Pyramids Road — Giza</span>
+                  <span className="text-[11px] text-[#FDFBF7]/65">El Taawun, Haram St.</span>
+                </div>
+                <a
+                  href="tel:+201124336636"
+                  className="text-xs font-mono font-bold text-[#DFBF57] hover:underline"
+                >
+                  01124336636
+                </a>
               </div>
-            </div>
-
-            <div className="mt-4 flex flex-wrap items-center gap-4 text-xs text-[#FDFBF7]/70 font-mono">
-              <span className="flex items-center gap-2">
-                <Phone className="w-3.5 h-3.5 text-[#C8A232]" />
-                <span dir="ltr">01114159449</span>
-              </span>
-              <span className="flex items-center gap-2">
-                <Mail className="w-3.5 h-3.5 text-[#C8A232]" />
-                <span>www.magnificentsmilegroup.com</span>
-              </span>
             </div>
           </div>
-
         </div>
 
-        {/* Bottom Legal Copyright */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#FDFBF7]/50 font-body">
-          <p>{t("legal")}</p>
+        {/* Bottom Bar: Legal & Copyright */}
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-[#FDFBF7]/60 font-body">
+          <p>© 2026 Magnificent Smile. All Rights Reserved.</p>
           <div className="flex items-center gap-6">
-            <a href="#privacy" className="hover:text-[#C8A232] transition-colors">{t("privacy")}</a>
-            <span>·</span>
-            <a href="#terms" className="hover:text-[#C8A232] transition-colors">{t("terms")}</a>
+            <Link href="/clinics" className="hover:text-[#DFBF57] transition-colors">
+              {t("links.clinics")}
+            </Link>
+            <Link href="/for-dentists" className="hover:text-[#DFBF57] transition-colors">
+              {t("links.forDentists")}
+            </Link>
+            <span className="text-[#FDFBF7]/30">|</span>
+            <span className="hover:text-[#DFBF57] transition-colors cursor-pointer">
+              {t("links.privacy")}
+            </span>
+            <span className="hover:text-[#DFBF57] transition-colors cursor-pointer">
+              {t("links.terms")}
+            </span>
           </div>
         </div>
       </div>

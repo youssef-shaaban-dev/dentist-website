@@ -126,42 +126,39 @@ export function HeroSection() {
                 <span className="h-[1px] w-4 sm:w-8 lg:w-12 bg-[#9A5F13]/60" />
               </div>
 
-              {/* Two-Tone Luxury Headline — Grounded in Dental Precision */}
-              <h1 className="text-xl sm:text-2xl md:text-4xl lg:text-[52px] font-bold font-display leading-[1.25] mb-2 sm:mb-4 lg:mb-5 tracking-tight">
+              {/* Two-Tone Luxury Headline */}
+              <h1 className="text-xl sm:text-2xl md:text-4xl lg:text-[48px] xl:text-[52px] font-bold font-display leading-[1.2] mb-3 sm:mb-4 lg:mb-5 tracking-tight">
                 <span className="block text-[#0F266A]">
-                  {isRtl ? "ابتسامة صحية وجمال طبيعي." : "A beautiful smile."}
+                  {isRtl ? "تخصصات مختلفة." : "Different Specialties."}
                 </span>
                 <span className="block text-[#9A5F13] font-display italic mt-0.5 sm:mt-1">
-                  {isRtl ? "مصممة بأعلى معايير الدقة." : "Engineered with precision."}
+                  {isRtl ? "رؤية واحدة متميزة." : "One Magnificent Vision."}
                 </span>
               </h1>
 
-              {/* Subtitle Paragraph — Pure Dental Clinical Scope */}
+              {/* Subtitle Paragraph */}
               <p className="text-xs sm:text-sm md:text-base lg:text-lg text-[#2A3B56] font-body leading-relaxed max-w-xl mb-4 sm:mb-6 lg:mb-8">
-                {isRtl
-                  ? "نجمع بين المسح الضوئي الرقمي ثلاثي الأبعاد، والتركيبات الخزفية السويسرية فائقة الدقة، والتقويم الشفاف، لراحتك التامة."
-                  : "Advanced digital 3D scanning, ultra-thin Swiss veneers, crystal clear aligners, and personalized clinical care."}
+                {t("websiteCopy")}
               </p>
 
-              {/* Action Buttons */}
+              {/* Action Buttons according to Developer Handoff */}
               <div className="flex flex-wrap items-center gap-2 sm:gap-3 lg:gap-4 mb-4 sm:mb-6 lg:mb-8">
-                {/* Primary Button */}
+                {/* Primary Button: Book a Consultation -> /clinics#booking */}
                 <a
-                  href="#book"
-                  className="inline-flex items-center gap-1.5 sm:gap-2 px-4 py-2.5 sm:px-6 sm:py-3.5 lg:px-8 lg:py-4 rounded-xl bg-[#012052] hover:bg-[#022A6D] text-white font-bold text-xs sm:text-xs lg:text-sm tracking-wider uppercase shadow-md transition-all cursor-pointer border border-[#C8A232]/40"
+                  href="/clinics#booking"
+                  className="inline-flex items-center gap-1.5 sm:gap-2 px-4 py-2.5 sm:px-6 sm:py-3.5 lg:px-7 lg:py-4 rounded-xl bg-[#012052] hover:bg-[#022A6D] text-white font-bold text-xs sm:text-xs lg:text-sm tracking-wider uppercase shadow-md transition-all cursor-pointer border border-[#C8A232]/40"
                 >
                   <CalendarCheck className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#DFBF57]" />
-                  <span>{isRtl ? "احجز استشارتك" : "BOOK"}</span>
+                  <span>{t("bookCta")}</span>
                   <ArrowIcon className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#DFBF57]" />
                 </a>
 
-                {/* Secondary Button */}
+                {/* Secondary Button: Explore Our Services -> /#divisions */}
                 <a
-                  href="#clinics"
+                  href="#divisions"
                   className="inline-flex items-center gap-1 sm:gap-2 px-3 py-2.5 sm:px-5 sm:py-3.5 rounded-xl bg-white/90 hover:bg-white border border-[#C8A232]/60 text-[#0F266A] font-bold text-xs sm:text-xs lg:text-sm tracking-wider uppercase transition-all shadow-xs"
                 >
-                  <MapPin className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#9A5F13]" />
-                  <span>{isRtl ? "فروعنا" : "CLINICS"}</span>
+                  <span>{t("exploreCta")}</span>
                 </a>
               </div>
 

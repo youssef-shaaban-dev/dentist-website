@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -10,25 +10,10 @@ import { useLenis } from "lenis/react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Observer } from "gsap/Observer";
-import { Globe, Menu, X } from "lucide-react";
-
-function WhatsAppIcon({ className = "w-3.5 h-3.5" }: { className?: string }) {
-  return (
-    <svg
-      className={className}
-      viewBox="0 0 24 24"
-      fill="currentColor"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.746.953 3.71 1.456 5.711 1.457h.004c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-    </svg>
-  );
-}
+import { Globe, Menu, X, ChevronDown, CalendarCheck } from "lucide-react";
 
 export function Navbar() {
   const pathname = usePathname();
-  const isTreatmentsPage = pathname === "/treatments";
-
   const { locale, setLocale, isRtl } = useLanguage();
   const lenis = useLenis();
 
@@ -38,21 +23,12 @@ export function Navbar() {
   const [navVisible, setNavVisible] = useState(true);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [langMenuOpen, setLangMenuOpen] = useState(false);
+  const [labDropdownOpen, setLabDropdownOpen] = useState(false);
+  const labDropdownRef = useRef<HTMLDivElement>(null);
 
-  const effectiveScrolled = scrolled || isTreatmentsPage;
+  const effectiveScrolled = scrolled || pathname !== "/";
 
-  const whatsappMessage =
-    locale === "ar"
-      ? "مرحباً، أود حجز موعد استشارة في عيادات ماغنيفيسنت سمايل."
-      : locale === "fr"
-      ? "Bonjour, je souhaite réserver une consultation chez Magnificent Smile."
-      : locale === "ru"
-      ? "Здравствуйте, я хочу записаться на приём в клинику Magnificent Smile."
-      : "Hello, I would like to book a consultation at Magnificent Smile Clinics.";
-
-  const whatsappUrl = `https://wa.me/201114159449?text=${encodeURIComponent(whatsappMessage)}`;
-
-  // GSAP Observer: Smart direction & velocity detection for luxury navbar response
+  // GSAP Observer: Smart direction & velocity detection for navbar hide/show
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger, Observer);
 
@@ -79,7 +55,6 @@ export function Navbar() {
         window.requestAnimationFrame(() => {
           const top = window.scrollY;
           setScrolled((prev) => {
-            // Hysteresis deadzone: turn on at >50px, turn off only when back above <15px
             if (!prev && top > 50) return true;
             if (prev && top < 15) return false;
             return prev;
@@ -95,6 +70,20 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Close dropdowns on outside click
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (
+        labDropdownRef.current &&
+        !labDropdownRef.current.contains(event.target as Node)
+      ) {
+        setLabDropdownOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
   const languages: { code: Locale; label: string }[] = [
     { code: "ar", label: "العربية" },
     { code: "en", label: "English" },
@@ -102,61 +91,32 @@ export function Navbar() {
     { code: "ru", label: "Русский" },
   ];
 
+  // Approved 6 Pages Navigation Map
   const navLinks = [
-    { href: isTreatmentsPage ? "/#home" : "#home", label: tNav("home") },
-    { href: isTreatmentsPage ? "/#welcome" : "#welcome", label: tNav("welcome") },
-    { href: "/treatments", label: tNav("treatments"), isCurrent: isTreatmentsPage },
-    { href: isTreatmentsPage ? "/#doctors" : "#doctors", label: tNav("doctors") },
-    { href: isTreatmentsPage ? "/#transformations" : "#transformations", label: tNav("transformations") },
-    { href: isTreatmentsPage ? "/#difference" : "#difference", label: tNav("difference") },
-    { href: isTreatmentsPage ? "/#clinics" : "#clinics", label: tNav("clinics") },
-    { href: isTreatmentsPage ? "/#ecosystem" : "#ecosystem", label: tNav("aligners") },
+    { href: "/", label: tNav("home"), isCurrent: pathname === "/" },
+    { href: "/treatments", label: tNav("treatments"), isCurrent: pathname === "/treatments" },
+    { href: "/clinics", label: tNav("clinics"), isCurrent: pathname === "/clinics" },
+    { href: "/aligners", label: tNav("aligners"), isCurrent: pathname === "/aligners" },
   ];
 
-  // Smooth Navigation: Lenis inertial glide for anchors, direct instant navigation for page routes
+  const labLinks = [
+    { href: "/laboratory", label: tNav("ourLab"), isCurrent: pathname === "/laboratory" },
+    { href: "/for-dentists", label: tNav("forDentists"), isCurrent: pathname === "/for-dentists" },
+  ];
+
+  const isLabActive = pathname === "/laboratory" || pathname === "/for-dentists";
+
   const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     setMobileMenuOpen(false);
+    setLabDropdownOpen(false);
 
-    // 1. Treatments page route
-    if (href === "/treatments") {
-      if (pathname === "/treatments") {
+    if (href === pathname) {
+      if (!href.includes("#")) {
         e.preventDefault();
         if (lenis) {
           lenis.scrollTo(0, { duration: 1 });
         } else {
           window.scrollTo({ top: 0, behavior: "smooth" });
-        }
-      }
-      return;
-    }
-
-    // 2. Return to Home Page / Scroll to top
-    if (href === "/" || href === "/#home" || href === "#home") {
-      if (pathname === "/") {
-        e.preventDefault();
-        if (lenis) {
-          lenis.scrollTo(0, { duration: 1.2 });
-        } else {
-          window.scrollTo({ top: 0, behavior: "smooth" });
-        }
-        return;
-      }
-    }
-
-    // 3. Anchor Section Links
-    const targetId = href.includes("#") ? href.split("#")[1] : null;
-    if (targetId) {
-      if (pathname === "/") {
-        e.preventDefault();
-        const targetEl = document.getElementById(targetId);
-        if (targetEl && lenis) {
-          lenis.scrollTo(targetEl, {
-            offset: -85,
-            duration: 1.4,
-            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-          });
-        } else if (targetEl) {
-          targetEl.scrollIntoView({ behavior: "smooth" });
         }
       }
     }
@@ -184,7 +144,7 @@ export function Navbar() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 sm:py-2.5">
         <div className="flex items-center justify-between">
-          {/* Brand Logo Only (Uncropped, clear, readable, zero adjacent text) */}
+          {/* Brand Logo */}
           <Link
             href="/"
             onClick={(e) => handleLinkClick(e, "/")}
@@ -194,7 +154,7 @@ export function Navbar() {
             <div className="relative h-14 sm:h-16 md:h-18 aspect-[6/5] transition-transform duration-300 group-hover:scale-105">
               <Image
                 src="/logo.png"
-                alt="Magnificent Smile Dental Clinic"
+                alt="Magnificent Smile"
                 fill
                 sizes="(max-width: 640px) 110px, 160px"
                 className="object-contain drop-shadow-[0_2px_12px_rgba(200,162,50,0.35)]"
@@ -204,15 +164,15 @@ export function Navbar() {
           </Link>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden xl:flex items-center gap-2.5 2xl:gap-5" aria-label="Main Navigation">
+          <nav className="hidden xl:flex items-center gap-4 2xl:gap-6" aria-label="Main Navigation">
             {navLinks.map((link) => {
               const isActive = link.isCurrent;
               return (
-                <a
+                <Link
                   key={link.href}
                   href={link.href}
                   onClick={(e) => handleLinkClick(e, link.href)}
-                  className={`relative text-[11px] 2xl:text-xs tracking-wide 2xl:tracking-wider uppercase font-semibold transition-colors py-1 group font-body whitespace-nowrap drop-shadow-sm cursor-pointer ${
+                  className={`relative text-xs tracking-wider uppercase font-semibold transition-colors py-1 group font-body whitespace-nowrap drop-shadow-sm cursor-pointer ${
                     isActive
                       ? "text-[#955904] font-bold"
                       : effectiveScrolled
@@ -226,9 +186,65 @@ export function Navbar() {
                       isActive ? "w-full" : "w-0 group-hover:w-full"
                     }`}
                   />
-                </a>
+                </Link>
               );
             })}
+
+            {/* Dental Laboratory Dropdown */}
+            <div
+              ref={labDropdownRef}
+              className="relative"
+              onMouseEnter={() => setLabDropdownOpen(true)}
+              onMouseLeave={() => setLabDropdownOpen(false)}
+            >
+              <button
+                type="button"
+                onClick={() => setLabDropdownOpen((prev) => !prev)}
+                className={`relative flex items-center gap-1.5 text-xs tracking-wider uppercase font-semibold transition-colors py-1 font-body whitespace-nowrap drop-shadow-sm cursor-pointer ${
+                  isLabActive
+                    ? "text-[#955904] font-bold"
+                    : effectiveScrolled
+                    ? "text-[#012968]/85 hover:text-[#955904]"
+                    : "text-white/90 hover:text-[#DFBF57]"
+                }`}
+                aria-expanded={labDropdownOpen}
+              >
+                <span>{tNav("dentalLab")}</span>
+                <ChevronDown
+                  className={`w-3.5 h-3.5 transition-transform duration-200 ${
+                    labDropdownOpen ? "rotate-180" : ""
+                  }`}
+                />
+                <span
+                  className={`absolute bottom-0 left-0 h-[2px] bg-[#DFBF57] transition-all duration-300 ${
+                    isLabActive ? "w-full" : "w-0"
+                  }`}
+                />
+              </button>
+
+              {labDropdownOpen && (
+                <div
+                  className={`absolute top-full mt-1.5 w-48 rounded-xl border border-[#C8A232]/30 bg-white/98 backdrop-blur-xl p-2 shadow-[0_15px_35px_rgba(2,34,86,0.18)] z-50 animate-in fade-in-50 slide-in-from-top-2 duration-150 ${
+                    isRtl ? "right-0" : "left-0"
+                  }`}
+                >
+                  {labLinks.map((sublink) => (
+                    <Link
+                      key={sublink.href}
+                      href={sublink.href}
+                      onClick={(e) => handleLinkClick(e, sublink.href)}
+                      className={`block px-3 py-2.5 rounded-lg text-xs font-semibold tracking-wide transition-colors ${
+                        sublink.isCurrent
+                          ? "bg-[#C8A232]/15 text-[#955904] font-bold"
+                          : "text-[#012968]/85 hover:bg-[#F9EDD7] hover:text-[#955904]"
+                      }`}
+                    >
+                      {sublink.label}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
           </nav>
 
           {/* Actions: Language Switcher & Book Consultation CTA */}
@@ -287,21 +303,19 @@ export function Navbar() {
               )}
             </div>
 
-            {/* Primary Booking Button -> Direct WhatsApp */}
-            <a
-              href={whatsappUrl}
-              target="_blank"
-              rel="noopener noreferrer"
+            {/* Primary Header Button -> /clinics#booking */}
+            <Link
+              href="/clinics#booking"
               className="relative group overflow-hidden px-4 py-2 2xl:px-5 2xl:py-2.5 rounded-full border border-[#C8A232]/80 bg-gradient-to-r from-[#955904] via-[#C8A232] to-[#955904] text-white font-bold text-xs tracking-wider uppercase shadow-[0_4px_20px_rgba(200,162,50,0.35)] hover:shadow-[0_8px_30px_rgba(200,162,50,0.55)] transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0 flex items-center gap-2 cursor-pointer whitespace-nowrap"
             >
-              <WhatsAppIcon className="w-3.5 h-3.5 text-white shrink-0" />
-              <span>{tNav("bookAppointment")}</span>
-            </a>
+              <CalendarCheck className="w-3.5 h-3.5 text-white shrink-0" />
+              <span>{tNav("bookConsultation")}</span>
+            </Link>
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile Controls */}
           <div className="flex items-center gap-2 xl:hidden">
-            {/* Mobile Lang Button */}
+            {/* Quick Lang Switch */}
             <button
               type="button"
               onClick={() => {
@@ -337,7 +351,7 @@ export function Navbar() {
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
         <div className="xl:hidden bg-[#FDFBF7]/98 backdrop-blur-2xl border-b border-[#C8A232]/30 px-6 py-6 shadow-2xl animate-in slide-in-from-top-4 duration-300">
-          <nav className="flex flex-col gap-2.5">
+          <nav className="flex flex-col gap-2">
             {/* Language Bar in Drawer */}
             <div className="grid grid-cols-4 gap-1.5 pb-3 mb-2 border-b border-[#C8A232]/20">
               {languages.map((item) => (
@@ -360,27 +374,55 @@ export function Navbar() {
             </div>
 
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.href}
                 href={link.href}
                 onClick={(e) => handleLinkClick(e, link.href)}
-                className="text-sm font-semibold text-[#012968] hover:text-[#955904] py-2 border-b border-[#C8A232]/15 font-body flex items-center justify-between cursor-pointer"
+                className={`text-sm font-semibold py-2.5 border-b border-[#C8A232]/15 font-body flex items-center justify-between cursor-pointer transition-colors ${
+                  link.isCurrent
+                    ? "text-[#955904] font-bold"
+                    : "text-[#012968] hover:text-[#955904]"
+                }`}
               >
                 <span>{link.label}</span>
                 <span className="text-xs text-[#955904]">{isRtl ? "←" : "→"}</span>
-              </a>
+              </Link>
             ))}
-            <div className="pt-3 flex flex-col gap-3">
-              <a
-                href={whatsappUrl}
-                target="_blank"
-                rel="noopener noreferrer"
+
+            {/* Dental Laboratory Section in Mobile Menu */}
+            <div className="py-2 border-b border-[#C8A232]/15">
+              <div className="text-xs font-bold uppercase tracking-wider text-[#955904] mb-1.5">
+                {tNav("dentalLab")}
+              </div>
+              <div className="flex flex-col gap-1.5 pl-3 pr-3">
+                {labLinks.map((sublink) => (
+                  <Link
+                    key={sublink.href}
+                    href={sublink.href}
+                    onClick={(e) => handleLinkClick(e, sublink.href)}
+                    className={`text-sm py-1.5 flex items-center justify-between cursor-pointer transition-colors ${
+                      sublink.isCurrent
+                        ? "text-[#955904] font-bold"
+                        : "text-[#012968]/85 hover:text-[#955904]"
+                    }`}
+                  >
+                    <span>• {sublink.label}</span>
+                    <span className="text-xs text-[#955904]">{isRtl ? "←" : "→"}</span>
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            {/* Mobile Booking CTA Button */}
+            <div className="pt-3">
+              <Link
+                href="/clinics#booking"
                 onClick={() => setMobileMenuOpen(false)}
-                className="w-full py-3 rounded-xl bg-gradient-to-r from-[#955904] via-[#C8A232] to-[#955904] text-white font-bold text-center text-sm shadow-md flex items-center justify-center gap-2"
+                className="w-full py-3 rounded-xl bg-gradient-to-r from-[#955904] via-[#C8A232] to-[#955904] text-white font-bold text-center text-sm shadow-md flex items-center justify-center gap-2 cursor-pointer"
               >
-                <WhatsAppIcon className="w-4 h-4 text-white" />
-                <span>{tNav("bookAppointment")}</span>
-              </a>
+                <CalendarCheck className="w-4 h-4 text-white" />
+                <span>{tNav("bookConsultation")}</span>
+              </Link>
             </div>
           </nav>
         </div>

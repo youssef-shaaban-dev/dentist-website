@@ -1,39 +1,24 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useTranslations } from "next-intl";
 import { useLanguage } from "@/i18n/IntlProviderWrapper";
 import { SplitSectionBackground } from "@/components/ui/SplitSectionBackground";
-import {
-  Award,
-  GraduationCap,
-  Sparkles,
-  CheckCircle2,
-  CalendarCheck,
-  Stethoscope,
-  ArrowRight,
-  ArrowLeft,
-  Crown,
-} from "lucide-react";
+import { Award, Sparkles } from "lucide-react";
 
 interface DoctorItem {
   id: string;
   name: string;
   role: string;
-  experience: string;
-  credentials: string[];
   image: string;
-  fellowshipAr: string;
-  fellowshipEn: string;
 }
 
 export function SpecialistsSection() {
   const t = useTranslations("doctors");
-  const { isRtl, locale } = useLanguage();
-  const ArrowIcon = isRtl ? ArrowLeft : ArrowRight;
+  const { isRtl } = useLanguage();
 
   const sectionRef = useRef<HTMLElement>(null);
   const rightRef = useRef<HTMLDivElement>(null);
@@ -41,58 +26,51 @@ export function SpecialistsSection() {
 
   const [activeDoctorIdx, setActiveDoctorIdx] = useState<number>(0);
 
-  const doctorsList: DoctorItem[] = [
+  // Exact 5 doctors in the exact approved order
+  const doctors: DoctorItem[] = [
     {
-      id: "dr-khalil",
+      id: "amr-khaled",
       name: t("list.0.name"),
       role: t("list.0.role"),
-      experience: t("list.0.experience"),
-      credentials: [
-        t("list.0.credentials.0"),
-        t("list.0.credentials.1"),
-        t("list.0.credentials.2"),
-      ],
-      image: "https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=1200&q=85",
-      fellowshipAr: "زمالة الكلية البريطانية للجراحين (RCSEd) • زراعة الأسنان الرقمية",
-      fellowshipEn: "Fellow of Royal College of Surgeons (RCSEd) • 3D Guided Implants",
+      image:
+        "https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=800&q=85",
     },
     {
-      id: "dr-sarah",
+      id: "sally-mosallam",
       name: t("list.1.name"),
       role: t("list.1.role"),
-      experience: t("list.1.experience"),
-      credentials: [
-        t("list.1.credentials.0"),
-        t("list.1.credentials.1"),
-        t("list.1.credentials.2"),
-      ],
-      image: "https://images.unsplash.com/photo-1594824813576-905786df442a?auto=format&fit=crop&w=1200&q=85",
-      fellowshipAr: "ماجستير تجميل الأسنان • جامعة جنيف السويسرية",
-      fellowshipEn: "Master of Aesthetic Dentistry • University of Geneva",
+      image:
+        "https://images.unsplash.com/photo-1594824813581-2292f72535d4?auto=format&fit=crop&w=800&q=85",
     },
     {
-      id: "dr-tarek",
+      id: "mohamed-hamdy",
       name: t("list.2.name"),
       role: t("list.2.role"),
-      experience: t("list.2.experience"),
-      credentials: [
-        t("list.2.credentials.0"),
-        t("list.2.credentials.1"),
-        t("list.2.credentials.2"),
-      ],
-      image: "https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&w=1200&q=85",
-      fellowshipAr: "البورد الألماني في تقويم الأسنان الشفاف",
-      fellowshipEn: "German Board in Invisible Orthodontics (Aligners)",
+      image:
+        "https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&w=800&q=85",
+    },
+    {
+      id: "ahmed-magdy",
+      name: t("list.3.name"),
+      role: t("list.3.role"),
+      image:
+        "https://images.unsplash.com/photo-1629909615184-74f495363b67?auto=format&fit=crop&w=800&q=85",
+    },
+    {
+      id: "ahmed-abdel-halim",
+      name: t("list.4.name"),
+      role: t("list.4.role"),
+      image:
+        "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&w=800&q=85",
     },
   ];
 
-  const currentDoctor = doctorsList[activeDoctorIdx] || doctorsList[0];
+  const currentDoctor = doctors[activeDoctorIdx] || doctors[0];
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
     const ctx = gsap.context(() => {
-      // 1. Text Entrance
       if (rightRef.current) {
         gsap.fromTo(
           rightRef.current.children,
@@ -112,7 +90,6 @@ export function SpecialistsSection() {
         );
       }
 
-      // 2. Doctor Visual Entrance
       if (leftRef.current) {
         gsap.fromTo(
           leftRef.current,
@@ -136,17 +113,6 @@ export function SpecialistsSection() {
     return () => ctx.revert();
   }, [isRtl]);
 
-  const whatsappMessage =
-    locale === "ar"
-      ? `مرحباً، أود حجز موعد استشارة مع (${currentDoctor.name} - ${currentDoctor.role}) في عيادات ماغنيفيسنت سمايل.`
-      : locale === "fr"
-      ? `Bonjour, je souhaite réserver une consultation avec (${currentDoctor.name} - ${currentDoctor.role}) chez Magnificent Smile.`
-      : locale === "ru"
-      ? `Здравствуйте, хочу записаться на консультацию к (${currentDoctor.name} - ${currentDoctor.role}).`
-      : `Hello, I would like to book a consultation with (${currentDoctor.name} - ${currentDoctor.role}) at Magnificent Smile Clinics.`;
-
-  const whatsappUrl = `https://wa.me/201008901234?text=${encodeURIComponent(whatsappMessage)}`;
-
   return (
     <section
       ref={sectionRef}
@@ -154,8 +120,8 @@ export function SpecialistsSection() {
       className="relative py-20 sm:py-28 px-4 sm:px-6 lg:px-8 overflow-hidden z-20 shadow-2xl"
       dir={isRtl ? "rtl" : "ltr"}
     >
-      {/* 1. Split Section Background: Left is Royal Blue | Right is Warm Gold */}
-      <SplitSectionBackground inverted={!isRtl} />
+      {/* 1. Signature Multi-Line 3D Ribbon Split Background */}
+      <SplitSectionBackground inverted={!isRtl} waveVariant="B" />
 
       {/* 2. Content Grid */}
       <div className="max-w-7xl mx-auto relative z-10">
@@ -171,10 +137,10 @@ export function SpecialistsSection() {
             {/* Category Kicker Badge */}
             <div className="flex items-center gap-2.5 mb-4">
               <span className="h-[1px] w-6 bg-[#C8A232]/70" />
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[#C8A232]/50 bg-white/90 shadow-xs backdrop-blur-xs lg:backdrop-blur-none">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[#C8A232]/50 bg-white/90 shadow-xs">
                 <Award className="w-3.5 h-3.5 text-[#9A5F13]" />
                 <span className="text-xs font-bold text-[#9A5F13] uppercase tracking-wider font-mono">
-                  {isRtl ? "فريق الاستشاريين ونخبة الأطباء" : "SENIOR CONSULTANTS & SPECIALISTS"}
+                  {t("badge")}
                 </span>
               </div>
               <span className="h-[1px] w-6 bg-[#C8A232]/70" />
@@ -191,93 +157,58 @@ export function SpecialistsSection() {
             </h2>
 
             {/* Subtitle */}
-            <p className="text-sm sm:text-base text-[#4A5E7B] font-body leading-relaxed mb-6">
+            <p className="text-sm sm:text-base md:text-[17px] text-[#2A3B56] leading-relaxed mb-6 font-body">
               {t("subtitle")}
             </p>
 
-            {/* 3 Doctor Selector Tabs */}
-            <div className="grid grid-cols-3 gap-2 p-1.5 rounded-2xl bg-white/90 border border-[#C8A232]/35 shadow-sm mb-6">
-              {doctorsList.map((doc, idx) => {
+            {/* Compact Doctor Cards List (5 Doctors in exact order) */}
+            <div className="space-y-2 mb-6">
+              {doctors.map((doc, idx) => {
                 const isSelected = activeDoctorIdx === idx;
-
                 return (
                   <button
                     key={doc.id}
                     type="button"
                     onClick={() => setActiveDoctorIdx(idx)}
-                    className={`py-2 px-2 text-center rounded-xl text-xs font-bold transition-all duration-300 cursor-pointer ${
+                    className={`w-full p-3 sm:p-3.5 rounded-2xl flex items-center justify-between transition-all duration-300 border text-left cursor-pointer ${
                       isSelected
-                        ? "bg-[#012052] text-white shadow-md scale-102"
-                        : "text-[#4A5E7B] hover:text-[#012052] hover:bg-[#FAF1DC]/50"
+                        ? "bg-[#012052] text-white border-[#C8A232] shadow-md ring-2 ring-[#C8A232]/30 scale-[1.01]"
+                        : "bg-white/90 text-[#012968] border-[#C8A232]/30 hover:border-[#C8A232] hover:bg-[#FAF1DC]/50"
                     }`}
+                    dir={isRtl ? "rtl" : "ltr"}
                   >
-                    <span className="block truncate">{doc.name.split(" ")[1] || doc.name}</span>
-                    <span className="text-[10px] opacity-75 font-mono block truncate">{doc.role.split("•")[0]}</span>
+                    <div className="flex items-center gap-3">
+                      <div className="relative w-10 h-10 rounded-full overflow-hidden shrink-0 border border-[#C8A232]/50 bg-[#0A1128]">
+                        <Image
+                          src={doc.image}
+                          alt={doc.name}
+                          fill
+                          className="object-cover object-top"
+                        />
+                      </div>
+                      <div>
+                        <h3 className={`text-sm sm:text-base font-bold font-display ${
+                          isSelected ? "text-white" : "text-[#012968]"
+                        }`}>
+                          {doc.name}
+                        </h3>
+                        <p className={`text-xs ${
+                          isSelected ? "text-[#DFBF57]" : "text-[#2A3B56]/75"
+                        } font-body truncate`}>
+                          {doc.role}
+                        </p>
+                      </div>
+                    </div>
+
+                    <span className={`text-xs font-mono font-bold px-2 py-0.5 rounded-md ${
+                      isSelected ? "bg-[#DFBF57]/20 text-[#DFBF57]" : "text-[#9A5F13]"
+                    }`}>
+                      0{idx + 1}
+                    </span>
                   </button>
                 );
               })}
             </div>
-
-            {/* Doctor Credentials Dossier Card */}
-            <div className="p-5 rounded-2xl bg-white/95 border border-[#C8A232]/35 shadow-sm mb-6">
-              <div className="flex items-center justify-between mb-4 pb-3 border-b border-[#C8A232]/25">
-                <div>
-                  <h3 className="text-base sm:text-lg font-bold text-[#0F266A] font-display">
-                    {currentDoctor.name}
-                  </h3>
-                  <span className="text-xs text-[#9A5F13] font-semibold font-body">
-                    {currentDoctor.role}
-                  </span>
-                </div>
-
-                <span className="px-3 py-1 rounded-full bg-[#FAF1DC] border border-[#C8A232]/40 text-xs font-bold font-mono text-[#9A5F13]">
-                  {currentDoctor.experience}
-                </span>
-              </div>
-
-              {/* 3 Credentials Bullets */}
-              <div className="space-y-2.5 mb-4">
-                {currentDoctor.credentials.map((cred, cIdx) => (
-                  <div key={cIdx} className="flex items-start gap-2.5 text-xs sm:text-sm text-[#0F266A]">
-                    <div className="w-4 h-4 rounded-full bg-[#FAF1DC] border border-[#C8A232]/40 text-[#9A5F13] flex items-center justify-center shrink-0 mt-0.5">
-                      <GraduationCap className="w-2.5 h-2.5" />
-                    </div>
-                    <span className="font-medium">{cred}</span>
-                  </div>
-                ))}
-              </div>
-
-              {/* Fellowship Stamp */}
-              <div className="pt-3 border-t border-[#C8A232]/20 flex items-center gap-2 text-xs font-mono text-[#9A5F13]">
-                <CheckCircle2 className="w-3.5 h-3.5 shrink-0" />
-                <span className="font-semibold">
-                  {isRtl ? currentDoctor.fellowshipAr : currentDoctor.fellowshipEn}
-                </span>
-              </div>
-            </div>
-
-            {/* Direct Booking CTA */}
-            <div className="flex flex-wrap items-center gap-3">
-              <a
-                href={whatsappUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-[#9A5F13] via-[#C8A232] to-[#9A5F13] text-white font-bold text-xs uppercase tracking-wider shadow-md hover:shadow-lg transition-all font-body cursor-pointer"
-              >
-                <CalendarCheck className="w-4 h-4 text-white" />
-                <span>{isRtl ? "احجز موعد كشف مع الاستشاري" : "Book Clinical Consultation"}</span>
-                <ArrowIcon className="w-3.5 h-3.5 text-white" />
-              </a>
-
-              <a
-                href="#clinics"
-                className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-white border border-[#C8A232]/50 text-[#0F266A] font-bold text-xs uppercase tracking-wider hover:bg-[#FAF1DC]/60 transition-all font-body"
-              >
-                <span>{isRtl ? "مواعيد العيادات" : "Clinic Schedules"}</span>
-                <ArrowIcon className="w-3.5 h-3.5 text-[#9A5F13]" />
-              </a>
-            </div>
-
           </div>
 
           {/* VISUAL COLUMN (Deep Royal Blue Side): Order 2 on Desktop */}
@@ -288,61 +219,43 @@ export function SpecialistsSection() {
             }`}
           >
             <div className="w-full max-w-[380px] xl:max-w-[400px] mx-auto">
-              
-              {/* Doctor Portrait Luxury Frame */}
-              <div className="relative rounded-3xl overflow-hidden border-2 border-[#C8A232]/70 shadow-[0_20px_50px_rgba(0,0,0,0.6)] bg-[#011438] group">
+              {/* Doctor Featured Portrait Card with 24K Gold Frame */}
+              <div className="relative rounded-3xl bg-gradient-to-b from-[#0B2456] via-[#07193D] to-[#020B1D] border-2 border-[#C8A232]/70 p-3 sm:p-4 shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
                 
-                {/* Thin Top 24K Gold Bar */}
-                <div className="h-1 w-full bg-gradient-to-r from-[#9A5F13] via-[#DFBF57] to-[#9A5F13] rounded-full mb-1" />
+                {/* Gold Crest Accent Bar */}
+                <div className="h-1 w-full bg-gradient-to-r from-[#9A5F13] via-[#DFBF57] to-[#9A5F13] rounded-full mb-3" />
 
-                {/* Photo Viewport */}
-                <div className="relative w-full aspect-[3/4] overflow-hidden bg-[#022256]">
+                {/* Portrait Canvas */}
+                <div className="relative h-80 sm:h-96 md:h-[400px] w-full rounded-2xl overflow-hidden select-none border border-[#DFBF57]/40 bg-[#020B1D] shadow-inner">
                   <Image
-                    key={currentDoctor.id}
                     src={currentDoctor.image}
                     alt={currentDoctor.name}
                     fill
-                    sizes="(max-width: 1024px) 100vw, 420px"
-                    className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
+                    sizes="(max-width: 1024px) 100vw, 400px"
+                    className="object-cover object-top transition-transform duration-700 ease-out"
                     priority
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
 
-                  {/* Gradient Vignette */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#010E24] via-black/25 to-transparent pointer-events-none" />
-
-                  {/* Top Badges */}
-                  <div className="absolute top-3 left-3 right-3 flex items-center justify-between">
-                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/95 border border-[#C8A232]/50 text-[11px] font-mono font-bold text-[#9A5F13] shadow-md backdrop-blur-md">
-                      <Stethoscope className="w-3.5 h-3.5 text-[#9A5F13]" />
-                      <span>{isRtl ? "استشاري معتمد" : "Senior Consultant"}</span>
-                    </span>
-
-                    <span className="text-xs font-mono font-bold text-white bg-[#012052]/90 border border-white/20 px-2.5 py-1 rounded-full shadow-md backdrop-blur-md">
-                      0{activeDoctorIdx + 1}
-                    </span>
+                  {/* Top Badge */}
+                  <div className={`absolute top-3 ${isRtl ? "left-3" : "right-3"} z-10`}>
+                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#012052]/95 border border-[#DFBF57] text-white text-[10px] sm:text-xs font-bold shadow-md backdrop-blur-md">
+                      <Sparkles className="w-3.5 h-3.5 text-[#DFBF57]" />
+                      <span>{currentDoctor.name}</span>
+                    </div>
                   </div>
 
-                  {/* Bottom Text Over Photo */}
-                  <div className="absolute bottom-3.5 left-3.5 right-3.5 text-white pointer-events-none">
-                    <span className="text-[10px] font-mono tracking-wider uppercase text-[#DFBF57] font-bold block mb-1">
-                      MAGNIFICENT SMILE CLINICS
-                    </span>
-                    <h3 className="text-lg font-bold font-display text-white leading-snug drop-shadow-sm">
+                  {/* Bottom Info Strip */}
+                  <div className="absolute bottom-3 left-3 right-3 p-3.5 rounded-xl bg-black/70 backdrop-blur-md border border-[#C8A232]/40 text-center">
+                    <h3 className="text-base font-bold font-display text-white mb-0.5">
                       {currentDoctor.name}
                     </h3>
+                    <p className="text-xs text-[#DFBF57] font-body">
+                      {currentDoctor.role}
+                    </p>
                   </div>
                 </div>
-
-                {/* Hesy-Ra Seal Footer */}
-                <div className="px-4 py-2.5 bg-[#010F28] border-t border-[#DFBF57]/30 flex items-center justify-between text-[#DFBF57] text-[11px] font-mono">
-                  <span>CLINICAL EXCELLENCE</span>
-                  <span className="text-white/60">
-                    {currentDoctor.role.split("•")[0]}
-                  </span>
-                </div>
-
               </div>
-
             </div>
           </div>
 

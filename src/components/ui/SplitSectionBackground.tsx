@@ -6,12 +6,14 @@ interface SplitSectionBackgroundProps {
   className?: string;
   showDivider?: boolean;
   inverted?: boolean;
+  waveVariant?: "A" | "B";
 }
 
 export function SplitSectionBackground({
   className = "",
   showDivider = true,
   inverted = false,
+  waveVariant = "A",
 }: SplitSectionBackgroundProps) {
   const rawId = useId();
   const id = rawId.replace(/[^a-zA-Z0-9_-]/g, "");
@@ -22,6 +24,20 @@ export function SplitSectionBackground({
   const ribbonGoldId = `splitRibbonGold-${id}`;
   const ribbonTracerId = `splitRibbonTracer-${id}`;
   const shadowFilterId = `splitShadow-${id}`;
+
+  const isVariantB = waveVariant === "B";
+
+  // Control points: Variant A swings Left (470) then Right (530)
+  // Variant B swings Right (530) then Left (470)
+  // Both enter at (500, 0) strictly vertical and exit at (500, 800) strictly vertical!
+  // This guarantees 100% C1 continuity across adjacent sections with ZERO seams.
+  const pA = isVariantB ? 530 : 470;
+  const pB = isVariantB ? 470 : 530;
+
+  const curve0 = `M 500,0 C 500,100 ${pA},180 ${pA},260 C ${pA},360 ${pB},440 ${pB},540 C ${pB},640 500,720 500,800`;
+  const curveM12 = `M 488,0 C 488,100 ${pA - 12},180 ${pA - 12},260 C ${pA - 12},360 ${pB - 12},440 ${pB - 12},540 C ${pB - 12},640 488,720 488,800`;
+  const curveM6 = `M 494,0 C 494,100 ${pA - 6},180 ${pA - 6},260 C ${pA - 6},360 ${pB - 6},440 ${pB - 6},540 C ${pB - 6},640 494,720 494,800`;
+  const curveP8 = `M 508,0 C 508,100 ${pA + 8},180 ${pA + 8},260 C ${pA + 8},360 ${pB + 8},440 ${pB + 8},540 C ${pB + 8},640 508,720 508,800`;
 
   return (
     <div
@@ -97,7 +113,7 @@ export function SplitSectionBackground({
 
         {/* Warm Antique Parchment Gold along the Continuous C1-smooth S-curve */}
         <path
-          d="M 500,0 C 500,100 470,180 470,260 C 470,360 530,440 530,540 C 530,640 500,720 500,800 L 1000,800 L 1000,0 Z"
+          d={`${curve0} L 1000,800 L 1000,0 Z`}
           fill={`url(#${goldGradId})`}
         />
 
@@ -105,7 +121,7 @@ export function SplitSectionBackground({
           <>
             {/* 1. Base Atmosphere Drop Shadow on Blue Side */}
             <path
-              d="M 488,0 C 488,100 458,180 458,260 C 458,360 518,440 518,540 C 518,640 488,720 488,800"
+              d={curveM12}
               fill="none"
               stroke="#010A1A"
               strokeWidth="24"
@@ -116,7 +132,7 @@ export function SplitSectionBackground({
 
             {/* 2. Outer 24K Sculpted Gold Ridge (Facing Blue) */}
             <path
-              d="M 488,0 C 488,100 458,180 458,260 C 458,360 518,440 518,540 C 518,640 488,720 488,800"
+              d={curveM12}
               fill="none"
               stroke={`url(#${ribbonGoldId})`}
               strokeWidth="5"
@@ -126,7 +142,7 @@ export function SplitSectionBackground({
 
             {/* 3. Deep Royal Blue Inlay Enamel Channel */}
             <path
-              d="M 494,0 C 494,100 464,180 464,260 C 464,360 524,440 524,540 C 524,640 494,720 494,800"
+              d={curveM6}
               fill="none"
               stroke={`url(#${ribbonBlueId})`}
               strokeWidth="9"
@@ -135,7 +151,7 @@ export function SplitSectionBackground({
 
             {/* 4. Inner 24K Polished Gold Ribbon (Facing Parchment) */}
             <path
-              d="M 500,0 C 500,100 470,180 470,260 C 470,360 530,440 530,540 C 530,640 500,720 500,800"
+              d={curve0}
               fill="none"
               stroke={`url(#${ribbonGoldId})`}
               strokeWidth="8"
@@ -145,7 +161,7 @@ export function SplitSectionBackground({
 
             {/* 5. Razor Specular Glint Highlight along the Inner Gold Edge */}
             <path
-              d="M 500,0 C 500,100 470,180 470,260 C 470,360 530,440 530,540 C 530,640 500,720 500,800"
+              d={curve0}
               fill="none"
               stroke="#FFFDF5"
               strokeWidth="1.8"
@@ -155,7 +171,7 @@ export function SplitSectionBackground({
 
             {/* 6. Delicate Gold Echo Filament along Parchment Horizon */}
             <path
-              d="M 508,0 C 508,100 478,180 478,260 C 478,360 538,440 538,540 C 538,640 508,720 508,800"
+              d={curveP8}
               fill="none"
               stroke={`url(#${ribbonTracerId})`}
               strokeWidth="2.2"
