@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from "react";
+import React, { useRef, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { gsap } from "gsap";
@@ -8,7 +8,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useTranslations } from "next-intl";
 import { useLanguage } from "@/i18n/IntlProviderWrapper";
 import { SplitSectionBackground } from "@/components/ui/SplitSectionBackground";
-import { MapPin, CalendarCheck, ArrowRight, ArrowLeft } from "lucide-react";
+import { MapPin, Phone, CalendarCheck, ArrowRight, ArrowLeft, Star } from "lucide-react";
 
 export function LocationsBookingSection() {
   const t = useTranslations("locationsBooking");
@@ -16,10 +16,9 @@ export function LocationsBookingSection() {
   const ArrowIcon = isRtl ? ArrowLeft : ArrowRight;
 
   const sectionRef = useRef<HTMLElement>(null);
-  const rightRef = useRef<HTMLDivElement>(null);
-  const leftRef = useRef<HTMLDivElement>(null);
-
-  const [activeBranchIdx, setActiveBranchIdx] = useState<number>(1); // Zayed by default
+  const headerRef = useRef<HTMLDivElement>(null);
+  const cardsRef = useRef<HTMLDivElement>(null);
+  const ctaBarRef = useRef<HTMLDivElement>(null);
 
   const branches = [
     {
@@ -61,24 +60,23 @@ export function LocationsBookingSection() {
     },
   ];
 
-  const currentBranch = branches[activeBranchIdx] || branches[0];
-
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
     const ctx = gsap.context(() => {
-      if (rightRef.current) {
+      // Animate section header
+      if (headerRef.current) {
         gsap.fromTo(
-          rightRef.current.children,
+          headerRef.current.children,
           { opacity: 0, y: 25 },
           {
             opacity: 1,
             y: 0,
             duration: 0.8,
-            stagger: 0.08,
+            stagger: 0.1,
             ease: "power2.out",
             scrollTrigger: {
-              trigger: rightRef.current,
+              trigger: headerRef.current,
               start: "top 85%",
               once: true,
             },
@@ -86,19 +84,40 @@ export function LocationsBookingSection() {
         );
       }
 
-      if (leftRef.current) {
+      // Animate branch cards
+      if (cardsRef.current) {
         gsap.fromTo(
-          leftRef.current,
+          cardsRef.current.children,
           { opacity: 0, y: 30, scale: 0.96 },
           {
             opacity: 1,
             y: 0,
             scale: 1,
             duration: 0.9,
+            stagger: 0.12,
             ease: "power2.out",
             scrollTrigger: {
-              trigger: leftRef.current,
+              trigger: cardsRef.current,
               start: "top 85%",
+              once: true,
+            },
+          }
+        );
+      }
+
+      // Animate bottom CTA bar
+      if (ctaBarRef.current) {
+        gsap.fromTo(
+          ctaBarRef.current,
+          { opacity: 0, y: 20 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.7,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: ctaBarRef.current,
+              start: "top 90%",
               once: true,
             },
           }
@@ -116,164 +135,144 @@ export function LocationsBookingSection() {
       className="relative py-20 sm:py-28 px-4 sm:px-6 lg:px-8 overflow-hidden z-20 shadow-2xl"
       dir={isRtl ? "rtl" : "ltr"}
     >
-      {/* 1. Signature Multi-Line 3D Ribbon Split Background */}
+      {/* Signature Split Background */}
       <SplitSectionBackground inverted={!isRtl} />
 
-      {/* 2. Content Grid */}
       <div className="max-w-7xl mx-auto relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
-          
-          {/* CONTENT COLUMN (Warm Gold / Parchment Side): Order 1 on Desktop */}
-          <div
-            ref={rightRef}
-            className={`lg:col-span-6 flex flex-col order-2 lg:order-1 p-4 sm:p-6 lg:p-0 rounded-3xl lg:rounded-none bg-[#FCFAF5]/95 lg:bg-transparent border border-[#C8A232]/35 lg:border-0 shadow-xl lg:shadow-none backdrop-blur-md lg:backdrop-blur-none pl-4 sm:pl-6 ${
-              isRtl ? "lg:pr-10 xl:pr-14 lg:pl-6" : "lg:pl-10 xl:pl-14 lg:pr-6"
-            }`}
-          >
-            {/* Category Kicker Badge */}
-            <div className="flex items-center gap-2.5 mb-4">
-              <span className="h-[1px] w-6 bg-[#C8A232]/70" />
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[#C8A232]/50 bg-white/90 shadow-xs">
-                <MapPin className="w-3.5 h-3.5 text-[#9A5F13]" />
-                <span className="text-xs font-bold text-[#9A5F13] uppercase tracking-wider font-mono">
-                  {t("badge")}
-                </span>
-              </div>
-              <span className="h-[1px] w-6 bg-[#C8A232]/70" />
-            </div>
-
-            {/* Two-Tone Luxury Headline */}
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-[40px] font-bold font-display leading-[1.28] mb-3">
-              <span className="block text-[#0F266A]">
-                {t("headline")}
+        {/* ── Section Header (centered) ── */}
+        <div ref={headerRef} className="text-center mb-12 sm:mb-16">
+          {/* Badge */}
+          <div className="flex items-center justify-center gap-2.5 mb-4">
+            <span className="h-[1px] w-8 sm:w-12 bg-[#DFBF57]/60" />
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#DFBF57]/50 bg-[#011438]/85 backdrop-blur-md shadow-md">
+              <MapPin className="w-3.5 h-3.5 text-[#DFBF57]" />
+              <span className="text-xs font-bold text-[#DFBF57] uppercase tracking-wider font-mono">
+                {t("badge")}
               </span>
-              <span className="block text-[#9A5F13] text-xl sm:text-2xl lg:text-3xl mt-1">
-                {currentBranch.name}
-              </span>
-            </h2>
-
-            {/* Subtitle */}
-            <p className="text-sm sm:text-base md:text-[17px] text-[#2A3B56] leading-relaxed mb-6 font-body">
-              {t("websiteCopy")}
-            </p>
-
-            {/* Branch Selection List */}
-            <div className="space-y-2.5 mb-6">
-              {branches.map((branch, idx) => {
-                const isSelected = activeBranchIdx === idx;
-                return (
-                  <button
-                    key={branch.id}
-                    type="button"
-                    onClick={() => setActiveBranchIdx(idx)}
-                    className={`w-full p-4 rounded-2xl flex items-center justify-between transition-all duration-300 border text-left cursor-pointer ${
-                      isSelected
-                        ? "bg-[#012052] text-white border-[#C8A232] shadow-md ring-2 ring-[#C8A232]/30 scale-[1.01]"
-                        : "bg-white/90 text-[#012968] border-[#C8A232]/30 hover:border-[#C8A232] hover:bg-[#FAF1DC]/50"
-                    }`}
-                    dir={isRtl ? "rtl" : "ltr"}
-                  >
-                    <div>
-                      <h3 className={`text-sm sm:text-base font-bold font-display ${
-                        isSelected ? "text-white" : "text-[#012968]"
-                      }`}>
-                        {branch.name}
-                      </h3>
-                      <p className={`text-xs ${
-                        isSelected ? "text-[#DFBF57]" : "text-[#2A3B56]/75"
-                      } font-body mt-0.5`}>
-                        {branch.address}
-                      </p>
-                    </div>
-
-                    <div className="text-right">
-                      <span className={`text-xs font-mono font-bold block ${
-                        isSelected ? "text-white" : "text-[#9A5F13]"
-                      }`}>
-                        {branch.phone}
-                      </span>
-                    </div>
-                  </button>
-                );
-              })}
             </div>
-
-            {/* Action CTAs */}
-            <div className="flex flex-wrap items-center gap-3">
-              <Link
-                href="/clinics#booking"
-                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-[#9A5F13] via-[#C8A232] to-[#9A5F13] text-white font-bold text-xs sm:text-sm uppercase tracking-wider shadow-md hover:shadow-lg transition-all font-body cursor-pointer"
-              >
-                <CalendarCheck className="w-4 h-4 text-white" />
-                <span>{t("bookCta")}</span>
-                <ArrowIcon className="w-4 h-4 text-white" />
-              </Link>
-
-              <Link
-                href={currentBranch.href}
-                className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-white border border-[#C8A232]/50 text-[#0F266A] font-bold text-xs uppercase tracking-wider hover:bg-[#FAF1DC]/60 transition-all font-body"
-              >
-                <span>{isRtl ? "تفاصيل الفرع والموقع" : "Branch Details & Map"}</span>
-                <ArrowIcon className="w-3.5 h-3.5 text-[#9A5F13]" />
-              </Link>
-            </div>
+            <span className="h-[1px] w-8 sm:w-12 bg-[#DFBF57]/60" />
           </div>
 
-          {/* VISUAL COLUMN (Deep Royal Blue Side): Order 2 on Desktop */}
-          <div
-            ref={leftRef}
-            className={`lg:col-span-6 relative flex justify-center items-center order-1 lg:order-2 w-full ${
-              isRtl ? "lg:pl-6 xl:pl-8" : "lg:pr-6 xl:pr-8"
-            }`}
-          >
-            <div className="w-full max-w-[420px] xl:max-w-[440px] mx-auto">
-              {/* Luxury Gold Framed Showcase Card */}
-              <div className="relative rounded-3xl bg-gradient-to-b from-[#0B2456] via-[#07193D] to-[#020B1D] border-2 border-[#C8A232]/70 p-3 sm:p-4 shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
-                
-                {/* Gold Crest Accent Bar */}
-                <div className="h-1 w-full bg-gradient-to-r from-[#9A5F13] via-[#DFBF57] to-[#9A5F13] rounded-full mb-3" />
+          {/* Headline */}
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-[42px] font-bold font-display leading-[1.28] mb-3">
+            <span className="block text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.85)]">
+              {t("headline")}
+            </span>
+          </h2>
 
-                {/* Photo Canvas */}
-                <div className="relative h-72 sm:h-80 md:h-[370px] w-full rounded-2xl overflow-hidden select-none border border-[#DFBF57]/40 bg-[#020B1D] shadow-inner">
-                  <Image
-                    src={currentBranch.image}
-                    alt={currentBranch.name}
-                    fill
-                    sizes="(max-width: 1024px) 100vw, 440px"
-                    className="object-cover object-center transition-transform duration-700 ease-out"
-                    priority
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+          {/* Subtitle */}
+          <p className="max-w-2xl mx-auto text-sm sm:text-base md:text-[17px] text-[#FAF1DD]/90 leading-relaxed font-body drop-shadow-[0_1px_5px_rgba(0,0,0,0.8)]">
+            {t("websiteCopy")}
+          </p>
+        </div>
 
-                  {/* Top Badge */}
-                  <div className={`absolute top-3 ${isRtl ? "left-3" : "right-3"} z-10`}>
-                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#012052]/95 border border-[#DFBF57] text-white text-[10px] sm:text-xs font-bold shadow-md backdrop-blur-md">
+        {/* ── 3-Column Branch Cards Grid ── */}
+        <div
+          ref={cardsRef}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
+        >
+          {branches.map((branch) => (
+            <div
+              key={branch.id}
+              className={`relative rounded-3xl bg-gradient-to-b from-[#0B2456] via-[#07193D] to-[#020B1D] border-2 overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.4)] flex flex-col ${
+                branch.featured
+                  ? "border-[#C8A232] ring-2 ring-[#C8A232]"
+                  : "border-[#C8A232]/70"
+              }`}
+            >
+              {/* Gold Accent Bar */}
+              <div className="h-1 w-full bg-gradient-to-r from-[#9A5F13] via-[#DFBF57] to-[#9A5F13]" />
+
+              {/* Branch Photo */}
+              <div className="relative h-48 sm:h-56 w-full overflow-hidden select-none bg-[#020B1D]">
+                <Image
+                  src={branch.image}
+                  alt={branch.name}
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  className="object-cover object-center"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+
+                {/* Badge on Photo */}
+                <div className={`absolute top-3 ${isRtl ? "left-3" : "right-3"} z-10`}>
+                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#012052]/95 border border-[#DFBF57] text-white text-[10px] sm:text-xs font-bold shadow-md backdrop-blur-md">
+                    {branch.featured ? (
+                      <Star className="w-3.5 h-3.5 text-[#DFBF57] fill-[#DFBF57]" />
+                    ) : (
                       <MapPin className="w-3.5 h-3.5 text-[#DFBF57]" />
-                      <span>{currentBranch.badge}</span>
-                    </div>
-                  </div>
-
-                  {/* Bottom Strip */}
-                  <div className="absolute bottom-3 left-3 right-3 p-3.5 rounded-xl bg-black/70 backdrop-blur-md border border-[#C8A232]/35 flex items-center justify-between">
-                    <div>
-                      <span className="text-[10px] font-mono text-[#DFBF57] block">{currentBranch.name}</span>
-                      <a href={`tel:${currentBranch.phoneRaw}`} className="text-xs font-mono font-bold text-white hover:underline">
-                        {currentBranch.phone}
-                      </a>
-                    </div>
-                    <Link
-                      href={currentBranch.href}
-                      className="px-3 py-1.5 rounded-lg bg-[#C8A232]/20 hover:bg-[#C8A232]/30 text-[#DFBF57] text-[11px] font-bold transition-colors flex items-center gap-1"
-                    >
-                      <span>{isRtl ? "زيارة" : "Visit"}</span>
-                      <ArrowIcon className="w-3 h-3" />
-                    </Link>
+                    )}
+                    <span>{branch.badge}</span>
                   </div>
                 </div>
+
+                {/* Flagship indicator */}
+                {branch.featured && (
+                  <div className={`absolute top-3 ${isRtl ? "right-3" : "left-3"} z-10`}>
+                    <div className="px-2.5 py-0.5 rounded-full bg-[#C8A232] text-[#020B1D] text-[9px] sm:text-[10px] font-bold uppercase tracking-widest shadow-md">
+                      {isRtl ? "الرئيسي" : "FLAGSHIP"}
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* Card Content */}
+              <div className="flex flex-col flex-1 p-5 sm:p-6">
+                {/* Branch Name */}
+                <h3 className="text-lg sm:text-xl font-bold font-display text-white mb-3">
+                  {branch.name}
+                </h3>
+
+                {/* Address */}
+                <div className="flex items-start gap-2 mb-2">
+                  <MapPin className="w-4 h-4 text-[#DFBF57] mt-0.5 shrink-0" />
+                  <span className="text-sm text-[#B8C5D9] font-body leading-snug">
+                    {branch.address}
+                  </span>
+                </div>
+
+                {/* Phone */}
+                <div className="flex items-center gap-2 mb-5">
+                  <Phone className="w-4 h-4 text-[#DFBF57] shrink-0" />
+                  <a
+                    href={`tel:${branch.phoneRaw}`}
+                    className="text-sm font-mono font-bold text-white hover:text-[#DFBF57] transition-colors"
+                    dir="ltr"
+                  >
+                    {branch.phone}
+                  </a>
+                </div>
+
+                {/* Spacer to push CTA to bottom */}
+                <div className="flex-1" />
+
+                {/* CTA Button */}
+                <Link
+                  href={branch.href}
+                  className="inline-flex items-center justify-center gap-2 w-full px-5 py-3 rounded-xl bg-gradient-to-r from-[#9A5F13] via-[#C8A232] to-[#9A5F13] text-white font-bold text-xs sm:text-sm uppercase tracking-wider shadow-md hover:shadow-lg hover:brightness-110 transition-all font-body cursor-pointer"
+                >
+                  <CalendarCheck className="w-4 h-4 text-white" />
+                  <span>{t("bookCta")}</span>
+                  <ArrowIcon className="w-4 h-4 text-white" />
+                </Link>
               </div>
             </div>
-          </div>
+          ))}
+        </div>
 
+        {/* ── Full-width CTA Bar ── */}
+        <div
+          ref={ctaBarRef}
+          className="mt-10 sm:mt-14 flex flex-col sm:flex-row items-center justify-center gap-4"
+        >
+          <Link
+            href="/clinics#booking"
+            className="inline-flex items-center gap-2.5 px-8 py-4 rounded-2xl bg-gradient-to-r from-[#9A5F13] via-[#C8A232] to-[#9A5F13] text-white font-bold text-sm sm:text-base uppercase tracking-wider shadow-lg hover:shadow-xl hover:brightness-110 transition-all font-body cursor-pointer"
+          >
+            <CalendarCheck className="w-5 h-5 text-white" />
+            <span>{isRtl ? "احجز في أي فرع الآن" : "Book at Any Branch"}</span>
+            <ArrowIcon className="w-5 h-5 text-white" />
+          </Link>
         </div>
       </div>
     </section>

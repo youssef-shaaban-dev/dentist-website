@@ -176,24 +176,24 @@ export function SmileTransformations() {
           <div>
             {/* Category Kicker Badge */}
             <div className="flex items-center gap-2.5 mb-3">
-              <span className="h-[1px] w-6 bg-[#C8A232]/70" />
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[#C8A232]/50 bg-white/90 shadow-xs">
-                <Sparkles className="w-3.5 h-3.5 text-[#9A5F13]" />
-                <span className="text-xs font-bold text-[#9A5F13] uppercase tracking-wider font-mono">
+              <span className="h-[1px] w-8 sm:w-12 bg-[#DFBF57]/60" />
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#DFBF57]/50 bg-[#011438]/85 backdrop-blur-md shadow-md">
+                <Sparkles className="w-3.5 h-3.5 text-[#DFBF57]" />
+                <span className="text-xs font-bold text-[#DFBF57] uppercase tracking-wider font-mono">
                   {t("badge")}
                 </span>
               </div>
-              <span className="h-[1px] w-6 bg-[#C8A232]/70" />
+              <span className="h-[1px] w-8 sm:w-12 bg-[#DFBF57]/60" />
             </div>
 
             {/* Headline */}
             <h2
               ref={titleRef}
-              className="text-2xl sm:text-3xl md:text-4xl lg:text-[40px] font-bold font-display leading-[1.28] text-[#0F266A]"
+              className="text-2xl sm:text-3xl md:text-4xl lg:text-[40px] font-bold font-display leading-[1.28] text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.85)]"
             >
               <span>{t("headline")}</span>
             </h2>
-            <p className="text-sm sm:text-base text-[#2A3B56] font-body mt-2 max-w-2xl leading-relaxed">
+            <p className="text-sm sm:text-base text-[#FAF1DD]/90 font-body mt-2 max-w-2xl leading-relaxed drop-shadow-[0_1px_5px_rgba(0,0,0,0.8)]">
               {t("websiteCopy")}
             </p>
           </div>
