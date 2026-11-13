@@ -196,31 +196,34 @@ export function HeroSection() {
                 {/* Subtle Glow behind Frame */}
                 <div className="absolute -inset-2 sm:-inset-4 bg-gradient-to-tr from-[#C8A232]/20 via-[#DFBF57]/10 to-transparent rounded-full blur-xl sm:blur-2xl pointer-events-none" />
 
-                {/* Queen Portrait Frame with 24K Sculpted Gold Trim */}
+                {/* Luxury Clinical Showcase Frame with 24K Sculpted Gold Trim */}
                 <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden border-1.5 sm:border-2 border-[#C8A232]/80 shadow-[0_15px_40px_rgba(0,0,0,0.6)] bg-[#020B1D]">
                   
                   {/* Gold Shimmer Bar on Top */}
                   <div className="h-1 sm:h-1.5 w-full bg-gradient-to-r from-[#9A5F13] via-[#DFBF57] to-[#9A5F13]" />
 
-                  {/* Queen Portrait */}
+                  {/* Real Smile Video / High-Res Fallback Poster Canvas */}
                   <div className="relative w-full aspect-[3/4] overflow-hidden bg-[#020B1D]">
-                    <Image
-                      src="/images/hero-queen.jpg"
-                      alt={isRtl ? "ابتسامة ملكية متألقة" : "Queen of Magnificent Smile"}
-                      fill
-                      className="object-cover object-center transform transition-transform duration-700 group-hover:scale-105"
-                      priority
-                      sizes="(max-width: 640px) 150px, (max-width: 1024px) 300px, 420px"
-                    />
+                    {/* Background Silent Ambient Video */}
+                    <video
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      poster="/images/hero-real-smile.jpg"
+                      className="absolute inset-0 w-full h-full object-cover object-center transform transition-transform duration-700 group-hover:scale-105"
+                    >
+                      <source src="/videos/dentist-clinic-6592.mp4" type="video/mp4" />
+                    </video>
 
-                    {/* Gradient Vignette Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#020B1D] via-transparent to-transparent opacity-80 pointer-events-none" />
+                    {/* Gradient Vignette Overlay for Contrast */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#020B1D]/90 via-black/20 to-black/30 pointer-events-none" />
 
-                    {/* Royal Badge Stamp on Image */}
-                    <div className="absolute top-2 sm:top-3.5 right-2 sm:right-3.5 px-1.5 sm:px-2.5 py-0.5 sm:py-1 rounded-full bg-[#011438]/85 border border-[#DFBF57]/60 backdrop-blur-md flex items-center gap-1 shadow-md">
-                      <Crown className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-[#DFBF57]" />
-                      <span className="text-[7.5px] sm:text-[9px] font-mono font-bold text-[#DFBF57] tracking-wider uppercase">
-                        HESY-RA
+                    {/* Real Clinical Verification Badge */}
+                    <div className="absolute top-2 sm:top-3.5 right-2 sm:right-3.5 px-2 sm:px-3 py-0.5 sm:py-1 rounded-full bg-[#011438]/90 border border-[#DFBF57]/70 backdrop-blur-md flex items-center gap-1.5 shadow-md">
+                      <ShieldCheck className="w-3 h-3 text-[#DFBF57]" />
+                      <span className="text-[8px] sm:text-[10px] font-mono font-bold text-[#DFBF57] tracking-wider uppercase">
+                        {isRtl ? "نتائج سريرية حقيقية" : "AUTHENTIC RESULTS"}
                       </span>
                     </div>
 
@@ -228,7 +231,7 @@ export function HeroSection() {
                     <button
                       type="button"
                       onClick={() => setIsVideoModalOpen(true)}
-                      className="absolute top-2 sm:top-3.5 left-2 sm:left-3.5 px-1.5 sm:px-2.5 py-0.5 sm:py-1 rounded-full bg-[#011438]/85 hover:bg-[#012052] border border-[#DFBF57]/60 backdrop-blur-md flex items-center gap-1 shadow-md text-[#DFBF57] text-[7.5px] sm:text-[9px] font-mono font-bold transition-colors cursor-pointer z-10"
+                      className="absolute top-2 sm:top-3.5 left-2 sm:left-3.5 px-2 sm:px-3 py-0.5 sm:py-1 rounded-full bg-[#011438]/90 hover:bg-[#012052] border border-[#DFBF57]/70 backdrop-blur-md flex items-center gap-1.5 shadow-md text-[#DFBF57] text-[8px] sm:text-[10px] font-mono font-bold transition-all cursor-pointer z-10 hover:scale-105 active:scale-95"
                       title={isRtl ? "تشغيل جولة الفيديو" : "Play Clinic Video"}
                     >
                       <Play className="w-2.5 h-2.5 text-[#DFBF57] fill-current" />
@@ -236,9 +239,9 @@ export function HeroSection() {
                     </button>
 
                     {/* Bottom Caption Pill */}
-                    <div className="absolute bottom-2 sm:bottom-3.5 left-2 sm:left-3.5 right-2 sm:right-3.5 p-1.5 sm:p-2.5 rounded-xl bg-[#011438]/90 border border-[#DFBF57]/40 backdrop-blur-md shadow-lg text-center">
-                      <span className="text-[8px] sm:text-[10px] lg:text-xs font-bold text-white block">
-                        {isRtl ? "تصميم وتجميل الابتسامة الرقمي" : "Digital Smile Architecture"}
+                    <div className="absolute bottom-2 sm:bottom-3.5 left-2 sm:left-3.5 right-2 sm:right-3.5 p-2 sm:p-2.5 rounded-xl bg-[#011438]/90 border border-[#DFBF57]/50 backdrop-blur-md shadow-lg text-center">
+                      <span className="text-[9px] sm:text-[11px] lg:text-xs font-bold text-white block">
+                        {isRtl ? "ابتسامة طبيعية متناسقة • حالات واقعية" : "Natural Smile Design • Verified Clinical Cases"}
                       </span>
                     </div>
                   </div>

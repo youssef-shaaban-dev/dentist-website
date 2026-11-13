@@ -25,6 +25,24 @@ export function Navbar() {
   const [langMenuOpen, setLangMenuOpen] = useState(false);
   const [labDropdownOpen, setLabDropdownOpen] = useState(false);
   const labDropdownRef = useRef<HTMLDivElement>(null);
+  const labCloseTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  const handleLabMouseEnter = () => {
+    if (labCloseTimeoutRef.current) {
+      clearTimeout(labCloseTimeoutRef.current);
+      labCloseTimeoutRef.current = null;
+    }
+    setLabDropdownOpen(true);
+  };
+
+  const handleLabMouseLeave = () => {
+    if (labCloseTimeoutRef.current) {
+      clearTimeout(labCloseTimeoutRef.current);
+    }
+    labCloseTimeoutRef.current = setTimeout(() => {
+      setLabDropdownOpen(false);
+    }, 250);
+  };
 
   const effectiveScrolled = scrolled || pathname !== "/";
 
@@ -193,9 +211,9 @@ export function Navbar() {
             {/* Dental Laboratory Dropdown */}
             <div
               ref={labDropdownRef}
-              className="relative"
-              onMouseEnter={() => setLabDropdownOpen(true)}
-              onMouseLeave={() => setLabDropdownOpen(false)}
+              className="relative py-2"
+              onMouseEnter={handleLabMouseEnter}
+              onMouseLeave={handleLabMouseLeave}
             >
               <button
                 type="button"
@@ -224,16 +242,20 @@ export function Navbar() {
 
               {labDropdownOpen && (
                 <div
-                  className={`absolute top-full mt-1.5 w-48 rounded-xl border border-[#C8A232]/30 bg-white/98 backdrop-blur-xl p-2 shadow-[0_15px_35px_rgba(2,34,86,0.18)] z-50 animate-in fade-in-50 slide-in-from-top-2 duration-150 ${
+                  className={`absolute top-full -mt-0.5 w-52 rounded-xl border border-[#C8A232]/40 bg-white/98 backdrop-blur-xl p-2 shadow-[0_15px_35px_rgba(2,34,86,0.22)] z-50 animate-in fade-in-50 slide-in-from-top-2 duration-150 ${
                     isRtl ? "right-0" : "left-0"
                   }`}
+                  onMouseEnter={handleLabMouseEnter}
+                  onMouseLeave={handleLabMouseLeave}
                 >
+                  {/* Invisible bridge to prevent mouse leave gap */}
+                  <div className="absolute -top-3 left-0 right-0 h-3" />
                   {labLinks.map((sublink) => (
                     <Link
                       key={sublink.href}
                       href={sublink.href}
                       onClick={(e) => handleLinkClick(e, sublink.href)}
-                      className={`block px-3 py-2.5 rounded-lg text-xs font-semibold tracking-wide transition-colors ${
+                      className={`block px-3.5 py-2.5 rounded-lg text-xs font-semibold tracking-wide transition-colors ${
                         sublink.isCurrent
                           ? "bg-[#C8A232]/15 text-[#955904] font-bold"
                           : "text-[#012968]/85 hover:bg-[#F9EDD7] hover:text-[#955904]"
