@@ -229,7 +229,6 @@ export default function ForDentistsPage() {
   const ArrowIcon = isRtl ? ArrowLeft : ArrowRight;
 
   const [openFaq, setOpenFaq] = useState<number | null>(null);
-  const [caseReqOpen, setCaseReqOpen] = useState(false);
 
   const toggleFaq = (idx: number) => {
     setOpenFaq(openFaq === idx ? null : idx);
@@ -366,57 +365,10 @@ export default function ForDentistsPage() {
       
 
       {/* ======================================================== */}
-      {/* SECTION 3: CASE REQUIREMENTS (Full Width S-Curve Split)  */}
+      {/* SECTION 3: DENTIST FAQS (Full Width S-Curve Split)       */}
       {/* ======================================================== */}
       <section className="relative w-full py-20 sm:py-28 px-4 sm:px-6 lg:px-8 overflow-hidden z-20 shadow-2xl">
         <SplitSectionBackground inverted={!isRtl} waveVariant="A" />
-
-        <div className="max-w-4xl mx-auto relative z-10">
-          <div className="rounded-3xl border-2 border-[#C8A232]/45 bg-[#FCFAF5]/95 overflow-hidden shadow-xl backdrop-blur-md">
-            <button
-              type="button"
-              onClick={() => setCaseReqOpen(!caseReqOpen)}
-              className="w-full p-6 sm:p-8 text-left flex items-center justify-between gap-4 cursor-pointer hover:bg-[#FAF1DC]/50 transition-colors"
-              dir={isRtl ? "rtl" : "ltr"}
-            >
-              <div className="flex items-center gap-3">
-                <FileText className="w-5 h-5 text-[#955904]" />
-                <h2 className="text-lg sm:text-xl font-bold font-display text-[#0F266A]">
-                  {t("caseRequirementsHeading")}
-                </h2>
-              </div>
-              <ChevronDown
-                className={`w-5 h-5 text-[#955904] transition-transform duration-200 ${
-                  caseReqOpen ? "rotate-180" : ""
-                }`}
-              />
-            </button>
-
-            {caseReqOpen && (
-              <div className="px-6 pb-8 sm:px-8 sm:pb-10 pt-2 border-t border-[#C8A232]/25" dir={isRtl ? "rtl" : "ltr"}>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {t.raw("caseRequirements")?.map((req: string, rIdx: number) => (
-                    <div key={rIdx} className="flex items-start gap-3 text-xs sm:text-sm text-[#0F266A] font-bold">
-                      <div className="w-4 h-4 rounded-full bg-[#FAF1DC] border border-[#C8A232]/50 text-[#955904] flex items-center justify-center shrink-0 mt-0.5">
-                        <CheckCircle2 className="w-3 h-3" />
-                      </div>
-                      <span>{req}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-          </div>
-        </div>
-      </section>
-
-      
-
-      {/* ======================================================== */}
-      {/* SECTION 4: DENTIST FAQS (Full Width S-Curve Split)       */}
-      {/* ======================================================== */}
-      <section className="relative w-full py-20 sm:py-28 px-4 sm:px-6 lg:px-8 overflow-hidden z-20 shadow-2xl">
-        <SplitSectionBackground inverted={!isRtl} waveVariant="B" />
 
         <div className="max-w-4xl mx-auto relative z-10">
           <div className="text-center mb-10 p-6 rounded-3xl bg-[#FCFAF5]/90 border border-[#C8A232]/35 shadow-md">
