@@ -38,7 +38,7 @@ export function SpecialistsSection() {
       name: t("list.1.name"),
       role: t("list.1.role"),
       image:
-        "https://images.unsplash.com/photo-1594824813581-2292f72535d4?auto=format&fit=crop&w=800&q=85",
+        "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=800&q=85",
     },
     {
       id: "mohamed-hamdy",
