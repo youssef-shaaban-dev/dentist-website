@@ -6,6 +6,8 @@ import { DivisionsSection } from "@/components/home/DivisionsSection";
 import { SmileTransformations } from "@/components/home/SmileTransformations";
 import { SpecialistsSection } from "@/components/home/SpecialistsSection";
 import { LocationsBookingSection } from "@/components/home/LocationsBookingSection";
+import { AlignersHomeSection } from "@/components/home/AlignersHomeSection";
+import { LaboratoryHomeSection } from "@/components/home/LaboratoryHomeSection";
 
 export default function Home() {
   return (
@@ -24,6 +26,12 @@ export default function Home() {
 
       {/* 5. Section 05: Our Locations and Booking (3 Branches -> /clinics) */}
       <LocationsBookingSection />
+
+      {/* 6. Section 06: Magnificent Smile Dental Lab */}
+      <LaboratoryHomeSection />
+
+      {/* 7. Section 07: The Magnificent Aligners */}
+      <AlignersHomeSection />
     </main>
   );
 }
