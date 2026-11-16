@@ -158,14 +158,6 @@ export function LaboratoryHomeSection() {
             />
             {/* Subtle bottom gradient */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent" />
-
-            {/* Top Badge */}
-            <div className={`absolute top-2.5 ${isRtl ? "left-2.5" : "right-2.5"} z-10`}>
-              <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-[#012052]/90 border border-[#DFBF57] text-[#DFBF57] text-[10px] font-mono font-bold shadow-md backdrop-blur-sm">
-                <Sparkles className="w-2.5 h-2.5 text-[#DFBF57]" />
-                <span>DIRECTOR</span>
-              </span>
-            </div>
           </div>
 
           {/* Director Credentials & Tech Integration */}
