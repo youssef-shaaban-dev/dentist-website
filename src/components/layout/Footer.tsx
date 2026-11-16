@@ -85,11 +85,6 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/aligners" className="hover:text-[#DFBF57] transition-colors">
-                  {tNav("aligners")}
-                </Link>
-              </li>
-              <li>
                 <Link href="/laboratory" className="hover:text-[#DFBF57] transition-colors">
                   {tNav("ourLab")}
                 </Link>
@@ -97,6 +92,11 @@ export function Footer() {
               <li>
                 <Link href="/for-dentists" className="hover:text-[#DFBF57] transition-colors">
                   {t("links.forDentists")}
+                </Link>
+              </li>
+              <li>
+                <Link href="/aligners" className="hover:text-[#DFBF57] transition-colors">
+                  {tNav("aligners")}
                 </Link>
               </li>
             </ul>
