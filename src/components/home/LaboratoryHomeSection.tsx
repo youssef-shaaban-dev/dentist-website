@@ -220,7 +220,7 @@ export function LaboratoryHomeSection() {
               {/* Portrait Photo (Aspect 3/4 & dimensions identical to SpecialistsSection) */}
               <div className="relative aspect-[3/4] w-full overflow-hidden bg-[#020B1D]">
                 <Image
-                  src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=800&q=85"
+                  src="/images/doctors/abdulkader-dorgham.webp"
                   alt={t("managerName")}
                   fill
                   sizes="(max-width: 640px) 240px, 250px"
