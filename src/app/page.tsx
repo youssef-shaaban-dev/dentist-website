@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import { HeroSection } from "@/components/hero/HeroSection";
 import { DivisionsSection } from "@/components/home/DivisionsSection";
 import { SmileTransformations } from "@/components/home/SmileTransformations";
@@ -27,11 +26,11 @@ export default function Home() {
       {/* 5. Section 05: Our Locations and Booking (3 Branches -> /clinics) */}
       <LocationsBookingSection />
 
-      {/* 6. Section 06: Magnificent Smile Dental Lab */}
-      <LaboratoryHomeSection />
-
-      {/* 7. Section 07: The Magnificent Aligners */}
+      {/* 6. Section 06: The Magnificent Aligners */}
       <AlignersHomeSection />
+
+      {/* 7. Section 07: Magnificent Smile Dental Lab */}
+      <LaboratoryHomeSection />
     </main>
   );
 }

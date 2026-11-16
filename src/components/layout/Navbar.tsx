@@ -110,17 +110,12 @@ export function Navbar() {
   ];
 
   // Approved 6 Pages Navigation Map
-  const primaryNavLinks = [
+  const navLinks = [
     { href: "/", label: tNav("home"), isCurrent: pathname === "/" },
     { href: "/treatments", label: tNav("treatments"), isCurrent: pathname === "/treatments" },
     { href: "/clinics", label: tNav("clinics"), isCurrent: pathname === "/clinics" },
+    { href: "/aligners", label: tNav("aligners"), isCurrent: pathname === "/aligners" },
   ];
-
-  const alignersLink = {
-    href: "/aligners",
-    label: tNav("aligners"),
-    isCurrent: pathname === "/aligners",
-  };
 
   const labLinks = [
     { href: "/laboratory", label: tNav("ourLab"), isCurrent: pathname === "/laboratory" },
@@ -203,7 +198,7 @@ export function Navbar() {
 
           {/* Desktop Navigation Links */}
           <nav className="hidden xl:flex items-center gap-4 2xl:gap-6" aria-label="Main Navigation">
-            {primaryNavLinks.map((link) => {
+            {navLinks.map((link) => {
               const isActive = link.isCurrent;
               return (
                 <Link
@@ -287,27 +282,6 @@ export function Navbar() {
                 </div>
               )}
             </div>
-
-            {/* The Magnificent Aligners Link */}
-            <Link
-              key={alignersLink.href}
-              href={alignersLink.href}
-              onClick={(e) => handleLinkClick(e, alignersLink.href)}
-              className={`relative text-xs tracking-wider uppercase font-semibold transition-colors py-1 group font-body whitespace-nowrap drop-shadow-sm cursor-pointer ${
-                alignersLink.isCurrent
-                  ? "text-[#955904] font-bold"
-                  : effectiveScrolled
-                  ? "text-[#012968]/85 hover:text-[#955904]"
-                  : "text-white/90 hover:text-[#DFBF57]"
-              }`}
-            >
-              {alignersLink.label}
-              <span
-                className={`absolute bottom-0 left-0 h-[2px] bg-[#DFBF57] transition-all duration-300 ${
-                  alignersLink.isCurrent ? "w-full" : "w-0 group-hover:w-full"
-                }`}
-              />
-            </Link>
           </nav>
 
           {/* Actions: Language Switcher & Book Consultation CTA */}
@@ -436,7 +410,7 @@ export function Navbar() {
               ))}
             </div>
 
-            {primaryNavLinks.map((link) => (
+            {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
@@ -475,21 +449,6 @@ export function Navbar() {
                 ))}
               </div>
             </div>
-
-            {/* The Magnificent Aligners Link */}
-            <Link
-              key={alignersLink.href}
-              href={alignersLink.href}
-              onClick={(e) => handleLinkClick(e, alignersLink.href)}
-              className={`text-sm font-semibold py-2.5 border-b border-[#C8A232]/15 font-body flex items-center justify-between cursor-pointer transition-colors ${
-                alignersLink.isCurrent
-                  ? "text-[#955904] font-bold"
-                  : "text-[#012968] hover:text-[#955904]"
-              }`}
-            >
-              <span>{alignersLink.label}</span>
-              <span className="text-xs text-[#955904]">{isRtl ? "←" : "→"}</span>
-            </Link>
 
             {/* Mobile Booking CTA Button */}
             <div className="pt-3">
