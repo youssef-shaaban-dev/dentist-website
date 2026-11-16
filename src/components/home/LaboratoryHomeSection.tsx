@@ -16,10 +16,8 @@ import {
   Scan,
   ShieldCheck,
   Layers,
-  Wrench,
-  Stethoscope,
   Crown,
-  CheckCircle2,
+  Stethoscope,
 } from "lucide-react";
 
 interface LabService {
@@ -34,7 +32,7 @@ export function LaboratoryHomeSection() {
 
   const sectionRef = useRef<HTMLElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
-  const techRef = useRef<HTMLDivElement>(null);
+  const bannerRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
 
   // Real data from messages / PDF handoff
@@ -51,11 +49,11 @@ export function LaboratoryHomeSection() {
       if (headerRef.current) {
         gsap.fromTo(
           headerRef.current.children,
-          { opacity: 0, y: 25 },
+          { opacity: 0, y: 20 },
           {
             opacity: 1,
             y: 0,
-            duration: 0.8,
+            duration: 0.7,
             stagger: 0.08,
             ease: "power2.out",
             scrollTrigger: {
@@ -67,18 +65,17 @@ export function LaboratoryHomeSection() {
         );
       }
 
-      if (techRef.current) {
+      if (bannerRef.current) {
         gsap.fromTo(
-          techRef.current.children,
-          { opacity: 0, y: 15 },
+          bannerRef.current,
+          { opacity: 0, y: 25 },
           {
             opacity: 1,
             y: 0,
-            duration: 0.6,
-            stagger: 0.05,
+            duration: 0.8,
             ease: "power2.out",
             scrollTrigger: {
-              trigger: techRef.current,
+              trigger: bannerRef.current,
               start: "top 85%",
               once: true,
             },
@@ -89,12 +86,12 @@ export function LaboratoryHomeSection() {
       if (contentRef.current) {
         gsap.fromTo(
           contentRef.current.children,
-          { opacity: 0, y: 30 },
+          { opacity: 0, y: 20 },
           {
             opacity: 1,
             y: 0,
-            duration: 0.9,
-            stagger: 0.12,
+            duration: 0.8,
+            stagger: 0.08,
             ease: "power2.out",
             scrollTrigger: {
               trigger: contentRef.current,
@@ -121,7 +118,7 @@ export function LaboratoryHomeSection() {
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Section Header */}
-        <div ref={headerRef} className="text-center mb-10 sm:mb-12">
+        <div ref={headerRef} className="text-center mb-8 sm:mb-10">
           <div className="flex items-center justify-center gap-2.5 mb-4">
             <span className="h-[1px] w-8 sm:w-12 bg-[#DFBF57]/60" />
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#DFBF57]/50 bg-[#011438]/85 backdrop-blur-md shadow-md">
@@ -137,114 +134,129 @@ export function LaboratoryHomeSection() {
             {t("headline")}
           </h2>
 
-          <p className="text-sm sm:text-base md:text-[17px] text-white/95 leading-relaxed max-w-2xl mx-auto font-body drop-shadow-[0_1px_8px_rgba(0,0,0,0.9)] font-medium">
+          <p className="text-sm sm:text-base md:text-[17px] text-white/95 leading-relaxed max-w-3xl mx-auto font-body drop-shadow-[0_1px_8px_rgba(0,0,0,0.9)] font-medium">
             {t("websiteCopy")}
           </p>
         </div>
 
-        {/* Real Tech & Materials Bar from PDF */}
-        {techList.length > 0 && (
-          <div
-            ref={techRef}
-            className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-10 sm:mb-12 max-w-4xl mx-auto"
-          >
-            <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#011438]/90 border border-[#DFBF57]/40 text-[#FAF1DD] text-xs font-mono font-bold shadow-sm">
-              <Sparkles className="w-3.5 h-3.5 text-[#DFBF57]" />
-              <span>{t("techHeading")}:</span>
-            </div>
-            {techList.map((tech, idx) => (
-              <span
-                key={idx}
-                className="px-3 py-1 rounded-full bg-white/95 border border-[#C8A232]/50 text-[#0F266A] font-bold text-xs font-mono shadow-xs backdrop-blur-sm hover:border-[#9A5F13] transition-colors"
-              >
-                {tech}
+        {/* ======================================================== */}
+        {/* EXECUTIVE DIRECTOR SPOTLIGHT BANNER (Chic, Balanced & Clear) */}
+        {/* ======================================================== */}
+        <div
+          ref={bannerRef}
+          className="max-w-5xl mx-auto mb-8 sm:mb-10 rounded-3xl bg-gradient-to-r from-[#0B2456]/95 via-[#07193D]/95 to-[#020B1D]/95 border-2 border-[#C8A232]/80 overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.55)] backdrop-blur-xl p-5 sm:p-7 md:p-8 flex flex-col md:flex-row items-center gap-6 sm:gap-8 group hover:border-[#DFBF57] transition-all duration-300"
+        >
+          {/* Framed Photo Container (Elegant tall portrait proportion) */}
+          <div className="relative w-62 h-78 sm:w-60 sm:h-72 md:w-76 md:h-100 rounded-2xl overflow-hidden bg-[#020B1D] border-2 border-[#DFBF57] shadow-xl shrink-0">
+            <Image
+              src="/images/doctors/abdulkader-dorgham.webp"
+              alt={t("managerName")}
+              fill
+              sizes="(max-width: 768px) 224px, 260px"
+              className="object-cover object-top hover:scale-105 transition-transform duration-500"
+              priority
+            />
+            {/* Subtle bottom gradient */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent" />
+
+            {/* Top Badge */}
+            <div className={`absolute top-2.5 ${isRtl ? "left-2.5" : "right-2.5"} z-10`}>
+              <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-[#012052]/90 border border-[#DFBF57] text-[#DFBF57] text-[10px] font-mono font-bold shadow-md backdrop-blur-sm">
+                <Sparkles className="w-2.5 h-2.5 text-[#DFBF57]" />
+                <span>DIRECTOR</span>
               </span>
-            ))}
+            </div>
           </div>
-        )}
 
-        {/* 2-Column Content Showcase */}
-        <div ref={contentRef} className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center max-w-6xl mx-auto">
-          {/* Services Grid (Top 4 Real Services from PDF) */}
-          <div className="lg:col-span-7 flex flex-col justify-center">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 mb-4">
-              {services.slice(0, 4).map((service, idx) => {
-                const Icon = serviceIcons[idx % serviceIcons.length];
-                return (
-                  <div
+          {/* Director Credentials & Tech Integration */}
+          <div className="flex-1 text-center md:text-start flex flex-col justify-center">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#012052]/90 border border-[#DFBF57]/50 text-[#DFBF57] text-xs font-mono font-bold mb-2.5 w-fit mx-auto md:mx-0 shadow-xs">
+              <ShieldCheck className="w-3.5 h-3.5 text-[#DFBF57]" />
+              <span>{isRtl ? "القيادة والإشراف الفني المباشر" : "DIRECT TECHNICAL SUPERVISION"}</span>
+            </div>
+
+            <h3 className="text-xl sm:text-2xl lg:text-[28px] font-bold font-display text-white mb-1 leading-snug">
+              {t("managerName")}
+            </h3>
+
+            <p className="text-sm sm:text-base text-[#DFBF57] font-body font-medium mb-3">
+              {t("managerTitle")}
+            </p>
+
+            <p className="text-xs sm:text-sm text-[#FAF1DD]/85 font-body leading-relaxed mb-4 max-w-xl">
+              {isRtl
+                ? "إشراف هندسي وفني دقيق على تفريز الزيركونيا والفينير السويسري بنظام CAD/CAM لضمان مطابقة ميكرونية 0.01 ملم وتطابق لوني حيوي طبيعي."
+                : "Direct expert oversight ensuring 0.01mm micro-precision CAD/CAM milling and natural vital aesthetics."}
+            </p>
+
+            {/* Integrated Materials & Tech Chips */}
+            {techList.length > 0 && (
+              <div className="flex flex-wrap items-center justify-center md:justify-start gap-1.5 sm:gap-2 pt-1 border-t border-[#DFBF57]/20">
+                <span className="text-[11px] font-mono font-bold text-[#DFBF57] hidden sm:inline-block">
+                  {t("techHeading")}:
+                </span>
+                {techList.map((tech, idx) => (
+                  <span
                     key={idx}
-                    className="p-4 rounded-2xl bg-[#FCFAF5]/95 border border-[#C8A232]/40 shadow-xs hover:border-[#C8A232] hover:shadow-sm transition-all flex flex-col justify-between group"
+                    className="px-2.5 py-0.5 rounded-full bg-[#020B1D]/80 border border-[#C8A232]/50 text-[#FAF1DD] text-[11px] font-mono font-bold shadow-2xs"
                   >
-                    <div>
-                      <div className="w-8 h-8 rounded-lg bg-[#FAF1DC] border border-[#C8A232]/40 flex items-center justify-center text-[#9A5F13] mb-2.5 group-hover:bg-[#012052] group-hover:text-[#DFBF57] transition-colors">
-                        <Icon className="w-4 h-4" />
-                      </div>
-                      <h3 className="text-xs sm:text-sm font-bold font-display text-[#0F266A] mb-1 leading-snug">
-                        {service.title}
-                      </h3>
-                      <p className="text-[11px] sm:text-xs text-[#2A3B56] leading-relaxed font-body">
-                        {service.desc}
-                      </p>
-                    </div>
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* ======================================================== */}
+        {/* 4 CORE LAB SERVICES (Sleek 4-Column Horizontal Grid)     */}
+        {/* ======================================================== */}
+        <div
+          ref={contentRef}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto mb-8"
+        >
+          {services.slice(0, 4).map((service, idx) => {
+            const Icon = serviceIcons[idx % serviceIcons.length];
+            return (
+              <div
+                key={idx}
+                className="p-5 rounded-2xl bg-[#FCFAF5]/95 border border-[#C8A232]/40 shadow-xs hover:border-[#DFBF57] hover:shadow-md transition-all flex flex-col justify-between group"
+              >
+                <div>
+                  <div className="w-9 h-9 rounded-xl bg-[#FAF1DC] border border-[#C8A232]/40 flex items-center justify-center text-[#9A5F13] mb-3 group-hover:bg-[#012052] group-hover:text-[#DFBF57] transition-colors">
+                    <Icon className="w-4 h-4" />
                   </div>
-                );
-              })}
-            </div>
-
-            {/* CTAs Bar */}
-            <div className="flex flex-wrap items-center gap-3 p-3.5 rounded-2xl bg-white/90 border border-[#C8A232]/35 shadow-xs">
-              <Link
-                href="/laboratory"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#9A5F13] via-[#C8A232] to-[#9A5F13] text-white font-bold text-xs uppercase tracking-wider shadow-sm hover:shadow-md transition-all font-body cursor-pointer"
-              >
-                <span>{isRtl ? "استكشف خدمات المعمل بالكامل" : "Explore Dental Laboratory"}</span>
-                <ArrowIcon className="w-3.5 h-3.5 text-white" />
-              </Link>
-
-              <Link
-                href="/for-dentists"
-                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white border border-[#C8A232]/60 text-[#0F266A] font-bold text-xs uppercase tracking-wider hover:bg-[#FAF1DC]/60 transition-all font-body"
-              >
-                <Stethoscope className="w-3.5 h-3.5 text-[#9A5F13]" />
-                <span>{isRtl ? "بوابة الأطباء والتعاون" : "For Dentists & Doctors"}</span>
-              </Link>
-            </div>
-          </div>
-
-          {/* Visual Showcase (Featured Lab Director Card — Mr. Abdulkader Dorgham, identical dimensions to SpecialistsSection) */}
-          <div className="lg:col-span-5 flex justify-center items-center">
-            <div className="w-full max-w-[240px] sm:max-w-[250px] rounded-2xl bg-gradient-to-b from-[#0B2456] via-[#07193D] to-[#020B1D] border-2 border-[#C8A232]/70 overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.4)] group transition-all duration-300 hover:border-[#DFBF57]">
-              {/* Gold Accent Bar */}
-              <div className="h-1 w-full bg-gradient-to-r from-[#9A5F13] via-[#DFBF57] to-[#9A5F13]" />
-
-              {/* Portrait Photo (Aspect 3/4 & dimensions identical to SpecialistsSection) */}
-              <div className="relative aspect-[3/4] w-full overflow-hidden bg-[#020B1D]">
-                <Image
-                  src="/images/doctors/abdulkader-dorgham.webp"
-                  alt={t("managerName")}
-                  fill
-                  sizes="(max-width: 640px) 240px, 250px"
-                  className="object-cover object-top transition-transform duration-500 ease-out group-hover:scale-105"
-                  priority
-                />
-                {/* Bottom gradient overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
-              </div>
-
-              {/* Info Area (Matching SpecialistsSection typography and height) */}
-              <div className="px-4 py-3.5 text-center">
-                <div className="flex items-center justify-center gap-1.5 mb-0.5">
-                  <Sparkles className="w-3.5 h-3.5 text-[#DFBF57]" />
-                  <h3 className="text-sm sm:text-base font-bold font-display text-white truncate">
-                    {t("managerName")}
-                  </h3>
+                  <h4 className="text-sm font-bold font-display text-[#0F266A] mb-1.5 leading-snug">
+                    {service.title}
+                  </h4>
+                  <p className="text-xs text-[#2A3B56] leading-relaxed font-body">
+                    {service.desc}
+                  </p>
                 </div>
-                <p className="text-xs text-[#DFBF57] font-body truncate">
-                  {t("managerTitle")}
-                </p>
               </div>
-            </div>
-          </div>
+            );
+          })}
+        </div>
+
+        {/* ======================================================== */}
+        {/* CTAs Bar (Centered, Balanced & Inviting)                 */}
+        {/* ======================================================== */}
+        <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 p-3.5 sm:p-4 rounded-2xl bg-white/90 border border-[#C8A232]/35 shadow-sm max-w-xl mx-auto">
+          <Link
+            href="/laboratory"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-[#9A5F13] via-[#C8A232] to-[#9A5F13] text-white font-bold text-xs sm:text-sm uppercase tracking-wider shadow-md hover:shadow-lg transition-all font-body cursor-pointer"
+          >
+            <span>{isRtl ? "استكشف خدمات المعمل بالكامل" : "Explore Dental Laboratory"}</span>
+            <ArrowIcon className="w-4 h-4 text-white" />
+          </Link>
+
+          <Link
+            href="/for-dentists"
+            className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-white border border-[#C8A232]/60 text-[#0F266A] font-bold text-xs sm:text-sm uppercase tracking-wider hover:bg-[#FAF1DC]/60 transition-all font-body"
+          >
+            <Stethoscope className="w-4 h-4 text-[#9A5F13]" />
+            <span>{isRtl ? "بوابة الأطباء والتعاون" : "For Dentists & Doctors"}</span>
+          </Link>
         </div>
       </div>
     </section>
