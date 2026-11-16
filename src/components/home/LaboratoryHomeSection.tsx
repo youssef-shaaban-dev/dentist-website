@@ -164,25 +164,25 @@ export function LaboratoryHomeSection() {
         )}
 
         {/* 2-Column Content Showcase */}
-        <div ref={contentRef} className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">
+        <div ref={contentRef} className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center max-w-6xl mx-auto">
           {/* Services Grid (Top 4 Real Services from PDF) */}
-          <div className="lg:col-span-7 flex flex-col justify-between">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+          <div className="lg:col-span-7 flex flex-col justify-center">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 mb-4">
               {services.slice(0, 4).map((service, idx) => {
                 const Icon = serviceIcons[idx % serviceIcons.length];
                 return (
                   <div
                     key={idx}
-                    className="p-5 rounded-2xl bg-[#FCFAF5]/95 border border-[#C8A232]/40 shadow-sm hover:border-[#C8A232] hover:shadow-md transition-all flex flex-col justify-between group"
+                    className="p-4 rounded-2xl bg-[#FCFAF5]/95 border border-[#C8A232]/40 shadow-xs hover:border-[#C8A232] hover:shadow-sm transition-all flex flex-col justify-between group"
                   >
                     <div>
-                      <div className="w-10 h-10 rounded-xl bg-[#FAF1DC] border border-[#C8A232]/40 flex items-center justify-center text-[#9A5F13] mb-3 group-hover:bg-[#012052] group-hover:text-[#DFBF57] transition-colors">
-                        <Icon className="w-5 h-5" />
+                      <div className="w-8 h-8 rounded-lg bg-[#FAF1DC] border border-[#C8A232]/40 flex items-center justify-center text-[#9A5F13] mb-2.5 group-hover:bg-[#012052] group-hover:text-[#DFBF57] transition-colors">
+                        <Icon className="w-4 h-4" />
                       </div>
-                      <h3 className="text-sm sm:text-base font-bold font-display text-[#0F266A] mb-2 leading-snug">
+                      <h3 className="text-xs sm:text-sm font-bold font-display text-[#0F266A] mb-1 leading-snug">
                         {service.title}
                       </h3>
-                      <p className="text-xs sm:text-[13px] text-[#2A3B56] leading-relaxed font-body">
+                      <p className="text-[11px] sm:text-xs text-[#2A3B56] leading-relaxed font-body">
                         {service.desc}
                       </p>
                     </div>
@@ -192,63 +192,63 @@ export function LaboratoryHomeSection() {
             </div>
 
             {/* CTAs Bar */}
-            <div className="flex flex-wrap items-center gap-3 p-4 sm:p-5 rounded-2xl bg-white/90 border border-[#C8A232]/35 shadow-sm">
+            <div className="flex flex-wrap items-center gap-3 p-3.5 rounded-2xl bg-white/90 border border-[#C8A232]/35 shadow-xs">
               <Link
                 href="/laboratory"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-[#9A5F13] via-[#C8A232] to-[#9A5F13] text-white font-bold text-xs sm:text-sm uppercase tracking-wider shadow-md hover:shadow-lg transition-all font-body cursor-pointer"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#9A5F13] via-[#C8A232] to-[#9A5F13] text-white font-bold text-xs uppercase tracking-wider shadow-sm hover:shadow-md transition-all font-body cursor-pointer"
               >
                 <span>{isRtl ? "استكشف خدمات المعمل بالكامل" : "Explore Dental Laboratory"}</span>
-                <ArrowIcon className="w-4 h-4 text-white" />
+                <ArrowIcon className="w-3.5 h-3.5 text-white" />
               </Link>
 
               <Link
                 href="/for-dentists"
-                className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-white border border-[#C8A232]/60 text-[#0F266A] font-bold text-xs sm:text-sm uppercase tracking-wider hover:bg-[#FAF1DC]/60 transition-all font-body"
+                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white border border-[#C8A232]/60 text-[#0F266A] font-bold text-xs uppercase tracking-wider hover:bg-[#FAF1DC]/60 transition-all font-body"
               >
-                <Stethoscope className="w-4 h-4 text-[#9A5F13]" />
+                <Stethoscope className="w-3.5 h-3.5 text-[#9A5F13]" />
                 <span>{isRtl ? "بوابة الأطباء والتعاون" : "For Dentists & Doctors"}</span>
               </Link>
             </div>
           </div>
 
-          {/* Visual Showcase (Featured Lab Craft & Director Card) */}
-          <div className="lg:col-span-5 flex flex-col">
-            <div className="relative rounded-3xl bg-gradient-to-b from-[#0B2456] via-[#07193D] to-[#020B1D] border-2 border-[#C8A232]/70 overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.55)] h-full flex flex-col justify-between">
-              <div className="h-1.5 w-full bg-gradient-to-r from-[#9A5F13] via-[#DFBF57] to-[#9A5F13]" />
+          {/* Visual Showcase (Featured Lab Director Card — Mr. Abdulkader Dorgham, identical dimensions to SpecialistsSection) */}
+          <div className="lg:col-span-5 flex justify-center items-center">
+            <div className="w-full max-w-[240px] sm:max-w-[250px] rounded-2xl bg-gradient-to-b from-[#0B2456] via-[#07193D] to-[#020B1D] border-2 border-[#C8A232]/70 overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.4)] group transition-all duration-300 hover:border-[#DFBF57]">
+              {/* Gold Accent Bar */}
+              <div className="h-1 w-full bg-gradient-to-r from-[#9A5F13] via-[#DFBF57] to-[#9A5F13]" />
 
-              <div className="relative h-64 sm:h-72 md:h-80 w-full overflow-hidden select-none bg-[#020B1D]">
+              {/* Portrait Photo (Aspect 3/4 & dimensions identical to SpecialistsSection) */}
+              <div className="relative aspect-[3/4] w-full overflow-hidden bg-[#020B1D]">
                 <Image
-                  src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=1200&q=85"
-                  alt="Magnificent Smile Dental Lab Restorations"
+                  src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=800&q=85"
+                  alt={t("managerName")}
                   fill
-                  sizes="(max-width: 1024px) 100vw, 42vw"
-                  className="object-cover object-center transition-transform duration-700 hover:scale-105"
+                  sizes="(max-width: 640px) 240px, 250px"
+                  className="object-cover object-top transition-transform duration-500 ease-out group-hover:scale-105"
                   priority
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#020B1D] via-black/30 to-transparent" />
+                {/* Bottom gradient overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
 
-                {/* Badge on Visual */}
-                <div className={`absolute top-3 ${isRtl ? "left-3" : "right-3"} z-10`}>
-                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#012052]/95 border border-[#DFBF57] text-[#FAF1DD] text-[11px] font-bold shadow-md backdrop-blur-md">
-                    <Sparkles className="w-3.5 h-3.5 text-[#DFBF57]" />
-                    <span>{isRtl ? "معمل رقمي متكامل" : "Fully Digital CAD/CAM Lab"}</span>
-                  </div>
+                {/* Top Badge */}
+                <div className={`absolute top-2.5 ${isRtl ? "left-2.5" : "right-2.5"} z-10`}>
+                  <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-[#012052]/90 border border-[#DFBF57] text-[#DFBF57] text-[10px] font-mono font-bold shadow-md backdrop-blur-sm">
+                    <Sparkles className="w-2.5 h-2.5 text-[#DFBF57]" />
+                    <span>DIRECTOR</span>
+                  </span>
                 </div>
               </div>
 
-              {/* Leadership & Precision Footer inside Card */}
-              <div className="p-4 sm:p-5 bg-[#011438]/95 border-t border-[#C8A232]/30">
-                <div className="flex items-center gap-2 mb-1.5">
-                  <ShieldCheck className="w-4 h-4 text-[#DFBF57] shrink-0" />
-                  <span className="text-xs font-mono font-bold text-[#DFBF57] tracking-wider uppercase">
-                    {isRtl ? "إشراف هندسي وفني مباشر" : "DIRECT TECHNICAL SUPERVISION"}
-                  </span>
+              {/* Info Area (Matching SpecialistsSection typography and height) */}
+              <div className="px-4 py-3.5 text-center">
+                <div className="flex items-center justify-center gap-1.5 mb-0.5">
+                  <Sparkles className="w-3.5 h-3.5 text-[#DFBF57]" />
+                  <h3 className="text-sm sm:text-base font-bold font-display text-white truncate">
+                    {t("managerName")}
+                  </h3>
                 </div>
-                <h4 className="text-base sm:text-lg font-bold font-display text-white mb-1">
-                  {t("managerName")}
-                </h4>
-                <p className="text-xs text-[#FAF1DD]/80 font-body">
-                  {t("managerTitle")} — {isRtl ? "دقة ميكرونية 0.01 ملم وخامات معتمدة سويسرياً" : "0.01mm Precision & Swiss Certified"}
+                <p className="text-xs text-[#DFBF57] font-body truncate">
+                  {t("managerTitle")}
                 </p>
               </div>
             </div>

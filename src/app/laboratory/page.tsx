@@ -123,136 +123,10 @@ export default function LaboratoryPage() {
       
 
       {/* ======================================================== */}
-      {/* SECTION 2: LAB LEADERSHIP (Full Width S-Curve Split)     */}
+      {/* SECTION 2: 7 LAB SERVICES (Full Width S-Curve Split)     */}
       {/* ======================================================== */}
       <section className="relative w-full py-20 sm:py-28 px-4 sm:px-6 lg:px-8 overflow-hidden z-20 shadow-2xl">
         <SplitSectionBackground inverted={!isRtl} waveVariant="B" />
-
-        <div className="max-w-7xl mx-auto relative z-10">
-          {/* Section Header */}
-          <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#DFBF57]/60 bg-[#011438]/85 backdrop-blur-md shadow-sm mb-4">
-              <Sparkles className="w-3.5 h-3.5 text-[#DFBF57]" />
-              <span className="text-[11px] sm:text-xs font-bold tracking-widest uppercase text-[#DFBF57] font-mono">
-                {isRtl ? "القيادة والإشراف الفني • LABORATORY LEADERSHIP" : "LABORATORY LEADERSHIP"}
-              </span>
-            </div>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold font-display text-white tracking-tight mb-3 drop-shadow-[0_2px_12px_rgba(0,0,0,0.85)]">
-              {isRtl ? "إشراف نخبة من كبار خبراء التعويضات السنية" : "Executive Master Technical Leadership"}
-            </h2>
-            <p className="text-sm sm:text-base text-white/95 font-body leading-relaxed max-w-2xl mx-auto drop-shadow-[0_1px_8px_rgba(0,0,0,0.9)] font-medium">
-              {isRtl
-                ? "يجمع معملنا بين الفن البشري والتقنيات الرقمية فائقة الدقة تحت إشراف قيادة فنية متخصصة لضمان أعلى معايير الجودة السويسرية."
-                : "Combining artisanal mastery and digital high-precision milling under expert technical leadership."}
-            </p>
-          </div>
-
-          {/* Leadership Showcase Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center max-w-5xl mx-auto">
-            {/* Doctor / Manager Card — Identical to SpecialistsSection on Home Page */}
-            <div className="lg:col-span-5 flex justify-center">
-              <div className="w-full max-w-[320px] sm:max-w-[340px] rounded-2xl bg-gradient-to-b from-[#0B2456] via-[#07193D] to-[#020B1D] border-2 border-[#C8A232]/80 overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)] group transition-all duration-300 hover:border-[#DFBF57] hover:shadow-[0_25px_60px_rgba(200,162,50,0.3)]">
-                {/* Gold Accent Bar */}
-                <div className="h-1.5 w-full bg-gradient-to-r from-[#9A5F13] via-[#DFBF57] to-[#9A5F13]" />
-
-                {/* Portrait Photo (Identical aspect-[3/4] & styling to SpecialistsSection) */}
-                <div className="relative aspect-[3/4] w-full overflow-hidden bg-[#020B1D]">
-                  <Image
-                    src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=800&q=85"
-                    alt={t("managerName")}
-                    fill
-                    sizes="(max-width: 640px) 100vw, 360px"
-                    className="object-cover object-top transition-transform duration-500 ease-out group-hover:scale-105"
-                    priority
-                  />
-                  {/* Bottom gradient overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-
-                  {/* Top Badge */}
-                  <div className={`absolute top-3 ${isRtl ? "left-3" : "right-3"} z-10`}>
-                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#012052]/90 border border-[#DFBF57] text-[#DFBF57] text-xs font-mono font-bold shadow-md backdrop-blur-sm">
-                      <Sparkles className="w-3 h-3 text-[#DFBF57]" />
-                      <span>DIRECTOR</span>
-                    </span>
-                  </div>
-                </div>
-
-                {/* Info Area */}
-                <div className="p-5 text-center">
-                  <div className="flex items-center justify-center gap-2 mb-1.5">
-                    <Sparkles className="w-4 h-4 text-[#DFBF57]" />
-                    <h3 className="text-lg sm:text-xl font-bold font-display text-white">
-                      {t("managerName")}
-                    </h3>
-                  </div>
-                  <p className="text-xs sm:text-sm text-[#DFBF57] font-body font-medium">
-                    {t("managerTitle")}
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Leadership Highlights & Credentials */}
-            <div className="lg:col-span-7 flex flex-col justify-center">
-              <div className="p-6 sm:p-8 rounded-3xl bg-[#FCFAF5]/95 border-2 border-[#C8A232]/45 shadow-xl backdrop-blur-md">
-                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-[#C8A232]/50 text-[#955904] text-xs font-mono font-bold mb-4 shadow-xs">
-                  <Crown className="w-3.5 h-3.5 text-[#955904]" />
-                  <span>{isRtl ? "معايير الجودة والإتقان" : "EXCELLENCE & ARTISTRY"}</span>
-                </div>
-
-                <h3 className="text-xl sm:text-2xl font-bold font-display text-[#0F266A] mb-3">
-                  {isRtl ? "دقة رقمية متناهية ولمسة فنية حية" : "Sub-Millimeter Digital Precision with Artisanal Touch"}
-                </h3>
-
-                <p className="text-xs sm:text-sm text-[#2A3B56] font-body leading-relaxed mb-6">
-                  {isRtl
-                    ? "تحت إشراف مستر عبد القادر درغام، يُدار المعمل بنظام الجودة السويسرية الصارمة، حيث يتم فحص واختبار كل تركيبة وعدسة فينير عبر أجهزة المسح والميكروسكوب الرقمي لضمان تطابق تام مع خطة العلاج وراحة المريض."
-                    : "Under the direct supervision of Mr. Abdulkader Dorgham, our dental lab operates with stringent Swiss quality standards, inspecting every veneer and crown to ensure flawless fit and natural beauty."}
-                </p>
-
-                {/* Highlights List */}
-                <div className="space-y-3">
-                  <div className="flex items-start gap-3 p-3.5 rounded-2xl bg-white/90 border border-[#C8A232]/35 shadow-xs">
-                    <div className="w-8 h-8 rounded-xl bg-[#012052] flex items-center justify-center text-[#DFBF57] shrink-0 mt-0.5">
-                      <ShieldCheck className="w-4 h-4" />
-                    </div>
-                    <div>
-                      <h4 className="text-xs sm:text-sm font-bold text-[#0F266A] font-display">
-                        {isRtl ? "فحص الجودة والمطابقة الميكرونية" : "Microscopic Quality Inspection"}
-                      </h4>
-                      <p className="text-[11px] sm:text-xs text-[#2A3B56] font-body">
-                        {isRtl ? "مطابقة حواف متناهية الدقة لتفادي أي فراغات وحماية اللثة والأسنان الداعمة." : "Precise marginal fit to safeguard gingival health and tooth longevity."}
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-3 p-3.5 rounded-2xl bg-white/90 border border-[#C8A232]/35 shadow-xs">
-                    <div className="w-8 h-8 rounded-xl bg-[#012052] flex items-center justify-center text-[#DFBF57] shrink-0 mt-0.5">
-                      <Layers className="w-4 h-4" />
-                    </div>
-                    <div>
-                      <h4 className="text-xs sm:text-sm font-bold text-[#0F266A] font-display">
-                        {isRtl ? "تدرج لوني متعدد الطبقات (Multi-Layering)" : "Aesthetic Multi-Layer Shading"}
-                      </h4>
-                      <p className="text-[11px] sm:text-xs text-[#2A3B56] font-body">
-                        {isRtl ? "محاكاة شفافة وديناميكية لتفاصيل السن الطبيعي ببريق حي غير مصطنع." : "Dynamic translucency mimicking natural enamel vitality and shine."}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      
-
-      {/* ======================================================== */}
-      {/* SECTION 3: 7 LAB SERVICES (Full Width S-Curve Split)     */}
-      {/* ======================================================== */}
-      <section className="relative w-full py-20 sm:py-28 px-4 sm:px-6 lg:px-8 overflow-hidden z-20 shadow-2xl">
-        <SplitSectionBackground inverted={!isRtl} waveVariant="A" />
 
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
@@ -330,10 +204,10 @@ export default function LaboratoryPage() {
       
 
       {/* ======================================================== */}
-      {/* SECTION 4: MATERIALS & GALLERY (Full Width S-Curve Split) */}
+      {/* SECTION 3: MATERIALS & GALLERY (Full Width S-Curve Split) */}
       {/* ======================================================== */}
       <section className="relative w-full py-20 sm:py-28 px-4 sm:px-6 lg:px-8 overflow-hidden z-20 shadow-2xl">
-        <SplitSectionBackground inverted={!isRtl} waveVariant="B" />
+        <SplitSectionBackground inverted={!isRtl} waveVariant="A" />
 
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center max-w-3xl mx-auto mb-12 p-6 rounded-3xl bg-[#FCFAF5]/90 border border-[#C8A232]/35 shadow-md">
@@ -387,10 +261,10 @@ export default function LaboratoryPage() {
       
 
       {/* ======================================================== */}
-      {/* SECTION 5: CLOSING ACTION (Full Width S-Curve Split)     */}
+      {/* SECTION 4: CLOSING ACTION (Full Width S-Curve Split)     */}
       {/* ======================================================== */}
       <section className="relative w-full py-16 sm:py-24 px-4 sm:px-6 lg:px-8 overflow-hidden z-20 shadow-2xl">
-        <SplitSectionBackground inverted={!isRtl} waveVariant="A" />
+        <SplitSectionBackground inverted={!isRtl} waveVariant="B" />
 
         <div className="max-w-4xl mx-auto relative z-10 text-center">
           <div className="p-8 sm:p-12 rounded-3xl bg-[#FCFAF5]/95 border-2 border-[#C8A232]/45 shadow-xl backdrop-blur-md">
