@@ -13,7 +13,7 @@ export default function Home() {
   return (
     <main className="relative w-full overflow-x-hidden">
       {/* Heritage Entrance Enclosure: Hero & Divisions framed by Architectural Hieroglyphic Stone Pillar */}
-      <div className="relative w-full overflow-hidden">
+      <div className="relative w-full">
         {/* Ancient Egyptian Architectural Stone Column — strictly extends from Hero top to Divisions bottom */}
         <HieroglyphicWall />
 

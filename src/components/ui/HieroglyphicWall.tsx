@@ -115,23 +115,23 @@ export function HieroglyphicWall() {
   const { isRtl } = useLanguage();
   const [hoveredId, setHoveredId] = useState<string | null>(null);
 
-  // Flatten glyphs for the mobile horizontal stone frieze
+  // Flatten glyphs safely for the mobile horizontal stone frieze using Array.from (handles surrogate pairs)
   const allMobileGlyphs = HIEROGLYPHIC_LINES.flatMap((line) =>
-    line.hieroglyph.replace(/\s/g, "").split("")
+    Array.from(line.hieroglyph.replace(/\s/g, ""))
   );
 
   return (
     <>
       {/* =================================================================== */}
       {/* 1. DESKTOP ARCHITECTURAL LIMESTONE MONUMENT COLUMN (>= lg)          */}
-      {/* overflow-y: clip keeps height bounded, overflow-x: visible for tips */}
+      {/* NO overflow-hidden anywhere so the hover tooltip can escape freely   */}
+      {/* Height is bounded by absolute top-0 bottom-0 within relative parent */}
       {/* =================================================================== */}
       <aside
         aria-label="Ancient Egyptian Architectural Stone Pillar"
         className={`hidden lg:flex flex-col absolute top-0 ${
           isRtl ? "right-0" : "left-0"
         } bottom-0 z-30 select-none pointer-events-auto`}
-        style={{ overflowY: "clip", overflowX: "visible" }}
       >
         <div
           className={`relative w-28 xl:w-32 2xl:w-36 h-full flex flex-col items-center ${
@@ -162,7 +162,8 @@ export function HieroglyphicWall() {
 
           {/* ================================================================= */}
           {/* 2. SHAFT: ALL HIEROGLYPHIC INSCRIPTIONS — LARGE, FILLING COLUMN   */}
-          {/* Arabic translation appears on HOVER as a tooltip to the LEFT      */}
+          {/* Arabic translation appears on HOVER as a tooltip                  */}
+          {/* RTL → tooltip to the LEFT | LTR → tooltip to the RIGHT           */}
           {/* ================================================================= */}
           <div className="flex-1 min-h-0 w-full py-1 px-1 flex flex-col justify-evenly items-center">
 
@@ -184,29 +185,32 @@ export function HieroglyphicWall() {
                   <div
                     onMouseEnter={() => setHoveredId(line.id)}
                     onMouseLeave={() => setHoveredId(null)}
-                    className={`relative w-full flex items-center justify-center transition-all duration-200 cursor-pointer rounded-lg px-0.5 py-px ${
+                    className={`relative w-full flex items-center justify-center transition-all duration-200 cursor-pointer rounded-lg px-0.5 ${
                       isHovered ? "bg-[#012052]/90 shadow-lg ring-1 ring-[#DFBF57]/70 scale-[1.03]" : "hover:bg-[#C8A232]/15"
                     }`}
                   >
-                    {/* Full Hieroglyphic Inscription — large, filling column width */}
+                    {/* Full Hieroglyphic Inscription — large glyphs filling the column */}
                     <p
-                      className={`font-serif text-center break-all select-none transition-colors duration-200 leading-none ${
+                      className={`font-serif text-center break-all select-none transition-colors duration-200 leading-tight ${
                         isHovered
                           ? "text-[#DFBF57] drop-shadow-[0_0_6px_rgba(223,191,87,0.7)]"
                           : "text-[#4A2F08] drop-shadow-[0_1px_0_rgba(255,255,255,0.8)]"
                       }`}
-                      style={{ fontSize: "17px", letterSpacing: "-0.03em", wordSpacing: "1px" }}
+                      style={{ fontSize: "20px", letterSpacing: "-0.02em", wordSpacing: "1px" }}
                     >
                       {line.hieroglyph}
                     </p>
 
-                    {/* Hover Tooltip — appears to the LEFT of the pillar (in RTL) */}
+                    {/* ===================================================== */}
+                    {/* HOVER TOOLTIP — Arabic translation box                 */}
+                    {/* RTL: pillar is RIGHT → tooltip goes LEFT (right-full)  */}
+                    {/* LTR: pillar is LEFT  → tooltip goes RIGHT (left-full)  */}
+                    {/* ===================================================== */}
                     {isHovered && (
                       <div
                         className={`absolute top-1/2 -translate-y-1/2 ${
-                          isRtl ? "left-full ml-3" : "right-full mr-3"
+                          isRtl ? "right-full mr-3" : "left-full ml-3"
                         } w-72 p-3 rounded-2xl bg-[#011438]/95 border-2 border-[#DFBF57] shadow-2xl backdrop-blur-xl z-50 pointer-events-none`}
-                        style={{ animation: "fadeIn 0.15s ease-out" }}
                       >
                         <div className="flex items-center gap-1.5 mb-2 pb-1.5 border-b border-[#DFBF57]/30">
                           <Sparkles className="w-3.5 h-3.5 text-[#DFBF57] shrink-0" />
@@ -230,7 +234,7 @@ export function HieroglyphicWall() {
 
                   {/* Register Divider between Register I and Register II */}
                   {isRegisterBreak && (
-                    <div className="w-full flex flex-col items-center shrink-0 my-px">
+                    <div className="w-full flex flex-col items-center shrink-0">
                       <div className="w-10 h-[1px] bg-[#C8A232]/60" />
                       <div className="flex items-center gap-0.5 my-px">
                         <span className="w-2 h-[1px] bg-[#C8A232]" />
@@ -248,7 +252,7 @@ export function HieroglyphicWall() {
           </div>
 
           {/* ================================================================= */}
-          {/* 3. BOTTOM STONE BASE — ends precisely at Section 2 bottom         */}
+          {/* 3. BOTTOM STONE BASE                                              */}
           {/* ================================================================= */}
           <div className="shrink-0 w-full pt-2.5 pb-4 flex flex-col items-center border-t-2 border-[#C8A232]/60 bg-gradient-to-b from-[#FAF1DD] to-[#E8D4AE] relative shadow-inner">
             <div className="w-12 h-[1px] bg-gradient-to-r from-transparent via-[#C8A232] to-transparent mb-2" />
@@ -268,6 +272,7 @@ export function HieroglyphicWall() {
 
       {/* =================================================================== */}
       {/* 2. MOBILE HORIZONTAL ARCHITECTURAL STONE FRIEZE (< lg)              */}
+      {/* Fixed strip at screen bottom with hieroglyphic glyphs               */}
       {/* =================================================================== */}
       <div
         aria-hidden="true"
@@ -275,12 +280,15 @@ export function HieroglyphicWall() {
       >
         <div className="w-full h-[1px] bg-[#9A5F13]/25" />
         <div className="h-9 px-3 flex items-center justify-between overflow-hidden">
+          {/* Left Cartouche Seal */}
           <div className="shrink-0 flex items-center gap-1.5 pl-1 pr-2 py-0.5 rounded-full bg-[#012052] border border-[#DFBF57] shadow-xs">
             <Crown className="w-3 h-3 text-[#DFBF57]" />
             <span className="text-[9px] font-mono font-bold text-[#DFBF57] tracking-wider uppercase">
               HESY-RA
             </span>
           </div>
+
+          {/* Horizontal Carved Hieroglyphic Relief Glyphs */}
           <div className="flex-1 flex items-center justify-around px-2 overflow-hidden">
             {allMobileGlyphs.slice(0, 14).map((glyph, gIdx) => (
               <span
@@ -291,6 +299,8 @@ export function HieroglyphicWall() {
               </span>
             ))}
           </div>
+
+          {/* Right Heritage Stamp */}
           <div className="shrink-0 flex items-center gap-1 text-[#9A5F13] font-mono text-[9px] font-bold">
             <BookOpen className="w-3 h-3 text-[#9A5F13]" />
             <span>٢٦٠٠ ق.م</span>
