@@ -364,7 +364,27 @@
     "horus": "Eye of Horus — Healing & Protection",
     "hesyra": "Cartouche of Hesy-Ra — Earliest Recorded Chief of Dentists (2600 BCE)",
     "lotus": "Sacred Lotus — Rebirth & Pristine Purity",
-    "scrollHint": "Move cursor to illuminate sacred glyphs"
+    "scrollHint": "Move cursor to illuminate sacred glyphs",
+    "glyphs": {
+      "reg1Title": "Saqqara Inscription • Heritage of Hesy-Ra",
+      "reg2Title": "Charter of Smile Artistry",
+      "registerDivider": "SMILE CHARTER",
+      "h1": "With the latest innovations in medical technology",
+      "h2": "The heritage begins here",
+      "h3": "We are the descendants of Hesy-Ra",
+      "h4": "Continuing the legacy of the earliest dentist in human history",
+      "h5": "Whose eminent status is attested by",
+      "h6": "The rare carved wooden relief panels",
+      "h7": "Discovered within his tomb at Saqqara",
+      "s1": "At Magnificent Smile Dental Clinic",
+      "s2": "We do not merely create a smile",
+      "s3": "Rather, we sculpt a true work of art",
+      "s4": "Worthy of being engraved in the memory of all who behold it",
+      "s5": "We attend to every single detail",
+      "s6": "As though it were a crown adorning your features",
+      "s7": "So you depart with a smile crowned",
+      "s8": "With royal majesty and unshakeable confidence"
+    }
   },
   "divisions": {
     "badge": "OUR DIVISIONS",

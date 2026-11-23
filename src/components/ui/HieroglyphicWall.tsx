@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { useTranslations } from "next-intl";
 import { useLanguage } from "@/i18n/IntlProviderWrapper";
 import { Crown, Sparkles, BookOpen } from "lucide-react";
 
@@ -113,6 +114,7 @@ const HIEROGLYPHIC_LINES: HieroglyphicLine[] = [
 
 export function HieroglyphicWall() {
   const { isRtl } = useLanguage();
+  const t = useTranslations("pharaonicPillar.glyphs");
   const [hoveredId, setHoveredId] = useState<string | null>(null);
 
   // Flatten glyphs safely for the mobile horizontal stone frieze using Array.from (handles surrogate pairs)
@@ -203,7 +205,7 @@ export function HieroglyphicWall() {
                     </p>
 
                     {/* ===================================================== */}
-                    {/* HOVER TOOLTIP — ARABIC TRANSLATION TO THE LEFT IN RTL  */}
+                    {/* HOVER TOOLTIP — DYNAMIC MULTILINGUAL TRANSLATION      */}
                     {/* ===================================================== */}
                     {isHovered && (
                       <div
@@ -215,7 +217,7 @@ export function HieroglyphicWall() {
                         <div className="flex items-center gap-1.5 mb-2 pb-1.5 border-b border-[#DFBF57]/30">
                           <Sparkles className="w-3.5 h-3.5 text-[#DFBF57] shrink-0" />
                           <span className="text-[11px] font-mono text-[#DFBF57] font-bold">
-                            {line.category === "hesy-ra" ? "شفرة سقارة • إرث حسي رع" : "ميثاق نحت الابتسامة"}
+                            {line.category === "hesy-ra" ? t("reg1Title") : t("reg2Title")}
                           </span>
                         </div>
 
@@ -227,9 +229,14 @@ export function HieroglyphicWall() {
                           {line.hieroglyph}
                         </div>
 
-                        {/* Arabic translation */}
-                        <p className="text-[13px] sm:text-[14px] font-bold text-white leading-relaxed font-body text-right" dir="rtl">
-                          {line.arabic}
+                        {/* Localized translation matching active site language */}
+                        <p
+                          className={`text-[13px] sm:text-[14px] font-bold text-white leading-relaxed font-body ${
+                            isRtl ? "text-right" : "text-left"
+                          }`}
+                          dir={isRtl ? "rtl" : "ltr"}
+                        >
+                          {t(line.id)}
                         </p>
                       </div>
                     )}
@@ -242,7 +249,7 @@ export function HieroglyphicWall() {
                       <div className="flex items-center gap-1 my-0.5">
                         <span className="w-2 h-[1px] bg-[#C8A232]" />
                         <span className="text-[8px] font-mono font-bold text-[#9A5F13] uppercase tracking-wider">
-                          {isRtl ? "ميثاق الابتسامة" : "CHARTER"}
+                          {t("registerDivider")}
                         </span>
                         <span className="w-2 h-[1px] bg-[#C8A232]" />
                       </div>

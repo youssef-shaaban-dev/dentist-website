@@ -364,7 +364,27 @@
     "horus": "Œil d'Horus — Guérison et Protection Médicale",
     "hesyra": "Cartouche d'Hésy-Rê — Premier Chef des Médecins Dentistes (2600 av. J.-C.)",
     "lotus": "Lotus Sacré — Pureté et Renaissance Esthétique",
-    "scrollHint": "Déplacez le curseur pour illuminer les hiéroglyphes"
+    "scrollHint": "Déplacez le curseur pour illuminer les hiéroglyphes",
+    "glyphs": {
+      "reg1Title": "Inscription de Saqqarah • Héritage d'Hésy-Rê",
+      "reg2Title": "Charte de l'Art du Sourire",
+      "registerDivider": "CHARTE DU SOURIRE",
+      "h1": "Avec les dernières innovations de la technologie médicale",
+      "h2": "La continuité de l'héritage commence ici",
+      "h3": "Nous sommes les descendants d'Hésy-Rê",
+      "h4": "Poursuivant la voie du premier dentiste de l'histoire de l'humanité",
+      "h5": "Dont le statut illustre est attesté par",
+      "h6": "Les rares panneaux de bois sculptés",
+      "h7": "Découverts dans son tombeau à Saqqarah",
+      "s1": "À la clinique dentaire Magnificent Smile",
+      "s2": "Nous ne concevons pas simplement un sourire",
+      "s3": "Mais nous sculptons un véritable chef-d'œuvre artistique",
+      "s4": "Digne d'être gravé dans la mémoire de quiconque le contemple",
+      "s5": "Nous soignons chaque infime détail",
+      "s6": "Comme s'il s'agissait d'une couronne ornant vos traits",
+      "s7": "Pour que vous repartiez avec un sourire couronné",
+      "s8": "De la majesté des rois et d'une confiance inébranlable"
+    }
   },
   "divisions": {
     "badge": "OUR DIVISIONS",
