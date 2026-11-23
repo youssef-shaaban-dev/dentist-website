@@ -163,29 +163,33 @@ export function DivisionsSection() {
       {/* 2. Content */}
       <div className="max-w-7xl mx-auto relative z-10">
 
-        {/* Section Header */}
-        <div ref={headerRef} className="text-center mb-12 sm:mb-16">
+        {/* Section Header with Executive Obsidian Glass Backdrop for Perfect Readability */}
+        <div
+          ref={headerRef}
+          className="max-w-3xl mx-auto text-center mb-12 sm:mb-16 rounded-3xl bg-gradient-to-b from-[#06193E]/95 via-[#03112E]/95 to-[#01091A]/95 border-2 border-[#C8A232]/70 shadow-[0_20px_50px_rgba(0,0,0,0.6)] backdrop-blur-xl p-6 sm:p-8 relative overflow-hidden"
+        >
+          {/* Top Gold Shimmer Line */}
+          <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-transparent via-[#DFBF57] to-transparent" />
+
           {/* Category Kicker Badge */}
           <div className="flex items-center justify-center gap-2.5 mb-4">
-            <span className="h-[1px] w-8 sm:w-12 bg-[#DFBF57]/60" />
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#DFBF57]/50 bg-[#011438]/85 backdrop-blur-md shadow-md">
+            <span className="h-[1px] w-6 sm:w-10 bg-[#DFBF57]/50" />
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#DFBF57]/50 bg-[#011438]/90 backdrop-blur-md shadow-md">
               <Sparkles className="w-3.5 h-3.5 text-[#DFBF57]" />
               <span className="text-xs font-bold text-[#DFBF57] uppercase tracking-wider font-mono">
                 {t("badge")}
               </span>
             </div>
-            <span className="h-[1px] w-8 sm:w-12 bg-[#DFBF57]/60" />
+            <span className="h-[1px] w-6 sm:w-10 bg-[#DFBF57]/50" />
           </div>
 
           {/* Headline */}
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-[42px] font-bold font-display leading-[1.28] mb-3">
-            <span className="text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]">
-              {t("headline")}
-            </span>
+          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold font-display leading-[1.3] mb-3 text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]">
+            {t("headline")}
           </h2>
 
           {/* Subtitle */}
-          <p className="text-sm sm:text-base md:text-[17px] text-[#FAF1DD]/90 leading-relaxed max-w-2xl mx-auto font-body drop-shadow-[0_1px_4px_rgba(0,0,0,0.7)]">
+          <p className="text-xs sm:text-sm md:text-base text-[#E2E8F0] leading-relaxed max-w-2xl mx-auto font-body font-normal">
             {t("subheadline")}
           </p>
         </div>
