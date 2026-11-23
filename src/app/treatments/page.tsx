@@ -86,7 +86,7 @@ export default function TreatmentsPage() {
       titleKey: "cards.4.title",
       descKey: "cards.4.desc",
       image:
-        "https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=1200&q=85",
+        "https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=1200&q=85",
     },
     {
       id: "periodontics",
@@ -102,7 +102,7 @@ export default function TreatmentsPage() {
       titleKey: "cards.6.title",
       descKey: "cards.6.desc",
       image:
-        "https://images.unsplash.com/photo-1594824813581-2292f72535d4?auto=format&fit=crop&w=1200&q=85",
+        "https://images.unsplash.com/photo-1598256989800-fe5f95da9787?auto=format&fit=crop&w=1200&q=85",
     },
     {
       id: "general",
@@ -266,6 +266,7 @@ export default function TreatmentsPage() {
                   sizes="(max-width: 1024px) 100vw, 40vw"
                   className="object-cover"
                   priority
+                  loading="eager"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#020B1D]/90 via-transparent to-transparent" />
                 <div className="absolute bottom-4 left-4 right-4 p-3.5 rounded-2xl bg-[#020B1D]/85 backdrop-blur-md border border-[#C8A232]/40 text-center shadow-lg">
@@ -310,7 +311,7 @@ export default function TreatmentsPage() {
               <div className="lg:col-span-5 relative">
                 <div className="relative aspect-[4/3] w-full rounded-2xl overflow-hidden bg-[#0A1128] border-2 border-[#DFBF57]/80 shadow-2xl">
                   <Image
-                    src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1200&q=85"
+                    src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1200&q=85"
                     alt={t("vipService.title")}
                     fill
                     sizes="(max-width: 1024px) 100vw, 40vw"
