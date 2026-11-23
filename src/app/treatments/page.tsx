@@ -40,7 +40,7 @@ interface TreatmentItem {
 
 export default function TreatmentsPage() {
   const t = useTranslations("treatmentsPage");
-  const { isRtl } = useLanguage();
+  const { isRtl, locale } = useLanguage();
   const ArrowIcon = isRtl ? ArrowLeft : ArrowRight;
 
   const [activeFilter, setActiveFilter] = useState<string>("all");
