@@ -465,7 +465,29 @@
         "title": "General & Preventive Dentistry",
         "desc": "Routine examinations and preventive care to support your oral health."
       }
-    ]
+    ],
+    "vipService": {
+      "badge": "EXPÉRIENCE VIP EXCLUSIVE",
+      "tag": "Prothèses en 24h Seulement",
+      "title": "Activation du Service VIP",
+      "subtitle": "Un parcours de soins haut de gamme alliant confidentialité absolue, confort d'exception et livraison en 24 heures chrono.",
+      "features": {
+        "team": {
+          "title": "Équipe Médicale Multidisciplinaire Dédiée",
+          "desc": "Suivi personnalisé et concertation directe entre consultants de toutes les spécialités dentaires."
+        },
+        "room": {
+          "title": "Suite Privée Indépendante",
+          "desc": "Une salle de soins VIP privatisée et stérile offrant quiétude, sérénité et discrétion totale."
+        },
+        "speed": {
+          "title": "Pose des Prothèses en 24 Heures Seulement",
+          "desc": "Fabrication numérique immédiate dans notre laboratoire suisse et pose finale en 24h seulement."
+        }
+      },
+      "cta": "Demander le Service VIP",
+      "availability": "Option activable avec l'ensemble de nos plans de traitement"
+    }
   },
   "clinicsPage": {
     "headline": "Find Your Magnificent Smile Clinic.",
@@ -513,6 +535,7 @@
     ],
     "treatmentOptions": [
       "Not Sure / General Consultation",
+      "Service VIP Exclusif (Suite Privée & Livraison 24h)",
       "Clear Aligners",
       "Smile Design & Cosmetic Dentistry",
       "Dental Implants",

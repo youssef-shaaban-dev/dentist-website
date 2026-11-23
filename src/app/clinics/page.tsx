@@ -15,6 +15,7 @@ import {
   CheckCircle2,
   AlertCircle,
   ExternalLink,
+  Crown,
 } from "lucide-react";
 
 function WhatsAppIcon({ className = "w-4 h-4" }: { className?: string }) {
@@ -178,6 +179,17 @@ function BookingForm({
                 </option>
               ))}
             </select>
+
+            {selectedTreatment?.toLowerCase().includes("vip") && (
+              <div className="mt-2.5 p-3 rounded-xl bg-gradient-to-r from-[#020B1D] via-[#051538] to-[#0A255C] border border-[#DFBF57] text-[#DFBF57] text-xs font-mono flex items-center gap-2 shadow-md">
+                <Crown className="w-4 h-4 fill-[#DFBF57] shrink-0" />
+                <span>
+                  {isRtl
+                    ? "باقة كبار الشخصيات VIP: تشمل غرفة خاصة مستقلة، طاقم طبي استشاري، وتسليم التركيبات في خلال 24 ساعة فقط."
+                    : "VIP Executive Package: Includes private suite, dedicated consultant team, and 24h prosthetics delivery."}
+                </span>
+              </div>
+            )}
           </div>
         </div>
 
