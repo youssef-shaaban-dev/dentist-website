@@ -150,7 +150,9 @@ export function DivisionsSection() {
     <section
       ref={sectionRef}
       id="divisions"
-      className="relative py-20 sm:py-28 px-4 sm:px-6 lg:px-8 overflow-hidden z-20 shadow-2xl"
+      className={`relative py-20 sm:py-28 px-4 sm:px-6 ${
+        isRtl ? "lg:pr-32 xl:pr-36 lg:pl-12" : "lg:pl-32 xl:pl-36 lg:pr-12"
+      } overflow-hidden z-20 shadow-2xl`}
       dir={isRtl ? "rtl" : "ltr"}
     >
       {/* 1. Signature Multi-Line 3D Ribbon Split Background */}

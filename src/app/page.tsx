@@ -1,5 +1,6 @@
 "use client";
 
+import { HieroglyphicWall } from "@/components/ui/HieroglyphicWall";
 import { HeroSection } from "@/components/hero/HeroSection";
 import { DivisionsSection } from "@/components/home/DivisionsSection";
 import { SmileTransformations } from "@/components/home/SmileTransformations";
@@ -11,11 +12,17 @@ import { LaboratoryHomeSection } from "@/components/home/LaboratoryHomeSection";
 export default function Home() {
   return (
     <main className="relative w-full overflow-x-hidden">
-      {/* 1. Section 01: Hero Section */}
-      <HeroSection />
+      {/* Heritage Entrance Enclosure: Hero & Divisions framed by Architectural Hieroglyphic Stone Pillar */}
+      <div className="relative w-full overflow-hidden">
+        {/* Ancient Egyptian Architectural Stone Column — strictly extends from Hero top to Divisions bottom */}
+        <HieroglyphicWall />
 
-      {/* 2. Section 02: Our Divisions (#divisions) */}
-      <DivisionsSection />
+        {/* 1. Section 01: Hero Section */}
+        <HeroSection />
+
+        {/* 2. Section 02: Our Divisions (#divisions) */}
+        <DivisionsSection />
+      </div>
 
       {/* 3. Section 03: Smile Transformations (See the Difference) */}
       <SmileTransformations />

@@ -34,28 +34,24 @@ export function LabServicesSection() {
       <SplitSectionBackground inverted={!isRtl} waveVariant="B" />
 
       <div className="max-w-7xl mx-auto relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Services List (Parchment Side) */}
-          <div
-            className={`lg:col-span-7 flex flex-col justify-center p-6 sm:p-8 lg:p-0 rounded-3xl lg:rounded-none bg-[#FCFAF5]/95 lg:bg-transparent border border-[#C8A232]/35 lg:border-0 shadow-xl lg:shadow-none backdrop-blur-md lg:backdrop-blur-none ${
-              isRtl ? "lg:pr-8 xl:pr-14 lg:pl-6" : "lg:pl-8 xl:pl-14 lg:pr-6"
-            }`}
-          >
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#C8A232]/60 bg-white/90 shadow-xs mb-4 w-fit">
+          <div className="flex flex-col justify-center items-center text-center p-6 sm:p-8 lg:p-0 rounded-3xl lg:rounded-none bg-[#FCFAF5]/95 lg:bg-transparent border border-[#C8A232]/35 lg:border-0 shadow-xl lg:shadow-none backdrop-blur-md lg:backdrop-blur-none px-4 sm:px-6 lg:px-8 xl:px-12">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#C8A232]/60 bg-white/90 shadow-xs mb-4 w-fit mx-auto">
               <Sparkles className="w-3.5 h-3.5 text-[#955904]" />
               <span className="text-[11px] font-bold tracking-widest uppercase text-[#955904] font-mono">
                 {isRtl ? "خدمات المعمل الرقمي" : "OUR LAB SERVICES"}
               </span>
             </div>
 
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold font-display text-[#0F266A] tracking-tight mb-2">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold font-display text-[#0F266A] tracking-tight mb-2 text-center">
               {t("servicesHeading")}
             </h2>
-            <p className="text-xs sm:text-sm text-[#955904] font-mono mb-6 uppercase tracking-wider">
+            <p className="text-xs sm:text-sm text-[#955904] font-mono mb-6 uppercase tracking-wider text-center">
               {isRtl ? "صنعت بدقة • صممت للتميز" : "Crafted with Precision. Designed for Excellence."}
             </p>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full max-w-xl mx-auto text-start">
               {t.raw("services")?.map((service: { title: string; desc: string }, idx: number) => {
                 const Icon = SERVICE_ICONS[idx] || Sparkles;
                 return (
@@ -81,12 +77,8 @@ export function LabServicesSection() {
           </div>
 
           {/* Visual Showcase (Royal Blue Side) */}
-          <div
-            className={`lg:col-span-5 relative flex justify-center items-center ${
-              isRtl ? "lg:pl-6 xl:pl-8" : "lg:pr-6 xl:pr-8"
-            }`}
-          >
-            <div className="relative w-full aspect-[4/3] rounded-3xl overflow-hidden bg-[#0A1128] border-2 border-[#C8A232]/70 shadow-[0_16px_45px_rgba(1,32,82,0.65)]">
+          <div className="relative flex justify-center items-center w-full px-4 sm:px-6 lg:px-8 xl:px-12">
+            <div className="relative w-full max-w-lg aspect-[4/3] rounded-3xl overflow-hidden bg-[#0A1128] border-2 border-[#C8A232]/70 shadow-[0_16px_45px_rgba(1,32,82,0.65)]">
               <Image
                 src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=1200&q=85"
                 alt="Swiss Dental Veneers"

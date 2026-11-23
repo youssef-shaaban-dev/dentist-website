@@ -104,82 +104,84 @@ export function HeroSection() {
         {/* 2. Signature Multi-Line 3D Ribbon Split Background */}
         <SplitSectionBackground inverted={!isRtl} />
 
-        {/* 3. Hero Main Content Grid */}
-        <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 relative z-10 my-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-center min-h-0 lg:min-h-[520px] xl:min-h-[560px]">
+        {/* 3. Hero Main Content Grid - Full Width Spanning so Left=25vw and Right=75vw */}
+        <div className="w-full relative z-10 my-auto px-4 sm:px-8 lg:px-10 xl:px-14">
+          <div className="w-full grid grid-cols-1 lg:grid-cols-2 items-center min-h-0 lg:min-h-[520px] xl:min-h-[560px]">
             
             {/* CONTENT COLUMN (Warm Gold / Parchment Side): Order 1 on Desktop */}
             <div
               ref={rightContentRef}
-              className={`lg:col-span-6 flex flex-col justify-center order-2 lg:order-1 p-4 sm:p-6 lg:p-0 rounded-3xl lg:rounded-none bg-[#FCFAF5]/95 lg:bg-transparent border border-[#C8A232]/35 lg:border-0 shadow-xl lg:shadow-none backdrop-blur-md lg:backdrop-blur-none pl-4 sm:pl-6 ${
-                isRtl ? "lg:pl-10 xl:pl-14 lg:pr-32 xl:pr-40" : "lg:pr-10 xl:pr-14 lg:pl-32 xl:pl-40"
-              } pr-4 sm:pr-6`}
+              className={`flex flex-col justify-center items-center text-center order-2 lg:order-1 p-4 sm:p-6 lg:p-0 rounded-3xl lg:rounded-none bg-[#FCFAF5]/95 lg:bg-transparent border border-[#C8A232]/35 lg:border-0 shadow-xl lg:shadow-none backdrop-blur-md lg:backdrop-blur-none ${
+                isRtl ? "lg:pr-28 xl:pr-32 lg:pl-6 xl:pl-10" : "lg:pl-28 xl:pl-32 lg:pr-6 xl:pr-10"
+              }`}
             >
-              {/* Top Kicker Line — Pure Dental Innovation */}
-              <div className="flex items-center gap-1.5 sm:gap-3 mb-2 sm:mb-4 lg:mb-5">
-                <span className="h-[1px] w-4 sm:w-8 lg:w-12 bg-[#9A5F13]/60" />
-                <span className="text-[9px] sm:text-[11px] lg:text-xs font-mono font-bold tracking-wider uppercase text-[#9A5F13] truncate">
-                  {isRtl
-                    ? "أحدث ابتكارات التكنولوجيا الطبية في طب وتجميل الأسنان"
-                    : "ADVANCED DENTAL TECHNOLOGY & DIGITAL PRECISION"}
-                </span>
-                <span className="h-[1px] w-4 sm:w-8 lg:w-12 bg-[#9A5F13]/60" />
-              </div>
+              <div className="w-full max-w-xl mx-auto flex flex-col items-center">
+                {/* Top Kicker Line — Pure Dental Innovation */}
+                <div className="flex items-center justify-center gap-1.5 sm:gap-3 mb-2 sm:mb-4 lg:mb-5">
+                  <span className="h-[1px] w-4 sm:w-8 lg:w-12 bg-[#9A5F13]/60" />
+                  <span className="text-[9px] sm:text-[11px] lg:text-xs font-mono font-bold tracking-wider uppercase text-[#9A5F13] truncate">
+                    {isRtl
+                      ? "أحدث ابتكارات التكنولوجيا الطبية في طب وتجميل الأسنان"
+                      : "ADVANCED DENTAL TECHNOLOGY & DIGITAL PRECISION"}
+                  </span>
+                  <span className="h-[1px] w-4 sm:w-8 lg:w-12 bg-[#9A5F13]/60" />
+                </div>
 
-              {/* Two-Tone Luxury Headline */}
-              <h1 className="text-xl sm:text-2xl md:text-4xl lg:text-[48px] xl:text-[52px] font-bold font-display leading-[1.2] mb-3 sm:mb-4 lg:mb-5 tracking-tight">
-                <span className="block text-[#0F266A]">
-                  {isRtl ? "تخصصات مختلفة." : "Different Specialties."}
-                </span>
-                <span className="block text-[#9A5F13] font-display italic mt-0.5 sm:mt-1">
-                  {isRtl ? "رؤية واحدة متميزة." : "One Magnificent Vision."}
-                </span>
-              </h1>
+                {/* Two-Tone Luxury Headline */}
+                <h1 className="text-xl sm:text-2xl md:text-4xl lg:text-[48px] xl:text-[52px] font-bold font-display leading-[1.2] mb-3 sm:mb-4 lg:mb-5 tracking-tight text-center">
+                  <span className="block text-[#0F266A]">
+                    {isRtl ? "تخصصات مختلفة." : "Different Specialties."}
+                  </span>
+                  <span className="block text-[#9A5F13] font-display italic mt-0.5 sm:mt-1">
+                    {isRtl ? "رؤية واحدة متميزة." : "One Magnificent Vision."}
+                  </span>
+                </h1>
 
-              {/* Subtitle Paragraph */}
-              <p className="text-xs sm:text-sm md:text-base lg:text-lg text-[#2A3B56] font-body leading-relaxed max-w-xl mb-4 sm:mb-6 lg:mb-8">
-                {t("websiteCopy")}
-              </p>
+                {/* Subtitle Paragraph */}
+                <p className="text-xs sm:text-sm md:text-base lg:text-lg text-[#2A3B56] font-body leading-relaxed max-w-xl mx-auto mb-4 sm:mb-6 lg:mb-8 text-center">
+                  {t("websiteCopy")}
+                </p>
 
-              {/* Action Buttons according to Developer Handoff */}
-              <div className="flex flex-wrap items-center gap-2 sm:gap-3 lg:gap-4 mb-4 sm:mb-6 lg:mb-8">
-                {/* Primary Button: Book a Consultation -> /clinics#booking */}
-                <a
-                  href="/clinics#booking"
-                  className="inline-flex items-center gap-1.5 sm:gap-2 px-4 py-2.5 sm:px-6 sm:py-3.5 lg:px-7 lg:py-4 rounded-xl bg-[#012052] hover:bg-[#022A6D] text-white font-bold text-xs sm:text-xs lg:text-sm tracking-wider uppercase shadow-md transition-all cursor-pointer border border-[#C8A232]/40"
-                >
-                  <CalendarCheck className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#DFBF57]" />
-                  <span>{t("bookCta")}</span>
-                  <ArrowIcon className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#DFBF57]" />
-                </a>
+                {/* Action Buttons according to Developer Handoff */}
+                <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 lg:gap-4 mb-4 sm:mb-6 lg:mb-8">
+                  {/* Primary Button: Book a Consultation -> /clinics#booking */}
+                  <a
+                    href="/clinics#booking"
+                    className="inline-flex items-center gap-1.5 sm:gap-2 px-4 py-2.5 sm:px-6 sm:py-3.5 lg:px-7 lg:py-4 rounded-xl bg-[#012052] hover:bg-[#022A6D] text-white font-bold text-xs sm:text-xs lg:text-sm tracking-wider uppercase shadow-md transition-all cursor-pointer border border-[#C8A232]/40"
+                  >
+                    <CalendarCheck className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#DFBF57]" />
+                    <span>{t("bookCta")}</span>
+                    <ArrowIcon className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#DFBF57]" />
+                  </a>
 
-                {/* Secondary Button: Explore Our Services -> /#divisions */}
-                <a
-                  href="#divisions"
-                  className="inline-flex items-center gap-1 sm:gap-2 px-3 py-2.5 sm:px-5 sm:py-3.5 rounded-xl bg-white/90 hover:bg-white border border-[#C8A232]/60 text-[#0F266A] font-bold text-xs sm:text-xs lg:text-sm tracking-wider uppercase transition-all shadow-xs"
-                >
-                  <span>{t("exploreCta")}</span>
-                </a>
-              </div>
+                  {/* Secondary Button: Explore Our Services -> /#divisions */}
+                  <a
+                    href="#divisions"
+                    className="inline-flex items-center gap-1 sm:gap-2 px-3 py-2.5 sm:px-5 sm:py-3.5 rounded-xl bg-white/90 hover:bg-white border border-[#C8A232]/60 text-[#0F266A] font-bold text-xs sm:text-xs lg:text-sm tracking-wider uppercase transition-all shadow-xs"
+                  >
+                    <span>{t("exploreCta")}</span>
+                  </a>
+                </div>
 
-              {/* Quick Clinical Badges */}
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-2.5 pt-3 sm:pt-4 border-t border-[#C8A232]/30 max-w-xl">
-                {statsList.map((stat, sIdx) => {
-                  const Icon = stat.icon;
-                  return (
-                    <div key={sIdx} className="flex flex-col min-w-0">
-                      <div className="flex items-center gap-1 mb-0.5 min-w-0">
-                        <Icon className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#9A5F13] shrink-0" />
-                        <span className="text-[11px] sm:text-xs lg:text-sm font-bold font-mono text-[#0F266A] truncate">
-                          {stat.val}
+                {/* Quick Clinical Badges */}
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-2.5 pt-3 sm:pt-4 border-t border-[#C8A232]/30 max-w-xl mx-auto w-full">
+                  {statsList.map((stat, sIdx) => {
+                    const Icon = stat.icon;
+                    return (
+                      <div key={sIdx} className="flex flex-col items-center text-center min-w-0">
+                        <div className="flex items-center justify-center gap-1 mb-0.5 min-w-0">
+                          <Icon className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#9A5F13] shrink-0" />
+                          <span className="text-[11px] sm:text-xs lg:text-sm font-bold font-mono text-[#0F266A] truncate">
+                            {stat.val}
+                          </span>
+                        </div>
+                        <span className="text-[9px] sm:text-[10px] lg:text-[11px] text-[#5B6782] font-body truncate">
+                          {stat.label}
                         </span>
                       </div>
-                      <span className="text-[9px] sm:text-[10px] lg:text-[11px] text-[#5B6782] font-body truncate">
-                        {stat.label}
-                      </span>
-                    </div>
-                  );
-                })}
+                    );
+                  })}
+                </div>
               </div>
 
             </div>
@@ -187,11 +189,11 @@ export function HeroSection() {
             {/* VISUAL COLUMN (Deep Royal Blue Side): Order 2 on Desktop */}
             <div
               ref={leftVisualRef}
-              className={`lg:col-span-6 relative flex justify-center items-center order-1 lg:order-2 w-full pt-2 pb-4 lg:py-0 ${
-                isRtl ? "lg:pl-8 xl:pl-10" : "lg:pr-8 xl:pr-10"
+              className={`relative flex justify-center items-center order-1 lg:order-2 w-full pt-2 pb-4 lg:py-0 ${
+                isRtl ? "lg:pl-6 xl:pl-10 lg:pr-6 xl:pr-10" : "lg:pr-6 xl:pr-10 lg:pl-6 xl:pl-10"
               }`}
             >
-              <div className="w-full max-w-[240px] sm:max-w-[300px] md:max-w-[340px] lg:max-w-[380px] xl:max-w-[400px] mx-auto relative group">
+              <div className="w-full max-w-[240px] sm:max-w-[300px] md:max-w-[340px] lg:max-w-[370px] xl:max-w-[390px] mx-auto relative group">
                 
                 {/* Subtle Glow behind Frame */}
                 <div className="absolute -inset-2 sm:-inset-4 bg-gradient-to-tr from-[#C8A232]/20 via-[#DFBF57]/10 to-transparent rounded-full blur-xl sm:blur-2xl pointer-events-none" />
