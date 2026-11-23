@@ -7,7 +7,7 @@ import { SplitSectionBackground } from "@/components/ui/SplitSectionBackground";
 import { Stethoscope, ArrowRight, ArrowLeft, CheckCircle2, Sparkles } from "lucide-react";
 
 export function DentistsHeroSection() {
-  const t = useTranslations("dentistsPage");
+  const t = useTranslations("forDentistsPage");
   const { isRtl } = useLanguage();
   const ArrowIcon = isRtl ? ArrowLeft : ArrowRight;
 

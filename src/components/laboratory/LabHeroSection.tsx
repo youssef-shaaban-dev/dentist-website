@@ -9,7 +9,7 @@ import { SplitSectionBackground } from "@/components/ui/SplitSectionBackground";
 import { Cpu, ArrowRight, ArrowLeft } from "lucide-react";
 
 export function LabHeroSection() {
-  const t = useTranslations("laboratoryPage");
+  const t = useTranslations("labPage");
   const { isRtl } = useLanguage();
   const ArrowIcon = isRtl ? ArrowLeft : ArrowRight;
 

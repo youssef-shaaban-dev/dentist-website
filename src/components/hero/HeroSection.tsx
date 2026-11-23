@@ -105,15 +105,18 @@ export function HeroSection() {
         <SplitSectionBackground inverted={!isRtl} />
 
         {/* 3. Hero Main Content Grid - Full Width Spanning so Left=25vw and Right=75vw */}
-        <div className="w-full relative z-10 my-auto px-4 sm:px-8 lg:px-10 xl:px-14">
+        <div className="w-full relative z-10 my-auto px-0">
           <div className="w-full grid grid-cols-1 lg:grid-cols-2 items-center min-h-0 lg:min-h-[520px] xl:min-h-[560px]">
             
             {/* CONTENT COLUMN (Warm Gold / Parchment Side): Order 1 on Desktop */}
+            {/* Dedicated exception for Hero: offsets the Hieroglyphic Pillar (w-32/w-36) so content is centered equidistant between pillar & center wave */}
             <div
               ref={rightContentRef}
-              className={`flex flex-col justify-center items-center text-center order-2 lg:order-1 p-4 sm:p-6 lg:p-0 rounded-3xl lg:rounded-none bg-[#FCFAF5]/95 lg:bg-transparent border border-[#C8A232]/35 lg:border-0 shadow-xl lg:shadow-none backdrop-blur-md lg:backdrop-blur-none ${
-                isRtl ? "lg:pe-40 xl:pe-48 lg:ps-16 xl:ps-24" : "lg:ps-40 xl:ps-48 lg:pe-16 xl:pe-24"
-              }`}
+              className={`flex flex-col justify-center items-center text-center order-2 lg:order-1 p-4 sm:p-6 lg:p-0 rounded-3xl lg:rounded-none bg-[#FCFAF5]/95 lg:bg-transparent border border-[#C8A232]/35 lg:border-0 shadow-xl lg:shadow-none backdrop-blur-md lg:backdrop-blur-none w-full ${
+                isRtl
+                  ? "lg:pr-32 xl:pr-36 lg:pl-6 xl:pl-10"
+                  : "lg:pl-32 xl:pl-36 lg:pr-6 xl:pr-10"
+              } px-4 sm:px-6`}
             >
               <div className="w-full max-w-xl mx-auto flex flex-col items-center">
                 {/* Top Kicker Line — Pure Dental Innovation */}
