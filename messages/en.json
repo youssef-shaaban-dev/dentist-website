@@ -636,8 +636,8 @@
   },
   "labPage": {
     "brandName": "Magnificent Smile Dental Lab",
-    "headline": "Precision. Premium Materials. Advanced Technology.",
-    "websiteCopy": "Digital design and dental craftsmanship for veneers, crowns, bridges, implant restorations, removable prosthetics, and clear aligners.",
+    "headline": "Craftsmanship Beyond Expectations... Precision That Elevates the Art of Smile Creation.",
+    "websiteCopy": "Where precision meets artistic creativity.\nAt Magnificent Smile Dental Lab, we believe that excellence resides in the finest details, and that crafting the perfect smile is an art combining deep expertise, master craftsmanship, and cutting-edge digital dentistry.\nWe unite premium materials with advanced technology to deliver integrated solutions across aesthetic veneers, crowns, bridges, implant-supported restorations, and clear aligners.\nMastery in every detail... distinction in every smile.",
     "managerName": "Mr. Abdulkader Dorgham",
     "managerTitle": "Dental Laboratory General Manager",
     "servicesHeading": "Laboratory Services",
@@ -659,8 +659,8 @@
         "desc": "Zirconia restorations for cases requiring strength and function."
       },
       {
-        "title": "Visio.lign Implant Restorations",
-        "desc": "Implant prosthetic solutions using the Visio.lign system."
+        "title": "Titanium Bar Implant Restorations",
+        "desc": "Advanced implant prosthetic solutions using precision-milled titanium bars."
       },
       {
         "title": "Flexible Removable Dentures",
@@ -680,7 +680,7 @@
       "3D Printing",
       "E.max",
       "Zirconia",
-      "Visio.lign"
+      "Titanium Bar"
     ],
     "closingCopy": "Let’s discuss your next case.",
     "closingCta": "Work With Our Lab"

@@ -692,21 +692,55 @@ export default function TreatmentsPage() {
             <PatientVideoCard
               src="/2.mp4"
               title={
-                isRtl
+                locale === "ar"
                   ? "تجربة ابتسامة هوليوود وتصميم الابتسامة الملكية"
-                  : "Royal Hollywood Smile & Porcelain Veneers Experience"
+                  : locale === "fr"
+                  ? "Expérience Hollywood Smile & Facettes E.max Royales"
+                  : locale === "ru"
+                  ? "Голливудская улыбка и королевские виниры E.max"
+                  : "Royal Hollywood Smile & E.max Veneers Experience"
               }
               description={
-                isRtl
+                locale === "ar"
                   ? "قصة نجاح مريضنا في الحصول على ابتسامة متناسقة وطبيعية من خلال عدسات الفينير الرقمية بمعملنا الحصري."
-                  : "An authentic patient testimonial celebrating a symmetrical, radiant Hollywood smile crafted with digital precision."
+                  : locale === "fr"
+                  ? "Témoignage patient célébrant un sourire éclatant et naturel grâce aux facettes numériques de notre laboratoire exclusif."
+                  : locale === "ru"
+                  ? "Реальная история пациента: гармоничная и естественная улыбка с цифровыми винирами из нашей собственной лаборатории."
+                  : "An authentic patient testimonial celebrating a symmetrical, radiant Hollywood smile crafted with digital precision in our in-house lab."
               }
-              patientTag={isRtl ? "مريضة حقيقية • ابتسامة هوليوود" : "Verified Patient • Hollywood Smile"}
-              treatmentType="E.max Porcelain Veneers"
+              patientTag={
+                locale === "ar"
+                  ? "مريضة حقيقية • ابتسامة هوليوود"
+                  : locale === "fr"
+                  ? "Patiente Réelle • Hollywood Smile"
+                  : locale === "ru"
+                  ? "Реальный пациент • Голливудская улыбка"
+                  : "Verified Patient • Hollywood Smile"
+              }
+              treatmentType="E.max Veneers"
               highlights={[
-                isRtl ? "عدسات خزفية مصممة خصيصاً لتناسب ملامح الوجه" : "Custom veneers matched to facial aesthetics",
-                isRtl ? "جلسات علاج مريحة دون أي تحسس أو ألم" : "Zero sensitivity with painless appointments",
-                isRtl ? "نتائج فاقت التوقعات وثقة لا حدود لها" : "Exceeded expectations with unmatched confidence",
+                locale === "ar"
+                  ? "عدسات ايماكس مصممة خصيصاً لتناسب ملامح الوجه"
+                  : locale === "fr"
+                  ? "Facettes E.max sur mesure adaptées aux traits du visage"
+                  : locale === "ru"
+                  ? "Виниры E.max, созданные с учетом черт лица"
+                  : "Custom E.max veneers matched to facial aesthetics",
+                locale === "ar"
+                  ? "جلسات علاج مريحة دون أي تحسس أو ألم"
+                  : locale === "fr"
+                  ? "Séances confortables sans aucune sensibilité ni douleur"
+                  : locale === "ru"
+                  ? "Комфортные приемы без чувствительности и боли"
+                  : "Zero sensitivity with painless appointments",
+                locale === "ar"
+                  ? "نتائج فاقت التوقعات وثقة لا حدود لها"
+                  : locale === "fr"
+                  ? "Des résultats au-delà des attentes et une confiance retrouvée"
+                  : locale === "ru"
+                  ? "Результат превзошел ожидания и подарил уверенность"
+                  : "Exceeded expectations with unmatched confidence",
               ]}
             />
           </div>

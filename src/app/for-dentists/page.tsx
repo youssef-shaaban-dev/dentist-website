@@ -29,7 +29,7 @@ function DentistEnquiryForm() {
   const isAligner = Boolean(serviceParam && serviceParam.toLowerCase().includes("aligner"));
   const defaultService = isAligner
     ? (isRtl ? "تقويم شفاف" : "Clear Aligners")
-    : (isRtl ? "فينير وقشور خزفية" : "Veneers");
+    : (isRtl ? "فينير وعدسات إيماكس (E.max)" : "E.max Veneers");
 
   const [dentistName, setDentistName] = useState("");
   const [clinicName, setClinicName] = useState("");

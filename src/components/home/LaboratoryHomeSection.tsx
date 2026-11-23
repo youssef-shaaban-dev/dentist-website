@@ -134,7 +134,7 @@ export function LaboratoryHomeSection() {
             {t("headline")}
           </h2>
 
-          <p className="text-sm sm:text-base md:text-[17px] text-white/95 leading-relaxed max-w-3xl mx-auto font-body drop-shadow-[0_1px_8px_rgba(0,0,0,0.9)] font-medium">
+          <p className="text-sm sm:text-base md:text-[16px] text-white/95 leading-relaxed max-w-4xl mx-auto font-body drop-shadow-[0_1px_8px_rgba(0,0,0,0.9)] font-medium whitespace-pre-line">
             {t("websiteCopy")}
           </p>
         </div>

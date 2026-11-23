@@ -45,7 +45,7 @@ export default function LaboratoryPage() {
       image: "https://images.unsplash.com/photo-1609840114035-3c981b782dfe?auto=format&fit=crop&w=800&q=85",
     },
     {
-      title: isRtl ? "تعويضات زراعة دقيقة بنظام Visio.lign" : "Precision Implant Prosthetics",
+      title: isRtl ? "تعويضات زراعة دقيقة بنظام Titanium Bar" : "Precision Implant Titanium Bar Prosthetics",
       image: "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=800&q=85",
     },
   ];
@@ -78,7 +78,7 @@ export default function LaboratoryPage() {
                 {t("headline")}
               </h1>
 
-              <p className="text-sm sm:text-base md:text-lg text-[#2A3B56] font-body leading-relaxed mb-8 max-w-xl">
+              <p className="text-sm sm:text-base md:text-lg text-[#2A3B56] font-body leading-relaxed mb-8 max-w-2xl whitespace-pre-line">
                 {t("websiteCopy")}
               </p>
 
