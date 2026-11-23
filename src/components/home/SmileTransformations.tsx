@@ -162,17 +162,15 @@ export function SmileTransformations() {
     <section
       ref={sectionRef}
       id="transformations"
-      className="relative py-20 sm:py-28 px-4 sm:px-6 lg:px-8 overflow-hidden z-20 shadow-2xl"
+      className="relative py-20 sm:py-28 px-0 overflow-hidden z-20 shadow-2xl"
       dir={isRtl ? "rtl" : "ltr"}
     >
       {/* 1. Signature Multi-Line 3D Ribbon Split Background (Continuity waveVariant A) */}
       <SplitSectionBackground inverted={!isRtl} waveVariant="A" />
 
-      {/* 2. Content Grid */}
-      <div className="max-w-7xl mx-auto relative z-10">
-        
-        {/* Top Header & View Mode Switcher */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10 pb-6 border-b border-[#C8A232]/25">
+      {/* 2. Top Header & View Mode Switcher */}
+      <div className="w-full px-4 sm:px-8 lg:px-12 xl:px-16 mb-10 pb-6 border-b border-[#C8A232]/25 relative z-10">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 max-w-7xl mx-auto">
           <div>
             {/* Category Kicker Badge */}
             <div className="flex items-center gap-2.5 mb-3">
@@ -199,7 +197,7 @@ export function SmileTransformations() {
           </div>
 
           {/* Luxury Switcher: Before/After Slider vs Real Patient Videos */}
-          <div className="inline-flex p-1.5 rounded-2xl bg-white/95 border-2 border-[#C8A232]/60 shadow-lg backdrop-blur-md self-start md:self-auto">
+          <div className="inline-flex p-1.5 rounded-2xl bg-white/95 border-2 border-[#C8A232]/60 shadow-lg backdrop-blur-md self-start md:self-auto shrink-0">
             <button
               type="button"
               onClick={() => setViewMode("slider")}
@@ -228,20 +226,23 @@ export function SmileTransformations() {
             </button>
           </div>
         </div>
+      </div>
 
-        {/* ======================================================== */}
-        {/* VIEW 1: BEFORE & AFTER INTERACTIVE SLIDER                */}
-        {/* ======================================================== */}
-        {viewMode === "slider" && (
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
-            
-            {/* CONTENT COLUMN (Warm Gold / Parchment Side): Order 1 on Desktop */}
-            <div
-              ref={rightRef}
-              className={`lg:col-span-6 flex flex-col order-2 lg:order-1 p-4 sm:p-6 lg:p-0 rounded-3xl lg:rounded-none bg-[#FCFAF5]/95 lg:bg-transparent border border-[#C8A232]/35 lg:border-0 shadow-xl lg:shadow-none backdrop-blur-md lg:backdrop-blur-none pl-4 sm:pl-6 ${
-                isRtl ? "lg:pr-10 xl:pr-14 lg:pl-6" : "lg:pl-10 xl:pl-14 lg:pr-6"
-              }`}
-            >
+      {/* ======================================================== */}
+      {/* VIEW 1: BEFORE & AFTER INTERACTIVE SLIDER                */}
+      {/* Perfectly centered in 50% left & 50% right halves        */}
+      {/* ======================================================== */}
+      {viewMode === "slider" && (
+        <div className="w-full grid grid-cols-1 lg:grid-cols-2 items-center relative z-10 min-h-0">
+          
+          {/* CONTENT COLUMN (Warm Gold / Parchment Side): Order 1 on Desktop */}
+          <div
+            ref={rightRef}
+            className={`w-full flex items-center justify-center order-2 lg:order-1 p-4 sm:p-6 lg:p-0 ${
+              isRtl ? "lg:pe-16 xl:pe-24 lg:ps-12 xl:ps-20" : "lg:ps-16 xl:ps-24 lg:pe-12 xl:pe-20"
+            }`}
+          >
+            <div className="w-full max-w-xl mx-auto flex flex-col rounded-3xl lg:rounded-none bg-[#FCFAF5]/95 lg:bg-transparent border border-[#C8A232]/35 lg:border-0 shadow-xl lg:shadow-none backdrop-blur-md lg:backdrop-blur-none p-4 sm:p-6 lg:p-0">
               {/* Case Selection Tabs */}
               <div className="flex flex-wrap items-center gap-2 mb-5">
                 {cases.map((item, idx) => {
@@ -326,24 +327,23 @@ export function SmileTransformations() {
               </div>
 
             </div>
+          </div>
 
-            {/* VISUAL COLUMN (Deep Royal Blue Side): Order 2 on Desktop */}
-            <div
-              ref={leftRef}
-              className={`lg:col-span-6 relative flex justify-center items-center order-1 lg:order-2 w-full ${
-                isRtl ? "lg:pl-6 xl:pl-8" : "lg:pr-6 xl:pr-8"
-              }`}
-            >
-              <div className="w-full max-w-[420px] xl:max-w-[440px] mx-auto">
+          {/* VISUAL COLUMN (Deep Royal Blue Side): Order 2 on Desktop */}
+          <div
+            ref={leftRef}
+            className="w-full flex items-center justify-center order-1 lg:order-2 p-4 sm:p-6 lg:p-0 px-4 sm:px-8 lg:px-12 xl:px-20"
+          >
+            <div className="w-full max-w-[420px] xl:max-w-[460px] mx-auto">
+              
+              {/* Interactive Comparison Card with Royal 24K Gold Frame */}
+              <div className="relative rounded-3xl bg-gradient-to-b from-[#0B2456] via-[#07193D] to-[#020B1D] border-2 border-[#C8A232]/70 p-3 sm:p-4 shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
                 
-                {/* Interactive Comparison Card with Royal 24K Gold Frame */}
-                <div className="relative rounded-3xl bg-gradient-to-b from-[#0B2456] via-[#07193D] to-[#020B1D] border-2 border-[#C8A232]/70 p-3 sm:p-4 shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
-                  
-                  {/* Gold Crest Accent Bar */}
-                  <div className="h-1 w-full bg-gradient-to-r from-[#9A5F13] via-[#DFBF57] to-[#9A5F13] rounded-full mb-3" />
+                {/* Gold Crest Accent Bar */}
+                <div className="h-1 w-full bg-gradient-to-r from-[#9A5F13] via-[#DFBF57] to-[#9A5F13] rounded-full mb-3" />
 
-                  {/* Slider Canvas */}
-                  <div className="relative h-72 sm:h-80 md:h-[370px] w-full rounded-2xl overflow-hidden select-none border border-[#DFBF57]/40 bg-[#020B1D] shadow-inner">
+                {/* Slider Canvas */}
+                <div className="relative h-72 sm:h-80 md:h-[370px] w-full rounded-2xl overflow-hidden select-none border border-[#DFBF57]/40 bg-[#020B1D] shadow-inner">
                     
                     {/* AFTER LAYER (Clean White Teeth) */}
                     <div className="absolute inset-0">
@@ -536,8 +536,6 @@ export function SmileTransformations() {
             </div>
           </div>
         )}
-
-      </div>
     </section>
   );
 }

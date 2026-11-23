@@ -233,14 +233,14 @@ export function ClinicsBookingSection({
   const { isRtl } = useLanguage();
 
   return (
-    <section className="relative w-full py-20 sm:py-28 px-4 sm:px-6 lg:px-8 overflow-hidden z-20 shadow-2xl">
+    <section className="relative w-full py-20 sm:py-28 px-0 overflow-hidden z-20 shadow-2xl">
       <SplitSectionBackground inverted={!isRtl} waveVariant="A" />
 
-      <div className="max-w-7xl mx-auto relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+      <div className="w-full relative z-10">
+        <div className="w-full grid grid-cols-1 lg:grid-cols-2 items-center">
           {/* Booking Form (Parchment Side) */}
-          <div className="w-full flex justify-center items-center px-4 sm:px-6 lg:px-8">
-            <div className="w-full max-w-xl">
+          <div className="w-full flex justify-center items-center p-4 sm:p-6 lg:p-0 px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20">
+            <div className="w-full max-w-xl mx-auto">
               <Suspense fallback={<div className="text-center py-10 font-bold text-[#0F266A]">Loading booking form...</div>}>
                 <BookingForm
                   selectedBranch={selectedBranch}
@@ -253,8 +253,8 @@ export function ClinicsBookingSection({
           </div>
 
           {/* Concierge & Clinic Info (Royal Blue Side) */}
-          <div className="w-full flex justify-center items-center px-4 sm:px-6 lg:px-8">
-            <div className="w-full max-w-lg p-6 sm:p-8 rounded-3xl bg-[#03112E]/90 border-2 border-[#C8A232]/60 shadow-[0_16px_45px_rgba(1,32,82,0.65)] backdrop-blur-md text-white">
+          <div className="w-full flex justify-center items-center p-4 sm:p-6 lg:p-0 px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20">
+            <div className="w-full max-w-lg mx-auto p-6 sm:p-8 rounded-3xl bg-[#03112E]/90 border-2 border-[#C8A232]/60 shadow-[0_16px_45px_rgba(1,32,82,0.65)] backdrop-blur-md text-white">
               <div className="flex items-center gap-3 mb-6 pb-4 border-b border-[#C8A232]/30">
                 <div className="w-10 h-10 rounded-xl bg-[#DFBF57]/20 border border-[#DFBF57] text-[#DFBF57] flex items-center justify-center">
                   <MapPin className="w-5 h-5" />

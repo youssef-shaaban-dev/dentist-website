@@ -13,48 +13,50 @@ export function ClinicsHeroSection() {
   const ArrowIcon = isRtl ? ArrowLeft : ArrowRight;
 
   return (
-    <section className="relative w-full py-20 sm:py-28 px-4 sm:px-6 lg:px-8 overflow-hidden z-20 shadow-2xl">
+    <section className="relative w-full py-20 sm:py-28 px-0 overflow-hidden z-20 shadow-2xl">
       <SplitSectionBackground inverted={!isRtl} waveVariant="A" />
 
-      <div className="max-w-7xl mx-auto relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+      <div className="w-full relative z-10">
+        <div className="w-full grid grid-cols-1 lg:grid-cols-2 items-center">
           {/* Content (Parchment Side) */}
-          <div className="flex flex-col justify-center items-center text-center p-6 sm:p-8 lg:p-0 rounded-3xl lg:rounded-none bg-[#FCFAF5]/95 lg:bg-transparent border border-[#C8A232]/35 lg:border-0 shadow-xl lg:shadow-none backdrop-blur-md lg:backdrop-blur-none px-4 sm:px-6 lg:px-8 xl:px-12">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#C8A232]/60 bg-white/90 shadow-xs mb-4 w-fit mx-auto">
-              <MapPin className="w-3.5 h-3.5 text-[#955904]" />
-              <span className="text-[11px] font-bold tracking-widest uppercase text-[#955904] font-mono">
-                {isRtl ? "فروع العيادات والحجز" : "OUR CLINICS & BOOKING"}
-              </span>
-            </div>
+          <div className="w-full flex justify-center items-center p-4 sm:p-6 lg:p-0 px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20">
+            <div className="w-full max-w-xl mx-auto flex flex-col justify-center items-center text-center p-6 sm:p-8 lg:p-0 rounded-3xl lg:rounded-none bg-[#FCFAF5]/95 lg:bg-transparent border border-[#C8A232]/35 lg:border-0 shadow-xl lg:shadow-none backdrop-blur-md lg:backdrop-blur-none">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#C8A232]/60 bg-white/90 shadow-xs mb-4 w-fit mx-auto">
+                <MapPin className="w-3.5 h-3.5 text-[#955904]" />
+                <span className="text-[11px] font-bold tracking-widest uppercase text-[#955904] font-mono">
+                  {isRtl ? "فروع العيادات والحجز" : "OUR CLINICS & BOOKING"}
+                </span>
+              </div>
 
-            <h1 className="text-3xl sm:text-4xl lg:text-[44px] xl:text-[48px] font-bold font-display text-[#0F266A] leading-[1.2] mb-4 text-center">
-              {t("headline")}
-            </h1>
+              <h1 className="text-3xl sm:text-4xl lg:text-[44px] xl:text-[48px] font-bold font-display text-[#0F266A] leading-[1.2] mb-4 text-center">
+                {t("headline")}
+              </h1>
 
-            <p className="text-sm sm:text-base md:text-lg text-[#2A3B56] font-body leading-relaxed mb-8 max-w-xl mx-auto text-center">
-              {t("websiteCopy")}
-            </p>
+              <p className="text-sm sm:text-base md:text-lg text-[#2A3B56] font-body leading-relaxed mb-8 max-w-xl mx-auto text-center">
+                {t("websiteCopy")}
+              </p>
 
-            <div className="flex flex-wrap items-center justify-center gap-3">
-              <a
-                href="#booking"
-                className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl bg-gradient-to-r from-[#955904] via-[#C8A232] to-[#955904] text-white font-bold text-xs sm:text-sm tracking-wider uppercase shadow-[0_4px_20px_rgba(200,162,50,0.35)] hover:shadow-[0_8px_30px_rgba(200,162,50,0.55)] transition-all duration-300 transform hover:-translate-y-0.5 cursor-pointer"
-              >
-                <span>{isRtl ? "احجز موعدك الآن" : "Book Your Appointment"}</span>
-                <ArrowIcon className="w-4 h-4 text-white" />
-              </a>
-              <a
-                href="#branches"
-                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-white border border-[#C8A232]/60 text-[#0F266A] font-bold text-xs sm:text-sm tracking-wider uppercase hover:bg-[#FAF1DC]/50 transition-all cursor-pointer shadow-xs"
-              >
-                <span>{isRtl ? "استكشف الفروع الثلاثة" : "Explore Branches"}</span>
-              </a>
+              <div className="flex flex-wrap items-center justify-center gap-3">
+                <a
+                  href="#booking"
+                  className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl bg-gradient-to-r from-[#955904] via-[#C8A232] to-[#955904] text-white font-bold text-xs sm:text-sm tracking-wider uppercase shadow-[0_4px_20px_rgba(200,162,50,0.35)] hover:shadow-[0_8px_30px_rgba(200,162,50,0.55)] transition-all duration-300 transform hover:-translate-y-0.5 cursor-pointer"
+                >
+                  <span>{isRtl ? "احجز موعدك الآن" : "Book Your Appointment"}</span>
+                  <ArrowIcon className="w-4 h-4 text-white" />
+                </a>
+                <a
+                  href="#branches"
+                  className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-white border border-[#C8A232]/60 text-[#0F266A] font-bold text-xs sm:text-sm tracking-wider uppercase hover:bg-[#FAF1DC]/50 transition-all cursor-pointer shadow-xs"
+                >
+                  <span>{isRtl ? "استكشف الفروع الثلاثة" : "Explore Branches"}</span>
+                </a>
+              </div>
             </div>
           </div>
 
           {/* Visual Showcase (Royal Blue Side) */}
-          <div className="relative flex justify-center items-center w-full px-4 sm:px-6 lg:px-8 xl:px-12">
-            <div className="relative w-full max-w-lg aspect-[4/3] rounded-3xl overflow-hidden bg-[#0A1128] border-2 border-[#C8A232]/70 shadow-[0_16px_45px_rgba(1,32,82,0.65)]">
+          <div className="relative flex justify-center items-center w-full p-4 sm:p-6 lg:p-0 px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20">
+            <div className="relative w-full max-w-lg aspect-[4/3] rounded-3xl overflow-hidden bg-[#0A1128] border-2 border-[#C8A232]/70 shadow-[0_16px_45px_rgba(1,32,82,0.65)] mx-auto">
               <Image
                 src="https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=1200&q=85"
                 alt="Magnificent Smile Dental Clinic"

@@ -112,7 +112,7 @@ export function HeroSection() {
             <div
               ref={rightContentRef}
               className={`flex flex-col justify-center items-center text-center order-2 lg:order-1 p-4 sm:p-6 lg:p-0 rounded-3xl lg:rounded-none bg-[#FCFAF5]/95 lg:bg-transparent border border-[#C8A232]/35 lg:border-0 shadow-xl lg:shadow-none backdrop-blur-md lg:backdrop-blur-none ${
-                isRtl ? "lg:pr-28 xl:pr-32 lg:pl-6 xl:pl-10" : "lg:pl-28 xl:pl-32 lg:pr-6 xl:pr-10"
+                isRtl ? "lg:pe-40 xl:pe-48 lg:ps-16 xl:ps-24" : "lg:ps-40 xl:ps-48 lg:pe-16 xl:pe-24"
               }`}
             >
               <div className="w-full max-w-xl mx-auto flex flex-col items-center">
@@ -189,9 +189,7 @@ export function HeroSection() {
             {/* VISUAL COLUMN (Deep Royal Blue Side): Order 2 on Desktop */}
             <div
               ref={leftVisualRef}
-              className={`relative flex justify-center items-center order-1 lg:order-2 w-full pt-2 pb-4 lg:py-0 ${
-                isRtl ? "lg:pl-6 xl:pl-10 lg:pr-6 xl:pr-10" : "lg:pr-6 xl:pr-10 lg:pl-6 xl:pl-10"
-              }`}
+              className={`relative flex justify-center items-center order-1 lg:order-2 w-full pt-2 pb-4 lg:py-0 px-4 sm:px-8 lg:px-12 xl:px-16`}
             >
               <div className="w-full max-w-[240px] sm:max-w-[300px] md:max-w-[340px] lg:max-w-[370px] xl:max-w-[390px] mx-auto relative group">
                 
