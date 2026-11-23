@@ -151,7 +151,9 @@ export function DivisionsSection() {
       ref={sectionRef}
       id="divisions"
       className={`relative py-20 sm:py-28 px-4 sm:px-6 ${
-        isRtl ? "lg:pr-32 xl:pr-36 lg:pl-12" : "lg:pl-32 xl:pl-36 lg:pr-12"
+        isRtl
+          ? "lg:pr-44 xl:pr-56 2xl:pr-64 lg:pl-12 xl:pl-16 2xl:pl-20"
+          : "lg:pl-44 xl:pl-56 2xl:pl-64 lg:pr-12 xl:pr-16 2xl:pl-20"
       } overflow-hidden z-20 shadow-2xl`}
       dir={isRtl ? "rtl" : "ltr"}
     >

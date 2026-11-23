@@ -76,8 +76,8 @@ export function SplitSectionLayout({
   // Spacing and pillar compensation:
   const parchmentPadding = hasPillarOffset
     ? isRtl
-      ? "lg:pr-32 xl:pr-36 lg:pl-6 xl:pl-10 px-4 sm:px-6"
-      : "lg:pl-32 xl:pl-36 lg:pr-6 xl:pr-10 px-4 sm:px-6"
+      ? "lg:pr-44 xl:pr-56 2xl:pr-64 lg:pl-8 xl:pl-12 px-4 sm:px-6"
+      : "lg:pl-44 xl:pl-56 2xl:pl-64 lg:pr-8 xl:pr-12 px-4 sm:px-6"
     : "px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20";
 
   const royalBluePadding = "px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20";

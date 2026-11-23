@@ -109,13 +109,13 @@ export function HeroSection() {
           <div className="w-full grid grid-cols-1 lg:grid-cols-2 items-center gap-8 lg:gap-0 min-h-0 lg:min-h-[520px] xl:min-h-[560px]">
             
             {/* CONTENT COLUMN (Warm Gold / Parchment Side): Order 1 on Mobile & Desktop */}
-            {/* Dedicated exception for Hero: offsets the Hieroglyphic Pillar (w-32/w-36) so content is centered equidistant between pillar & center wave on desktop */}
+            {/* Dedicated exception for Hero: offsets the Hieroglyphic Pillar (w-32/w-36) so content is centered with generous breathing room */}
             <div
               ref={rightContentRef}
               className={`flex flex-col justify-center items-center text-center order-1 lg:order-1 p-5 sm:p-7 lg:p-0 rounded-3xl lg:rounded-none bg-[#FCFAF5]/95 lg:bg-transparent border border-[#C8A232]/40 lg:border-0 shadow-xl lg:shadow-none backdrop-blur-md lg:backdrop-blur-none w-full ${
                 isRtl
-                  ? "lg:pr-32 xl:pr-36 lg:pl-6 xl:pl-10"
-                  : "lg:pl-32 xl:pl-36 lg:pr-6 xl:pr-10"
+                  ? "lg:pr-44 xl:pr-56 2xl:pr-64 lg:pl-8 xl:pl-12"
+                  : "lg:pl-44 xl:pl-56 2xl:pl-64 lg:pr-8 xl:pr-12"
               } px-2 sm:px-4 lg:px-0`}
             >
               <div className="w-full max-w-xl mx-auto flex flex-col items-center">
