@@ -20,7 +20,7 @@ import {
 } from "lucide-react";
 
 export function HeroSection() {
-  const { isRtl } = useLanguage();
+  const { isRtl, locale } = useLanguage();
   const t = useTranslations("hero");
   const ArrowIcon = isRtl ? ArrowLeft : ArrowRight;
 
@@ -149,7 +149,7 @@ export function HeroSection() {
                 <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 lg:gap-4 mb-4 sm:mb-6 lg:mb-8">
                   {/* Primary Button: Book a Consultation -> /clinics#booking */}
                   <a
-                    href="/clinics#booking"
+                    href={`/${locale}/clinics#booking`}
                     className="inline-flex items-center gap-1.5 sm:gap-2 px-4 py-2.5 sm:px-6 sm:py-3.5 lg:px-7 lg:py-4 rounded-xl bg-[#012052] hover:bg-[#022A6D] text-white font-bold text-xs sm:text-xs lg:text-sm tracking-wider uppercase shadow-md transition-all cursor-pointer border border-[#C8A232]/40"
                   >
                     <CalendarCheck className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#DFBF57]" />

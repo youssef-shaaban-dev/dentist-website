@@ -44,7 +44,8 @@ export function Navbar() {
     }, 250);
   };
 
-  const effectiveScrolled = scrolled || pathname !== "/";
+  const isHome = pathname === `/${locale}` || pathname === "/";
+  const effectiveScrolled = scrolled || !isHome;
 
   // GSAP Observer: Smart direction & velocity detection for navbar hide/show
   useEffect(() => {
@@ -109,20 +110,20 @@ export function Navbar() {
     { code: "ru", label: "Русский" },
   ];
 
-  // Approved 6 Pages Navigation Map
+  // Approved 6 Pages Navigation Map with Locale Prefixes
   const navLinks = [
-    { href: "/", label: tNav("home"), isCurrent: pathname === "/" },
-    { href: "/treatments", label: tNav("treatments"), isCurrent: pathname === "/treatments" },
-    { href: "/clinics", label: tNav("clinics"), isCurrent: pathname === "/clinics" },
-    { href: "/aligners", label: tNav("aligners"), isCurrent: pathname === "/aligners" },
+    { href: `/${locale}`, label: tNav("home"), isCurrent: isHome },
+    { href: `/${locale}/treatments`, label: tNav("treatments"), isCurrent: pathname === `/${locale}/treatments` },
+    { href: `/${locale}/clinics`, label: tNav("clinics"), isCurrent: pathname === `/${locale}/clinics` },
+    { href: `/${locale}/aligners`, label: tNav("aligners"), isCurrent: pathname === `/${locale}/aligners` },
   ];
 
   const labLinks = [
-    { href: "/laboratory", label: tNav("ourLab"), isCurrent: pathname === "/laboratory" },
-    { href: "/for-dentists", label: tNav("forDentists"), isCurrent: pathname === "/for-dentists" },
+    { href: `/${locale}/laboratory`, label: tNav("ourLab"), isCurrent: pathname === `/${locale}/laboratory` },
+    { href: `/${locale}/for-dentists`, label: tNav("forDentists"), isCurrent: pathname === `/${locale}/for-dentists` },
   ];
 
-  const isLabActive = pathname === "/laboratory" || pathname === "/for-dentists";
+  const isLabActive = pathname === `/${locale}/laboratory` || pathname === `/${locale}/for-dentists`;
 
   const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     setMobileMenuOpen(false);
@@ -164,8 +165,8 @@ export function Navbar() {
         <div className="flex items-center justify-between">
           {/* Brand Logo */}
           <Link
-            href="/"
-            onClick={(e) => handleLinkClick(e, "/")}
+            href={`/${locale}`}
+            onClick={(e) => handleLinkClick(e, `/${locale}`)}
             className="flex items-center group focus:outline-none cursor-pointer py-0.5"
             aria-label="Magnificent Smile"
           >
@@ -342,7 +343,7 @@ export function Navbar() {
 
             {/* Primary Header Button -> /clinics#booking */}
             <Link
-              href="/clinics#booking"
+              href={`/${locale}/clinics#booking`}
               className="relative group overflow-hidden px-4 py-2 2xl:px-5 2xl:py-2.5 rounded-full border border-[#C8A232]/80 bg-gradient-to-r from-[#955904] via-[#C8A232] to-[#955904] text-white font-bold text-xs tracking-wider uppercase shadow-[0_4px_20px_rgba(200,162,50,0.35)] hover:shadow-[0_8px_30px_rgba(200,162,50,0.55)] transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0 flex items-center gap-2 cursor-pointer whitespace-nowrap"
             >
               <CalendarCheck className="w-3.5 h-3.5 text-white shrink-0" />
@@ -453,7 +454,7 @@ export function Navbar() {
             {/* Mobile Booking CTA Button */}
             <div className="pt-3">
               <Link
-                href="/clinics#booking"
+                href={`/${locale}/clinics#booking`}
                 onClick={() => setMobileMenuOpen(false)}
                 className="w-full py-3 rounded-xl bg-gradient-to-r from-[#955904] via-[#C8A232] to-[#955904] text-white font-bold text-center text-sm shadow-md flex items-center justify-center gap-2 cursor-pointer"
               >

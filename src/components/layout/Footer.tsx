@@ -11,7 +11,7 @@ export function Footer() {
   const t = useTranslations("footer");
   const tBrand = useTranslations("brand");
   const tNav = useTranslations("nav");
-  const { isRtl } = useLanguage();
+  const { isRtl, locale } = useLanguage();
 
   return (
     <footer
@@ -26,7 +26,7 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-[#C8A232]/20">
           {/* Brand Col (5 cols) */}
           <div className="lg:col-span-5 flex flex-col">
-            <Link href="/" className="flex items-center gap-3.5 mb-4 group">
+            <Link href={`/${locale}`} className="flex items-center gap-3.5 mb-4 group">
               <div className="relative h-14 sm:h-16 aspect-[6/5]">
                 <Image
                   src="/logo.png"
@@ -70,32 +70,32 @@ export function Footer() {
             </h4>
             <ul className="space-y-2.5 text-xs text-[#FDFBF7]/80 font-body">
               <li>
-                <Link href="/" className="hover:text-[#DFBF57] transition-colors">
+                <Link href={`/${locale}`} className="hover:text-[#DFBF57] transition-colors">
                   {tNav("home")}
                 </Link>
               </li>
               <li>
-                <Link href="/treatments" className="hover:text-[#DFBF57] transition-colors">
+                <Link href={`/${locale}/treatments`} className="hover:text-[#DFBF57] transition-colors">
                   {tNav("treatments")}
                 </Link>
               </li>
               <li>
-                <Link href="/clinics" className="hover:text-[#DFBF57] transition-colors">
+                <Link href={`/${locale}/clinics`} className="hover:text-[#DFBF57] transition-colors">
                   {t("links.clinics")}
                 </Link>
               </li>
               <li>
-                <Link href="/aligners" className="hover:text-[#DFBF57] transition-colors">
+                <Link href={`/${locale}/aligners`} className="hover:text-[#DFBF57] transition-colors">
                   {tNav("aligners")}
                 </Link>
               </li>
               <li>
-                <Link href="/laboratory" className="hover:text-[#DFBF57] transition-colors">
+                <Link href={`/${locale}/laboratory`} className="hover:text-[#DFBF57] transition-colors">
                   {tNav("ourLab")}
                 </Link>
               </li>
               <li>
-                <Link href="/for-dentists" className="hover:text-[#DFBF57] transition-colors">
+                <Link href={`/${locale}/for-dentists`} className="hover:text-[#DFBF57] transition-colors">
                   {t("links.forDentists")}
                 </Link>
               </li>
@@ -156,10 +156,10 @@ export function Footer() {
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-[#FDFBF7]/60 font-body">
           <p>© 2026 Magnificent Smile. All Rights Reserved.</p>
           <div className="flex items-center gap-6">
-            <Link href="/clinics" className="hover:text-[#DFBF57] transition-colors">
+            <Link href={`/${locale}/clinics`} className="hover:text-[#DFBF57] transition-colors">
               {t("links.clinics")}
             </Link>
-            <Link href="/for-dentists" className="hover:text-[#DFBF57] transition-colors">
+            <Link href={`/${locale}/for-dentists`} className="hover:text-[#DFBF57] transition-colors">
               {t("links.forDentists")}
             </Link>
             <span className="text-[#FDFBF7]/30">|</span>

@@ -9,7 +9,7 @@ import { Smile, Stethoscope, CalendarCheck, ArrowRight, ArrowLeft } from "lucide
 
 export function AlignersClosingSection() {
   const t = useTranslations("alignersPage");
-  const { isRtl } = useLanguage();
+  const { isRtl, locale } = useLanguage();
   const ArrowIcon = isRtl ? ArrowLeft : ArrowRight;
 
   return (
@@ -33,7 +33,7 @@ export function AlignersClosingSection() {
             </p>
           </div>
           <Link
-            href="/clinics?treatment=aligners#booking"
+            href={`/${locale}/clinics?treatment=aligners#booking`}
             className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-[#955904] via-[#C8A232] to-[#955904] text-white text-xs font-bold uppercase tracking-wider transition-all shadow-md hover:shadow-lg cursor-pointer"
           >
             <CalendarCheck className="w-4 h-4 text-white" />
@@ -59,7 +59,7 @@ export function AlignersClosingSection() {
             </p>
           </div>
           <Link
-            href="/for-dentists?service=aligners#enquiry"
+            href={`/${locale}/for-dentists?service=aligners#enquiry`}
             className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-white text-[#0F266A] hover:bg-[#FAF1DC] text-xs font-bold uppercase tracking-wider transition-all shadow-md cursor-pointer"
           >
             <span>{t("dentistCta")}</span>

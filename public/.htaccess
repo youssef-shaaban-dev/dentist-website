@@ -1,0 +1,7 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Redirect root to default language /ar/
+  RewriteRule ^$ /ar/ [R=302,L]
+</IfModule>

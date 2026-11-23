@@ -10,7 +10,7 @@ import { Sparkles, CalendarCheck, ArrowRight, ArrowLeft } from "lucide-react";
 
 export function TreatmentsGallerySection() {
   const t = useTranslations("treatmentsPage");
-  const { isRtl } = useLanguage();
+  const { isRtl, locale } = useLanguage();
   const ArrowIcon = isRtl ? ArrowLeft : ArrowRight;
 
   const [activeFilter, setActiveFilter] = useState<string>("all");
@@ -234,7 +234,7 @@ export function TreatmentsGallerySection() {
         {/* Bottom Book Consultation Banner */}
         <div className="mt-12 text-center">
           <Link
-            href="/clinics#booking"
+            href={`/${locale}/clinics#booking`}
             className="inline-flex items-center gap-2.5 px-8 py-3.5 rounded-xl bg-gradient-to-r from-[#955904] via-[#C8A232] to-[#955904] text-white font-bold text-xs uppercase tracking-wider shadow-md hover:shadow-lg transition-all"
           >
             <CalendarCheck className="w-4 h-4 text-white" />

@@ -35,7 +35,7 @@ interface AlignerBenefit {
 
 export function AlignersHomeSection() {
   const t = useTranslations("alignersPage");
-  const { isRtl } = useLanguage();
+  const { isRtl, locale } = useLanguage();
   const ArrowIcon = isRtl ? ArrowLeft : ArrowRight;
 
   const sectionRef = useRef<HTMLElement>(null);
@@ -247,7 +247,7 @@ export function AlignersHomeSection() {
             {/* CTAs Bar */}
             <div className="flex flex-wrap items-center gap-3">
               <Link
-                href="/clinics?treatment=aligners#booking"
+                href={`/${locale}/clinics?treatment=aligners#booking`}
                 className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-[#9A5F13] via-[#C8A232] to-[#9A5F13] text-white font-bold text-xs sm:text-sm uppercase tracking-wider shadow-md hover:shadow-lg transition-all font-body cursor-pointer"
               >
                 <CalendarCheck className="w-4 h-4 text-white" />
@@ -256,7 +256,7 @@ export function AlignersHomeSection() {
               </Link>
 
               <Link
-                href="/aligners"
+                href={`/${locale}/aligners`}
                 className="inline-flex items-center gap-2 px-5 py-3.5 rounded-xl bg-white border border-[#C8A232]/60 text-[#0F266A] font-bold text-xs sm:text-sm uppercase tracking-wider hover:bg-[#FAF1DC]/60 transition-all font-body"
               >
                 <span>{isRtl ? "اكتشف منظومة التقويم بالكامل" : "Explore Full Aligners System"}</span>

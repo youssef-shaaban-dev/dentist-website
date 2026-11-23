@@ -300,7 +300,7 @@ export function SmileTransformations() {
               {/* Action CTAs */}
               <div className="flex flex-wrap items-center gap-3">
                 <Link
-                  href="/treatments#smile-gallery"
+                  href={`/${locale}/treatments#smile-gallery`}
                   className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-[#9A5F13] via-[#C8A232] to-[#9A5F13] text-white font-bold text-xs uppercase tracking-wider shadow-md hover:shadow-lg transition-all font-body cursor-pointer"
                 >
                   <span>{t("cta")}</span>
@@ -308,7 +308,7 @@ export function SmileTransformations() {
                 </Link>
 
                 <Link
-                  href="/clinics#booking"
+                  href={`/${locale}/clinics#booking`}
                   className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-white border border-[#C8A232]/50 text-[#0F266A] font-bold text-xs uppercase tracking-wider hover:bg-[#FAF1DC]/60 transition-all font-body"
                 >
                   <CalendarCheck className="w-4 h-4 text-[#9A5F13]" />
@@ -527,7 +527,7 @@ export function SmileTransformations() {
               </div>
 
               <Link
-                href="/clinics#booking"
+                href={`/${locale}/clinics#booking`}
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-[#9A5F13] via-[#C8A232] to-[#9A5F13] text-white font-bold text-xs uppercase tracking-wider shadow-md hover:shadow-lg transition-all shrink-0"
               >
                 <CalendarCheck className="w-4 h-4 text-white" />

@@ -10,7 +10,7 @@ import { Sparkles, ArrowRight, ArrowLeft, CalendarCheck, Video } from "lucide-re
 
 export function TreatmentsHeroSection() {
   const t = useTranslations("treatmentsPage");
-  const { isRtl } = useLanguage();
+  const { isRtl, locale } = useLanguage();
   const ArrowIcon = isRtl ? ArrowLeft : ArrowRight;
 
   return (
@@ -35,7 +35,7 @@ export function TreatmentsHeroSection() {
 
           <div className="flex flex-wrap items-center justify-center gap-4">
             <Link
-              href="/clinics#booking"
+              href={`/${locale}/clinics#booking`}
               className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl bg-gradient-to-r from-[#955904] via-[#C8A232] to-[#955904] text-white font-bold text-xs sm:text-sm tracking-wider uppercase shadow-[0_4px_20px_rgba(200,162,50,0.35)] hover:shadow-[0_8px_30px_rgba(200,162,50,0.55)] transition-all duration-300 transform hover:-translate-y-0.5 cursor-pointer"
             >
               <CalendarCheck className="w-4 h-4 text-white" />

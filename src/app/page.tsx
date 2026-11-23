@@ -1,43 +1,5 @@
-"use client";
+import { redirect } from "next/navigation";
 
-import { HieroglyphicWall } from "@/components/ui/HieroglyphicWall";
-import { HeroSection } from "@/components/hero/HeroSection";
-import { DivisionsSection } from "@/components/home/DivisionsSection";
-import { SmileTransformations } from "@/components/home/SmileTransformations";
-import { SpecialistsSection } from "@/components/home/SpecialistsSection";
-import { LocationsBookingSection } from "@/components/home/LocationsBookingSection";
-import { AlignersHomeSection } from "@/components/home/AlignersHomeSection";
-import { LaboratoryHomeSection } from "@/components/home/LaboratoryHomeSection";
-
-export default function Home() {
-  return (
-    <main className="relative w-full overflow-x-hidden">
-      {/* Heritage Entrance Enclosure: Hero & Divisions framed by Architectural Hieroglyphic Stone Pillar */}
-      <div className="relative w-full">
-        {/* Ancient Egyptian Architectural Stone Column — strictly extends from Hero top to Divisions bottom */}
-        <HieroglyphicWall />
-
-        {/* 1. Section 01: Hero Section */}
-        <HeroSection />
-
-        {/* 2. Section 02: Our Divisions (#divisions) */}
-        <DivisionsSection />
-      </div>
-
-      {/* 3. Section 03: Smile Transformations (See the Difference) */}
-      <SmileTransformations />
-
-      {/* 4. Section 04: Our Doctors (5 Doctors in exact order) */}
-      <SpecialistsSection />
-
-      {/* 5. Section 05: Our Locations and Booking (3 Branches -> /clinics) */}
-      <LocationsBookingSection />
-
-      {/* 6. Section 06: The Magnificent Aligners */}
-      <AlignersHomeSection />
-
-      {/* 7. Section 07: Magnificent Smile Dental Lab */}
-      <LaboratoryHomeSection />
-    </main>
-  );
+export default function RootPage() {
+  redirect("/ar");
 }

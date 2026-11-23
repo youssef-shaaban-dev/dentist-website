@@ -2,10 +2,6 @@ import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import { Montserrat, Cairo, Tajawal, Aref_Ruqaa } from "next/font/google";
 import "./globals.css";
-import { IntlProviderWrapper } from "@/i18n/IntlProviderWrapper";
-import { SmoothScrollProvider } from "@/components/layout/SmoothScrollProvider";
-import { Navbar } from "@/components/layout/Navbar";
-import { Footer } from "@/components/layout/Footer";
 
 // Local English Display Font: Zentry with ligature features
 const zentry = localFont({
@@ -95,20 +91,12 @@ export default function RootLayout({
         ${cairo.variable} 
         ${tajawal.variable} 
         ${arefRuqaa.variable} 
-        bg-ivory   text-[#0A1128]
+        bg-ivory text-[#0A1128]
       `}
       suppressHydrationWarning
     >
       <body className="font-body bg-ivory text-[#0A1128] antialiased selection:bg-[#C8A232] selection:text-ivory">
-        <IntlProviderWrapper>
-          <SmoothScrollProvider>
-            <Navbar />
-            <main className="relative min-h-screen bg-ivory text-[#0A1128] selection:bg-[#C8A232] selection:text-ivory overflow-hidden">
-              {children}
-            </main>
-            <Footer />
-          </SmoothScrollProvider>
-        </IntlProviderWrapper>
+        {children}
       </body>
     </html>
   );

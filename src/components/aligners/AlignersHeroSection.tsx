@@ -10,7 +10,7 @@ import { Layers, ArrowRight, ArrowLeft, CalendarCheck, Stethoscope } from "lucid
 
 export function AlignersHeroSection() {
   const t = useTranslations("alignersPage");
-  const { isRtl } = useLanguage();
+  const { isRtl, locale } = useLanguage();
   const ArrowIcon = isRtl ? ArrowLeft : ArrowRight;
 
   return (
@@ -35,7 +35,7 @@ export function AlignersHeroSection() {
 
           <div className="flex flex-wrap items-center justify-center gap-3">
             <Link
-              href="/clinics?treatment=aligners#booking"
+              href={`/${locale}/clinics?treatment=aligners#booking`}
               className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl bg-gradient-to-r from-[#955904] via-[#C8A232] to-[#955904] text-white font-bold text-xs sm:text-sm tracking-wider uppercase shadow-[0_4px_20px_rgba(200,162,50,0.35)] hover:shadow-[0_8px_30px_rgba(200,162,50,0.55)] transition-all duration-300 transform hover:-translate-y-0.5 cursor-pointer"
             >
               <CalendarCheck className="w-4 h-4 text-white" />
@@ -43,7 +43,7 @@ export function AlignersHeroSection() {
               <ArrowIcon className="w-4 h-4 text-white" />
             </Link>
             <Link
-              href="/for-dentists#enquiry"
+              href={`/${locale}/for-dentists#enquiry`}
               className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-white border border-[#C8A232]/60 text-[#0F266A] font-bold text-xs sm:text-sm tracking-wider uppercase hover:bg-[#FAF1DC]/50 transition-all shadow-xs"
             >
               <Stethoscope className="w-4 h-4 text-[#955904]" />

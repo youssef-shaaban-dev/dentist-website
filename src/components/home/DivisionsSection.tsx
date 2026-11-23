@@ -20,7 +20,7 @@ import {
 
 export function DivisionsSection() {
   const t = useTranslations("divisions");
-  const { isRtl } = useLanguage();
+  const { isRtl, locale } = useLanguage();
   const ArrowIcon = isRtl ? ArrowLeft : ArrowRight;
 
   const sectionRef = useRef<HTMLElement>(null);
@@ -36,7 +36,7 @@ export function DivisionsSection() {
       title: t("clinics.title"),
       copy: t("clinics.copy"),
       cta: t("clinics.cta"),
-      href: "/treatments",
+      href: `/${locale}/treatments`,
       image:
         "https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1200&q=85",
       perks: isRtl
@@ -59,7 +59,7 @@ export function DivisionsSection() {
       title: t("aligners.title"),
       copy: t("aligners.copy"),
       cta: t("aligners.cta"),
-      href: "/aligners",
+      href: `/${locale}/aligners`,
       image:
         "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&w=1200&q=85",
       perks: isRtl
@@ -82,7 +82,7 @@ export function DivisionsSection() {
       title: t("lab.title"),
       copy: t("lab.copy"),
       cta: t("lab.cta"),
-      href: "/laboratory",
+      href: `/${locale}/laboratory`,
       image:
         "https://images.unsplash.com/photo-1609840114035-3c981b782dfe?auto=format&fit=crop&w=1200&q=85",
       perks: isRtl

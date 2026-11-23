@@ -27,7 +27,7 @@ interface LabService {
 
 export function LaboratoryHomeSection() {
   const t = useTranslations("labPage");
-  const { isRtl } = useLanguage();
+  const { isRtl, locale } = useLanguage();
   const ArrowIcon = isRtl ? ArrowLeft : ArrowRight;
 
   const sectionRef = useRef<HTMLElement>(null);
@@ -235,7 +235,7 @@ export function LaboratoryHomeSection() {
         {/* ======================================================== */}
         <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 p-3.5 sm:p-4 rounded-2xl bg-white/90 border border-[#C8A232]/35 shadow-sm max-w-xl mx-auto">
           <Link
-            href="/laboratory"
+            href={`/${locale}/laboratory`}
             className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-[#9A5F13] via-[#C8A232] to-[#9A5F13] text-white font-bold text-xs sm:text-sm uppercase tracking-wider shadow-md hover:shadow-lg transition-all font-body cursor-pointer"
           >
             <span>{isRtl ? "استكشف خدمات المعمل بالكامل" : "Explore Dental Laboratory"}</span>
@@ -243,7 +243,7 @@ export function LaboratoryHomeSection() {
           </Link>
 
           <Link
-            href="/for-dentists"
+            href={`/${locale}/for-dentists`}
             className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-white border border-[#C8A232]/60 text-[#0F266A] font-bold text-xs sm:text-sm uppercase tracking-wider hover:bg-[#FAF1DC]/60 transition-all font-body"
           >
             <Stethoscope className="w-4 h-4 text-[#9A5F13]" />

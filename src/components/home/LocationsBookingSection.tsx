@@ -12,7 +12,7 @@ import { MapPin, Phone, CalendarCheck, ArrowRight, ArrowLeft, Star } from "lucid
 
 export function LocationsBookingSection() {
   const t = useTranslations("locationsBooking");
-  const { isRtl } = useLanguage();
+  const { isRtl, locale } = useLanguage();
   const ArrowIcon = isRtl ? ArrowLeft : ArrowRight;
 
   const sectionRef = useRef<HTMLElement>(null);
@@ -266,7 +266,7 @@ export function LocationsBookingSection() {
           className="mt-10 sm:mt-14 flex flex-col sm:flex-row items-center justify-center gap-4"
         >
           <Link
-            href="/clinics#booking"
+            href={`/${locale}/clinics#booking`}
             className="inline-flex items-center gap-2.5 px-8 py-4 rounded-2xl bg-gradient-to-r from-[#9A5F13] via-[#C8A232] to-[#9A5F13] text-white font-bold text-sm sm:text-base uppercase tracking-wider shadow-lg hover:shadow-xl hover:brightness-110 transition-all font-body cursor-pointer"
           >
             <CalendarCheck className="w-5 h-5 text-white" />

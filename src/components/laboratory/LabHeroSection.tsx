@@ -10,7 +10,7 @@ import { Cpu, ArrowRight, ArrowLeft } from "lucide-react";
 
 export function LabHeroSection() {
   const t = useTranslations("labPage");
-  const { isRtl } = useLanguage();
+  const { isRtl, locale } = useLanguage();
   const ArrowIcon = isRtl ? ArrowLeft : ArrowRight;
 
   return (
@@ -35,7 +35,7 @@ export function LabHeroSection() {
 
           <div className="flex justify-center">
             <Link
-              href="/for-dentists#enquiry"
+              href={`/${locale}/for-dentists#enquiry`}
               className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl bg-gradient-to-r from-[#955904] via-[#C8A232] to-[#955904] text-white font-bold text-xs sm:text-sm tracking-wider uppercase shadow-[0_4px_20px_rgba(200,162,50,0.35)] hover:shadow-[0_8px_30px_rgba(200,162,50,0.55)] transition-all duration-300 transform hover:-translate-y-0.5 cursor-pointer"
             >
               <span>{t("closingCta")}</span>

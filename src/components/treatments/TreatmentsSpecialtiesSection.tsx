@@ -35,7 +35,7 @@ interface TreatmentItem {
 
 export function TreatmentsSpecialtiesSection() {
   const t = useTranslations("treatmentsPage");
-  const { isRtl } = useLanguage();
+  const { isRtl, locale } = useLanguage();
   const ArrowIcon = isRtl ? ArrowLeft : ArrowRight;
 
   const treatments: TreatmentItem[] = [
@@ -231,7 +231,7 @@ export function TreatmentsSpecialtiesSection() {
               {/* Actions Row */}
               <div className="flex flex-wrap items-center gap-3 pt-4 border-t border-[#DFBF57]/25">
                 <Link
-                  href="/clinics?treatment=vip#booking"
+                  href={`/${locale}/clinics?treatment=vip#booking`}
                   className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-[#DFBF57] via-[#F6E29F] to-[#DFBF57] text-[#020B1D] font-bold text-xs sm:text-sm tracking-wider uppercase shadow-[0_4px_25px_rgba(223,191,87,0.4)] hover:shadow-[0_6px_35px_rgba(223,191,87,0.6)] hover:scale-[1.02] transition-all duration-300 cursor-pointer"
                 >
                   <Crown className="w-4 h-4 fill-[#020B1D]" />
@@ -285,7 +285,7 @@ export function TreatmentsSpecialtiesSection() {
 
                   <div className="pt-3 border-t border-[#C8A232]/25 flex items-center justify-between">
                     <Link
-                      href="/clinics#booking"
+                      href={`/${locale}/clinics#booking`}
                       className="inline-flex items-center gap-1.5 text-xs font-bold font-body text-[#955904] hover:text-[#0F266A] transition-colors"
                     >
                       <span>{isRtl ? "طلب استشارة" : "Request Visit"}</span>
@@ -294,7 +294,7 @@ export function TreatmentsSpecialtiesSection() {
 
                     {treatment.hasAlignersLink && (
                       <Link
-                        href="/aligners"
+                        href={`/${locale}/aligners`}
                         className="inline-flex items-center gap-1 text-[11px] font-mono text-[#0F266A] hover:text-[#955904] transition-colors bg-[#FAF1DC] px-2 py-0.5 rounded-full border border-[#C8A232]/35"
                       >
                         <span>{t("discoverAligners")}</span>
