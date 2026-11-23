@@ -96,27 +96,27 @@ export function HeroSection() {
       ref={heroRef}
       id="home"
       aria-label="Magnificent Smile Dental Center"
-      className="relative z-10 w-full min-h-0 lg:min-h-[100dvh] flex flex-col justify-between overflow-hidden select-none bg-[#FDFBF7]"
+      className="relative mt-10 md:mt-0 z-10 w-full min-h-0 lg:min-h-[100dvh] flex flex-col justify-between overflow-x-clip lg:overflow-hidden select-none bg-[#FDFBF7]"
       dir={isRtl ? "rtl" : "ltr"}
     >
       {/* 1. Main Stage Container */}
-      <div className="relative w-full flex-1 flex flex-col justify-center overflow-hidden pt-24 sm:pt-28 lg:pt-36 xl:pt-40 pb-8 sm:pb-12 lg:pb-14">
+      <div className="relative w-full flex-1 flex flex-col justify-center overflow-x-clip lg:overflow-hidden pt-20 sm:pt-24 lg:pt-36 xl:pt-40 pb-20 sm:pb-24 lg:pb-14">
         {/* 2. Signature Multi-Line 3D Ribbon Split Background */}
         <SplitSectionBackground inverted={!isRtl} />
 
         {/* 3. Hero Main Content Grid - Full Width Spanning so Left=25vw and Right=75vw */}
-        <div className="w-full relative z-10 my-auto px-0">
-          <div className="w-full grid grid-cols-1 lg:grid-cols-2 items-center min-h-0 lg:min-h-[520px] xl:min-h-[560px]">
+        <div className="w-full relative z-10 my-auto px-4 sm:px-6 lg:px-0">
+          <div className="w-full grid grid-cols-1 lg:grid-cols-2 items-center gap-8 lg:gap-0 min-h-0 lg:min-h-[520px] xl:min-h-[560px]">
             
-            {/* CONTENT COLUMN (Warm Gold / Parchment Side): Order 1 on Desktop */}
-            {/* Dedicated exception for Hero: offsets the Hieroglyphic Pillar (w-32/w-36) so content is centered equidistant between pillar & center wave */}
+            {/* CONTENT COLUMN (Warm Gold / Parchment Side): Order 1 on Mobile & Desktop */}
+            {/* Dedicated exception for Hero: offsets the Hieroglyphic Pillar (w-32/w-36) so content is centered equidistant between pillar & center wave on desktop */}
             <div
               ref={rightContentRef}
-              className={`flex flex-col justify-center items-center text-center order-2 lg:order-1 p-4 sm:p-6 lg:p-0 rounded-3xl lg:rounded-none bg-[#FCFAF5]/95 lg:bg-transparent border border-[#C8A232]/35 lg:border-0 shadow-xl lg:shadow-none backdrop-blur-md lg:backdrop-blur-none w-full ${
+              className={`flex flex-col justify-center items-center text-center order-1 lg:order-1 p-5 sm:p-7 lg:p-0 rounded-3xl lg:rounded-none bg-[#FCFAF5]/95 lg:bg-transparent border border-[#C8A232]/40 lg:border-0 shadow-xl lg:shadow-none backdrop-blur-md lg:backdrop-blur-none w-full ${
                 isRtl
                   ? "lg:pr-32 xl:pr-36 lg:pl-6 xl:pl-10"
                   : "lg:pl-32 xl:pl-36 lg:pr-6 xl:pr-10"
-              } px-4 sm:px-6`}
+              } px-2 sm:px-4 lg:px-0`}
             >
               <div className="w-full max-w-xl mx-auto flex flex-col items-center">
                 {/* Top Kicker Line — Pure Dental Innovation */}
@@ -189,12 +189,12 @@ export function HeroSection() {
 
             </div>
 
-            {/* VISUAL COLUMN (Deep Royal Blue Side): Order 2 on Desktop */}
+            {/* VISUAL COLUMN (Deep Royal Blue Side): Order 2 on Mobile & Desktop */}
             <div
               ref={leftVisualRef}
-              className={`relative flex justify-center items-center order-1 lg:order-2 w-full pt-2 pb-4 lg:py-0 px-4 sm:px-8 lg:px-12 xl:px-16`}
+              className={`relative flex justify-center items-center order-2 lg:order-2 w-full pt-4 pb-6 lg:py-0 px-4 sm:px-8 lg:px-12 xl:px-16`}
             >
-              <div className="w-full max-w-[240px] sm:max-w-[300px] md:max-w-[340px] lg:max-w-[370px] xl:max-w-[390px] mx-auto relative group">
+              <div className="w-full max-w-[280px] sm:max-w-[320px] md:max-w-[340px] lg:max-w-[370px] xl:max-w-[390px] mx-auto relative group">
                 
                 {/* Subtle Glow behind Frame */}
                 <div className="absolute -inset-2 sm:-inset-4 bg-gradient-to-tr from-[#C8A232]/20 via-[#DFBF57]/10 to-transparent rounded-full blur-xl sm:blur-2xl pointer-events-none" />
