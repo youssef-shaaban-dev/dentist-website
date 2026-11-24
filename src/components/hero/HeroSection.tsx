@@ -12,11 +12,12 @@ import {
   ArrowLeft,
   Play,
   X,
-  MapPin,
   CalendarCheck,
   ShieldCheck,
   Building2,
   Crown,
+  Maximize2,
+  Minimize2,
 } from "lucide-react";
 
 export function HeroSection() {
@@ -29,6 +30,31 @@ export function HeroSection() {
   const leftVisualRef = useRef<HTMLDivElement>(null);
 
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
+
+  // Prevent background scrolling when video modal is open
+  useEffect(() => {
+    if (isVideoModalOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isVideoModalOpen]);
+
+  // Close modal on Escape key
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setIsVideoModalOpen(false);
+      }
+    };
+    if (isVideoModalOpen) {
+      window.addEventListener("keydown", handleKeyDown);
+    }
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isVideoModalOpen]);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -205,8 +231,12 @@ export function HeroSection() {
                   {/* Gold Shimmer Bar on Top */}
                   <div className="h-1 sm:h-1.5 w-full bg-gradient-to-r from-[#9A5F13] via-[#DFBF57] to-[#9A5F13]" />
 
-                  {/* Real Smile Video / High-Res Fallback Poster Canvas */}
-                  <div className="relative w-full aspect-[3/4] overflow-hidden bg-[#020B1D]">
+                  {/* Real Smile Video / High-Res Fallback Poster Canvas (Click to expand on mobile & desktop) */}
+                  <div
+                    onClick={() => setIsVideoModalOpen(true)}
+                    className="relative w-full aspect-[3/4] overflow-hidden bg-[#020B1D] cursor-pointer group/vid select-none"
+                    title={isRtl ? "اضغط لتكبير الفيديو" : "Click to enlarge video"}
+                  >
                     {/* Background Silent Ambient Video */}
                     <video
                       autoPlay
@@ -214,7 +244,7 @@ export function HeroSection() {
                       muted
                       playsInline
                       poster="/images/hero-real-smile.jpg"
-                      className="absolute inset-0 w-full h-full object-cover object-center transform transition-transform duration-700 group-hover:scale-105"
+                      className="absolute inset-0 w-full h-full object-cover object-center transform transition-transform duration-700 group-hover/vid:scale-105"
                     >
                       <source src="/videos/dentist-clinic-6592.mp4" type="video/mp4" />
                     </video>
@@ -223,23 +253,27 @@ export function HeroSection() {
                     <div className="absolute inset-0 bg-gradient-to-t from-[#020B1D]/90 via-black/20 to-black/30 pointer-events-none" />
 
                     {/* Real Clinical Verification Badge */}
-                    <div className="absolute top-2 sm:top-3.5 right-2 sm:right-3.5 px-2 sm:px-3 py-0.5 sm:py-1 rounded-full bg-[#011438]/90 border border-[#DFBF57]/70 backdrop-blur-md flex items-center gap-1.5 shadow-md">
+                    <div className="absolute top-2 sm:top-3.5 right-2 sm:right-3.5 px-2 sm:px-3 py-0.5 sm:py-1 rounded-full bg-[#011438]/90 border border-[#DFBF57]/70 backdrop-blur-md flex items-center gap-1.5 shadow-md pointer-events-none">
                       <ShieldCheck className="w-3 h-3 text-[#DFBF57]" />
                       <span className="text-[8px] sm:text-[10px] font-mono font-bold text-[#DFBF57] tracking-wider uppercase">
                         {isRtl ? "نتائج سريرية حقيقية" : "AUTHENTIC RESULTS"}
                       </span>
                     </div>
 
-                    {/* Clinic Tour Play Button */}
-                    <button
-                      type="button"
-                      onClick={() => setIsVideoModalOpen(true)}
-                      className="absolute top-2 sm:top-3.5 left-2 sm:left-3.5 px-2 sm:px-3 py-0.5 sm:py-1 rounded-full bg-[#011438]/90 hover:bg-[#012052] border border-[#DFBF57]/70 backdrop-blur-md flex items-center gap-1.5 shadow-md text-[#DFBF57] text-[8px] sm:text-[10px] font-mono font-bold transition-all cursor-pointer z-10 hover:scale-105 active:scale-95"
-                      title={isRtl ? "تشغيل جولة الفيديو" : "Play Clinic Video"}
+                    {/* Tap to Enlarge Play Button Badge */}
+                    <div
+                      className="absolute top-2 sm:top-3.5 left-2 sm:left-3.5 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full bg-[#011438]/95 hover:bg-[#012052] border border-[#DFBF57] backdrop-blur-md flex items-center gap-1.5 shadow-lg text-[#DFBF57] text-[9px] sm:text-[11px] font-mono font-bold transition-all z-10 hover:scale-105 active:scale-95"
                     >
-                      <Play className="w-2.5 h-2.5 text-[#DFBF57] fill-current" />
-                      <span>{isRtl ? "جولة العيادات" : "TOUR"}</span>
-                    </button>
+                      <Maximize2 className="w-3 h-3 text-[#DFBF57]" />
+                      <span>{isRtl ? "اضغط للتكبير" : "Tap to Enlarge"}</span>
+                    </div>
+
+                    {/* Center Floating Play Button on Hover/Mobile */}
+                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10 opacity-75 group-hover/vid:opacity-100 group-hover/vid:scale-110 transition-all duration-300">
+                      <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-gradient-to-br from-[#DFBF57] via-[#C8A232] to-[#9A5F13] text-[#012052] flex items-center justify-center shadow-[0_0_25px_rgba(200,162,50,0.7)] border-2 border-white/80">
+                        <Play className="w-5 h-5 sm:w-6 sm:h-6 fill-current text-[#012052] translate-x-0.5 rtl:-translate-x-0.5" />
+                      </div>
+                    </div>
 
                     {/* Bottom Caption Pill */}
                     <div className="absolute bottom-2 sm:bottom-3.5 left-2 sm:left-3.5 right-2 sm:right-3.5 p-2 sm:p-2.5 rounded-xl bg-[#011438]/90 border border-[#DFBF57]/50 backdrop-blur-md shadow-lg text-center">
@@ -267,45 +301,70 @@ export function HeroSection() {
       </div>
 
       {/* =================================================================== */}
-      {/* 6. CINEMATIC CLINIC TOUR VIDEO MODAL                               */}
+      {/* 6. CINEMATIC CLINIC TOUR VIDEO MODAL (Expand / Minimize UX)         */}
       {/* =================================================================== */}
       {isVideoModalOpen && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-md animate-fadeIn"
+          onClick={() => setIsVideoModalOpen(false)}
+          className="fixed inset-0 z-[9999] flex items-center justify-center p-3 sm:p-6 bg-black/95 backdrop-blur-xl animate-fadeIn"
           role="dialog"
           aria-modal="true"
         >
-          <div className="relative w-full max-w-4xl rounded-3xl overflow-hidden border-2 border-[#C8A232] bg-black shadow-2xl">
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className="relative w-full max-w-4xl rounded-3xl overflow-hidden border-2 border-[#C8A232] bg-[#020B1D] shadow-[0_25px_70px_rgba(0,0,0,0.85)] flex flex-col max-h-[92vh]"
+          >
             {/* Modal Header */}
-            <div className="flex items-center justify-between p-4 bg-[#010E24] border-b border-[#C8A232]/40">
-              <div className="flex items-center gap-2 text-white">
-                <Crown className="w-4 h-4 text-[#DFBF57]" />
-                <span className="text-sm font-bold font-display">
+            <div className="flex items-center justify-between p-3.5 sm:p-4 bg-[#010E24] border-b border-[#C8A232]/40">
+              <div className="flex items-center gap-2 text-white min-w-0">
+                <Crown className="w-4 h-4 text-[#DFBF57] shrink-0" />
+                <span className="text-xs sm:text-sm font-bold font-display truncate">
                   {isRtl ? "جولة في مراكز ماغنيفيسنت سمايل الطبية" : "Magnificent Smile Dental Centers Tour"}
                 </span>
               </div>
 
-              <button
-                type="button"
-                onClick={() => setIsVideoModalOpen(false)}
-                className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/25 text-white flex items-center justify-center transition-colors cursor-pointer"
-                aria-label="Close video"
-              >
-                <X className="w-4 h-4" />
-              </button>
+              {/* Action Buttons (Minimize + Close) */}
+              <div className="flex items-center gap-2 shrink-0">
+                <button
+                  type="button"
+                  onClick={() => setIsVideoModalOpen(false)}
+                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 active:scale-95 text-white text-xs font-bold border border-[#DFBF57]/40 transition-all cursor-pointer"
+                  title={isRtl ? "تصغير الفيديو" : "Minimize Video"}
+                >
+                  <Minimize2 className="w-3.5 h-3.5 text-[#DFBF57]" />
+                  <span>{isRtl ? "تصغير" : "Minimize"}</span>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => setIsVideoModalOpen(false)}
+                  className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/25 text-white flex items-center justify-center transition-colors cursor-pointer"
+                  aria-label="Close video"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              </div>
             </div>
 
             {/* Video Viewport */}
-            <div className="relative aspect-video w-full bg-black">
+            <div className="relative aspect-video w-full bg-black flex items-center justify-center">
               <video
                 autoPlay
                 controls
                 playsInline
                 className="w-full h-full object-contain"
               >
+                <source src="/videos/dentist-clinic-6592.mp4" type="video/mp4" />
                 <source src="/videos/hero-dental.mp4" type="video/mp4" />
-                <source src="/videos/dentist-teeth-brush-39480.mp4" type="video/mp4" />
               </video>
+            </div>
+
+            {/* Modal Footer hint for Mobile */}
+            <div className="px-4 py-2 bg-[#010E24] border-t border-[#DFBF57]/20 flex items-center justify-between text-[11px] text-[#CBD5E1]">
+              <span className="font-mono text-[#DFBF57]">MAGNIFICENT SMILE CLINIC</span>
+              <span className="text-white/60">
+                {isRtl ? "اضغط على تصغير أو خارج الفيديو للرجوع" : "Tap minimize or outside to return"}
+              </span>
             </div>
           </div>
         </div>
