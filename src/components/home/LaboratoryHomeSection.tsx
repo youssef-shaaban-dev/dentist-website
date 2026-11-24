@@ -130,11 +130,17 @@ export function LaboratoryHomeSection() {
             <span className="h-[1px] w-8 sm:w-12 bg-[#DFBF57]/60" />
           </div>
 
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-[42px] font-bold font-display leading-[1.28] mb-3 text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.85)]">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-[42px] font-bold font-display leading-[1.28] mb-4 text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.85)]">
             {t("headline")}
           </h2>
 
-          <p className="text-sm sm:text-base md:text-[16px] text-white/95 leading-relaxed max-w-4xl mx-auto font-body drop-shadow-[0_1px_8px_rgba(0,0,0,0.9)] font-medium whitespace-pre-line">
+          <p
+            className="text-sm sm:text-base md:text-lg text-white font-semibold leading-loose max-w-4xl mx-auto font-body whitespace-pre-line tracking-wide"
+            style={{
+              textShadow:
+                "0 2px 4px rgba(0,0,0,0.95), 0 0 14px rgba(0,0,0,0.9), 0 1px 2px rgba(0,0,0,1)",
+            }}
+          >
             {t("websiteCopy")}
           </p>
         </div>
