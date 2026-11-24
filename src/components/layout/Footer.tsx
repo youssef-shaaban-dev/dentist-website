@@ -49,18 +49,6 @@ export function Footer() {
             <p className="text-xs text-[#FDFBF7]/70 leading-relaxed mb-4 max-w-md font-body">
               {t("manifesto")}
             </p>
-
-            <div className="flex items-center gap-2 text-xs text-[#F3E5AB]">
-              <Globe className="w-3.5 h-3.5 text-[#C8A232]" />
-              <a
-                href="https://www.magnificentsmilegroup.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:underline hover:text-[#DFBF57] transition-colors"
-              >
-                www.magnificentsmilegroup.com
-              </a>
-            </div>
           </div>
 
           {/* Navigation Links (3 cols) */}
