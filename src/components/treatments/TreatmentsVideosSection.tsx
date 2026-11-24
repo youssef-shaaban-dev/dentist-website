@@ -33,10 +33,18 @@ export function TreatmentsVideosSection() {
           </p>
         </div>
 
-        {/* The 2 Videos Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
-          {/* Video 1 */}
-          <PatientVideoCard
+        {/* The 2 Videos Split 50/50 Layout */}
+        <div className="w-full grid grid-cols-1 lg:grid-cols-2 items-center gap-8 lg:gap-0 min-h-0">
+          {/* Video 1: Centered in Right Half */}
+          <div
+            className={`w-full flex items-center justify-center p-4 sm:p-6 lg:p-0 ${
+              isRtl
+                ? "lg:pe-16 xl:pe-24 lg:ps-12 xl:ps-20"
+                : "lg:ps-16 xl:ps-24 lg:pe-12 xl:pe-20"
+            }`}
+          >
+            <div className="w-full max-w-[360px] sm:max-w-[400px] xl:max-w-[440px] mx-auto">
+              <PatientVideoCard
             src="/1.mp4"
             title={
               isRtl
@@ -56,9 +64,19 @@ export function TreatmentsVideosSection() {
               isRtl ? "متابعة طبية مستمرة ورعاية فائقة" : "Attentive post-procedure clinical care",
             ]}
           />
+            </div>
+          </div>
 
-          {/* Video 2 */}
-          <PatientVideoCard
+          {/* Video 2: Centered in Left Half */}
+          <div
+            className={`w-full flex items-center justify-center p-4 sm:p-6 lg:p-0 ${
+              isRtl
+                ? "lg:ps-16 xl:ps-24 lg:pe-12 xl:pe-20"
+                : "lg:pe-16 xl:pe-24 lg:ps-12 xl:ps-20"
+            }`}
+          >
+            <div className="w-full max-w-[360px] sm:max-w-[400px] xl:max-w-[440px] mx-auto">
+              <PatientVideoCard
             src="/2.mp4"
             title={
               locale === "ar"
@@ -112,6 +130,8 @@ export function TreatmentsVideosSection() {
                 : "Exceeded expectations with unmatched confidence",
             ]}
           />
+            </div>
+          </div>
         </div>
       </div>
     </section>

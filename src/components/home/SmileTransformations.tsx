@@ -429,9 +429,17 @@ export function SmileTransformations() {
         {/* VIEW 2: REAL PATIENT VIDEO STORIES (1.mp4 & 2.mp4)       */}
         {/* ======================================================== */}
         {viewMode === "videos" && (
-          <div className="space-y-8 animate-in fade-in duration-300">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
-              {/* Video 1 */}
+          <div className="w-full relative z-10 space-y-10 animate-in fade-in duration-300">
+            <div className="w-full grid grid-cols-1 lg:grid-cols-2 items-center gap-8 lg:gap-0 min-h-0">
+              {/* Video 1: Centered in Right Half (Parchment side in RTL) */}
+              <div
+                className={`w-full flex items-center justify-center p-4 sm:p-6 lg:p-0 ${
+                  isRtl
+                    ? "lg:pe-16 xl:pe-24 lg:ps-12 xl:ps-20"
+                    : "lg:ps-16 xl:ps-24 lg:pe-12 xl:pe-20"
+                }`}
+              >
+                <div className="w-full max-w-[360px] sm:max-w-[400px] xl:max-w-[440px] mx-auto">
               <PatientVideoCard
                 src="/1.mp4"
                 title={
@@ -452,8 +460,18 @@ export function SmileTransformations() {
                   isRtl ? "متابعة طبية مستمرة ورعاية فائقة" : "Attentive post-procedure clinical care",
                 ]}
               />
+                </div>
+              </div>
 
-              {/* Video 2 */}
+              {/* Video 2: Centered in Left Half (Royal Blue side in RTL) */}
+              <div
+                className={`w-full flex items-center justify-center p-4 sm:p-6 lg:p-0 ${
+                  isRtl
+                    ? "lg:ps-16 xl:ps-24 lg:pe-12 xl:pe-20"
+                    : "lg:pe-16 xl:pe-24 lg:ps-12 xl:ps-20"
+                }`}
+              >
+                <div className="w-full max-w-[360px] sm:max-w-[400px] xl:max-w-[440px] mx-auto">
               <PatientVideoCard
                 src="/2.mp4"
                 title={
@@ -508,31 +526,35 @@ export function SmileTransformations() {
                     : "Exceeded expectations with unmatched confidence",
                 ]}
               />
+                </div>
+              </div>
             </div>
 
             {/* Bottom Callout Bar */}
-            <div className="p-6 rounded-3xl bg-[#FCFAF5]/95 border-2 border-[#C8A232]/50 shadow-lg flex flex-col sm:flex-row items-center justify-between gap-4">
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#DFBF57] to-[#9A5F13] text-white flex items-center justify-center shrink-0 shadow-md">
-                  <Sparkles className="w-6 h-6" />
+            <div className="max-w-5xl mx-auto px-4 sm:px-6">
+              <div className="p-6 rounded-3xl bg-[#FCFAF5]/95 border-2 border-[#C8A232]/50 shadow-lg flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#DFBF57] to-[#9A5F13] text-white flex items-center justify-center shrink-0 shadow-md">
+                    <Sparkles className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <h4 className="text-base sm:text-lg font-bold font-display text-[#0F266A]">
+                      {isRtl ? "هل ترغب في الحصول على استشارة خاصة بحالتك؟" : "Ready for your personalized clinical consultation?"}
+                    </h4>
+                    <p className="text-xs sm:text-sm text-[#2A3B56] font-body">
+                      {isRtl ? "استشاريونا جاهزون لتشخيص حالتك ووضع خطة علاجية مخصصة رقمياً." : "Our senior consultants are ready to design your 3D digital treatment plan."}
+                    </p>
+                  </div>
                 </div>
-                <div>
-                  <h4 className="text-base sm:text-lg font-bold font-display text-[#0F266A]">
-                    {isRtl ? "هل ترغب في الحصول على استشارة خاصة بحالتك؟" : "Ready for your personalized clinical consultation?"}
-                  </h4>
-                  <p className="text-xs sm:text-sm text-[#2A3B56] font-body">
-                    {isRtl ? "استشاريونا جاهزون لتشخيص حالتك ووضع خطة علاجية مخصصة رقمياً." : "Our senior consultants are ready to design your 3D digital treatment plan."}
-                  </p>
-                </div>
-              </div>
 
-              <Link
-                href={`/${locale}/clinics#booking`}
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-[#9A5F13] via-[#C8A232] to-[#9A5F13] text-white font-bold text-xs uppercase tracking-wider shadow-md hover:shadow-lg transition-all shrink-0"
-              >
-                <CalendarCheck className="w-4 h-4 text-white" />
-                <span>{isRtl ? "احجز كشفك الآن" : "Book Your Visit Now"}</span>
-              </Link>
+                <Link
+                  href={`/${locale}/clinics#booking`}
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-[#9A5F13] via-[#C8A232] to-[#9A5F13] text-white font-bold text-xs uppercase tracking-wider shadow-md hover:shadow-lg transition-all shrink-0"
+                >
+                  <CalendarCheck className="w-4 h-4 text-white" />
+                  <span>{isRtl ? "احجز كشفك الآن" : "Book Your Visit Now"}</span>
+                </Link>
+              </div>
             </div>
           </div>
         )}
