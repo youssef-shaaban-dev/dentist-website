@@ -6,14 +6,14 @@ import { useTranslations } from "next-intl";
 import { useLanguage } from "@/i18n/IntlProviderWrapper";
 import { SplitSectionLayout } from "@/components/ui/SplitSectionLayout";
 import {
-  Sparkles,
   EyeOff,
   Unlock,
-  Sparkle,
   Smile,
   CheckCircle,
   Plane,
   LineChart,
+  ShieldCheck,
+  CheckCircle2,
 } from "lucide-react";
 
 export function AlignersAdvantagesSection() {
@@ -23,7 +23,7 @@ export function AlignersAdvantagesSection() {
   const benefitIcons = [
     EyeOff,
     Unlock,
-    Sparkle,
+    ShieldCheck,
     Smile,
     CheckCircle,
     Plane,
@@ -36,7 +36,7 @@ export function AlignersAdvantagesSection() {
       parchmentContent={
         <div className="w-full max-w-xl p-4 sm:p-6 lg:p-0 rounded-3xl lg:rounded-none bg-[#FCFAF5]/95 lg:bg-transparent border border-[#C8A232]/35 lg:border-0 shadow-xl lg:shadow-none backdrop-blur-md lg:backdrop-blur-none">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#C8A232]/60 bg-white/90 shadow-xs mb-4 w-fit">
-            <Sparkles className="w-3.5 h-3.5 text-[#955904]" />
+            <ShieldCheck className="w-3.5 h-3.5 text-[#955904]" />
             <span className="text-[11px] font-bold tracking-widest uppercase text-[#955904] font-mono">
               {isRtl ? "مميزات التقويم الشفاف" : "OUR ALIGNERS ADVANTAGES"}
             </span>
@@ -48,7 +48,7 @@ export function AlignersAdvantagesSection() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {t.raw("benefits")?.map((b: { title: string; caption: string }, idx: number) => {
-              const Icon = benefitIcons[idx] || Sparkles;
+              const Icon = benefitIcons[idx] || CheckCircle2;
               return (
                 <div
                   key={idx}

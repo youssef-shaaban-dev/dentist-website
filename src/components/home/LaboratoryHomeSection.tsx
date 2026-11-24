@@ -10,7 +10,6 @@ import { useLanguage } from "@/i18n/IntlProviderWrapper";
 import { SplitSectionBackground } from "@/components/ui/SplitSectionBackground";
 import {
   Cpu,
-  Sparkles,
   ArrowRight,
   ArrowLeft,
   Scan,

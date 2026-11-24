@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { useTranslations } from "next-intl";
 import { useLanguage } from "@/i18n/IntlProviderWrapper";
-import { Crown, Sparkles, BookOpen } from "lucide-react";
+import { Crown, BookOpen } from "lucide-react";
 
 interface HieroglyphicLine {
   id: string;
@@ -215,7 +215,7 @@ export function HieroglyphicWall() {
                         style={{ minWidth: "260px" }}
                       >
                         <div className="flex items-center gap-1.5 mb-2 pb-1.5 border-b border-[#DFBF57]/30">
-                          <Sparkles className="w-3.5 h-3.5 text-[#DFBF57] shrink-0" />
+                          <Crown className="w-3.5 h-3.5 text-[#DFBF57] shrink-0" />
                           <span className="text-[11px] font-mono text-[#DFBF57] font-bold">
                             {line.category === "hesy-ra" ? t("reg1Title") : t("reg2Title")}
                           </span>

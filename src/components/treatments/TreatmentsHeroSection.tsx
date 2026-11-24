@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { useLanguage } from "@/i18n/IntlProviderWrapper";
 import { SplitSectionLayout } from "@/components/ui/SplitSectionLayout";
-import { Sparkles, ArrowRight, ArrowLeft, CalendarCheck, Video } from "lucide-react";
+import { ShieldCheck, ArrowRight, ArrowLeft, CalendarCheck, Video } from "lucide-react";
 
 export function TreatmentsHeroSection() {
   const t = useTranslations("treatmentsPage");
@@ -19,7 +19,7 @@ export function TreatmentsHeroSection() {
       parchmentContent={
         <div className="w-full max-w-xl mx-auto flex flex-col justify-center items-center text-center p-6 sm:p-8 lg:p-0 rounded-3xl lg:rounded-none bg-[#FCFAF5]/95 lg:bg-transparent border border-[#C8A232]/35 lg:border-0 shadow-xl lg:shadow-none backdrop-blur-md lg:backdrop-blur-none">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#C8A232]/60 bg-white/90 shadow-xs mb-4 w-fit mx-auto">
-            <Sparkles className="w-3.5 h-3.5 text-[#955904]" />
+            <ShieldCheck className="w-3.5 h-3.5 text-[#955904]" />
             <span className="text-[11px] font-bold tracking-widest uppercase text-[#955904] font-mono">
               {isRtl ? "العلاجات المتخصصة" : "SPECIALIZED TREATMENTS"}
             </span>

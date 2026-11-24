@@ -7,7 +7,6 @@ import { useTranslations } from "next-intl";
 import { useLanguage } from "@/i18n/IntlProviderWrapper";
 import { SplitSectionBackground } from "@/components/ui/SplitSectionBackground";
 import {
-  Sparkles,
   ArrowRight,
   ArrowLeft,
   Play,
@@ -18,6 +17,7 @@ import {
   Crown,
   Maximize2,
   Minimize2,
+  Users,
 } from "lucide-react";
 
 export function HeroSection() {
@@ -108,7 +108,7 @@ export function HeroSection() {
     {
       val: t("stats.patientsVal"),
       label: isRtl ? "+١٥,٠٠٠ حالة ناجحة" : "15,000+ Happy Patients",
-      icon: Sparkles,
+      icon: Users,
     },
     {
       val: "0.01 mm",

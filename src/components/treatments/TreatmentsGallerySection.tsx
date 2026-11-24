@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { useLanguage } from "@/i18n/IntlProviderWrapper";
 import { SplitSectionBackground } from "@/components/ui/SplitSectionBackground";
-import { Sparkles, CalendarCheck, ArrowRight, ArrowLeft } from "lucide-react";
+import { Crown, CalendarCheck, ArrowRight, ArrowLeft } from "lucide-react";
 
 export function TreatmentsGallerySection() {
   const t = useTranslations("treatmentsPage");
@@ -104,7 +104,7 @@ export function TreatmentsGallerySection() {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10 pb-6 border-b border-[#C8A232]/25">
           <div>
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[#C8A232]/50 bg-white/90 shadow-xs mb-3 w-fit">
-              <Sparkles className="w-3.5 h-3.5 text-[#955904]" />
+              <Crown className="w-3.5 h-3.5 text-[#955904]" />
               <span className="text-[10px] font-bold tracking-widest uppercase text-[#955904] font-mono">
                 {isRtl ? "معرض الحالات السريرية الحقيقية" : "REAL CLINICAL SMILE GALLERY"}
               </span>

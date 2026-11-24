@@ -9,7 +9,7 @@ import {
   Maximize2,
   Minimize2,
   X,
-  Sparkles,
+  Crown,
   CheckCircle2,
 } from "lucide-react";
 import { useLanguage } from "@/i18n/IntlProviderWrapper";
@@ -216,7 +216,7 @@ export function PatientVideoCard({
         >
           <div className="flex items-center gap-2">
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#012052]/90 border border-[#DFBF57] text-[#FAF1DD] text-[11px] sm:text-xs font-bold shadow-md backdrop-blur-md">
-              <Sparkles className="w-3 h-3 text-[#DFBF57]" />
+              <CheckCircle2 className="w-3 h-3 text-[#DFBF57]" />
               <span>{patientTag}</span>
             </div>
 
@@ -357,7 +357,7 @@ export function PatientVideoCard({
             {/* Modal Header */}
             <div className="flex items-center justify-between p-3.5 sm:p-4 bg-[#010E24] border-b border-[#C8A232]/40">
               <div className="flex items-center gap-2 text-white min-w-0">
-                <Sparkles className="w-4 h-4 text-[#DFBF57] shrink-0" />
+                <Crown className="w-4 h-4 text-[#DFBF57] shrink-0" />
                 <div className="truncate">
                   <span className="text-xs sm:text-sm font-bold font-display text-white">
                     {title}

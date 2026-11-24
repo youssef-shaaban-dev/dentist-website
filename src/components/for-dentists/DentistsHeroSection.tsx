@@ -4,7 +4,7 @@ import React from "react";
 import { useTranslations } from "next-intl";
 import { useLanguage } from "@/i18n/IntlProviderWrapper";
 import { SplitSectionLayout } from "@/components/ui/SplitSectionLayout";
-import { Stethoscope, ArrowRight, ArrowLeft, CheckCircle2, Sparkles } from "lucide-react";
+import { Stethoscope, ArrowRight, ArrowLeft, CheckCircle2, ShieldCheck } from "lucide-react";
 
 export function DentistsHeroSection() {
   const t = useTranslations("forDentistsPage");
@@ -46,7 +46,7 @@ export function DentistsHeroSection() {
         <div className="w-full max-w-lg p-6 sm:p-8 rounded-3xl bg-[#03112E]/90 border-2 border-[#C8A232]/70 shadow-[0_16px_45px_rgba(1,32,82,0.65)] backdrop-blur-md mx-auto">
           <div className="flex items-center gap-3 mb-6 pb-4 border-b border-[#C8A232]/30">
             <div className="w-10 h-10 rounded-xl bg-[#DFBF57]/20 border border-[#DFBF57] text-[#DFBF57] flex items-center justify-center">
-              <Sparkles className="w-5 h-5" />
+              <ShieldCheck className="w-5 h-5" />
             </div>
             <div>
               <h3 className="text-base font-bold font-display text-white">

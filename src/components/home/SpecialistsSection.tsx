@@ -7,7 +7,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useTranslations } from "next-intl";
 import { useLanguage } from "@/i18n/IntlProviderWrapper";
 import { SplitSectionBackground } from "@/components/ui/SplitSectionBackground";
-import { Award, Sparkles } from "lucide-react";
+import { Award } from "lucide-react";
 
 interface DoctorItem {
   id: string;
@@ -186,7 +186,7 @@ export function SpecialistsSection() {
               {/* Info Area */}
               <div className="px-4 py-4 text-center">
                 <div className="flex items-center justify-center gap-1.5 mb-1">
-                  <Sparkles className="w-3.5 h-3.5 text-[#DFBF57]" />
+                  <Award className="w-3.5 h-3.5 text-[#DFBF57]" />
                   <h3 className="text-sm sm:text-base font-bold font-display text-white truncate">
                     {doc.name}
                   </h3>

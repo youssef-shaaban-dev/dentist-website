@@ -15,7 +15,6 @@ import {
   ArrowRight,
   ArrowLeft,
   CheckCircle2,
-  Sparkles,
 } from "lucide-react";
 
 export function DivisionsSection() {
@@ -169,7 +168,7 @@ export function DivisionsSection() {
           <div className="flex items-center justify-center gap-2.5 mb-4">
             <span className="h-[1px] w-8 sm:w-12 bg-[#DFBF57]/60" />
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#DFBF57]/50 bg-[#011438]/85 backdrop-blur-md shadow-md">
-              <Sparkles className="w-3.5 h-3.5 text-[#DFBF57]" />
+              <Building2 className="w-3.5 h-3.5 text-[#DFBF57]" />
               <span className="text-xs font-bold text-[#DFBF57] uppercase tracking-wider font-mono">
                 {t("badge")}
               </span>

@@ -7,7 +7,6 @@ import { useTranslations } from "next-intl";
 import { useLanguage } from "@/i18n/IntlProviderWrapper";
 import { SplitSectionBackground } from "@/components/ui/SplitSectionBackground";
 import {
-  Sparkles,
   ArrowRight,
   ArrowLeft,
   Smile,
@@ -171,7 +170,7 @@ export function TreatmentsSpecialtiesSection() {
                 </div>
 
                 <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#012052]/90 border border-[#DFBF57]/60 text-[#DFBF57] font-mono font-bold text-xs shadow-xs">
-                  <Sparkles className="w-3.5 h-3.5 text-[#DFBF57]" />
+                  <ShieldCheck className="w-3.5 h-3.5 text-[#DFBF57]" />
                   <span>{t("vipService.availability")}</span>
                 </div>
               </div>

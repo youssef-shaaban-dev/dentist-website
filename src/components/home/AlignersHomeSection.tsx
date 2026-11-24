@@ -10,7 +10,6 @@ import { useLanguage } from "@/i18n/IntlProviderWrapper";
 import { SplitSectionBackground } from "@/components/ui/SplitSectionBackground";
 import {
   Layers,
-  Sparkles,
   CalendarCheck,
   ArrowRight,
   ArrowLeft,
@@ -152,7 +151,7 @@ export function AlignersHomeSection() {
           <div className="mb-12 sm:mb-16">
             <div className="text-center mb-6">
               <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#011438]/90 border border-[#DFBF57]/50 text-[#DFBF57] text-xs font-mono font-bold shadow-sm">
-                <Sparkles className="w-3.5 h-3.5 text-[#DFBF57]" />
+                <Layers className="w-3.5 h-3.5 text-[#DFBF57]" />
                 <span>{t("journeyHeading")}</span>
               </div>
             </div>
@@ -216,7 +215,7 @@ export function AlignersHomeSection() {
           <div className="lg:col-span-7 flex flex-col justify-between">
             <div className="mb-6">
               <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-[#C8A232]/50 text-[#955904] text-xs font-mono font-bold mb-3 shadow-xs">
-                <Sparkles className="w-3.5 h-3.5 text-[#955904]" />
+                <Smile className="w-3.5 h-3.5 text-[#955904]" />
                 <span>{t("benefitsHeading")}</span>
               </div>
 

@@ -10,8 +10,9 @@ import { useLanguage } from "@/i18n/IntlProviderWrapper";
 import { SplitSectionBackground } from "@/components/ui/SplitSectionBackground";
 import { PatientVideoCard } from "@/components/ui/PatientVideoCard";
 import {
-  Sparkles,
   CheckCircle2,
+  ShieldCheck,
+  Crown,
   ArrowRight,
   ArrowLeft,
   CalendarCheck,
@@ -176,7 +177,7 @@ export function SmileTransformations() {
             <div className="flex items-center gap-2.5 mb-3">
               <span className="h-[1px] w-8 sm:w-12 bg-[#DFBF57]/60" />
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#DFBF57]/50 bg-[#011438]/85 backdrop-blur-md shadow-md">
-                <Sparkles className="w-3.5 h-3.5 text-[#DFBF57]" />
+                <ShieldCheck className="w-3.5 h-3.5 text-[#DFBF57]" />
                 <span className="text-xs font-bold text-[#DFBF57] uppercase tracking-wider font-mono">
                   {t("badge")}
                 </span>
@@ -280,7 +281,7 @@ export function SmileTransformations() {
                     {isRtl ? "المواصفات السريرية المطبقة" : "Applied Clinical Specs"}
                   </span>
                   <span className="inline-flex items-center gap-1.5 text-[11px] font-medium text-[#7A6432] bg-[#FAF1DC] px-2.5 py-0.5 rounded-full border border-[#C8A232]/40">
-                    <Sparkles className="w-3 h-3 text-[#9A5F13]" />
+                    <CheckCircle2 className="w-3 h-3 text-[#9A5F13]" />
                     <span>{currentCase.tag}</span>
                   </span>
                 </div>
@@ -359,7 +360,7 @@ export function SmileTransformations() {
                       {/* Clean Teeth Badge */}
                       <div className={`absolute top-3 ${isRtl ? "left-3" : "right-3"} z-10 pointer-events-none`}>
                         <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#012052]/90 border border-[#DFBF57] text-[#FAF1DD] text-[11px] sm:text-xs font-bold shadow-md backdrop-blur-md">
-                          <Sparkles className="w-3 h-3 text-[#DFBF57]" />
+                          <CheckCircle2 className="w-3 h-3 text-[#DFBF57]" />
                           <span>{isRtl ? "بعد العلاج" : "After Treatment"}</span>
                         </div>
                       </div>
@@ -535,7 +536,7 @@ export function SmileTransformations() {
               <div className="p-6 rounded-3xl bg-[#FCFAF5]/95 border-2 border-[#C8A232]/50 shadow-lg flex flex-col sm:flex-row items-center justify-between gap-4">
                 <div className="flex items-center gap-3">
                   <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#DFBF57] to-[#9A5F13] text-white flex items-center justify-center shrink-0 shadow-md">
-                    <Sparkles className="w-6 h-6" />
+                    <Crown className="w-6 h-6 text-white" />
                   </div>
                   <div>
                     <h4 className="text-base sm:text-lg font-bold font-display text-[#0F266A]">
