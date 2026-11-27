@@ -280,44 +280,7 @@ export function HieroglyphicWall() {
         </div>
       </aside>
 
-      {/* =================================================================== */}
-      {/* 2. MOBILE HORIZONTAL ARCHITECTURAL STONE FRIEZE (< lg)              */}
-      {/* Fixed aesthetic Egyptian sandstone strip at the bottom of screen    */}
-      {/* =================================================================== */}
-      <div
-        aria-label="Ancient Egyptian Mobile Heritage Frieze"
-        className="block lg:hidden fixed bottom-0 left-0 right-0 z-50 pointer-events-none select-none bg-gradient-to-r from-[#DFBF57]/40 via-[#FAF1DD] to-[#DFBF57]/40 border-t-2 border-[#C8A232] shadow-[0_-5px_20px_rgba(154,95,19,0.35)]"
-      >
-        <div className="w-full h-[1px] bg-[#9A5F13]/30" />
-        <div className="h-10 px-3 flex items-center justify-between overflow-hidden">
-          {/* Left Cartouche Seal */}
-          <div className="shrink-0 flex items-center gap-1.5 pl-1.5 pr-2.5 py-0.5 rounded-full bg-[#012052] border border-[#DFBF57] shadow-sm">
-            <Crown className="w-3.5 h-3.5 text-[#DFBF57]" />
-            <span className="text-[9px] font-mono font-bold text-[#DFBF57] tracking-wider uppercase">
-              HESY-RA
-            </span>
-          </div>
 
-          {/* Horizontal Carved Hieroglyphic Relief Glyphs */}
-          <div className="flex-1 flex items-center justify-around px-2 overflow-hidden">
-            {allMobileGlyphs.slice(0, 16).map((glyph, gIdx) => (
-              <span
-                key={gIdx}
-                className="font-serif text-xl text-[#3D2504] drop-shadow-[0_1px_0_rgba(255,255,255,0.9)] inline-block select-none"
-              >
-                {glyph}
-              </span>
-            ))}
-          </div>
-
-          {/* Right Heritage Stamp */}
-          <div className="shrink-0 flex items-center gap-1 text-[#9A5F13] font-mono text-[9px] font-bold">
-            <BookOpen className="w-3.5 h-3.5 text-[#9A5F13]" />
-            <span>٢٦٠٠ ق.م</span>
-          </div>
-        </div>
-        <div className="w-full h-[1.5px] bg-[#9A5F13]/40" />
-      </div>
     </>
   );
 }

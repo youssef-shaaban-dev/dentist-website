@@ -43,6 +43,8 @@
 }
 
 :root {
+  color-scheme: light;
+  supported-color-schemes: light;
   --background: #FDFBF7;
   --foreground: #012968;
   --gold-primary: #C8A232;
@@ -53,8 +55,16 @@
   --ivory-primary: #F9EDD7;
 }
 
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: light;
+    supported-color-schemes: light;
+  }
+}
+
 /* Base Body & Reset for Light Luxury Palette */
 html {
+  color-scheme: light;
   background-color: #FDFBF7;
   color: #0A1128;
   scroll-behavior: auto; /* Handled smoothly by Lenis */
