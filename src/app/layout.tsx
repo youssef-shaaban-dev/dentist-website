@@ -84,8 +84,8 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="ar"
-      dir="rtl"
+      lang="en"
+      dir="ltr"
       className={`
         ${zentry.variable} 
         ${montserrat.variable} 

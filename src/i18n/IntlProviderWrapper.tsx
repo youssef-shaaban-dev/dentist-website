@@ -21,7 +21,7 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 
 export function IntlProviderWrapper({
   children,
-  locale = "ar",
+  locale = "en",
   messages,
 }: {
   children: React.ReactNode;
